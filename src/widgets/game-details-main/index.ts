@@ -1,0 +1,1 @@
+export { GameDetailsMain } from './ui'

@@ -1,0 +1,11 @@
+<section>
+	<article className="text-orange text-2xl  mb-8">
+		<h2 className="inline text-white underline">Your Gaming</h2>
+		Library
+	</article>
+	<article className="flex flex-col">
+		<UsersGameCard />
+		<UsersGameCard />
+		<UsersGameCard />
+	</article>
+</section>

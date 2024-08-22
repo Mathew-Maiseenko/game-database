@@ -1,0 +1,1 @@
+export { ExtendedGameCardsList } from './ui'

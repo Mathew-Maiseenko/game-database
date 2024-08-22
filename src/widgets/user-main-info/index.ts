@@ -1,0 +1,1 @@
+export { UserMainInfo } from './ui'
