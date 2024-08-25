@@ -1,5 +1,5 @@
-export { AchievementIcon } from './achievementIcon'
+export { AchievementIcon } from './achievement-icon'
 
-export { ClockIcon } from './clockIcon'
-export { DownloadIcon } from './downloadIcon'
-export { StarIcon } from './starIcon'
+export { DownloadIcon } from './download-icon'
+export { StarIcon } from './star-icon'
+export { HoverIconWithText } from './hover-icon-with-text'

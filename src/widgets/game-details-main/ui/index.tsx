@@ -6,10 +6,12 @@ import {
 	PairOfGameInfoCards,
 } from '../../../entities/game/game-details/ui'
 import { useEffect } from 'react'
-
 import { usePathname } from 'next/navigation'
 import { AppState } from '@/shared/lib'
-import { fetchGameDetails } from '../model/thunk/fetch-game-details'
+import {
+	fetchGameDetails,
+	gameDetailsSlice,
+} from '../../../entities/game/game-details/model'
 
 export function GameDetailsMain() {
 	const dispatch = useAppDispatch()
@@ -25,12 +27,13 @@ export function GameDetailsMain() {
 	}
 	const currentGameId = getUserIdByPathname(pathname)
 
-	const currentGame = useAppSelector(
-		(state: AppState) => state.gameDetails.games[currentGameId]
+	const currentGame = useAppSelector((state: AppState) =>
+		gameDetailsSlice.selectors.selectGameDetailsById(state, currentGameId)
 	)
 
 	useEffect(() => {
 		dispatch(fetchGameDetails(currentGameId))
+		console.log('проверка рендера:', dispatch, currentGameId)
 	}, [dispatch, currentGameId])
 
 	if (!currentGame) {
@@ -61,3 +64,7 @@ export function GameDetailsMain() {
 		)
 	}
 }
+
+// const currentGame = useAppSelector(
+// 	(state: AppState) => state.gameDetails.games[currentGameId]
+// )

@@ -1,30 +1,39 @@
-import Image from 'next/image'
-import downloadIcon from './../../../../../../../public/downloadIcon.svg'
+'use client'
+import { gameDetailsSlice } from '@/entities/game/game-details/model'
+import { useAppSelector } from '@/shared/lib/redux/hooks'
 import { StarIcon } from '@/shared/ui'
 
 export default function CardWithBaseInfo() {
+	const currentGameId = useAppSelector(
+		gameDetailsSlice.selectors.selectCurrentGameId
+	)
+	const currentGame = useAppSelector(state =>
+		gameDetailsSlice.selectors.selectGameDetailsById(state, currentGameId)
+	)
+	if (!currentGame) {
+		return
+	}
 	return (
 		<section className='flex flex-col bg-whiteGray rounded-3xl w-[48%] p-7'>
 			<section className='flex justify-between'>
-				<h2 className='text-xl font-bold text-white'>Fortnite</h2>
+				<h2 className='text-xl font-bold text-white'>{currentGame.name}</h2>
 				<article className='flex items-center'>
 					<StarIcon />
-					<h4 className='text-lg font-bold text-white'>4.8</h4>
+					<h4 className='text-lg font-bold text-white'>{currentGame.rating}</h4>
 				</article>
 			</section>
-			<section className='flex justify-between'>
-				<h3 className='text-lg font-medium text-textGray'>Sandbox</h3>
-				<section className='flex items-center'>
-					<Image
-						src={downloadIcon}
-						width={20}
-						height={20}
-						className='mr-1'
-						alt='second game photo'
-					/>
-					<h4 className='text-lg font-bold text-white'>2.3M</h4>
-				</section>
+			<section className='flex-col justify-between'>
+				<h3 className='text-lg font-medium text-textGray mb-2'>
+					Genres: {currentGame.genres.map(game => game.name).join(',  ')}
+				</h3>
 			</section>
 		</section>
 	)
+}
+
+{
+	/* <section className='flex items-center'>
+					<DownloadIcon />
+					<h4 className='text-lg font-bold text-white'>2.3M</h4>
+				</section> */
 }
