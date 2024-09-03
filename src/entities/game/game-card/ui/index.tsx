@@ -23,7 +23,7 @@ export function GameCard({
 	return (
 		<Link
 			href={`/details/${id}`}
-			className={`${cardHoverClass} flex flex-col  bg-whiteGray sm:w-[47%] md:w-[23%] h-1/3 p-3 rounded-xl mb-3`}
+			className={`${cardHoverClass} flex flex-col  bg-whiteGray sm:w-[47%] md:w-[23%] min-h-full p-3 rounded-xl mb-3`}
 		>
 			<Image
 				src={image || getRandomDefaultImage()}

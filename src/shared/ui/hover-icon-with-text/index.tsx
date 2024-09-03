@@ -15,7 +15,6 @@ export function HoverIconWithText({
 		<div className={`${classes.icon} ${classes.facebook} icon facebook`}>
 			<div className={`${classes.tooltip} tooltip`}>{title}</div>
 			<span>
-				{/* <i class='fab fa-facebook-f'></i> */}
 				<Image
 					src={image}
 					width={20}
@@ -29,6 +28,9 @@ export function HoverIconWithText({
 }
 
 /*
+<i class='fab fa-facebook-f'></i>
+
+
 		<article className={classes.icon}>
 			<span>Facebook</span>
 		</article>
