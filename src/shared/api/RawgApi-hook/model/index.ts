@@ -1,11 +1,13 @@
 import fetchingWrapper from '../lib/fetching-wrapper'
 import getListGameAchievementsParams from '../lib/getting-params/getting-achievements-params'
+import getDevelopersListParams from '../lib/getting-params/getting-developers-params'
 import getGameDetailsParams from '../lib/getting-params/getting-game-details-params'
 import getGameListParams from '../lib/getting-params/getting-game-list-params'
 import getGenreListParams from '../lib/getting-params/getting-genres-params'
 import getTagsListParams from '../lib/getting-params/getting-tags-params'
 import {
 	AchievementDtoSchema,
+	DeveloperDtoSchema,
 	GameDetailsDtoSchema,
 	GameDtoSchema,
 	GenreDtoSchema,
@@ -27,16 +29,27 @@ export const RawgApi = {
 				return GameDtoSchema.array().parse(res) as StoreGame[]
 			})
 	},
-	getGamesListWithPagination: async (
+	getGamesListWithParams: async (
 		gamesPerPage: number,
-		pageNumber: number
+		pageNumber: number,
+		title?: string,
+		genres?: string,
+		tags?: string,
+		year?: number | string | null,
+		developers?: string
 	) => {
+		// ;`${baseUrl}games?${ApiKey}&page=${pageNumber}&page_size=${gamesPerPage}&search=${title}&genres=${genres}&tags=${tags}&dates=${year}&developers=${developers}`
 		return await fetchingWrapper(
-			`${baseUrl}games?${ApiKey}&page=${pageNumber}&page_size=${gamesPerPage}`
+			`${baseUrl}games?${ApiKey}&page=${pageNumber}&page_size=${gamesPerPage}` +
+				(title ? `&search=${title}` : '') +
+				(developers ? `&developers=${developers}` : '') +
+				(genres ? `&genres=${genres}` : '') +
+				(tags ? `&tags=${tags}` : '') +
+				(year ? `&dates=${year}` : '')
 		)
 			.then(res => getGameListParams(res))
 			.then(res => {
-				console.log(res)
+				console.log('аааааааааааааааааааааааааааааа', res)
 				return GameDtoSchema.array().parse(res)
 			})
 	},
@@ -70,6 +83,14 @@ export const RawgApi = {
 			.then(res => {
 				console.log(res)
 				return TagDtoSchema.array().parse(res)
+			})
+	},
+	getDevelopersList: async () => {
+		return await fetchingWrapper(`${baseUrl}developers?${ApiKey}`)
+			.then(res => getDevelopersListParams(res))
+			.then(res => {
+				console.log(res)
+				return DeveloperDtoSchema.array().parse(res)
 			})
 	},
 }

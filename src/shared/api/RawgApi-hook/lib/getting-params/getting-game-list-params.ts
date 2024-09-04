@@ -28,7 +28,7 @@ const getGameListParams = (response: ApiGameResponse) =>
 			id: genre.id,
 			name: genre.name,
 		})),
-		stores: game.stores.map((storeObj: any) => ({
+		stores: game.stores?.map((storeObj: any) => ({
 			id: storeObj.store.id,
 			name: storeObj.store.name,
 			domain: storeObj.store.domain,

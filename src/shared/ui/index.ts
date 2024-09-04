@@ -1,3 +1,8 @@
+export { ArrowIcon } from './arrow-icon'
+
+export { MinimalistNumberInput } from './minimalist-number-input'
+export { MinimalistInput } from './minimalist-input'
+export { MinimalistMultiSelect } from './minimalist-multi-select'
 export { MagnifierIcon } from './magnifier-icon'
 export { MinimalistSelect } from './minimalist-select'
 export { AchievementIcon } from './achievement-icon'

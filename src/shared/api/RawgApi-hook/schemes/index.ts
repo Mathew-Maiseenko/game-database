@@ -4,7 +4,7 @@ export const GameDtoSchema = z.object({
 	id: z.number(),
 	slug: z.string(),
 	name: z.string(),
-	backgroundImage: z.string(),
+	backgroundImage: z.string().nullable(),
 	playtime: z.number(),
 	lastUpdate: z.string().nullable(), //z.string(),
 	released: z.string().nullable(),
@@ -25,7 +25,7 @@ export const GameDtoSchema = z.object({
 			z.object({
 				platformId: z.number(),
 				platformName: z.string(),
-				releaseDate: z.string(),
+				releaseDate: z.string().nullable().optional(),
 				requirements: z
 					.union([
 						z.object({
@@ -37,6 +37,7 @@ export const GameDtoSchema = z.object({
 					.nullable(),
 			})
 		)
+		.nullable()
 		.optional(),
 	genres: z
 		.array(
@@ -51,9 +52,10 @@ export const GameDtoSchema = z.object({
 			z.object({
 				id: z.number(),
 				name: z.string(),
-				domain: z.string(),
+				domain: z.string().nullable().optional(),
 			})
 		)
+		.nullable()
 		.optional(),
 	tags: z
 		.array(
@@ -151,6 +153,14 @@ export const TagDtoSchema = z.object({
 	id: z.number(),
 	name: z.string(),
 	slug: z.string(),
-	image: z.string(),
+	image: z.string().optional().nullable(),
 	language: z.string().optional(),
+})
+
+export const DeveloperDtoSchema = z.object({
+	id: z.number(),
+	name: z.string(),
+	slug: z.string(),
+	image: z.string().optional().nullable(),
+	gameCount: z.number(),
 })
