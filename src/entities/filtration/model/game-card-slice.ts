@@ -7,42 +7,97 @@ interface StateType {
 	gameListFetchingState: 'idle' | 'pending' | 'rejected' | 'fulfilled'
 
 	filtrationGameTitle: string | null
-	filtrationGenres: string[] | null | undefined
-	filtrationTags: string[] | null | undefined
+	filtrationGenres: string[]
+	filtrationTags: string[]
+}
+
+interface ThunkParams {
+	gamesPerPage: number
+	pageNumber: number
+	title?: string
+	genres?: string
+	tags?: string
+	year?: number | string | null
+	developers?: string
 }
 
 const initialState: StateType = {
 	entries: [],
 	gameListFetchingState: 'idle',
+
+	filtrationGameTitle: '',
+	filtrationGenres: [],
+	filtrationTags: [],
 }
 
-export const fetchGameList = createAsyncThunk<
+export const fetchFilteredGameList = createAsyncThunk<
 	StoreGame[],
-	undefined,
+	ThunkParams,
 	{ extra: extraArgumentType }
->('gamesList/fetchGameList', async (_, thunkApi) => {
-	const response = await thunkApi.extra.api.getGamesListWithPagination
-	return response
-})
+>(
+	'gamesFilteredList/fetchFilteredGameList',
+	async (
+		{ gamesPerPage, pageNumber, title, genres, tags, year, developers },
+		thunkApi
+	) => {
+		const response = await thunkApi.extra.api.getGamesListWithParams(
+			gamesPerPage,
+			pageNumber,
+			title,
+			genres,
+			tags,
+			year,
+			developers
+		)
+		return response
+	}
+)
 
-export const gamesFiltrationSlice = createAppSlice({
-	name: 'gamesFiltration',
+export const filteredGamesSlice = createAppSlice({
+	name: 'gamesFilteredList',
 	initialState,
 	reducers: {
-		store: (state, action: PayloadAction<StoreGame[]>) => {
-			state.entries = action.payload
+		setTitle: (state, action: PayloadAction<string>) => {
+			state.filtrationGameTitle = action.payload
+		},
+		clearTitle: state => {
+			state.filtrationGameTitle = ''
+		},
+
+		addActiveGenre: (state, action: PayloadAction<string>) => {
+			state.filtrationGenres = [...state.filtrationGenres, action.payload]
+		},
+		removeActiveGenre: (state, action: PayloadAction<string>) => {
+			state.filtrationGenres = state.filtrationGenres.filter(
+				genre => genre !== action.payload
+			)
+		},
+		clearActiveGenres: state => {
+			state.filtrationGenres = []
+		},
+
+		addActiveTag: (state, action: PayloadAction<string>) => {
+			state.filtrationTags = [...state.filtrationTags, action.payload]
+		},
+		removeActiveTag: (state, action: PayloadAction<string>) => {
+			state.filtrationTags = state.filtrationTags.filter(
+				tag => tag !== action.payload
+			)
+		},
+		clearActiveTags: state => {
+			state.filtrationTags = []
 		},
 	},
 	extraReducers: builder => {
 		builder
-			.addCase(fetchGameList.pending, state => {
+			.addCase(fetchFilteredGameList.pending, state => {
 				state.gameListFetchingState = 'pending'
 			})
-			.addCase(fetchGameList.fulfilled, (state, action) => {
+			.addCase(fetchFilteredGameList.fulfilled, (state, action) => {
 				state.gameListFetchingState = 'fulfilled'
 				state.entries = action.payload
 			})
-			.addCase(fetchGameList.rejected, state => {
+			.addCase(fetchFilteredGameList.rejected, state => {
 				state.gameListFetchingState = 'rejected'
 			})
 	},

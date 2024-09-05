@@ -49,8 +49,8 @@ export const RawgApi = {
 		)
 			.then(res => getGameListParams(res))
 			.then(res => {
-				console.log('аааааааааааааааааааааааааааааа', res)
-				return GameDtoSchema.array().parse(res)
+				console.log('getGameListParams', res)
+				return GameDtoSchema.array().parse(res) as StoreGame[]
 			})
 	},
 	getGameDetails: async (id: number) => {
