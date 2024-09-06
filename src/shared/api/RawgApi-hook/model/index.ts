@@ -16,6 +16,8 @@ import {
 import { Achievement } from '../types/achievement'
 import { StoreGameDetails } from '../types/game-details'
 import { StoreGame } from '../types/game-list'
+import { Genre } from '../types/genre'
+import { Tag } from '../types/tag'
 
 const baseUrl: string = 'https://api.rawg.io/api/'
 const ApiKey: string = 'key=fd711517d11b45b0b5c432f288b02d33'
@@ -74,7 +76,7 @@ export const RawgApi = {
 			.then(res => getGenreListParams(res))
 			.then(res => {
 				console.log(res)
-				return GenreDtoSchema.array().parse(res)
+				return GenreDtoSchema.array().parse(res) as Genre[]
 			})
 	},
 	getTagsList: async () => {
@@ -82,7 +84,7 @@ export const RawgApi = {
 			.then(res => getTagsListParams(res))
 			.then(res => {
 				console.log(res)
-				return TagDtoSchema.array().parse(res)
+				return TagDtoSchema.array().parse(res) as Tag[]
 			})
 	},
 	getDevelopersList: async () => {

@@ -39,7 +39,7 @@ export const gameDetailsSlice = createAppSlice({
 			})
 			.addCase(fetchGameDetails.fulfilled, (state, action) => {
 				state.games[action.meta.arg] = action.payload
-				state.currentGameId = action.meta.arg
+				//state.currentGameId = action.meta.arg //???
 				state.gameDetailsFetchingState = 'fulfilled'
 			})
 			.addCase(fetchGameDetails.rejected, state => {

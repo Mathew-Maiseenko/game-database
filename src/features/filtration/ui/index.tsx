@@ -1,7 +1,6 @@
 import {
 	MinimalistInput,
 	MinimalistMultiSelect,
-	MinimalistNumberInput,
 	MinimalistSelect,
 } from '@/shared/ui'
 

@@ -1,17 +1,16 @@
-'use client'
 import { WelcomeMessage } from '@/widgets/welcome-message'
 import { PopularGamesList } from '@/widgets/popular-game-list'
 import { UsersGamesList } from '@/widgets/users-games-list'
-import { RawgApi } from '@/shared/api/RawgApi-hook'
-import fetchingWrapper from '@/shared/api/RawgApi-hook/lib/fetching-wrapper'
-RawgApi.getGamesListWithParams(
-	8,
-	1,
-	'GTA',
-	'shooter',
-	'singleplayer'
-	//'2023-12-31.2024/09/02T17:50:43'
-)
+//import { RawgApi } from '@/shared/api/RawgApi-hook'
+//import fetchingWrapper from '@/shared/api/RawgApi-hook/lib/fetching-wrapper'
+// RawgApi.getGamesListWithParams(
+// 	8,
+// 	1,
+// 	'GTA',
+// 	'shooter',
+// 	'singleplayer'
+// 	//`'2023-12-31.2024/09/02T17:50:43'
+// )
 // fetchingWrapper(
 // 	`https://api.rawg.io/api/games?key=fd711517d11b45b0b5c432f288b02d33&page=1&page_size=8&search=GTA`
 // ).then(res => {

@@ -1,4 +1,4 @@
-import { GameFiltration } from '@/entities/filtration'
+import { GameFiltration } from '@/features/filtration'
 
 export default function GameListPage() {
 	return (

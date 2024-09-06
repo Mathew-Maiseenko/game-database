@@ -146,6 +146,7 @@ export const GenreDtoSchema = z.object({
 	id: z.number(),
 	name: z.string(),
 	slug: z.string(),
+	gamesCount: z.number(),
 	image: z.string(),
 })
 
