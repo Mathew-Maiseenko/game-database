@@ -11,6 +11,9 @@ interface MinimalistMultiSelectProps {
 	withSearch?: boolean
 	searchMessage?: string
 	className?: string
+
+	selected: string[]
+	setSelected: React.Dispatch<React.SetStateAction<string[]>>
 }
 
 export const MinimalistMultiSelect = ({
@@ -19,9 +22,12 @@ export const MinimalistMultiSelect = ({
 	withSearch = true,
 	searchMessage = 'Enter option name',
 	className = 'w-72 font-medium h-80 ',
+
+	selected,
+	setSelected,
 }: MinimalistMultiSelectProps) => {
 	const [inputValue, setInputValue] = useState('')
-	const [selected, setSelected] = useState<string[]>([])
+	//const [selected, setSelected] = useState<string[]>([])
 	const [open, setOpen] = useState(false)
 
 	return (

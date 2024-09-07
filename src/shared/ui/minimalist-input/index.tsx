@@ -1,20 +1,23 @@
 'use client'
 import React, { useState } from 'react'
 import { MagnifierIcon } from '../magnifier-icon'
+import type { ActionCreatorWithPayload } from '@reduxjs/toolkit'
 
 interface MinimalistInputProps {
-	// inputValue: string
-	// setInputValue: () => React.Dispatch<React.SetStateAction<string>>
+	inputValue: string
+	setInputValue: ActionCreatorWithPayload<string, string>
 	message?: string
 	searchMessage?: string
 	className?: string
 }
 
 export const MinimalistInput = ({
+	inputValue,
+	setInputValue,
 	message = 'Input option',
 	className = 'w-72 font-medium h-80 ',
 }: MinimalistInputProps) => {
-	const [inputValue, setInputValue] = useState('')
+	//const [inputValue, setInputValue] = useState('')
 	const [focus, setFocus] = useState(false)
 
 	return (

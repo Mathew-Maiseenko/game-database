@@ -17,7 +17,7 @@ interface StateType {
 	tags: Tag[]
 	tagListFetchingState: 'idle' | 'pending' | 'rejected' | 'fulfilled'
 
-	activeFiltrationGameTitle: string | null
+	activeFiltrationGameTitle: string
 	activeFiltrationGenres: string[]
 	activeFiltrationTags: string[]
 }
@@ -27,9 +27,11 @@ const initialState: StateType = {
 	gameListFetchingState: 'idle',
 
 	genres: [],
+	// selectedGenres: [],
 	genreListFetchingState: 'idle',
 
 	tags: [],
+	// selectedTags: [],
 	tagListFetchingState: 'idle',
 
 	activeFiltrationGameTitle: '',
@@ -42,8 +44,12 @@ export const filteredGamesSlice = createAppSlice({
 	initialState,
 	selectors: {
 		selectCurrentGames: state => state.games,
-		selectGenresList: state => state.genres,
+		selectGenreList: state => state.genres,
 		selectTagList: state => state.tags,
+
+		selectFiltrationTitle: state => state.activeFiltrationGameTitle,
+		selectFiltrationGenreList: state => state.activeFiltrationGameTitle,
+		selectFiltrationTagList: state => state.activeFiltrationGameTitle,
 	},
 	reducers: {
 		setTitle: (state, action: PayloadAction<string>) => {
@@ -53,19 +59,26 @@ export const filteredGamesSlice = createAppSlice({
 			state.activeFiltrationGameTitle = ''
 		},
 
-		addActiveGenre: (state, action: PayloadAction<string>) => {
-			state.activeFiltrationGenres = [
-				...state.activeFiltrationGenres,
-				action.payload,
-			]
+		setActiveGenres: (state, action: PayloadAction<Genre[]>) => {
+			state.genres = action.payload
 		},
-		removeActiveGenre: (state, action: PayloadAction<string>) => {
-			state.activeFiltrationGenres = state.activeFiltrationGenres.filter(
-				genre => genre !== action.payload
-			)
-		},
-		clearActiveGenres: state => {
-			state.activeFiltrationGenres = []
+		// addActiveGenre: (state, action: PayloadAction<string>) => {
+		// 	state.activeFiltrationGenres = [
+		// 		...state.activeFiltrationGenres,
+		// 		action.payload,
+		// 	]
+		// },
+		// removeActiveGenre: (state, action: PayloadAction<string>) => {
+		// 	state.activeFiltrationGenres = state.activeFiltrationGenres.filter(
+		// 		genre => genre !== action.payload
+		// 	)
+		// },
+		// clearActiveGenres: state => {
+		// 	state.activeFiltrationGenres = []
+		// },
+
+		setActiveTag: (state, action: PayloadAction<Tag[]>) => {
+			state.tags = action.payload
 		},
 
 		addActiveTag: (state, action: PayloadAction<string>) => {
