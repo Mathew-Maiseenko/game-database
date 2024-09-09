@@ -1,12 +1,12 @@
 import type { StoreGame } from '@/shared/api/RawgApi-hook'
 import type { Genre } from '@/shared/api/RawgApi-hook/types/genre'
-import type { Tag } from '@/shared/api/RawgApi-hook/types/tag'
+import type { Tag, TagResult } from '@/shared/api/RawgApi-hook/types/tag'
 import { createAppSlice } from '@/shared/lib'
 import { PayloadAction } from '@reduxjs/toolkit'
 import { fetchFilteredGameList } from './thunk/fetch-filtered-game-list'
 import { fetchGenresList } from './thunk/fetch-genres-list'
 import { fetchTagsList } from './thunk/fetch-tags-list'
-
+//переделать структуру хранилища
 interface StateType {
 	games: StoreGame[]
 	gameListFetchingState: 'idle' | 'pending' | 'rejected' | 'fulfilled'
@@ -14,12 +14,15 @@ interface StateType {
 	genres: Genre[]
 	genreListFetchingState: 'idle' | 'pending' | 'rejected' | 'fulfilled'
 
-	tags: Tag[]
+	tags: TagResult[]
 	tagListFetchingState: 'idle' | 'pending' | 'rejected' | 'fulfilled'
 
 	activeFiltrationGameTitle: string
-	activeFiltrationGenres: string[]
-	activeFiltrationTags: string[]
+	activeFiltrationGenres: Record<string, Genre | undefined>
+	activeFiltrationTags: Record<string, TagResult | undefined>
+
+	// activeFiltrationGenres: string[]
+	// activeFiltrationTags: string[]
 }
 
 const initialState: StateType = {
@@ -35,8 +38,8 @@ const initialState: StateType = {
 	tagListFetchingState: 'idle',
 
 	activeFiltrationGameTitle: '',
-	activeFiltrationGenres: [],
-	activeFiltrationTags: [],
+	activeFiltrationGenres: {},
+	activeFiltrationTags: {},
 }
 
 export const filteredGamesSlice = createAppSlice({
@@ -48,8 +51,8 @@ export const filteredGamesSlice = createAppSlice({
 		selectTagList: state => state.tags,
 
 		selectFiltrationTitle: state => state.activeFiltrationGameTitle,
-		selectFiltrationGenreList: state => state.activeFiltrationGameTitle,
-		selectFiltrationTagList: state => state.activeFiltrationGameTitle,
+		selectFiltrationGenreList: state => state.activeFiltrationGenres,
+		selectFiltrationTagList: state => state.activeFiltrationTags,
 	},
 	reducers: {
 		setTitle: (state, action: PayloadAction<string>) => {
@@ -59,9 +62,32 @@ export const filteredGamesSlice = createAppSlice({
 			state.activeFiltrationGameTitle = ''
 		},
 
-		setActiveGenres: (state, action: PayloadAction<Genre[]>) => {
-			state.genres = action.payload
+		setActiveGenres: (
+			state,
+			action: PayloadAction<{
+				name: string
+				param: Genre | undefined
+			}>
+		) => {
+			state.activeFiltrationGenres = {
+				...state.activeFiltrationGenres,
+				[action.payload.name]: action.payload.param,
+			}
 		},
+
+		setActiveTags: (
+			state,
+			action: PayloadAction<{
+				name: string
+				param: TagResult | undefined
+			}>
+		) => {
+			state.activeFiltrationTags = {
+				...state.activeFiltrationTags,
+				[action.payload.name]: action.payload.param,
+			}
+		},
+
 		// addActiveGenre: (state, action: PayloadAction<string>) => {
 		// 	state.activeFiltrationGenres = [
 		// 		...state.activeFiltrationGenres,
@@ -76,25 +102,20 @@ export const filteredGamesSlice = createAppSlice({
 		// clearActiveGenres: state => {
 		// 	state.activeFiltrationGenres = []
 		// },
-
-		setActiveTag: (state, action: PayloadAction<Tag[]>) => {
-			state.tags = action.payload
-		},
-
-		addActiveTag: (state, action: PayloadAction<string>) => {
-			state.activeFiltrationTags = [
-				...state.activeFiltrationTags,
-				action.payload,
-			]
-		},
-		removeActiveTag: (state, action: PayloadAction<string>) => {
-			state.activeFiltrationTags = state.activeFiltrationTags.filter(
-				tag => tag !== action.payload
-			)
-		},
-		clearActiveTags: state => {
-			state.activeFiltrationTags = []
-		},
+		// addActiveTag: (state, action: PayloadAction<string>) => {
+		// 	state.activeFiltrationTags = {
+		// 		...state.activeFiltrationTags,
+		// 		[action.payload],
+		// 	}
+		// },
+		// removeActiveTag: (state, action: PayloadAction<string>) => {
+		// 	state.activeFiltrationTags = state.activeFiltrationTags.filter(
+		// 		tag => tag !== action.payload
+		// 	)
+		// },
+		// clearActiveTags: state => {
+		// 	state.activeFiltrationTags = []
+		// },
 	},
 	extraReducers: builder => {
 		builder

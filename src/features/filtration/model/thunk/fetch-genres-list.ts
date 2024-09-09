@@ -6,7 +6,7 @@ export const fetchGenresList = createAsyncThunk<
 	Genre[],
 	undefined,
 	{ extra: extraArgumentType }
->('gameDetails/fetchGameDetails', async (_, thunkApi) => {
+>('gamesFilteredList/fetchGenresList', async (_, thunkApi) => {
 	const res = await thunkApi.extra.api.getGenresList()
 	return res
 })

@@ -1,12 +1,12 @@
-import type { Tag } from '@/shared/api/RawgApi-hook/types/tag'
+import type { TagResult } from '@/shared/api/RawgApi-hook/types/tag'
 import type { extraArgumentType } from '@/shared/lib'
 import { createAsyncThunk } from '@reduxjs/toolkit'
 
 export const fetchTagsList = createAsyncThunk<
-	Tag[],
+	TagResult[],
 	undefined,
 	{ extra: extraArgumentType }
->('gameDetails/fetchGameDetails', async (_, thunkApi) => {
+>('gamesFilteredList/fetchTagsList', async (_, thunkApi) => {
 	const res = await thunkApi.extra.api.getTagsList()
 	return res
 })

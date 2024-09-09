@@ -13,3 +13,12 @@ export interface Tag {
 	image_background: string
 	language: string | undefined
 }
+
+export interface TagResult {
+	id: number
+	name: string
+	slug: string
+	gamesCount: number
+	image: string
+	language: string | undefined
+}
