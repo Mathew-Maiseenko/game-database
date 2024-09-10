@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import ClockSwg from '../../../../public/clock.svg'
+import AchievementSWG from '../../../../public/achievement.svg'
 
 interface iconProps {
 	classes?: string | undefined
@@ -7,7 +7,7 @@ interface iconProps {
 export function AchievementIcon({ classes }: iconProps) {
 	return (
 		<Image
-			src={ClockSwg}
+			src={AchievementSWG}
 			width={20}
 			height={20}
 			className={`mr-1 ${classes}`}

@@ -11,6 +11,7 @@ import {
 	GameDetailsDtoSchema,
 	GameDtoSchema,
 	GenreDtoSchema,
+	ScreenshotsDtoSchema,
 	TagDtoSchema,
 } from '../schemes'
 import { Achievement } from '../types/achievement'
@@ -19,6 +20,7 @@ import { StoreGame } from '../types/game-list'
 import { Genre } from '../types/genre'
 import type { TagResult } from '../'
 import { DeveloperResult } from '../types/developer'
+import getListGameScreenshotsParams from '../lib/getting-params/getting-screenshots-params'
 
 const baseUrl: string = 'https://api.rawg.io/api/'
 const ApiKey: string = 'key=fd711517d11b45b0b5c432f288b02d33'
@@ -41,7 +43,6 @@ export const RawgApi = {
 		year?: number | string | null,
 		developers?: string
 	) => {
-		// ;`${baseUrl}games?${ApiKey}&page=${pageNumber}&page_size=${gamesPerPage}&search=${title}&genres=${genres}&tags=${tags}&dates=${year}&developers=${developers}`
 		return await fetchingWrapper(
 			`${baseUrl}games?${ApiKey}&page=${pageNumber}&page_size=${gamesPerPage}` +
 				(title ? `&search=${title}` : '') +
@@ -79,6 +80,14 @@ export const RawgApi = {
 			.then(res => {
 				console.log(res)
 				return AchievementDtoSchema.array().parse(res) as Achievement[]
+			})
+	},
+	getListGameScreenshots: async (id: number) => {
+		return await fetchingWrapper(`${baseUrl}games/${id}/screenshots?${ApiKey}`)
+			.then(res => getListGameScreenshotsParams(res))
+			.then(res => {
+				console.log(res)
+				return ScreenshotsDtoSchema.array().parse(res) as string[]
 			})
 	},
 	getGenresList: async () => {

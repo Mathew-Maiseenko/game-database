@@ -12,6 +12,7 @@ import {
 	fetchGameDetails,
 	gameDetailsSlice,
 } from '../../../entities/game/game-details/model'
+import { GameAchievementsList } from '@/entities/game/game-details/ui/game-achievements-list'
 
 export function GameDetailsMain() {
 	const dispatch = useAppDispatch()
@@ -60,6 +61,7 @@ export function GameDetailsMain() {
 						</button>
 					</section>
 				</section>
+				<GameAchievementsList gameId={currentGameId} />
 			</>
 		)
 	}

@@ -165,3 +165,4 @@ export const DeveloperDtoSchema = z.object({
 	image: z.string().optional().nullable(),
 	gameCount: z.number(),
 })
+export const ScreenshotsDtoSchema = z.string()

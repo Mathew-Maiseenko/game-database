@@ -151,12 +151,6 @@ function toggleCardActiveness(
 		dispatch(
 			activeParamDispatcher({ name: activeParamName, param: activeParam })
 		)
-		console.log(
-			'диспатч жанра/тега',
-			activeParamName,
-			activeParamStore,
-			activeParamDispatcher
-		)
 	} else if (activeParamStore[activeParamName] && activeParamName) {
 		dispatch(activeParamDispatcher({ name: activeParamName, param: undefined }))
 	}
