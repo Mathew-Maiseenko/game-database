@@ -9,6 +9,8 @@ interface MinimalistSelectProps {
 	withSearch?: boolean
 	searchMessage?: string
 	className?: string
+	selectedOption: string
+	setSelected: React.Dispatch<React.SetStateAction<string>>
 }
 
 export const MinimalistSelect = ({
@@ -17,9 +19,11 @@ export const MinimalistSelect = ({
 	withSearch = true,
 	searchMessage = 'Enter option name',
 	className = 'w-72 font-medium h-80 ',
+	selectedOption,
+	setSelected,
 }: MinimalistSelectProps) => {
 	const [inputValue, setInputValue] = useState('')
-	const [selected, setSelected] = useState('')
+	//const [selectedOption, setSelected] = useState('')
 	const [open, setOpen] = useState(false)
 
 	return (
@@ -31,19 +35,19 @@ export const MinimalistSelect = ({
 				// }`}
 
 				className={`bg-inherit text-textGray w-full p-2 flex items-center justify-between rounded relative after:absolute after:left-0 after:bottom-[-2px] after:h-[1px] after:w-full after:bg-textGray after:content-['']  ${
-					selected && 'text-white after:bg-white'
+					selectedOption && 'text-white after:bg-white'
 				}`}
 			>
-				{selected
-					? selected?.length > 25
-						? selected?.substring(0, 25) + '...'
-						: selected
+				{selectedOption
+					? selectedOption?.length > 25
+						? selectedOption?.substring(0, 25) + '...'
+						: selectedOption
 					: message}
 				<ArrowIcon
 					styles={`transform transition-transform duration-300 rotate-0 ${
 						open ? 'rotate-180' : ''
 					}`}
-					fill={selected.length ? 'white' : '#666666'}
+					fill={selectedOption.length ? 'white' : '#666666'}
 				/>
 				{/* <svg
 					width='14'
@@ -83,18 +87,20 @@ export const MinimalistSelect = ({
 						key={option}
 						className={`p-2 text-white text-sm hover:bg-orange hover:text-black
             ${
-							option?.toLowerCase() === selected?.toLowerCase() &&
+							option?.toLowerCase() === selectedOption?.toLowerCase() &&
 							'bg-orange text-black'
 						}
             ${
 							option?.toLowerCase().startsWith(inputValue) ? 'block' : 'hidden'
 						}`}
 						onClick={() => {
-							if (option?.toLowerCase() !== selected.toLowerCase()) {
+							if (option?.toLowerCase() !== selectedOption.toLowerCase()) {
 								setSelected(option)
 								setOpen(false)
 								setInputValue('')
-							} else if (option?.toLowerCase() === selected.toLowerCase()) {
+							} else if (
+								option?.toLowerCase() === selectedOption.toLowerCase()
+							) {
 								setSelected('')
 								setOpen(false)
 								setInputValue('')

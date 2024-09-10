@@ -19,9 +19,9 @@ export function GameDetailsHeader({
 				<article className='flex sm:flex-col lg:flex-row h-[40vh] mb-10'>
 					<Image
 						src={mainImage ? mainImage : ''}
-						width={4000}
-						height={4000}
-						className='flex flex-grow sm:w-2/3 lg:w-full'
+						width={2048}
+						height={1080}
+						className='flex flex-grow sm:w-2/3 lg:w-full object-cover'
 						alt='Main game photo'
 					/>
 					{/* <section>

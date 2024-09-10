@@ -1,9 +1,11 @@
 import { GameFiltration } from '@/features/filtration'
+import { FilteredGamesList } from '@/widgets/filtered-games-list'
 
 export default function GameListPage() {
 	return (
 		<>
 			<GameFiltration />
+			<FilteredGamesList />
 		</>
 	)
 }

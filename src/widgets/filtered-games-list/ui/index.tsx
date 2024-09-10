@@ -1,21 +1,17 @@
 'use client'
 import { GameCard } from '@/entities/game/game-card'
-import { useAppDispatch, useAppSelector } from '@/shared/lib/redux/hooks'
-import { AppState } from '@/shared/lib'
-import { useEffect } from 'react'
+import { useAppSelector } from '@/shared/lib/redux/hooks'
 import { StoreGame } from '@/shared/api/RawgApi-hook'
+import { filteredGamesSlice } from '@/features/filtration/model/filtration-slice'
+import { AppState } from '@/shared/lib'
 //import { fetchFilteredGameList } from '@/features/filtration/model/thunk/fetch-filtered-game-list'
 
-export function PopularGamesList() {
-	const dispatch = useAppDispatch()
-	const games = useAppSelector((state: AppState) => state.gamesList.entries)
+export function FilteredGamesList() {
+	const games = useAppSelector(filteredGamesSlice.selectors.selectCurrentGames)
 	const gameListFetchingState = useAppSelector(
 		(state: AppState) => state.gamesList.gameListFetchingState
 	)
 
-	useEffect(() => {
-		//dispatch(fetchFilteredGameList({}))
-	}, [dispatch])
 	if (games.length === 0) {
 		return <div>{gameListFetchingState}</div>
 	}

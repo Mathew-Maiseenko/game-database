@@ -30,7 +30,7 @@ export function GameCard({
 				width={500}
 				height={500}
 				alt='Picture of the author'
-				className='h-3/5 w-full rounded-t-xl mb-2'
+				className='h-3/5 w-full rounded-t-xl mb-2 object-cover'
 			/>
 			<article className={`flex flex-col px-3 pb-3`}>
 				<section className='flex flex-row md:mb-1 justify-between .text-white'>

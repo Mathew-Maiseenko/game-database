@@ -1,1 +1,1 @@
-export { PopularGamesList } from './ui'
+export { FilteredGamesList } from './ui'

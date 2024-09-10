@@ -1,15 +1,19 @@
-import type { StoreGame } from '@/shared/api/RawgApi-hook'
+import type { DeveloperResult, StoreGame } from '@/shared/api/RawgApi-hook'
 import type { Genre } from '@/shared/api/RawgApi-hook/types/genre'
-import type { Tag, TagResult } from '@/shared/api/RawgApi-hook/types/tag'
+import type { TagResult } from '@/shared/api/RawgApi-hook/types/tag'
 import { createAppSlice } from '@/shared/lib'
 import { PayloadAction } from '@reduxjs/toolkit'
 import { fetchFilteredGameList } from './thunk/fetch-filtered-game-list'
 import { fetchGenresList } from './thunk/fetch-genres-list'
 import { fetchTagsList } from './thunk/fetch-tags-list'
+import { fetchDeveloperList } from './thunk/fetch-developers-list'
 //переделать структуру хранилища
 interface StateType {
 	games: StoreGame[]
 	gameListFetchingState: 'idle' | 'pending' | 'rejected' | 'fulfilled'
+
+	developers: DeveloperResult[]
+	developerListFetchingState: 'idle' | 'pending' | 'rejected' | 'fulfilled'
 
 	genres: Genre[]
 	genreListFetchingState: 'idle' | 'pending' | 'rejected' | 'fulfilled'
@@ -17,7 +21,8 @@ interface StateType {
 	tags: TagResult[]
 	tagListFetchingState: 'idle' | 'pending' | 'rejected' | 'fulfilled'
 
-	activeFiltrationGameTitle: string
+	//activeFiltrationGameTitle: string
+
 	activeFiltrationGenres: Record<string, Genre | undefined>
 	activeFiltrationTags: Record<string, TagResult | undefined>
 
@@ -29,15 +34,16 @@ const initialState: StateType = {
 	games: [],
 	gameListFetchingState: 'idle',
 
+	developers: [],
+	developerListFetchingState: 'idle',
+
 	genres: [],
-	// selectedGenres: [],
 	genreListFetchingState: 'idle',
 
 	tags: [],
-	// selectedTags: [],
 	tagListFetchingState: 'idle',
 
-	activeFiltrationGameTitle: '',
+	//activeFiltrationGameTitle: '',
 	activeFiltrationGenres: {},
 	activeFiltrationTags: {},
 }
@@ -47,20 +53,21 @@ export const filteredGamesSlice = createAppSlice({
 	initialState,
 	selectors: {
 		selectCurrentGames: state => state.games,
+		selectDeveloperList: state => state.developers,
 		selectGenreList: state => state.genres,
 		selectTagList: state => state.tags,
 
-		selectFiltrationTitle: state => state.activeFiltrationGameTitle,
+		//selectFiltrationTitle: state => state.activeFiltrationGameTitle,
 		selectFiltrationGenreList: state => state.activeFiltrationGenres,
 		selectFiltrationTagList: state => state.activeFiltrationTags,
 	},
 	reducers: {
-		setTitle: (state, action: PayloadAction<string>) => {
-			state.activeFiltrationGameTitle = action.payload
-		},
-		clearTitle: state => {
-			state.activeFiltrationGameTitle = ''
-		},
+		// setTitle: (state, action: PayloadAction<string>) => {
+		// 	state.activeFiltrationGameTitle = action.payload
+		// },
+		// clearTitle: state => {
+		// 	state.activeFiltrationGameTitle = ''
+		// },
 
 		setActiveGenres: (
 			state,
@@ -150,6 +157,17 @@ export const filteredGamesSlice = createAppSlice({
 			})
 			.addCase(fetchTagsList.rejected, state => {
 				state.tagListFetchingState = 'rejected'
+			})
+
+			.addCase(fetchDeveloperList.pending, state => {
+				state.developerListFetchingState = 'pending'
+			})
+			.addCase(fetchDeveloperList.fulfilled, (state, action) => {
+				state.developerListFetchingState = 'fulfilled'
+				state.developers = action.payload
+			})
+			.addCase(fetchDeveloperList.rejected, state => {
+				state.developerListFetchingState = 'rejected'
 			})
 	},
 })

@@ -5,7 +5,9 @@ import type { ActionCreatorWithPayload } from '@reduxjs/toolkit'
 
 interface MinimalistInputProps {
 	inputValue: string
-	setInputValue: ActionCreatorWithPayload<string, string>
+	setInputValue:
+		| ActionCreatorWithPayload<string, string>
+		| React.Dispatch<React.SetStateAction<string>>
 	message?: string
 	searchMessage?: string
 	className?: string
@@ -17,7 +19,6 @@ export const MinimalistInput = ({
 	message = 'Input option',
 	className = 'w-72 font-medium h-80 ',
 }: MinimalistInputProps) => {
-	//const [inputValue, setInputValue] = useState('')
 	const [focus, setFocus] = useState(false)
 
 	return (

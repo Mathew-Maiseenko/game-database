@@ -18,6 +18,7 @@ import { StoreGameDetails } from '../types/game-details'
 import { StoreGame } from '../types/game-list'
 import { Genre } from '../types/genre'
 import type { TagResult } from '../'
+import { DeveloperResult } from '../types/developer'
 
 const baseUrl: string = 'https://api.rawg.io/api/'
 const ApiKey: string = 'key=fd711517d11b45b0b5c432f288b02d33'
@@ -51,7 +52,16 @@ export const RawgApi = {
 		)
 			.then(res => getGameListParams(res))
 			.then(res => {
-				console.log('getGameListParams', res)
+				console.log(
+					'getGameListParams',
+					`&page=${pageNumber}&page_size=${gamesPerPage}` +
+						(title ? `&search=${title}` : '') +
+						(developers ? `&developers=${developers}` : '') +
+						(genres ? `&genres=${genres}` : '') +
+						(tags ? `&tags=${tags}` : '') +
+						(year ? `&dates=${year}` : ''),
+					res
+				)
 				return GameDtoSchema.array().parse(res) as StoreGame[]
 			})
 	},
@@ -92,7 +102,7 @@ export const RawgApi = {
 			.then(res => getDevelopersListParams(res))
 			.then(res => {
 				console.log(res)
-				return DeveloperDtoSchema.array().parse(res)
+				return DeveloperDtoSchema.array().parse(res) as DeveloperResult[]
 			})
 	},
 }
