@@ -1,4 +1,3 @@
-import { ExtendedRatedGameCard } from '@/entities/game/extended-rated-game-card'
 import { GameAchievementCard } from './ui/GameAchievementCard'
 import { Achievement, RawgApi } from '@/shared/api/RawgApi-hook'
 import { useEffect, useState } from 'react'
@@ -11,8 +10,7 @@ export function GameAchievementsList({ gameId }: GameAchievementsListProps) {
 	const [achievements, setAchievements] = useState<Achievement[]>([])
 	useEffect(() => {
 		RawgApi.getListGameAchievements(gameId).then(setAchievements)
-	}, [])
-	RawgApi.getListGameAchievements(gameId)
+	}, [gameId])
 	return (
 		<section className='flex flex-col min-w-full min-h-[46vh] bg-darkGray px-6 pr-10 pt-5 rounded-3xl relative mb-5'>
 			<article className='text-orange text-2xl  mb-8'>
@@ -24,6 +22,7 @@ export function GameAchievementsList({ gameId }: GameAchievementsListProps) {
 							.reverse()
 							.map((achievement: Achievement) => (
 								<GameAchievementCard
+									key={`${achievement.name}-${achievement.id}`}
 									title={achievement.name}
 									description={achievement.description}
 									percent={achievement.percent}

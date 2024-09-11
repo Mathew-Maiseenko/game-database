@@ -51,6 +51,10 @@ export const RawgApi = {
 				(tags ? `&tags=${tags}` : '') +
 				(year ? `&dates=${year}` : '')
 		)
+			.then(res => {
+				console.log(res, 'fetchingWrapper details')
+				return res
+			})
 			.then(res => getGameListParams(res))
 			.then(res => {
 				console.log(
@@ -68,6 +72,12 @@ export const RawgApi = {
 	},
 	getGameDetails: async (id: number) => {
 		return await fetchingWrapper(`${baseUrl}games/${id}?${ApiKey}`)
+			// .then(
+			// 	res => {
+			// 		console.log(res, 'details')
+			// 		return res
+			// 	}
+			// )
 			.then(res => getGameDetailsParams(res))
 			.then(res => {
 				console.log(res, 'details')

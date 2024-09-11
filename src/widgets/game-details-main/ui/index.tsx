@@ -5,7 +5,7 @@ import {
 	ListOfGameScreenshots,
 	PairOfGameInfoCards,
 } from '../../../entities/game/game-details/ui'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { usePathname } from 'next/navigation'
 import { AppState } from '@/shared/lib'
 import {
@@ -13,8 +13,11 @@ import {
 	gameDetailsSlice,
 } from '../../../entities/game/game-details/model'
 import { GameAchievementsList } from '@/entities/game/game-details/ui/game-achievements-list'
+import { RawgApi } from '@/shared/api/RawgApi-hook'
+import Link from 'next/link'
 
 export function GameDetailsMain() {
+	const [screenshots, setScreenshots] = useState<string[]>([])
 	const dispatch = useAppDispatch()
 	const pathname = usePathname()
 
@@ -33,6 +36,7 @@ export function GameDetailsMain() {
 	)
 
 	useEffect(() => {
+		RawgApi.getListGameScreenshots(currentGameId).then(setScreenshots)
 		dispatch(fetchGameDetails(currentGameId))
 		console.log('проверка рендера:', dispatch, currentGameId)
 	}, [dispatch, currentGameId])
@@ -44,19 +48,24 @@ export function GameDetailsMain() {
 			<>
 				<GameDetailsHeader
 					mainImage={currentGame.backgroundImage}
+					firstScreenshot={screenshots[0]}
+					secondScreenshot={screenshots[1]}
 					gameTitle={currentGame.name}
 				/>
 				<section className='flex flex-col bg-darkGray rounded-3xl p-5 mb-5'>
 					<PairOfGameInfoCards />
-					<ListOfGameScreenshots />
+					<ListOfGameScreenshots screenshots={screenshots.slice(2)} />
 					<h3 className='text-textGray text-base mb-5'>
 						{currentGame.descriptionRaw}
 					</h3>
-					<section className='flex flex-row'>
-						<button className='rounded-3xl border-2 border-orange p-1 text-orange'>
+					<section className='flex flex-row w-full'>
+						<Link
+							href={currentGame.website}
+							className='w-1/2 mr-3 text-center rounded-3xl border-2 border-orange p-1 text-orange'
+						>
 							Download Fortnite Now!
-						</button>
-						<button className='rounded-3xl border-2 border-orange p-1 text-orange'>
+						</Link>
+						<button className='w-1/2 rounded-3xl border-2 border-orange p-1 text-orange'>
 							Add Fortnite to favorite list
 						</button>
 					</section>

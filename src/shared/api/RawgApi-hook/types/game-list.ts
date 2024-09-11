@@ -93,3 +93,9 @@ export interface ApiGameResponse {
 	previous: string
 	results: Game[]
 }
+
+export interface Store {
+	id: number
+	name: string
+	domain: string
+}

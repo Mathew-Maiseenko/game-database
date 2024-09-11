@@ -1,5 +1,4 @@
 'use client'
-import React from 'react'
 import { ScrollingCarousel } from '@trendyol-js/react-carousel'
 import { ArrowIcon } from '../../arrow-icon'
 

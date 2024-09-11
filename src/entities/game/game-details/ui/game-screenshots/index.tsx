@@ -1,30 +1,28 @@
 import Image from 'next/image'
-import TestImage from './../../../../../../public/downloadIcon.svg'
+import { MinimalistCarousel } from '@/shared/ui'
 
-export function ListOfGameScreenshots() {
+export function ListOfGameScreenshots({
+	screenshots,
+}: {
+	screenshots: string[]
+}) {
 	return (
-		<section className='flex flex-row justify-between h-[30vh] mb-5'>
-			<Image
-				src={TestImage}
-				width={20}
-				height={20}
-				className='flex w-[32%]'
-				alt='first game photo'
-			/>
-			<Image
-				src={TestImage}
-				width={20}
-				height={20}
-				className='flex w-[32%]'
-				alt='first game photo'
-			/>
-			<Image
-				src={TestImage}
-				width={20}
-				height={20}
-				className='flex w-[32%]'
-				alt='first game photo'
-			/>
+		<section className='mb-5'>
+			<MinimalistCarousel>
+				{...ViewListOfGameScreenshots(screenshots)}
+			</MinimalistCarousel>
 		</section>
 	)
 }
+
+export const ViewListOfGameScreenshots = (screenshots: string[]) =>
+	screenshots.map((screenshot, i) => (
+		<Image
+			key={`screenshot-${i}`}
+			src={screenshot}
+			width={2560}
+			height={1440}
+			className='w-[32%] mr-3 rounded-lg'
+			alt='first game photo'
+		/>
+	))

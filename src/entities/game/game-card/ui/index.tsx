@@ -1,9 +1,10 @@
 import Image from 'next/image'
-import star from './../../../../../public/star.svg'
-import downloadIcon from './../../../../../public/downloadIcon.svg'
 import getRandomDefaultImage from '@/shared/model/defaultImages'
 import Link from 'next/link'
 import { cardHoverClass } from '@/shared/styles'
+import { DownloadIcon, StarIcon } from '@/shared/ui'
+import { StoreLogoList } from '@/shared/model'
+import { Store } from '@/shared/api/RawgApi-hook'
 
 interface GameCardProps {
 	id: number
@@ -11,6 +12,7 @@ interface GameCardProps {
 	image: string
 	rating: number
 	developer: string
+	stores?: Store[]
 }
 
 export function GameCard({
@@ -19,6 +21,7 @@ export function GameCard({
 	image,
 	rating,
 	developer,
+	stores,
 }: GameCardProps) {
 	return (
 		<Link
@@ -36,27 +39,22 @@ export function GameCard({
 				<section className='flex flex-row md:mb-1 justify-between .text-white'>
 					<article className='text-white'>{title}</article>
 					<article className='flex flex-row text-white'>
-						<Image
-							src={star}
-							width={14}
-							height={14}
-							alt='star'
-							className='mr-1'
-						/>
+						<StarIcon />
 						{rating}
 					</article>
 				</section>
 				<section className='flex flex-row justify-between'>
 					<article className='text-textGray'>{developer}</article>
 					<article className='flex flex-row text-white'>
-						<Image
-							src={downloadIcon}
-							width={14}
-							height={14}
-							alt='downloadIcon'
-							className='mr-1'
-						/>
+						<DownloadIcon />
 						2.3M
+					</article>
+				</section>
+
+				<section className='flex flex-row justify-between'>
+					<article className='text-textGray'>{developer}</article>
+					<article className='flex flex-row text-white'>
+						<StoreLogoList stores={stores} />
 					</article>
 				</section>
 			</article>
