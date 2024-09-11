@@ -17,18 +17,14 @@ export const MinimalistFiltrationCarouselCard = ({
 	tagGameCount,
 }: GenreCardProps) => {
 	return (
-		<section
-			onClick={() => {
-				setFiltration()
-			}}
-			className={`cursor-pointer mx-3`}
-		>
+		<section onClick={setFiltration} className={`cursor-pointer mx-3`}>
 			<article
 				className={` ${
 					isActive ? 'bg-gray' : 'bg-pink'
-				} hover:bg-blue w-[150px] h-[50px] bg-neutral-50 rounded-lg shadow flex items-center justify-between px-2`}
+				} hover:bg-blue w-[150px] h-[50px] bg-neutral-50 rounded-lg shadow flex items-center justify-between px-2
+				bg-[url('${image})'] bg-no-repeat bg-center bg-cover h-screen`}
 			>
-				<Image src={image} alt={`${title} icon`} width={20} height={20} />
+				{/* <Image src={image} alt={`${title} icon`} width={1080} height={720} /> */}
 				<span className='ml-2'>{title}</span>
 				<span className='ml-2'>{tagGameCount}</span>
 			</article>

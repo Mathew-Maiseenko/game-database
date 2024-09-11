@@ -37,6 +37,7 @@ function ViewGamesList({ gameList }: { gameList: StoreGame[] }) {
 			image={game.backgroundImage}
 			rating={game.rating}
 			developer={game.slug}
+			stores={game.stores}
 		/>
 	))
 }

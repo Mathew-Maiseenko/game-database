@@ -12,7 +12,7 @@ interface GameCardProps {
 	image: string
 	rating: number
 	developer: string
-	stores?: Store[]
+	stores?: Store[] | undefined
 }
 
 export function GameCard({
@@ -43,7 +43,7 @@ export function GameCard({
 						{rating}
 					</article>
 				</section>
-				<section className='flex flex-row justify-between'>
+				<section className='flex flex-row justify-between mb-2'>
 					<article className='text-textGray'>{developer}</article>
 					<article className='flex flex-row text-white'>
 						<DownloadIcon />
@@ -52,9 +52,8 @@ export function GameCard({
 				</section>
 
 				<section className='flex flex-row justify-between'>
-					<article className='text-textGray'>{developer}</article>
 					<article className='flex flex-row text-white'>
-						<StoreLogoList stores={stores} />
+						{stores ? <StoreLogoList stores={stores} /> : ''}
 					</article>
 				</section>
 			</article>

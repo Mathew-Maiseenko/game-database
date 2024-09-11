@@ -28,7 +28,7 @@ import GooglePlay from '../../../public/StoresLogo/google-play-svgrepo-com.svg'
 
 import type { Store } from '../api/RawgApi-hook'
 
-export const StoreLogoList = ({ stores }: { stores: Store[] }) => {
+export const StoreLogoList = ({ stores }: { stores: Store[] }) =>
 	stores.map((store: Store) => {
 		let storeImage
 		switch (store.id) {
@@ -62,17 +62,16 @@ export const StoreLogoList = ({ stores }: { stores: Store[] }) => {
 		return (
 			<Link
 				key={`${store.name}-${store.id}`}
-				href={store.domain}
-				className={`flex`}
+				href={`https://${store.domain}`}
+				className={`mr-1`}
 			>
 				<Image
 					src={storeImage}
 					width={20}
 					height={20}
 					alt='Picture of the author'
-					className='w-full object-cover'
+					className=''
 				/>
 			</Link>
 		)
 	})
-}
