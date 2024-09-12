@@ -8,7 +8,11 @@ export interface GenreCardProps {
 	setFiltration: any
 	tagGameCount: number | null | undefined
 }
+//bg-[url('${image})'] bg-no-repeat bg-center bg-cover h-screen
 
+//${
+//					isActive ? 'bg-gray' : 'bg-pink'
+//				}
 export const MinimalistFiltrationCarouselCard = ({
 	title,
 	image,
@@ -19,10 +23,9 @@ export const MinimalistFiltrationCarouselCard = ({
 	return (
 		<section onClick={setFiltration} className={`cursor-pointer mx-3`}>
 			<article
-				className={` ${
-					isActive ? 'bg-gray' : 'bg-pink'
-				} hover:bg-blue w-[150px] h-[50px] bg-neutral-50 rounded-lg shadow flex items-center justify-between px-2
-				bg-[url('${image})'] bg-no-repeat bg-center bg-cover h-screen`}
+				className={` hover:bg-blue w-[150px] h-[50px] bg-neutral-50 rounded-lg shadow flex items-center justify-between px-2
+				bg-no-repeat bg-center bg-cover`}
+				style={{ backgroundImage: `url(${image})` }}
 			>
 				{/* <Image src={image} alt={`${title} icon`} width={1080} height={720} /> */}
 				<span className='ml-2'>{title}</span>
