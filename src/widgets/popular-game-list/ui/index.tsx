@@ -21,6 +21,10 @@ export function PopularGamesList() {
 
 	return (
 		<section className='flex flex-col  min-w-full min-h-[46vh] bg-darkGray px-6 pt-5 rounded-3xl relative mb-12'>
+			<h2 className='text-orange text-2xl  mb-8'>
+				<strong className='inline text-white underline'>Your Gaming</strong>{' '}
+				Library
+			</h2>
 			<article className='flex flex-row justify-between flex-wrap pb-0'>
 				<ViewGamesList gameList={games} />
 			</article>

@@ -1,3 +1,5 @@
+export { BurgerIcon } from './burger-icon'
+export { UserButton } from './user-button/ui'
 export { MinimalistCarousel } from './minimalistic-carousel/ui'
 export { ArrowIcon } from './arrow-icon'
 export { MinimalistNumberInput } from './minimalist-number-input'

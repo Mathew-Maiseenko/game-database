@@ -7,7 +7,7 @@ export function MainLogo() {
 	return (
 		<Link
 			href={'/'}
-			className={`${teko.className} text-yellow text-7xl font-medium self-center md:order-1 cursor-pointer`}
+			className={`${teko.className} text-center text-yellow text-7xl font-medium self-center md:order-1 cursor-pointer`}
 		>
 			Cyber List
 		</Link>
