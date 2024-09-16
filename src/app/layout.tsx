@@ -20,10 +20,10 @@ export default function RootLayout({
 		<StoreProvider>
 			<html lang='en'>
 				<body
-					className={`${manrope.className} flex flex-col bg-darkGray px-[7vw] pt-[3vh] min-h-[100vh]`}
+					className={`${manrope.className} flex flex-col bg-darkGray px-[7vw] pt-[3vh] min-h-[100vh] `}
 				>
 					<NavBar />
-					<main className={'bg-whiteGray flex-grow rounded-3xl p-[7vh]'}>
+					<main className={'bg-whiteGray rounded-3xl p-[7vh] overflow-hidden'}>
 						{children}
 					</main>
 					<footer className='text-center flex-grow justify-self-center text-textGray px-14 py-7'>
@@ -36,3 +36,4 @@ export default function RootLayout({
 		</StoreProvider>
 	)
 }
+//flex-grow
