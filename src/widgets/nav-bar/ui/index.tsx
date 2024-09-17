@@ -1,41 +1,58 @@
 'use client'
 //import { Teko } from 'next/font/google'
-import { UserButton } from '@/shared/ui'
+import { BurgerIcon, CrossIcon, Modal, UserButton } from '@/shared/ui'
 //import classes from './styles.module.css'
 import { Burger, MainLogo, NavPoint } from '@/entities/navigation'
+import { useState } from 'react'
 
 //const teko = Teko({ subsets: ['latin'] })
 
 export function NavBar() {
-	let windowInnerWidth: number = window.document.documentElement.clientWidth
-
-	if (windowInnerWidth > 768) {
-		return (
-			<nav className='text-textGray mb-7 p-3'>
+	const [isBurgerOpen, setBurgerOpen] = useState(false)
+	const [isLogModalOpen, setLogModalOpen] = useState(false)
+	return (
+		<>
+			<Modal isOpen={isLogModalOpen}>
+				<section className='relative bg-pink w-1/3 h-10'>
+					<article
+						className='flex'
+						onClick={() => setLogModalOpen(!isLogModalOpen)}
+					>
+						<CrossIcon />
+					</article>
+				</section>
+			</Modal>
+			<nav className='hidden md:block text-textGray mb-7 p-3'>
 				<section className='flex min-w-full justify-between md:flex-wrap sm:flex-wrap'>
 					<MainLogo />
 					<article className='relative md:order-2 self-center'>
 						<NavPoint href='/game-list' title={'Games'} />
+						<button onClick={() => setLogModalOpen(!isLogModalOpen)}>
+							123
+						</button>
 					</article>
 					<UserButton />
 				</section>
 			</nav>
-		)
-	} else {
-		return (
-			<nav className='text-textGray mb-7 p-3'>
+			<nav className='block md:hidden text-textGray mb-7 p-3'>
 				<section className='flex min-w-full justify-between md:flex-wrap sm:flex-wrap'>
 					<MainLogo />
-					<Burger>
+					<Burger isActive={isBurgerOpen} setActive={setBurgerOpen}>
 						<>
+							<article className='flex justify-between w-full'>
+								<BurgerIcon
+									isIconActive={isBurgerOpen}
+									setIconActive={setBurgerOpen}
+								/>
+								<UserButton />
+							</article>
 							<NavPoint href='/game-list' title={'Games'} />
-							<UserButton />
 						</>
 					</Burger>
 				</section>
 			</nav>
-		)
-	}
+		</>
+	)
 }
 {
 	/*

@@ -1,20 +1,23 @@
 'use client'
-import { useState } from 'react'
 import { BurgerIcon } from '@/shared/ui'
-import classes from './styles.module.css'
+import type { Dispatch, SetStateAction } from 'react'
 
-export function Burger({ children }: { children: JSX.Element }) {
-	const [isActive, setActive] = useState<boolean>(false)
-	console.log(children)
+interface BurgerProps {
+	isActive: boolean
+	setActive: Dispatch<SetStateAction<boolean>>
+	children: JSX.Element
+}
+
+export function Burger({ children, isActive, setActive }: BurgerProps) {
+	//const [isActive, setActive] = useState<boolean>(false)
 	return (
 		<section className='overflow-hidden'>
 			<BurgerIcon isIconActive={isActive} setIconActive={setActive} />
 			<article
-				className={`bg-whiteGray absolute right-0 top-0 min-h-[200vh] text-center text-white font-medium text-2xl mb-2 z-10 w-1/3 transform transition-all duration-300 ease-in-out ${
-					isActive ? '-translate-x-0 block' : 'translate-x-full'
+				className={`bg-whiteGray absolute right-0 top-0 bottom-0 min-h-full text-center text-white font-medium text-2xl mb-2 z-10 w-1/3 transform transition-all duration-300 ease-in-out ${
+					isActive ? '-translate-x-0' : 'translate-x-full'
 				}`}
 			>
-				<BurgerIcon isIconActive={isActive} setIconActive={setActive} />
 				{children}
 			</article>
 		</section>

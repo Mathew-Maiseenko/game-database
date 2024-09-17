@@ -11,7 +11,7 @@ export function DownloadIcon({ classes }: iconProps) {
 			width={20}
 			height={20}
 			className={`mr-1 ${classes}`}
-			alt='star icon'
+			alt='download icon'
 		/>
 	)
 }

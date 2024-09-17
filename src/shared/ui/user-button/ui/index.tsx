@@ -4,23 +4,24 @@ import classes from './styles.module.css'
 
 //const teko = Teko({ subsets: ['latin'] })
 
-export function UserButton() {
+export function UserButton({ styles }: { styles?: string }) {
 	return (
 		<Link
 			href={'/user'}
-			className={`group ${classes.group} flex flex-row items-center justify-between font-semibold bg-whiteGray relative
-      sm:rounded-full md:rounded-4xl 
-			
-      md:px-5 md:py-1 sm:px-1 sm:py-1
-      hover:bg-yellow hover:text-black
-  
-        before:content-["RU/EN"] before:text-yellow before:absolute before:left-[-100px] before:text-2xl md:order-3`}
+			className={`${
+				styles
+					? `group ${styles} ${classes.group}`
+					: `group ${classes.group} flex flex-row items-center justify-between font-semibold bg-whiteGray relative
+      sm:rounded-full md:rounded-4xl sm:px-1 sm:py-1
+      md:px-5 md:py-0.5 md:order-3
+      hover:bg-yellow hover:text-black`
+			}`}
 		>
-			<article className='sm:hidden md:inline group-hover:text-black group-hover:font-bold text-xl bg-blue'>
+			<article className='sm:hidden md:inline group-hover:text-black group-hover:font-bold text-xl'>
 				Profile
 			</article>
 			<svg
-				className='sm:ml-0 md:ml-3 sm:w-1/2 sm:h-1/2 md:w-1 md:h-1 fill-textGray group-hover:fill-black p-1'
+				className='sm:ml-0 md:ml-3 sm:w-1/2 sm:h-1/2 md:w-11 md:h-11 fill-textGray group-hover:fill-black p-1'
 				xmlns='http://www.w3.org/2000/svg'
 				viewBox='0 0 32 32'
 				xmlSpace='preserve'
@@ -33,6 +34,10 @@ export function UserButton() {
 }
 
 /*
+ before:content-["RU/EN"] before:text-yellow before:absolute before:left-[-100px] before:text-2xl
+
+
+
 export function UserButton() {
 	return (
 		<article

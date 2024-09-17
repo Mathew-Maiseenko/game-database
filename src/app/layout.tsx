@@ -20,7 +20,7 @@ export default function RootLayout({
 		<StoreProvider>
 			<html lang='en'>
 				<body
-					className={`${manrope.className} flex flex-col bg-darkGray px-[7vw] pt-[3vh] min-h-[100vh] `}
+					className={`${manrope.className} flex flex-col bg-darkGray px-[7vw] pt-[3vh] min-h-[100vh] overflow-x-hidden`}
 				>
 					<NavBar />
 					<main className={'bg-whiteGray rounded-3xl p-[7vh] overflow-hidden'}>
