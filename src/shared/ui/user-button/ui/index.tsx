@@ -12,8 +12,8 @@ export function UserButton({ styles }: { styles?: string }) {
 				styles
 					? `group ${styles} ${classes.group}`
 					: `group ${classes.group} flex flex-row items-center justify-between font-semibold bg-whiteGray relative
-      sm:rounded-full md:rounded-4xl sm:px-1 sm:py-1
-      md:px-5 md:py-0.5 md:order-3
+      sm:rounded-full sm:px-1 sm:py-1 sm:h-13
+      md:px-1 md:pl-3 md:py-1 md:order-3 md:rounded-3xl
       hover:bg-yellow hover:text-black`
 			}`}
 		>
@@ -21,7 +21,7 @@ export function UserButton({ styles }: { styles?: string }) {
 				Profile
 			</article>
 			<svg
-				className='sm:ml-0 md:ml-3 sm:w-1/2 sm:h-1/2 md:w-11 md:h-11 fill-textGray group-hover:fill-black p-1'
+				className='sm:ml-0 sm:p-0 md:ml-3 sm:w-full sm:h-full md:w-11 md:h-11 fill-textGray group-hover:fill-black md:p-1'
 				xmlns='http://www.w3.org/2000/svg'
 				viewBox='0 0 32 32'
 				xmlSpace='preserve'

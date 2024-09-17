@@ -11,14 +11,14 @@ interface BurgerIconProps {
 export function BurgerIcon({ isIconActive, setIconActive }: BurgerIconProps) {
 	return (
 		<svg
-			className={`
+			className={`md:w-20 sm:w-11
           ${classes.burgerIcon} ${classes.burgerIconRotate} 
           ${classes.burgerIcon8} ${
 				isIconActive ? classes.activeBurgerClass : ''
 			} 
         `}
 			viewBox='0 0 100 100'
-			width='80'
+			// width='80'
 			onClick={() => setIconActive(!isIconActive)}
 		>
 			<path

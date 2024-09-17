@@ -1,6 +1,6 @@
 export function GameStatistics() {
 	return (
-		<article className='flex flex-col relative text-white sm:mr-0 md:mr-2 sm:w-full md:w-1/3 after:h-full after:w-[1px] after:absolute after:right-[-18px]  after:bg-grayLineAfterCard'>
+		<article className='flex flex-col relative text-white sm:mr-0 md:mr-5 lg:mr-10 sm:w-full md:w-1/3 after:h-full after:w-[1px] after:absolute md:after:-right-2 lg:after:-right-5 sm:after:bg-none md:after:bg-grayLineAfterCard'>
 			<h2 className='text-center inline-block w-full text-white font-medium text-2xl mb-2 underline'>
 				Статистика:
 			</h2>
