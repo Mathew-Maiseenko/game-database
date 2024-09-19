@@ -1,4 +1,3 @@
-'use client'
 import type { Dispatch, SetStateAction } from 'react'
 
 interface ModalProps {
@@ -14,12 +13,12 @@ export function Modal({ children, isOpen = false }: ModalProps) {
 			<section
 				className={`${
 					isOpen ? 'flex flex-grow justify-center items-center' : 'hidden'
-				} z-40 absolute right-0 top-0 bottom-0 w-full h-full transform transition-all duration-300 ease-in-out bg-darkGray opacity-80`}
+				} z-40 fixed right-0 top-0 bottom-0 w-full min-h-screen transform transition-all duration-300 ease-in-out bg-darkGray opacity-80`}
 			></section>
 			<section
 				className={`${
 					isOpen ? 'flex flex-grow justify-center items-center' : 'hidden'
-				} z-50 absolute right-0 top-0 bottom-0 w-full h-full transform transition-all duration-300 ease-in-out opacity-100`}
+				} z-50 fixed right-0 top-0 bottom-0 w-full min-h-full transform transition-all duration-300 ease-in-out opacity-100`}
 			>
 				{children}
 			</section>

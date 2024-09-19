@@ -39,6 +39,8 @@ const config: Config = {
 			userIcon: '#8492a6',
 			darkGray: '#1f2122',
 			grayLineAfterCard: '#353637',
+			validationRed: '#bf0017',
+			validationGreen: '#28a745',
 		},
 	},
 

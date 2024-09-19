@@ -2,7 +2,7 @@ import {
 	ComputerSpecifications,
 	GameStatistics,
 	UsersAvatar,
-} from '../../../entities/user-info'
+} from '../../../entities/user'
 
 export async function UserMainInfo() {
 	return (

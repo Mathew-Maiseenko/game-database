@@ -1,36 +1,40 @@
 'use client'
 //import { Teko } from 'next/font/google'
-import { BurgerIcon, CrossIcon, Modal, UserButton } from '@/shared/ui'
+import {
+	BurgerIcon,
+	CrossIcon,
+	MinimalistInput,
+	Modal,
+	UserButton,
+} from '@/shared/ui'
 //import classes from './styles.module.css'
 import { Burger, MainLogo, NavPoint } from '@/entities/navigation'
 import { useState } from 'react'
+import { LogModal } from '@/features/logging'
+import { userSlice } from '@/entities/user'
+import { useAppDispatch } from '@/shared/lib/redux/hooks'
 
 //const teko = Teko({ subsets: ['latin'] })
 
 export function NavBar() {
+	const dispatch = useAppDispatch()
 	const [isBurgerOpen, setBurgerOpen] = useState(false)
-	const [isLogModalOpen, setLogModalOpen] = useState(false)
 	return (
 		<>
-			<Modal isOpen={isLogModalOpen}>
-				<section className='relative bg-pink w-1/3 h-10'>
-					<article
-						className='flex'
-						onClick={() => setLogModalOpen(!isLogModalOpen)}
-					>
-						<CrossIcon />
-					</article>
-				</section>
-			</Modal>
+			{/* <LogModal /> */}
 			<nav
-				style={{ border: '1px solid #fff' }}
+				// style={{ border: '1px solid #fff' }}
 				className='hidden md:block text-textGray mb-7 p-3'
 			>
 				<section className='flex min-w-full justify-between items-center md:flex-wrap sm:flex-wrap'>
 					<MainLogo />
 					<article className='relative md:order-2 self-center'>
 						<NavPoint href='/game-list' title={'Games'} />
-						<button onClick={() => setLogModalOpen(!isLogModalOpen)}>
+						<button
+							onClick={() =>
+								dispatch(userSlice.actions.setUserLoggingModalOpen())
+							}
+						>
 							123
 						</button>
 					</article>

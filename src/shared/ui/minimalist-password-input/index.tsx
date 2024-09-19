@@ -14,7 +14,7 @@ interface MinimalistInputProps {
 	withMagnifierIcon?: boolean
 }
 
-export const MinimalistInput = ({
+export const MinimalistPasswordInput = ({
 	inputValue,
 	setInputValue,
 	message = 'Input option',
@@ -24,7 +24,7 @@ export const MinimalistInput = ({
 	const [focus, setFocus] = useState(false)
 
 	return (
-		<section className={`relative bg-inherit ${className}`}>
+		<section className={`relative ${className}`}>
 			<article
 				className={`transition-all duration-200 bg-inherit text-textGray w-full p-2 flex items-center justify-between rounded relative after:absolute after:left-0 after:bottom-[-2px] after:h-[1px] after:w-full after:bg-textGray after:content-['']  ${
 					focus && 'text-white after:bg-white '
@@ -33,7 +33,7 @@ export const MinimalistInput = ({
 				<input
 					onFocus={() => setFocus(true)}
 					onBlur={() => setFocus(false)}
-					type='text'
+					type='password'
 					value={inputValue}
 					onChange={e => setInputValue(e.target.value)} //.toLowerCase()??? inset-0
 					//placeholder={message}
@@ -48,7 +48,7 @@ export const MinimalistInput = ({
 			</article>
 			<span
 				className={`
-						flex absolute z-20 bottom-0 left-1 bg-opacity-100 bg-inherit px-2 transition-all duration-200 ease-in-out translate-y-3 translate-x-9 select-none pointer-events-none
+						flex absolute z-10 bottom-0 left-1 bg-opacity-100 bg-inherit px-2 transition-all duration-200 ease-in-out translate-y-3 translate-x-9 select-none pointer-events-none
 						${!inputValue && '-translate-y-2 translate-x-1.5 bg-opacity-0 px-0'}
 						${focus ? 'text-white' : 'text-textGray'}
 					`}

@@ -1,3 +1,4 @@
+export { MinimalistPasswordInput } from './minimalist-password-input'
 export { BurgerIcon } from './burger-icon'
 export { UserButton } from './user-button/ui'
 export { MinimalistCarousel } from './minimalistic-carousel/ui'

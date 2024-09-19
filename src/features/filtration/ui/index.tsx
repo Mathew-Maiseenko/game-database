@@ -88,11 +88,11 @@ export function GameFiltration() {
 		dispatch(fetchDeveloperList())
 	}, [dispatch])
 	return (
-		<article className=' flex-col items-center justify-between flex-wrap w-full'>
+		<article className='bg-inherit flex-col items-center justify-between flex-wrap w-full'>
 			<MinimalistInput
 				inputValue={filterTitle}
 				setInputValue={setFilterTitle}
-				className='w-11/12 font-medium mb-16'
+				className='w-11/12 font-medium mb-16 bg-inherit'
 				message={'Input game title'}
 			/>
 
