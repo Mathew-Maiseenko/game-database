@@ -1,4 +1,7 @@
 export function validateName(name: string): string {
+	if (!name.length) {
+		return 'This field is required'
+	}
 	if (name.length < 2) {
 		return 'User name is too short. Please input more than 1 character'
 	} else if (name.length > 30) {

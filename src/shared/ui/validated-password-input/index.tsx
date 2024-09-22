@@ -2,6 +2,7 @@
 import React, { useState } from 'react'
 import { MagnifierIcon } from '../magnifier-icon'
 import type { ActionCreatorWithPayload } from '@reduxjs/toolkit'
+import { validatePassword } from './model'
 
 interface MinimalistInputProps {
 	inputValue: string
@@ -22,25 +23,43 @@ export const ValidatedPasswordInput = ({
 	withMagnifierIcon = true,
 }: MinimalistInputProps) => {
 	const [focus, setFocus] = useState(false)
-	const [isCorrect, setCorrect] = useState(false)
-	const [isErrored, setErrored] = useState(false)
+	const [validationMessage, setValidationMessage] = useState('')
+	const [reliabilityLevel, setReliabilityLevel] = useState<
+		'red' | 'orange' | 'green' | ''
+	>('')
 	return (
 		<section className={`relative ${className}`}>
 			<article
-				className={`transition-all duration-200 bg-inherit text-textGray w-full p-2 flex items-center justify-between rounded relative after:absolute after:left-0 after:bottom-[-2px] after:h-[1px] after:w-full after:bg-textGray after:content-['']  ${
+				className={`transition-all duration-200 bg-inherit text-textGray w-full p-2 flex items-center justify-between rounded relative after:absolute after:left-0 after:-bottom-0.5 after:h-px after:w-full after:bg-textGray  ${
 					focus && 'text-white after:bg-white '
 				}
-				${isErrored && inputValue && 'text-validationRed after:bg-validationRed '}
+				${reliabilityLevel === 'red' && 'text-validationRed after:bg-validationRed '}
+				${
+					reliabilityLevel === 'green' &&
+					'text-validationGreen after:bg-validationGreen '
+				}
+				${
+					reliabilityLevel === 'orange' &&
+					'text-validationOrange  after:bg-validationOrange '
+				}
+
 			`}
 			>
 				<input
 					onFocus={() => setFocus(true)}
-					onBlur={() => setFocus(false)}
+					onBlur={() => {
+						setFocus(false)
+						validatePassword(
+							inputValue,
+							setValidationMessage,
+							setReliabilityLevel
+						)
+					}}
 					type='password'
 					value={inputValue}
 					onChange={e => setInputValue(e.target.value)} //.toLowerCase()??? inset-0
 					//placeholder={message}
-					className='bg-inherit placeholder:text-textGray text-white outline-none pointer-events-auto'
+					className='bg-inherit placeholder:text-textGray text-white outline-none pointer-events-auto w-full'
 				/>
 				{withMagnifierIcon && (
 					<MagnifierIcon
@@ -51,14 +70,25 @@ export const ValidatedPasswordInput = ({
 			</article>
 			<span
 				className={`
-						flex absolute z-10 bottom-0 left-1 bg-opacity-100 bg-inherit px-2 transition-all duration-200 ease-in-out translate-y-3 translate-x-9 select-none pointer-events-none
-						${!inputValue && '-translate-y-2 translate-x-1.5 bg-opacity-0 px-0'}
+						flex absolute z-10 bottom-0 left-4 bg-opacity-100 bg-inherit px-2 transition-all duration-200 ease-in-out translate-y-3 translate-x-9 select-none pointer-events-none
+						${
+							!inputValue &&
+							!reliabilityLevel &&
+							'-translate-y-1.5 -translate-x-1.5 text-xl bg-opacity-0 px-0.5'
+						}
 						${focus ? 'text-white' : 'text-textGray'}
-						${isErrored && inputValue && 'text-validationRed after:bg-validationRed '}
-						${isCorrect && inputValue && 'text-validationGreen after:bg-validationGreen '}
+						${reliabilityLevel === 'red' && 'text-validationRed after:bg-validationRed '}
+						${
+							reliabilityLevel === 'green' &&
+							'text-validationGreen after:bg-validationGreen '
+						}
+						${
+							reliabilityLevel === 'orange' &&
+							'text-validationOrange  after:bg-validationOrange '
+						}
 					`}
 			>
-				{message}
+				{reliabilityLevel ? validationMessage : message}
 			</span>
 		</section>
 	)

@@ -5,19 +5,25 @@ import { ArrowIcon } from '../arrow-icon'
 interface MinimalistNumberInputProps {
 	message?: string
 	className?: string
+	inputValue: number | ''
+	setInputValue: React.Dispatch<React.SetStateAction<number | ''>>
+	errorMessage?: string
 }
 
 export const MinimalistNumberInput = ({
 	message = 'Input option',
 	className = 'w-72 font-medium h-80 ',
+	errorMessage = '',
+	inputValue,
+	setInputValue,
 }: MinimalistNumberInputProps) => {
-	const [inputValue, setInputValue] = useState('')
+	// const [inputValue, setInputValue] = useState<number | ''>('')
 	const [focus, setFocus] = useState(false)
 
 	return (
-		<section className={className}>
+		<section className={`relative ${className}`}>
 			<article
-				className={`bg-inherit text-textGray w-full p-2 flex items-center justify-between rounded relative after:absolute after:left-0 after:bottom-[-2px] after:h-[1px] after:w-full after:bg-textGray after:content-['']  ${
+				className={`bg-inherit text-textGray w-full p-2 flex items-center justify-between rounded relative after:absolute after:left-0 after:-bottom-0.5 after:h-px after:w-full after:bg-textGray  ${
 					focus && 'text-white after:bg-white '
 				}`}
 			>
@@ -26,16 +32,26 @@ export const MinimalistNumberInput = ({
 					onBlur={() => setFocus(false)}
 					type='text'
 					value={inputValue}
-					onChange={e =>
+					onChange={e => {
+						if (+e.target.value === 0) {
+							setInputValue('')
+							return
+						}
+						if (Number.isFinite(Number(e.target.value))) {
+							setInputValue(+e.target.value)
+						}
 						Number.isFinite(Number(e.target.value))
-							? setInputValue(e.target.value)
+							? setInputValue(+e.target.value)
 							: ''
-					}
-					placeholder={message}
+					}}
 					className='bg-inherit placeholder:text-textGray text-white outline-none'
 				/>
 				<section className='flex flex-col'>
-					<section onClick={() => setInputValue((+inputValue + 1).toString())}>
+					<section
+						onClick={() => {
+							setInputValue(+inputValue + 1)
+						}}
+					>
 						<ArrowIcon
 							styles={`transform rotate-180 w-3 h-3 hover:bg-darkGray`}
 							fill={focus ? 'white' : '#666666'}
@@ -43,8 +59,12 @@ export const MinimalistNumberInput = ({
 					</section>
 					<section
 						onClick={() => {
+							if (+inputValue === 1) {
+								setInputValue('')
+								return
+							}
 							if (+inputValue > 0) {
-								setInputValue((+inputValue - 1).toString())
+								setInputValue(+inputValue - 1)
 							}
 						}}
 					>
@@ -55,6 +75,21 @@ export const MinimalistNumberInput = ({
 					</section>
 				</section>
 			</article>
+			<span
+				className={`
+						flex absolute z-20 bottom-0 left-4 bg-inherit px-2 transition-all duration-200 ease-in-out translate-y-3 translate-x-9 select-none pointer-events-none 
+						${!inputValue ? '-translate-y-1.5 -translate-x-1.5 text-xl px-0.5' : ''}
+						${focus ? 'text-white' : 'text-textGray'}
+						${errorMessage && 'text-validationRed'}
+					`}
+			>
+				{errorMessage ? errorMessage : message}
+			</span>
 		</section>
 	)
 }
+/*						
+	Number.isFinite(Number(e.target.value))
+	? setInputValue(+e.target.value)
+	: ''
+*/

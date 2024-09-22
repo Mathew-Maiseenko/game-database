@@ -1,54 +1,43 @@
 import { userSlice } from '@/entities/user'
 import { useAppDispatch } from '@/shared/lib/redux/hooks'
-import type { submitUserDataFooParams } from '../types'
 import { passwordsMatchCheck } from '../lib/passwordsMatchCheck'
 import { validateName } from '../lib/validateName'
+import { validateHardwareName } from '../lib/validateCPU'
+import { validateRAM } from '../lib/validateRAM'
+import { validateGraphicMemory } from '../lib/validateGraphicMemory'
+import type { submitUserDataFooParams } from '../types'
+import { useRouter } from 'next/navigation'
 
-function isNumber(value: string): boolean {
-	return !isNaN(Number(value))
-}
-
-function submitUserData({
+export function submitUserData({
+	dispatch,
+	router,
 	name,
 	password,
 	verifiedPassword,
 	CPU,
 	GPU,
-	graphicsMemory,
 	RAM,
+	graphicsMemory,
 }: submitUserDataFooParams) {
-	const dispatch = useAppDispatch()
+	const userNameValidationMessage = validateName(name)
+	const passwordValidationMessage = passwordsMatchCheck(
+		password,
+		verifiedPassword
+	)
+	const CPUValidationMessage = validateHardwareName(CPU)
+	const GPUValidationMessage = validateHardwareName(GPU)
+	const RAMValidationMessage = validateRAM(RAM)
+	const graphicsMemoryValidationMessage = validateGraphicMemory(graphicsMemory)
 
-	let isWithError = false
-	const functionValidationMessages = {
-		userNameValidationMessage: validateName(name),
-		passwordValidationMessage: passwordsMatchCheck(password, verifiedPassword),
-		CPUValidationMessage: '',
-		GPUValidationMessage: '',
-		RAMValidationMessage: '',
-		graphicsMemoryValidationMessage: '',
-	}
+	const isClear =
+		!userNameValidationMessage &&
+		!passwordValidationMessage &&
+		!CPUValidationMessage &&
+		!GPUValidationMessage &&
+		!RAMValidationMessage &&
+		!graphicsMemoryValidationMessage
 
-	if (name.length < 2) {
-		functionValidationMessages.CPUValidationMessage =
-			'User name is too short. Please input more than 1 character'
-		isWithError = true
-	} else if (name.length > 30) {
-		functionValidationMessages.CPUValidationMessage =
-			'User name is too long. Please input less than 30 characters'
-		isWithError = true
-	}
-
-	if (!isNaN(Number(password))) {
-		functionValidationMessages.passwordValidationMessage =
-			'Your password should not consist only of numbers'
-	} else if (password === verifiedPassword) {
-		functionValidationMessages.passwordValidationMessage =
-			'Your password and confirmed password are different'
-	} else {
-	}
-
-	if (!isWithError) {
+	if (isClear) {
 		dispatch(
 			userSlice.actions.setUsersData({
 				userName: name,
@@ -61,15 +50,18 @@ function submitUserData({
 				},
 			})
 		)
+		router.push('http://localhost:3000/user')
 	} else {
+		console.log('ошибка')
+
 		dispatch(
 			userSlice.actions.setValidationMessages({
-				userNameValidationMessage: '',
-				passwordValidationMessage: '',
-				CPUValidationMessage: '',
-				GPUValidationMessage: '',
-				RAMValidationMessage: '',
-				graphicsMemoryValidationMessage: '',
+				userNameValidationMessage: userNameValidationMessage,
+				passwordValidationMessage: passwordValidationMessage,
+				CPUValidationMessage: CPUValidationMessage,
+				GPUValidationMessage: GPUValidationMessage,
+				RAMValidationMessage: RAMValidationMessage,
+				graphicsMemoryValidationMessage: graphicsMemoryValidationMessage,
 			})
 		)
 	}

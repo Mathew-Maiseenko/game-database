@@ -40,6 +40,7 @@ const config: Config = {
 			darkGray: '#1f2122',
 			grayLineAfterCard: '#353637',
 			validationRed: '#bf0017',
+			validationOrange: '#FF9933',
 			validationGreen: '#28a745',
 		},
 	},

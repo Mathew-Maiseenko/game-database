@@ -5,28 +5,41 @@ import { useAppDispatch, useAppSelector } from '@/shared/lib/redux/hooks'
 import {
 	CrossIcon,
 	MinimalistInput,
+	MinimalistNumberInput,
 	MinimalistPasswordInput,
 	Modal,
+	ValidatedPasswordInput,
 } from '@/shared/ui'
 import { useEffect, useState } from 'react'
+import { submitUserData } from '../model/submitUserData'
+import { useRouter } from 'next/navigation'
 
 const teko = Teko({ subsets: ['latin'] })
 
 export function LogModal() {
 	const dispatch = useAppDispatch()
-
+	const router = useRouter()
 	const [userName, setUserName] = useState<string>('')
 	const [userPassword, setUserPassword] = useState<string>('')
 	const [userVerifiedPassword, setUserVerifiedPassword] = useState<string>('')
 
 	const [userProcessor, setUserProcessor] = useState<string>('')
 	const [userGraphicsCard, setUserGraphicsCard] = useState<string>('')
-	const [userVideoMemory, setUserVideoMemory] = useState<string>('')
-	const [userRAM, setUserRAM] = useState<string>('')
+	const [userVideoMemory, setUserVideoMemory] = useState<number | ''>('')
+	const [userRAM, setUserRAM] = useState<number | ''>('')
 
 	const isLogModalOpen = useAppSelector(
 		userSlice.selectors.selectIsLoggingModalOpen
 	)
+
+	const {
+		userNameValidationMessage,
+		passwordValidationMessage,
+		CPUValidationMessage,
+		GPUValidationMessage,
+		RAMValidationMessage,
+		graphicsMemoryValidationMessage,
+	} = useAppSelector(userSlice.selectors.selectValidationMessages)
 
 	useEffect(() => {
 		if (isLogModalOpen) {
@@ -41,7 +54,7 @@ export function LogModal() {
 
 	return (
 		<Modal isOpen={isLogModalOpen}>
-			<section className='relative  border-2 border-solid border-textGray bg-darkGray sm:w-1/3 lg:w-2/3 min-h-52 pt-5 pb-10 px-10 rounded-3xl'>
+			<section className='relative  border-2 border-solid border-textGray bg-darkGray sm:w-1/3 lg:w-2/3 min-h-52 pt-5 pb-10 px-44 rounded-3xl'>
 				<article
 					className='flex absolute top-5 left-5 w-full '
 					onClick={() => dispatch(userSlice.actions.setUserLoggingModalClose())}
@@ -59,8 +72,9 @@ export function LogModal() {
 					message='User name'
 					withMagnifierIcon={false}
 					className='w-full bg-darkGray mb-3'
+					errorMessage={userNameValidationMessage}
 				/>
-				<MinimalistPasswordInput
+				<ValidatedPasswordInput
 					inputValue={userPassword}
 					setInputValue={setUserPassword}
 					message='Enter password'
@@ -73,6 +87,7 @@ export function LogModal() {
 					message='Confirm password'
 					withMagnifierIcon={false}
 					className='w-full bg-darkGray mb-7'
+					errorMessage={passwordValidationMessage}
 				/>
 				<h3 className='w-full text-center text-3xl text-gray-light mb-5 underline'>
 					Computer Specifications
@@ -80,35 +95,49 @@ export function LogModal() {
 				<MinimalistInput
 					inputValue={userProcessor}
 					setInputValue={setUserProcessor}
-					message='User name'
+					message='Enter processor model'
 					withMagnifierIcon={false}
 					className='w-full bg-darkGray mb-3'
+					errorMessage={CPUValidationMessage}
 				/>
 				<MinimalistInput
 					inputValue={userGraphicsCard}
 					setInputValue={setUserGraphicsCard}
-					message='User name'
+					message='Enter graphics card model'
 					withMagnifierIcon={false}
 					className='w-full bg-darkGray mb-3'
+					errorMessage={GPUValidationMessage}
 				/>
-				<MinimalistInput
-					inputValue={userVideoMemory}
-					setInputValue={setUserVideoMemory}
-					message='User name'
-					withMagnifierIcon={false}
-					className='w-full bg-darkGray mb-3'
-				/>
-				<MinimalistInput
+				<MinimalistNumberInput
 					inputValue={userRAM}
 					setInputValue={setUserRAM}
-					message='User name'
-					withMagnifierIcon={false}
-					className='w-full bg-darkGray mb-7'
+					message='Enter the RAM size'
+					className='w-full bg-darkGray mb-3'
+					errorMessage={RAMValidationMessage}
+				/>
+				<MinimalistNumberInput
+					inputValue={userVideoMemory}
+					setInputValue={setUserVideoMemory}
+					message='Enter amount of video memory'
+					className='w-full bg-darkGray mb-9'
+					errorMessage={graphicsMemoryValidationMessage}
 				/>
 				<button
 					type='submit'
+					onClick={() => {
+						submitUserData({
+							dispatch: dispatch,
+							router: router,
+							name: userName,
+							password: userPassword,
+							verifiedPassword: userVerifiedPassword,
+							CPU: userProcessor,
+							GPU: userGraphicsCard,
+							RAM: userRAM ? userRAM : 0,
+							graphicsMemory: userVideoMemory ? userVideoMemory : 0,
+						})
+					}}
 					className='w-full bg-orange rounded-3xl p-2'
-					onSubmit={() => {}}
 				>
 					Sign Up
 				</button>
@@ -117,3 +146,20 @@ export function LogModal() {
 	)
 }
 //setLogModalOpen(!isLogModalOpen)
+{
+	/* <MinimalistInput
+					inputValue={userVideoMemory}
+					setInputValue={setUserVideoMemory}
+					message='Enter amount of video memory'
+					withMagnifierIcon={false}
+					className='w-full bg-darkGray mb-3'
+				/>
+				<MinimalistInput
+					inputValue={userRAM}
+					setInputValue={setUserRAM}
+					message='Enter the RAM size'
+					withMagnifierIcon={false}
+					className='w-full bg-darkGray mb-7'
+					errorMessage=''
+				/> */
+}

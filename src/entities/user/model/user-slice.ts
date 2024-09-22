@@ -47,6 +47,7 @@ export const userSlice = createAppSlice({
 		selectIsLoggingModalOpen: state => state.isUserLoggingModalOpen,
 		selectUserName: state => state.userBasics.userName,
 		selectUserPassword: state => state.userBasics.userPassword,
+		selectIsUserStatistics: state => state.statistics,
 		selectComputerSpecifications: state => state.computerSpecifications,
 		selectFavoriteGenres: state => state.statistics.favoriteGenres,
 		selectFavoriteGames: state => state.statistics.favoriteGames,
@@ -117,11 +118,15 @@ export const userSlice = createAppSlice({
 			state.userBasics.userName = action.payload.userName
 			state.userBasics.userPassword = action.payload.userPassword
 			state.computerSpecifications = {
-				CPU: state.computerSpecifications.CPU,
-				GPU: state.computerSpecifications.GPU,
-				RAM: state.computerSpecifications.RAM,
-				graphicsMemory: state.computerSpecifications.graphicsMemory,
+				CPU: action.payload.computerSpecifications.CPU,
+				GPU: action.payload.computerSpecifications.GPU,
+				RAM: action.payload.computerSpecifications.RAM,
+				graphicsMemory: action.payload.computerSpecifications.graphicsMemory,
 			}
+			localStorage.setItem(
+				`${state.userBasics.userName}-${state.userBasics.userPassword}`,
+				JSON.stringify(state)
+			)
 		},
 
 		setValidationMessages: (
