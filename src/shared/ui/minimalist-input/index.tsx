@@ -52,8 +52,12 @@ export const MinimalistInput = ({
 			</article>
 			<span
 				className={`
-						flex absolute z-20 bottom-0 left- bg-inherit px-2 transition-all duration-200 ease-in-out translate-y-3 translate-x-9 select-none pointer-events-none 
-						${!inputValue ? '-translate-y-1.5 -translate-x-1.5 text-xl px-0.5' : ''}
+						flex absolute z-20 bottom-0 left-4 bg-inherit transition-all duration-200 ease-in-out select-none pointer-events-none 
+						${
+							!inputValue
+								? '-translate-y-1.5 -translate-x-1.5 text-xl px-0.5'
+								: 'translate-y-3 translate-x-9 px-2'
+						}
 						${focus ? 'text-white' : 'text-textGray'}
 						${errorMessage && 'text-validationRed'}
 					`}

@@ -19,7 +19,7 @@ export function UserButton({ styles }: { styles?: string }) {
 				if (isUserSigned) {
 					router.push('http://localhost:3000/user')
 				} else {
-					dispatch(userSlice.actions.setUserLoggingModalOpen())
+					dispatch(userSlice.actions.setUserSignUpModalOpen())
 				}
 			}}
 			className={`${

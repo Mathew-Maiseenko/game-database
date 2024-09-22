@@ -16,7 +16,7 @@ import { useRouter } from 'next/navigation'
 
 const teko = Teko({ subsets: ['latin'] })
 
-export function LogModal() {
+export function SignUpModal() {
 	const dispatch = useAppDispatch()
 	const router = useRouter()
 	const [userName, setUserName] = useState<string>('')
@@ -28,8 +28,8 @@ export function LogModal() {
 	const [userVideoMemory, setUserVideoMemory] = useState<number | ''>('')
 	const [userRAM, setUserRAM] = useState<number | ''>('')
 
-	const isLogModalOpen = useAppSelector(
-		userSlice.selectors.selectIsLoggingModalOpen
+	const isSignUpModalOpen = useAppSelector(
+		userSlice.selectors.selectIsUserSignUpModalOpen
 	)
 
 	const {
@@ -42,7 +42,8 @@ export function LogModal() {
 	} = useAppSelector(userSlice.selectors.selectValidationMessages)
 
 	useEffect(() => {
-		if (isLogModalOpen) {
+		//говно-код
+		if (isSignUpModalOpen) {
 			document.body.style.overflow = 'hidden'
 		} else {
 			document.body.style.overflow = ''
@@ -50,14 +51,14 @@ export function LogModal() {
 		return () => {
 			document.body.style.overflow = ''
 		}
-	}, [isLogModalOpen])
+	}, [isSignUpModalOpen])
 
 	return (
-		<Modal isOpen={isLogModalOpen}>
+		<Modal isOpen={isSignUpModalOpen}>
 			<section className='relative  border-2 border-solid border-textGray bg-darkGray sm:w-1/3 lg:w-2/3 min-h-52 pt-5 pb-10 px-44 rounded-3xl'>
 				<article
 					className='flex absolute top-5 left-5 w-full '
-					onClick={() => dispatch(userSlice.actions.setUserLoggingModalClose())}
+					onClick={() => dispatch(userSlice.actions.setUserSignUpModalClose())}
 				>
 					<CrossIcon classes=' sm:w-7 lg:w-10' />
 				</article>
@@ -137,10 +138,24 @@ export function LogModal() {
 							graphicsMemory: userVideoMemory ? userVideoMemory : 0,
 						})
 					}}
-					className='w-full bg-orange rounded-3xl p-2'
+					className='w-full bg-orange rounded-3xl p-2 mb-5'
 				>
 					Sign Up
 				</button>
+				<article className='flex justify-center items-center w-full text-textGray'>
+					<h6 className='inline-block transition-all duration-150 mr-3'>
+						Have an account?
+					</h6>
+					<h6
+						onClick={() => {
+							dispatch(userSlice.actions.setUserSignUpModalClose())
+							dispatch(userSlice.actions.setUserSignInModalOpen())
+						}}
+						className='inline-block transition-all duration-150 hover:underline cursor-pointer'
+					>
+						Sign In
+					</h6>
+				</article>
 			</section>
 		</Modal>
 	)

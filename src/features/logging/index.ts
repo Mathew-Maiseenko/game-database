@@ -1,1 +1,2 @@
-export { LogModal } from './log-modal/ui'
+export { SignInModal } from './sign-in-modal/ui'
+export { SignUpModal } from './sign-up-modal/ui'

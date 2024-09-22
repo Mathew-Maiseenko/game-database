@@ -1,20 +1,11 @@
 'use client'
 //import { Teko } from 'next/font/google'
-import {
-	BurgerIcon,
-	CrossIcon,
-	MinimalistInput,
-	Modal,
-	UserButton,
-} from '@/shared/ui'
+import { BurgerIcon, UserButton } from '@/shared/ui'
 //import classes from './styles.module.css'
 import { Burger, MainLogo, NavPoint } from '@/entities/navigation'
 import { useState } from 'react'
-import { LogModal } from '@/features/logging'
 import { userSlice } from '@/entities/user'
 import { useAppDispatch } from '@/shared/lib/redux/hooks'
-
-//const teko = Teko({ subsets: ['latin'] })
 
 export function NavBar() {
 	const dispatch = useAppDispatch()
@@ -30,13 +21,6 @@ export function NavBar() {
 					<MainLogo />
 					<article className='relative md:order-2 self-center'>
 						<NavPoint href='/game-list' title={'Games'} />
-						<button
-							onClick={() =>
-								dispatch(userSlice.actions.setUserLoggingModalOpen())
-							}
-						>
-							123
-						</button>
 					</article>
 					<UserButton />
 				</section>

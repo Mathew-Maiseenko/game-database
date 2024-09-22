@@ -51,9 +51,8 @@ export function submitUserData({
 			})
 		)
 		router.push('http://localhost:3000/user')
+		dispatch(userSlice.actions.setUserSignUpModalClose())
 	} else {
-		console.log('ошибка')
-
 		dispatch(
 			userSlice.actions.setValidationMessages({
 				userNameValidationMessage: userNameValidationMessage,

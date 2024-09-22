@@ -3,16 +3,22 @@ import { PayloadAction } from '@reduxjs/toolkit'
 import type {
 	GameId,
 	setUserDataPayloadType,
+	UserInfoLocaleStorageType,
 	UserInfoStateType,
 	usersFavoriteGameType,
 	validationMessagesType,
 } from '../types'
 import { calculateUsersFavoriteGenres } from '../lib/calculate-users-favorite-genres'
 import { calculateUsersRang } from '../lib/calculate-users-rang'
+import {
+	saveIsUserSignedInLocalStorage,
+	saveUserInfoInLocalStorage,
+} from '../lib/saveUserInLocalStorage'
 
 const initialState: UserInfoStateType = {
 	isUserSigned: false,
-	isUserLoggingModalOpen: false,
+	isUserSignInModalOpen: false,
+	isUserSignUpModalOpen: false,
 	userBasics: {
 		userName: '',
 		userPassword: '',
@@ -44,7 +50,8 @@ export const userSlice = createAppSlice({
 	initialState,
 	selectors: {
 		selectIsUserSigned: state => state.isUserSigned,
-		selectIsLoggingModalOpen: state => state.isUserLoggingModalOpen,
+		selectIsUserSignUpModalOpen: state => state.isUserSignUpModalOpen,
+		selectIsUserSignInModalOpen: state => state.isUserSignInModalOpen,
 		selectUserName: state => state.userBasics.userName,
 		selectUserPassword: state => state.userBasics.userPassword,
 		selectIsUserStatistics: state => state.statistics,
@@ -63,11 +70,49 @@ export const userSlice = createAppSlice({
 			state.isUserSigned = true
 		},
 
-		setUserLoggingModalOpen: state => {
-			state.isUserLoggingModalOpen = true
+		setUserSignUpModalOpen: state => {
+			state.isUserSignUpModalOpen = true
 		},
-		setUserLoggingModalClose: state => {
-			state.isUserLoggingModalOpen = false
+		setUserSignUpModalClose: state => {
+			state.isUserSignUpModalOpen = false
+		},
+
+		setUserSignInModalOpen: state => {
+			state.isUserSignInModalOpen = true
+		},
+		setUserSignInModalClose: state => {
+			state.isUserSignInModalOpen = false
+		},
+
+		initCurrentUser: state => {
+			let userInfoJSON = localStorage.getItem('UserInfo')
+			if (userInfoJSON) {
+				const isSigned = localStorage.getItem('isUserSigned')
+				const user = JSON.parse(userInfoJSON) as UserInfoLocaleStorageType
+
+				state.isUserSigned = !!isSigned
+				state.computerSpecifications = {
+					...user.computerSpecifications,
+				}
+				state.userBasics = {
+					...user.userBasics,
+				}
+				state.statistics.favoriteGamesIds = [
+					...user.statistics.favoriteGamesIds,
+				]
+				state.statistics.favoriteGames = {
+					...user.statistics.completedGamesIds.reduce(
+						(acc, id) => ({
+							...acc,
+							[id]: {
+								isComplete: true,
+								game: {},
+							},
+						}),
+						{}
+					),
+				}
+			}
 		},
 
 		addFavoriteGame: (state, action: PayloadAction<usersFavoriteGameType>) => {
@@ -86,6 +131,7 @@ export const userSlice = createAppSlice({
 					action.payload.game.id,
 				],
 			}
+			saveUserInfoInLocalStorage(state)
 		},
 		removeFavoriteGame: (state, action: PayloadAction<GameId>) => {
 			state.statistics = {
@@ -99,6 +145,7 @@ export const userSlice = createAppSlice({
 					id => id !== action.payload
 				),
 			}
+			saveUserInfoInLocalStorage(state)
 		},
 
 		setFavoriteGameCompleted: (state, action: PayloadAction<GameId>) => {
@@ -106,15 +153,19 @@ export const userSlice = createAppSlice({
 			if (curGame) {
 				curGame.isComplete = true
 			}
+			saveUserInfoInLocalStorage(state)
 		},
 		setFavoriteGameInCompleted: (state, action: PayloadAction<GameId>) => {
 			const curGame = state.statistics.favoriteGames[action.payload]
 			if (curGame) {
 				curGame.isComplete = false
 			}
+			saveUserInfoInLocalStorage(state)
 		},
 
 		setUsersData: (state, action: PayloadAction<setUserDataPayloadType>) => {
+			state.isUserSigned = true
+			saveIsUserSignedInLocalStorage(true)
 			state.userBasics.userName = action.payload.userName
 			state.userBasics.userPassword = action.payload.userPassword
 			state.computerSpecifications = {
@@ -123,10 +174,15 @@ export const userSlice = createAppSlice({
 				RAM: action.payload.computerSpecifications.RAM,
 				graphicsMemory: action.payload.computerSpecifications.graphicsMemory,
 			}
-			localStorage.setItem(
-				`${state.userBasics.userName}-${state.userBasics.userPassword}`,
-				JSON.stringify(state)
-			)
+			state.validationMessages = {
+				userNameValidationMessage: '',
+				passwordValidationMessage: '',
+				CPUValidationMessage: '',
+				GPUValidationMessage: '',
+				RAMValidationMessage: '',
+				graphicsMemoryValidationMessage: '',
+			}
+			saveUserInfoInLocalStorage(state)
 		},
 
 		setValidationMessages: (

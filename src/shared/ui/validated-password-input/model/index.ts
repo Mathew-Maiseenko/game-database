@@ -12,15 +12,22 @@ export const validatePassword = (
 	}
 
 	if (password.length < 8) {
-		setValidationMessage('Password must be at least 8 characters long')
+		setValidationMessage('Password must be at least 8 characters long!')
 		setReliabilityLevel('red')
 		return
 	}
 
-	const mainValidationRegex = /[A-Za-z0-9]/
-	if (!mainValidationRegex.test(password)) {
+	const upperCaseRegex = /[A-Z]/
+	const lowerCaseRegex = /[a-z]/
+	const numberRegex = /[0-9]/
+
+	if (
+		!numberRegex.test(password) ||
+		!lowerCaseRegex.test(password) ||
+		!upperCaseRegex.test(password)
+	) {
 		setValidationMessage(
-			'The password must contain digits, lowercase and capital letters'
+			'The password must contain digits, lowercase and capital letters!'
 		)
 		setReliabilityLevel('red')
 		return
@@ -28,7 +35,7 @@ export const validatePassword = (
 	const SpecialSymbolsRegex = /[!@#$%^&*(),.?":{}|<>]/g
 	if (!SpecialSymbolsRegex.test(password)) {
 		setValidationMessage(
-			'Reliable password, the password should contain special symbols (@#$...)'
+			'Reliable password, the password should contain special symbols (@#$...)!'
 		)
 		setReliabilityLevel('orange')
 		return

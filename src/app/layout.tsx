@@ -3,8 +3,8 @@ import { Manrope } from 'next/font/google'
 import { NavBar } from '@/widgets/nav-bar'
 import './globals.css'
 import StoreProvider from './providers/StoreProvider'
-import { LogModal } from '@/features/logging'
-//import Priv
+import { SignInModal, SignUpModal } from '@/features/logging'
+
 const manrope = Manrope({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
@@ -23,7 +23,8 @@ export default function RootLayout({
 				<body
 					className={`${manrope.className} relative flex flex-col bg-darkGray h-full px-[7vw] pt-[3vh] min-h-screen overflow-x-hidden`}
 				>
-					<LogModal />
+					<SignInModal />
+					<SignUpModal />
 					<NavBar />
 					<main className={'bg-whiteGray rounded-3xl p-[7vh] overflow-hidden'}>
 						{children}

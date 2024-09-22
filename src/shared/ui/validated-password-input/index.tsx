@@ -70,11 +70,11 @@ export const ValidatedPasswordInput = ({
 			</article>
 			<span
 				className={`
-						flex absolute z-10 bottom-0 left-4 bg-opacity-100 bg-inherit px-2 transition-all duration-200 ease-in-out translate-y-3 translate-x-9 select-none pointer-events-none
+						flex absolute z-10 bottom-0 left-4 bg-opacity-100 bg-inherit transition-all duration-200 ease-in-out select-none pointer-events-none
 						${
-							!inputValue &&
-							!reliabilityLevel &&
-							'-translate-y-1.5 -translate-x-1.5 text-xl bg-opacity-0 px-0.5'
+							!inputValue && !reliabilityLevel
+								? '-translate-y-1.5 -translate-x-1.5 text-xl bg-opacity-0 px-0.5'
+								: 'translate-y-3 translate-x-9 px-2'
 						}
 						${focus ? 'text-white' : 'text-textGray'}
 						${reliabilityLevel === 'red' && 'text-validationRed after:bg-validationRed '}

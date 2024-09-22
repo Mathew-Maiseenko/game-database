@@ -38,7 +38,8 @@ export interface validationMessagesType {
 
 export interface UserInfoStateType {
 	isUserSigned: boolean
-	isUserLoggingModalOpen: boolean
+	isUserSignInModalOpen: boolean
+	isUserSignUpModalOpen: boolean
 	userBasics: {
 		userName: string
 		userPassword: string
@@ -46,4 +47,21 @@ export interface UserInfoStateType {
 	statistics: usersStatisticsType
 	computerSpecifications: usersComputerSpecificationsType
 	validationMessages: validationMessagesType
+}
+
+export interface UserInfoLocaleStorageType {
+	userBasics: {
+		userName: string
+		userPassword: string
+	}
+	statistics: {
+		completedGamesIds: number[]
+		favoriteGamesIds: number[]
+	}
+	computerSpecifications: {
+		CPU: string
+		GPU: string
+		RAM: number
+		graphicsMemory: number
+	}
 }

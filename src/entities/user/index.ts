@@ -1,3 +1,5 @@
+export type { UserInfoLocaleStorageType } from './types'
+
 export { userSlice } from './model/user-slice'
 
 export { UsersAvatar } from './ui/user-page-avatar'
