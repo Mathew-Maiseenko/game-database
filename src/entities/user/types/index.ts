@@ -40,6 +40,7 @@ export interface UserInfoStateType {
 	isUserSigned: boolean
 	isUserSignInModalOpen: boolean
 	isUserSignUpModalOpen: boolean
+	fetchingDetailsByGamesIdsState: 'idle' | 'pending' | 'fulfilled' | 'rejected'
 	userBasics: {
 		userName: string
 		userPassword: string

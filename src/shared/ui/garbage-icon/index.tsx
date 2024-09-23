@@ -1,17 +1,18 @@
 import Image from 'next/image'
-import downloadSwg from '../../../../public/downloadIcon.svg'
+import GarbageSWG from '../../../../public/garbage-trash-svgrepo-com.svg'
 
 interface iconProps {
 	classes?: string | undefined
 }
-export function DownloadIcon({ classes }: iconProps) {
+
+export function GarbageIcon({ classes }: iconProps) {
 	return (
 		<Image
-			src={downloadSwg}
+			src={GarbageSWG}
 			width={20}
 			height={20}
 			className={`${classes}`}
-			alt='download icon'
+			alt='garbage icon'
 		/>
 	)
 }

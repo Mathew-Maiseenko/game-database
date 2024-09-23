@@ -4,11 +4,8 @@ import { BurgerIcon, UserButton } from '@/shared/ui'
 //import classes from './styles.module.css'
 import { Burger, MainLogo, NavPoint } from '@/entities/navigation'
 import { useState } from 'react'
-import { userSlice } from '@/entities/user'
-import { useAppDispatch } from '@/shared/lib/redux/hooks'
 
 export function NavBar() {
-	const dispatch = useAppDispatch()
 	const [isBurgerOpen, setBurgerOpen] = useState(false)
 	return (
 		<>

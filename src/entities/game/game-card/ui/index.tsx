@@ -32,7 +32,7 @@ export function GameCard({
 				src={image || getRandomDefaultImage()}
 				width={500}
 				height={500}
-				alt='Picture of the author'
+				alt='Game poster'
 				className='h-3/5 w-full rounded-t-xl mb-2 object-cover'
 			/>
 			<article className={`flex flex-col px-3 pb-3`}>

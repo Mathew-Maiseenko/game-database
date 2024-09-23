@@ -5,14 +5,13 @@ import { useAppDispatch, useAppSelector } from '@/shared/lib/redux/hooks'
 import {
 	CrossIcon,
 	MinimalistInput,
-	MinimalistNumberInput,
 	MinimalistPasswordInput,
 	Modal,
-	ValidatedPasswordInput,
 } from '@/shared/ui'
 import { useEffect, useState } from 'react'
 //import { submitUserData } from '../model/submitUserData'
 import { useRouter } from 'next/navigation'
+import { signInUser } from '../model/signInUser'
 
 const teko = Teko({ subsets: ['latin'] })
 
@@ -63,19 +62,30 @@ export function SignInModal() {
 					className='w-full bg-darkGray mb-5'
 					errorMessage={userNameValidationMessage}
 				/>
-				<ValidatedPasswordInput
+				<MinimalistPasswordInput
 					inputValue={userPassword}
 					setInputValue={setUserPassword}
 					message='Enter password'
 					withMagnifierIcon={false}
 					className='w-full bg-darkGray mb-5'
 				/>
-				<button type='submit' className='w-full bg-orange rounded-3xl p-2 mb-5'>
+				<button
+					onClick={() =>
+						signInUser({
+							dispatch,
+							router,
+							name: userName,
+							password: userPassword,
+						})
+					}
+					type='submit'
+					className='w-full bg-orange rounded-3xl p-2 mb-5'
+				>
 					Sign In
 				</button>
 				<article className='flex justify-center items-center w-full text-textGray'>
 					<h6 className='inline-block transition-all duration-150 mr-3'>
-						Don't have an account?
+						Do not have an account?
 					</h6>
 					<h6
 						onClick={() => {

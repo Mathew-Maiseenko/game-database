@@ -14,11 +14,13 @@ import {
 	saveIsUserSignedInLocalStorage,
 	saveUserInfoInLocalStorage,
 } from '../lib/saveUserInLocalStorage'
+import { fetchDetailsByGamesIds } from './thunk/fetch-game-details'
 
 const initialState: UserInfoStateType = {
 	isUserSigned: false,
 	isUserSignInModalOpen: false,
 	isUserSignUpModalOpen: false,
+	fetchingDetailsByGamesIdsState: 'idle',
 	userBasics: {
 		userName: '',
 		userPassword: '',
@@ -61,13 +63,17 @@ export const userSlice = createAppSlice({
 		selectFavoriteGamesIds: state => state.statistics.favoriteGamesIds,
 		selectFavoriteGameById: (state, id) => state.statistics.favoriteGames[id],
 		selectValidationMessages: state => state.validationMessages,
+		selectFetchingDetailsByGamesIdsState: state =>
+			state.fetchingDetailsByGamesIdsState,
 	},
 	reducers: {
 		setUserUnsigned: state => {
 			state.isUserSigned = false
+			saveIsUserSignedInLocalStorage(false)
 		},
 		setUserSigned: state => {
 			state.isUserSigned = true
+			saveIsUserSignedInLocalStorage(true)
 		},
 
 		setUserSignUpModalOpen: state => {
@@ -199,5 +205,38 @@ export const userSlice = createAppSlice({
 					action.payload.graphicsMemoryValidationMessage,
 			}
 		},
+	},
+	extraReducers: builder => {
+		builder
+			.addCase(fetchDetailsByGamesIds.pending, state => {
+				state.fetchingDetailsByGamesIdsState = 'pending'
+			})
+			.addCase(fetchDetailsByGamesIds.fulfilled, (state, action) => {
+				state.statistics.favoriteGames =
+					state.statistics.favoriteGamesIds.reduce((acc, id) => {
+						if (state.statistics.favoriteGames[id]) {
+							return {
+								...acc,
+								[id]: {
+									...state.statistics.favoriteGames[id],
+									game: action.payload[id],
+								},
+							}
+						} else {
+							return {
+								...acc,
+								[id]: {
+									isComplete: false,
+									game: action.payload[id],
+								},
+							}
+						}
+					}, {} as Record<number, usersFavoriteGameType | undefined>)
+
+				state.fetchingDetailsByGamesIdsState = 'fulfilled'
+			})
+			.addCase(fetchDetailsByGamesIds.rejected, state => {
+				state.fetchingDetailsByGamesIdsState = 'rejected'
+			})
 	},
 })

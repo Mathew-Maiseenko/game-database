@@ -19,9 +19,9 @@ export function signInUser({
 		const isUserNameCorrect = checkLogParams(name, userName)
 		const isPasswordCorrect = checkLogParams(password, userPassword)
 
-		const isClear = !isUserNameCorrect && !isPasswordCorrect
-		if (isClear) {
+		if (isUserNameCorrect && isPasswordCorrect) {
 			dispatch(userSlice.actions.setUserSigned())
+			dispatch(userSlice.actions.setUserSignInModalClose())
 			router.push('http://localhost:3000/user')
 		} else {
 			dispatch(
