@@ -107,11 +107,13 @@ export const userSlice = createAppSlice({
 					...user.statistics.favoriteGamesIds,
 				]
 				state.statistics.favoriteGames = {
-					...user.statistics.completedGamesIds.reduce(
+					...user.statistics.favoriteGamesIds.reduce(
 						(acc, id) => ({
 							...acc,
 							[id]: {
-								isComplete: true,
+								isComplete: user.statistics.games[id]?.isComplete,
+								completedAchievementIds:
+									user.statistics.games[id]?.completedAchievementIds || [],
 								game: {},
 							},
 						}),
@@ -129,6 +131,7 @@ export const userSlice = createAppSlice({
 					...state.statistics.favoriteGames,
 					[action.payload.game.id]: {
 						isComplete: false,
+						completedAchievementIds: [],
 						game: action.payload.game,
 					},
 				},
@@ -167,6 +170,26 @@ export const userSlice = createAppSlice({
 				curGame.isComplete = false
 			}
 			saveUserInfoInLocalStorage(state)
+		},
+
+		setAchievementCompleted: (
+			state,
+			action: PayloadAction<{ GameId: GameId; AchievementId: number }>
+		) => {
+			state.statistics.favoriteGames[
+				action.payload.GameId
+			]?.completedAchievementIds.push(action.payload.AchievementId)
+		},
+
+		setAchievementInCompleted: (
+			state,
+			action: PayloadAction<{ GameId: GameId; AchievementId: number }>
+		) => {
+			state.statistics.favoriteGames[
+				action.payload.GameId
+			]?.completedAchievementIds.filter(
+				id => id !== action.payload.AchievementId
+			)
 		},
 
 		setUsersData: (state, action: PayloadAction<setUserDataPayloadType>) => {
@@ -227,6 +250,7 @@ export const userSlice = createAppSlice({
 								...acc,
 								[id]: {
 									isComplete: false,
+									completedAchievementIds: [],
 									game: action.payload[id],
 								},
 							}

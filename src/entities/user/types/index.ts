@@ -11,6 +11,7 @@ export interface usersComputerSpecificationsType {
 
 export interface usersFavoriteGameType {
 	isComplete: boolean
+	completedAchievementIds: number[]
 	game: StoreGameDetails
 }
 
@@ -56,7 +57,8 @@ export interface UserInfoLocaleStorageType {
 		userPassword: string
 	}
 	statistics: {
-		completedGamesIds: number[]
+		//completedGamesIds: number[]
+		games: Record<GameId, Omit<usersFavoriteGameType, 'game'> | undefined>
 		favoriteGamesIds: number[]
 	}
 	computerSpecifications: {

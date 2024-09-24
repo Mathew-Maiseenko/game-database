@@ -9,8 +9,19 @@ export function saveUserInfoInLocalStorage(state: UserInfoStateType) {
 				userPassword: state.userBasics.userPassword,
 			},
 			statistics: {
-				completedGamesIds: state.statistics.favoriteGamesIds.filter(
-					id => state.statistics.favoriteGames[id]?.isComplete
+				// completedGamesIds: state.statistics.favoriteGamesIds.filter(
+				// 	id => state.statistics.favoriteGames[id]?.isComplete
+				// ),
+				games: state.statistics.favoriteGamesIds.reduce(
+					(acc, id) => ({
+						...acc,
+						[id]: {
+							isComplete: state.statistics.favoriteGames[id]?.isComplete,
+							completedAchievementIds:
+								state.statistics.favoriteGames[id]?.completedAchievementIds,
+						},
+					}),
+					{}
 				),
 				favoriteGamesIds: state.statistics.favoriteGamesIds,
 			},

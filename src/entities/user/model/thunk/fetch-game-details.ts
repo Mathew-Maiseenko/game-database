@@ -1,4 +1,4 @@
-import { StoreGameDetails } from '@/shared/api/RawgApi-hook'
+import type { StoreGameDetails } from '@/shared/api/RawgApi-hook'
 import { extraArgumentType } from '@/shared/lib'
 import { createAsyncThunk } from '@reduxjs/toolkit'
 
@@ -8,15 +8,17 @@ export const fetchDetailsByGamesIds = createAsyncThunk<
 	Record<GameId, StoreGameDetails>,
 	GameId[],
 	{ extra: extraArgumentType }
->('userSlice/fetchDetailsByGamesIds', (ids, thunkApi) => {
-	const res = ids.reduce(async (acc, id) => {
-		const currentGame = (await thunkApi.extra.api.getGameDetails(
-			id
-		)) as StoreGameDetails
-		return {
-			...acc,
-			[id]: currentGame,
-		}
-	}, {})
-	return res
+>('userSlice/fetchDetailsByGamesIds', async (ids, thunkApi) => {
+	const results = await Promise.all(
+		ids.map(async id => {
+			const currentGame = (await thunkApi.extra.api.getGameDetails(
+				id
+			)) as StoreGameDetails
+			return { [id]: currentGame }
+		})
+	)
+
+	return results.reduce((acc, game) => {
+		return { ...acc, ...game }
+	}, {} as Record<GameId, StoreGameDetails>)
 })

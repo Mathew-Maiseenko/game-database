@@ -1,6 +1,6 @@
 import { WelcomeMessage } from '@/widgets/welcome-message'
 import { PopularGamesList } from '@/widgets/popular-game-list'
-import { UsersGamesList } from '@/widgets/users-games-list'
+import { UsersGamesList } from '@/entities/user/ui/users-games-list'
 //import { RawgApi } from '@/shared/api/RawgApi-hook'
 //import fetchingWrapper from '@/shared/api/RawgApi-hook/lib/fetching-wrapper'
 // RawgApi.getGamesListWithParams(

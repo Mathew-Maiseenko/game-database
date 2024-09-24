@@ -2,23 +2,26 @@ import Image from 'next/image'
 import getRandomDefaultImage from '@/shared/model/defaultImages'
 import { StoreLogoList } from '@/shared/model'
 import { Store } from '@/shared/api/RawgApi-hook'
-import Link from 'next/link'
 import { DownloadIcon } from '@/shared/ui'
 import { GarbageIcon } from '@/shared/ui/garbage-icon'
 
 interface UsersGameCardProps {
+	id: number
 	title: string
-	releaseDate: string
-	playtime: number
+	poster: string | null | undefined
+	releaseDate: string | null | undefined
+	playtime: number | null | undefined
 	website?: string
-	stores?: Store[]
+	stores?: Store[] | null
+	achievementsCount: number | null
+	completedAchievementsCount?: number | null
 }
 
 export function UsersGameCard({
 	// title,
 	// releaseDate,
 	// playtime,
-	website,
+	// website,
 	stores,
 }: UsersGameCardProps) {
 	return (

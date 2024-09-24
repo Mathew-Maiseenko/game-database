@@ -1,1 +1,0 @@
-export { UsersGamesList } from './ui'
