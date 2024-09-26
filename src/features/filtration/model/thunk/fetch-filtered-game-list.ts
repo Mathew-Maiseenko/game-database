@@ -1,4 +1,4 @@
-import type { StoreGame } from '@/shared/api/RawgApi-hook'
+import type { StoreGamesFiltrationObj } from '@/shared/api/RawgApi-hook'
 import type { extraArgumentType } from '@/shared/lib'
 import { createAsyncThunk } from '@reduxjs/toolkit'
 
@@ -13,7 +13,7 @@ interface fetchFilteredGameListThunkParams {
 }
 
 export const fetchFilteredGameList = createAsyncThunk<
-	StoreGame[],
+	StoreGamesFiltrationObj,
 	fetchFilteredGameListThunkParams,
 	{ extra: extraArgumentType }
 >(

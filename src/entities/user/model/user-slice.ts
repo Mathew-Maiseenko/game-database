@@ -66,6 +66,8 @@ export const userSlice = createAppSlice({
 		selectValidationMessages: state => state.validationMessages,
 		selectFetchingDetailsByGamesIdsState: state =>
 			state.fetchingDetailsByGamesIdsState,
+		selectIsUserContainGameById: (state, id) =>
+			state.statistics.favoriteGames[id],
 	},
 	reducers: {
 		setUserUnsigned: state => {

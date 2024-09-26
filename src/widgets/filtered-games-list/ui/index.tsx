@@ -16,6 +16,10 @@ export function FilteredGamesList() {
 		filteredGamesSlice.selectors.selectActivePage
 	)
 
+	const gamesCount = useAppSelector(
+		filteredGamesSlice.selectors.selectTotalGamesCount
+	)
+
 	if (games.length === 0) {
 		return <div>{gameListFetchingState}</div>
 	}
@@ -31,7 +35,7 @@ export function FilteredGamesList() {
 			</article>
 			<Pagination
 				setCurrentPage={filteredGamesSlice.actions.setActivePage}
-				totalPageCount={games.length}
+				totalPageCount={Math.ceil(gamesCount / 20)}
 				currentPage={activePage}
 			/>
 		</section>

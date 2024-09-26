@@ -1,4 +1,76 @@
 import { z } from 'zod'
+export const FilteredGameDtoSchema = z.object({
+	count: z.number(),
+	games: z.array(
+		z.object({
+			id: z.number(),
+			slug: z.string(),
+			name: z.string(),
+			backgroundImage: z.string().nullable(),
+			playtime: z.number(),
+			lastUpdate: z.string().nullable(), //z.string(),
+			released: z.string().nullable(),
+			rating: z.number(),
+			ratingTop: z.number(),
+			detailedRating: z
+				.array(
+					z.object({
+						id: z.number(),
+						title: z.string(),
+						count: z.number(),
+						percent: z.number(),
+					})
+				)
+				.optional(),
+			accessPlatforms: z
+				.array(
+					z.object({
+						platformId: z.number(),
+						platformName: z.string(),
+						releaseDate: z.string().nullable().optional(),
+						requirements: z
+							.union([
+								z.object({
+									minimum: z.string().nullable().optional(),
+									recommended: z.string().nullable().optional(),
+								}),
+								z.string().nullable().optional(),
+							])
+							.nullable(),
+					})
+				)
+				.nullable()
+				.optional(),
+			genres: z
+				.array(
+					z.object({
+						id: z.number(),
+						name: z.string(),
+					})
+				)
+				.optional(),
+			stores: z
+				.array(
+					z.object({
+						id: z.number(),
+						name: z.string(),
+						domain: z.string().nullable().optional(),
+					})
+				)
+				.nullable()
+				.optional(),
+			tags: z
+				.array(
+					z.object({
+						id: z.number(),
+						name: z.string(),
+					})
+				)
+				.optional(),
+			screenshots: z.array(z.string()).optional(),
+		})
+	),
+})
 
 export const GameDtoSchema = z.object({
 	id: z.number(),

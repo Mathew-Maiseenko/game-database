@@ -30,10 +30,15 @@ export function GameDetailsMain() {
 			return +pointsList[pointsList.length - 1]
 		}
 	}
+
 	const currentGameId = getUserIdByPathname(pathname)
 
 	const currentGame = useAppSelector((state: AppState) =>
 		gameDetailsSlice.selectors.selectGameDetailsById(state, currentGameId)
+	)
+
+	const isGameAddedInUserList = useAppSelector((state: AppState) =>
+		userSlice.selectors.selectIsUserContainGameById(state, currentGameId)
 	)
 
 	useEffect(() => {
@@ -67,11 +72,17 @@ export function GameDetailsMain() {
 						</Link>
 						<button
 							className='w-1/2 rounded-3xl border-2 transition-all duration-300 border-orange p-1 text-orange hover:text-white hover:bg-orange active:bg-activeButtonRed active:text-white'
-							onClick={() =>
-								dispatch(userSlice.actions.addFavoriteGame(currentGame))
-							}
+							onClick={() => {
+								if (!isGameAddedInUserList) {
+									dispatch(userSlice.actions.addFavoriteGame(currentGame))
+								} else {
+									dispatch(userSlice.actions.removeFavoriteGame(currentGameId))
+								}
+							}}
 						>
-							Add {currentGame.name} to favorite list
+							{!isGameAddedInUserList ? 'Add ' : 'Remove '} {currentGame.name}{' '}
+							{!isGameAddedInUserList ? 'to ' : 'from '}
+							favorite list
 						</button>
 					</section>
 				</section>

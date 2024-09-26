@@ -8,6 +8,7 @@ import getTagsListParams from '../lib/getting-params/getting-tags-params'
 import {
 	AchievementDtoSchema,
 	DeveloperDtoSchema,
+	FilteredGameDtoSchema,
 	GameDetailsDtoSchema,
 	GameDtoSchema,
 	GenreDtoSchema,
@@ -18,9 +19,10 @@ import { Achievement } from '../types/achievement'
 import { StoreGameDetails } from '../types/game-details'
 import { StoreGame } from '../types/game-list'
 import { Genre } from '../types/genre'
-import type { TagResult } from '../'
+import type { StoreGamesFiltrationObj, TagResult } from '../'
 import { DeveloperResult } from '../types/developer'
 import getListGameScreenshotsParams from '../lib/getting-params/getting-screenshots-params'
+import getFilteredGameListParams from '../lib/getting-params/getting-filtered-game-list-params'
 
 const baseUrl: string = 'https://api.rawg.io/api/'
 const ApiKey: string = 'key=fd711517d11b45b0b5c432f288b02d33'
@@ -55,7 +57,7 @@ export const RawgApi = {
 				console.log(res, 'fetchingWrapper details')
 				return res
 			})
-			.then(res => getGameListParams(res))
+			.then(res => getFilteredGameListParams(res))
 			.then(res => {
 				console.log(
 					'getGameListParams',
@@ -67,7 +69,7 @@ export const RawgApi = {
 						(year ? `&dates=${year}` : ''),
 					res
 				)
-				return GameDtoSchema.array().parse(res) as StoreGame[]
+				return FilteredGameDtoSchema.parse(res) as StoreGamesFiltrationObj
 			})
 	},
 	getGameDetails: async (id: number) => {

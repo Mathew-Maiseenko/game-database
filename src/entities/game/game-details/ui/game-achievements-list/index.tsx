@@ -18,17 +18,15 @@ export function GameAchievementsList({ gameId }: GameAchievementsListProps) {
 			</article>
 			<article className='flex flex-col justify-between w-full p-3'>
 				{achievements.length
-					? achievements
-							.reverse()
-							.map((achievement: Achievement) => (
-								<GameAchievementCard
-									key={`${achievement.name}-${achievement.id}`}
-									title={achievement.name}
-									description={achievement.description}
-									percent={achievement.percent}
-									image={achievement.image}
-								/>
-							))
+					? achievements.map((achievement: Achievement) => (
+							<GameAchievementCard
+								key={`${achievement.name}-${achievement.id}`}
+								title={achievement.name}
+								description={achievement.description}
+								percent={achievement.percent}
+								image={achievement.image}
+							/>
+					  ))
 					: ''}
 			</article>
 		</section>

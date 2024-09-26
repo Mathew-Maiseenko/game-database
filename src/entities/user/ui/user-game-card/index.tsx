@@ -7,6 +7,7 @@ import { DownloadIcon } from '@/shared/ui'
 import { GarbageIcon } from '@/shared/ui/garbage-icon'
 import { useAppDispatch } from '@/shared/lib/redux/hooks'
 import { userSlice } from '../../model/user-slice'
+import { useRouter } from 'next/navigation'
 
 interface UsersGameCardProps {
 	id: number
@@ -32,7 +33,7 @@ export function UsersGameCard({
 	stores,
 }: UsersGameCardProps) {
 	const dispatch = useAppDispatch()
-	//after:-bottom-1.5
+	const router = useRouter()
 	return (
 		<article className='flex flex-row relative w-full h-1/3 overflow-x-hidden rounded-xl mb-3 after:h-0.5 after:w-full after:absolute after:bottom-0 after:bg-textGray'>
 			<Image
@@ -40,7 +41,8 @@ export function UsersGameCard({
 				width={300}
 				height={300}
 				alt='Picture of the game'
-				className='mr-5 w-1/5'
+				className='mr-5 w-1/5 cursor-pointer'
+				onClick={() => router.push(`http://localhost:3000/details/${id}`)}
 			/>
 			<article className='flex flex-row justify-between w-full'>
 				<section className='flex flex-col justify-center text-white'>
@@ -87,7 +89,10 @@ export function UsersGameCard({
 							<DownloadIcon />
 						</button>
 
-						<button className='flex justify-center items-center bg-accountExitRed p-1 w-1/2 text-white font-semibold rounded-md'>
+						<button
+							className='flex justify-center items-center bg-accountExitRed p-1 w-1/2 text-white font-semibold rounded-md'
+							onClick={() => dispatch(userSlice.actions.removeFavoriteGame(id))}
+						>
 							<GarbageIcon />
 						</button>
 					</article>

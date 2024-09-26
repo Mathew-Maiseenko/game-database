@@ -26,6 +26,16 @@ PaginationProps) => {
 	}
 
 	for (let i = 0; i < totalPageCount && i < 3; i++) {
+		if (i === 0 && currentPage - 2 === 1) {
+			buttonsArr.push(
+				<button
+					className='p-3 bg-orange text-center text-white mr-2'
+					onClick={() => dispatch(setCurrentPage(1))}
+				>
+					1
+				</button>
+			)
+		}
 		if (totalPageCount === currentPage && currentPage - i - 2 > 1 && i === 0) {
 			buttonsArr.push(
 				<button

@@ -23,6 +23,7 @@ interface StateType {
 
 	//activeFiltrationGameTitle: string
 	activePage: number
+	totalGamesCount: number
 	activeFiltrationGenres: Record<string, Genre | undefined>
 	activeFiltrationTags: Record<string, TagResult | undefined>
 
@@ -44,7 +45,7 @@ const initialState: StateType = {
 	tagListFetchingState: 'idle',
 
 	activePage: 1,
-
+	totalGamesCount: 0,
 	activeFiltrationGenres: {},
 	activeFiltrationTags: {},
 }
@@ -58,6 +59,7 @@ export const filteredGamesSlice = createAppSlice({
 		selectGenreList: state => state.genres,
 		selectTagList: state => state.tags,
 		selectActivePage: state => state.activePage,
+		selectTotalGamesCount: state => state.totalGamesCount,
 		//selectFiltrationTitle: state => state.activeFiltrationGameTitle,
 		selectFiltrationGenreList: state => state.activeFiltrationGenres,
 		selectFiltrationTagList: state => state.activeFiltrationTags,
@@ -136,7 +138,8 @@ export const filteredGamesSlice = createAppSlice({
 			})
 			.addCase(fetchFilteredGameList.fulfilled, (state, action) => {
 				state.gameListFetchingState = 'fulfilled'
-				state.games = action.payload
+				state.games = action.payload.games
+				state.totalGamesCount = action.payload.count
 			})
 			.addCase(fetchFilteredGameList.rejected, state => {
 				state.gameListFetchingState = 'rejected'

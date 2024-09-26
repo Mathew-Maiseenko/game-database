@@ -1,3 +1,7 @@
+export interface StoreGamesFiltrationObj {
+	count: number
+	games: StoreGame[]
+}
 export interface StoreGame {
 	id: number
 	slug: string
