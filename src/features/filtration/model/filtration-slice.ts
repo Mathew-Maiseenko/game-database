@@ -22,7 +22,7 @@ interface StateType {
 	tagListFetchingState: 'idle' | 'pending' | 'rejected' | 'fulfilled'
 
 	//activeFiltrationGameTitle: string
-
+	activePage: number
 	activeFiltrationGenres: Record<string, Genre | undefined>
 	activeFiltrationTags: Record<string, TagResult | undefined>
 
@@ -43,7 +43,8 @@ const initialState: StateType = {
 	tags: [],
 	tagListFetchingState: 'idle',
 
-	//activeFiltrationGameTitle: '',
+	activePage: 1,
+
 	activeFiltrationGenres: {},
 	activeFiltrationTags: {},
 }
@@ -56,7 +57,7 @@ export const filteredGamesSlice = createAppSlice({
 		selectDeveloperList: state => state.developers,
 		selectGenreList: state => state.genres,
 		selectTagList: state => state.tags,
-
+		selectActivePage: state => state.activePage,
 		//selectFiltrationTitle: state => state.activeFiltrationGameTitle,
 		selectFiltrationGenreList: state => state.activeFiltrationGenres,
 		selectFiltrationTagList: state => state.activeFiltrationTags,
@@ -68,6 +69,10 @@ export const filteredGamesSlice = createAppSlice({
 		// clearTitle: state => {
 		// 	state.activeFiltrationGameTitle = ''
 		// },
+
+		setActivePage: (state, action: PayloadAction<number>) => {
+			state.activePage = action.payload
+		},
 
 		setActiveGenres: (
 			state,

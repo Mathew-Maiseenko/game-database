@@ -1,4 +1,4 @@
-export type { UserInfoLocaleStorageType } from './types'
+export type { UserInfoLocaleStorageType, usersFavoriteGameType } from './types'
 
 export { userSlice } from './model/user-slice'
 

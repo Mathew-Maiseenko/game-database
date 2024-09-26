@@ -15,6 +15,7 @@ import {
 	saveUserInfoInLocalStorage,
 } from '../lib/saveUserInLocalStorage'
 import { fetchDetailsByGamesIds } from './thunk/fetch-game-details'
+import { StoreGameDetails } from '@/shared/api/RawgApi-hook'
 
 const initialState: UserInfoStateType = {
 	isUserSigned: false,
@@ -123,24 +124,29 @@ export const userSlice = createAppSlice({
 			}
 		},
 
-		addFavoriteGame: (state, action: PayloadAction<usersFavoriteGameType>) => {
-			state.statistics = {
-				userRang: calculateUsersRang(state.statistics.favoriteGamesIds.length),
-				favoriteGenres: calculateUsersFavoriteGenres(state),
-				favoriteGames: {
-					...state.statistics.favoriteGames,
-					[action.payload.game.id]: {
-						isComplete: false,
-						completedAchievementIds: [],
-						game: action.payload.game,
+		addFavoriteGame: (state, action: PayloadAction<StoreGameDetails>) => {
+			if (!state.statistics.favoriteGames[action.payload.id]) {
+				state.statistics = {
+					...state.statistics,
+					userRang: calculateUsersRang(
+						state.statistics.favoriteGamesIds.length
+					),
+					favoriteGenres: calculateUsersFavoriteGenres(state),
+					favoriteGames: {
+						...state.statistics.favoriteGames,
+						[action.payload.id]: {
+							isComplete: false,
+							completedAchievementIds: [],
+							game: action.payload,
+						},
 					},
-				},
-				favoriteGamesIds: [
-					...state.statistics.favoriteGamesIds,
-					action.payload.game.id,
-				],
+					favoriteGamesIds: [
+						...state.statistics.favoriteGamesIds,
+						action.payload.id,
+					],
+				}
+				saveUserInfoInLocalStorage(state)
 			}
-			saveUserInfoInLocalStorage(state)
 		},
 		removeFavoriteGame: (state, action: PayloadAction<GameId>) => {
 			state.statistics = {
@@ -168,6 +174,13 @@ export const userSlice = createAppSlice({
 			const curGame = state.statistics.favoriteGames[action.payload]
 			if (curGame) {
 				curGame.isComplete = false
+			}
+			saveUserInfoInLocalStorage(state)
+		},
+		toggleFavoriteGameComplete: (state, action: PayloadAction<GameId>) => {
+			const curGame = state.statistics.favoriteGames[action.payload]
+			if (curGame) {
+				curGame.isComplete = !curGame.isComplete
 			}
 			saveUserInfoInLocalStorage(state)
 		},

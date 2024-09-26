@@ -60,7 +60,9 @@ export function GameFiltration() {
 	)
 	const setGenre = filteredGamesSlice.actions.setActiveGenres
 	const setTag = filteredGamesSlice.actions.setActiveTags
-
+	const activePage = useAppSelector(
+		filteredGamesSlice.selectors.selectActivePage
+	)
 	//const setFilterTitle = filteredGamesSlice.actions.setTitle
 
 	useEffect(() => {
@@ -68,7 +70,7 @@ export function GameFiltration() {
 		dispatch(
 			fetchFilteredGameList({
 				gamesPerPage: 0,
-				pageNumber: 1,
+				pageNumber: activePage,
 				title: filterTitle,
 				genres: Object.values(activeGenres)
 					.reduce((acc, genre) => (genre ? `${acc}${genre.id},` : acc), '')
@@ -80,7 +82,14 @@ export function GameFiltration() {
 				developers: filterDeveloper,
 			})
 		)
-	}, [dispatch, filterTitle, activeGenres, activeTags, filterDeveloper])
+	}, [
+		dispatch,
+		filterTitle,
+		activeGenres,
+		activeTags,
+		filterDeveloper,
+		activePage,
+	])
 
 	useEffect(() => {
 		dispatch(fetchTagsList())

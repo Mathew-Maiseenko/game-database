@@ -15,6 +15,7 @@ import {
 import { GameAchievementsList } from '@/entities/game/game-details/ui/game-achievements-list'
 import { RawgApi } from '@/shared/api/RawgApi-hook'
 import Link from 'next/link'
+import { userSlice } from '@/entities/user'
 
 export function GameDetailsMain() {
 	const [screenshots, setScreenshots] = useState<string[]>([])
@@ -38,7 +39,6 @@ export function GameDetailsMain() {
 	useEffect(() => {
 		RawgApi.getListGameScreenshots(currentGameId).then(setScreenshots)
 		dispatch(fetchGameDetails(currentGameId))
-		console.log('проверка рендера:', dispatch, currentGameId)
 	}, [dispatch, currentGameId])
 
 	if (!currentGame) {
@@ -63,10 +63,15 @@ export function GameDetailsMain() {
 							href={currentGame.website}
 							className='w-1/2 mr-3 text-center rounded-3xl border-2 border-orange p-1 text-orange'
 						>
-							Download Fortnite Now!
+							Download {currentGame.name} Now!
 						</Link>
-						<button className='w-1/2 rounded-3xl border-2 border-orange p-1 text-orange'>
-							Add Fortnite to favorite list
+						<button
+							className='w-1/2 rounded-3xl border-2 transition-all duration-300 border-orange p-1 text-orange hover:text-white hover:bg-orange active:bg-activeButtonRed active:text-white'
+							onClick={() =>
+								dispatch(userSlice.actions.addFavoriteGame(currentGame))
+							}
+						>
+							Add {currentGame.name} to favorite list
 						</button>
 					</section>
 				</section>

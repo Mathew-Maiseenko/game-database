@@ -43,6 +43,7 @@ const config: Config = {
 			accountExitRed: '#bf0017',
 			validationOrange: '#FF9933',
 			validationGreen: '#28a745',
+			activeButtonRed: '#b52110',
 		},
 	},
 

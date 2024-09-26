@@ -1,3 +1,4 @@
+export { Pagination } from './pagination'
 export { ValidatedPasswordInput } from './validated-password-input'
 export { MinimalistPasswordInput } from './minimalist-password-input'
 export { BurgerIcon } from './burger-icon'
