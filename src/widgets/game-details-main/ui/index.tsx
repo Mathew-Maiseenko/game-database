@@ -16,7 +16,6 @@ import { GameAchievementsList } from '@/entities/game/game-details/ui/game-achie
 import { RawgApi } from '@/shared/api/RawgApi-hook'
 import Link from 'next/link'
 import { userSlice } from '@/entities/user'
-import { AnimatedTickIcon } from '@/shared/ui/animated-tick-icon'
 
 export function GameDetailsMain() {
 	const [screenshots, setScreenshots] = useState<string[]>([])
@@ -52,7 +51,6 @@ export function GameDetailsMain() {
 	} else {
 		return (
 			<>
-				<AnimatedTickIcon />
 				<GameDetailsHeader
 					mainImage={currentGame.backgroundImage}
 					firstScreenshot={screenshots[0]}

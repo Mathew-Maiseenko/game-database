@@ -75,7 +75,9 @@ function ViewUsersGamesList({
 				releaseDate={currentGame.game.released}
 				playtime={currentGame.game.playtime}
 				achievementsCount={currentGame.game.achievementsCount}
-				completedAchievementsCount={currentGame.completedAchievementIds.length}
+				completedAchievementsCount={
+					Object.keys(currentGame.completedAchievementIds).length
+				}
 				stores={currentGame.game.stores}
 				isComplete={currentGame.isComplete}
 			/>

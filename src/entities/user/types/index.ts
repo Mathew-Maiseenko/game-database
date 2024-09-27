@@ -11,7 +11,7 @@ export interface usersComputerSpecificationsType {
 
 export interface usersFavoriteGameType {
 	isComplete: boolean
-	completedAchievementIds: number[]
+	completedAchievementIds: Record<number, boolean | undefined>
 	game: StoreGameDetails
 }
 

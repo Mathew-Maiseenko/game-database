@@ -4,6 +4,36 @@ $white: #fff;
 
 // Misc
 $curve: cubic-bezier(0.650, 0.000, 0.450, 1.000); */
+.svg-wrapper {
+	background: green;
+	width: 120px;
+	height: 120px;
+	border-radius: 50%;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.path {
+	fill: transparent;
+	stroke: green;
+	stroke-width: 2;
+	stroke-dasharray: 25;
+	stroke-dashoffset: 0;
+	stroke-linecap: round;
+	stroke-linejoin: round;
+	animation: animate 0.5s cubic-bezier(0, 0, 0.32, -0.13);
+}
+
+@keyframes animate {
+	from {
+		stroke-dashoffset: 26;
+	}
+
+	to {
+		stroke-dashoffset: 0;
+	}
+}
 
 /* .checkmark {
 	width: 100%;

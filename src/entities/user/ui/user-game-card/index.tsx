@@ -17,7 +17,7 @@ interface UsersGameCardProps {
 	playtime: number | null | undefined
 	stores?: Store[] | null
 	achievementsCount: number | null
-	completedAchievementsCount?: number | null
+	completedAchievementsCount?: number
 	isComplete: boolean
 }
 
@@ -99,7 +99,7 @@ export function UsersGameCard({
 				</section>
 				<section
 					className={`flex justify-center items-center transition-all ease-in-out bg-green ${
-						isComplete ? 'translate-x-full' : 'translate-x-0'
+						!isComplete ? 'translate-x-full' : 'translate-x-0'
 					}`}
 				>
 					complete

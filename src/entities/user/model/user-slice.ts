@@ -63,6 +63,12 @@ export const userSlice = createAppSlice({
 		selectFavoriteGames: state => state.statistics.favoriteGames,
 		selectFavoriteGamesIds: state => state.statistics.favoriteGamesIds,
 		selectFavoriteGameById: (state, id) => state.statistics.favoriteGames[id],
+		selectIsGameFavoriteById: (state, id) =>
+			!!state.statistics.favoriteGames[id],
+		selectIsAchievementCompleteById: (state, GameId, AchievementId): boolean =>
+			!!state.statistics.favoriteGames[GameId]?.completedAchievementIds[
+				AchievementId
+			],
 		selectValidationMessages: state => state.validationMessages,
 		selectFetchingDetailsByGamesIdsState: state =>
 			state.fetchingDetailsByGamesIdsState,
@@ -128,39 +134,41 @@ export const userSlice = createAppSlice({
 
 		addFavoriteGame: (state, action: PayloadAction<StoreGameDetails>) => {
 			if (!state.statistics.favoriteGames[action.payload.id]) {
+				state.statistics.favoriteGames = {
+					...state.statistics.favoriteGames,
+					[action.payload.id]: {
+						isComplete: false,
+						completedAchievementIds: {},
+						game: action.payload,
+					},
+				}
+
+				state.statistics.favoriteGamesIds = [
+					...state.statistics.favoriteGamesIds,
+					action.payload.id,
+				]
+
 				state.statistics = {
 					...state.statistics,
 					userRang: calculateUsersRang(
 						state.statistics.favoriteGamesIds.length
 					),
 					favoriteGenres: calculateUsersFavoriteGenres(state),
-					favoriteGames: {
-						...state.statistics.favoriteGames,
-						[action.payload.id]: {
-							isComplete: false,
-							completedAchievementIds: [],
-							game: action.payload,
-						},
-					},
-					favoriteGamesIds: [
-						...state.statistics.favoriteGamesIds,
-						action.payload.id,
-					],
 				}
 				saveUserInfoInLocalStorage(state)
 			}
 		},
 		removeFavoriteGame: (state, action: PayloadAction<GameId>) => {
+			state.statistics.favoriteGames = {
+				...state.statistics.favoriteGames,
+				[action.payload]: undefined,
+			}
+			state.statistics.favoriteGamesIds =
+				state.statistics.favoriteGamesIds.filter(id => id !== action.payload)
 			state.statistics = {
+				...state.statistics,
 				userRang: calculateUsersRang(state.statistics.favoriteGamesIds.length),
 				favoriteGenres: calculateUsersFavoriteGenres(state),
-				favoriteGames: {
-					...state.statistics.favoriteGames,
-					[action.payload]: undefined,
-				},
-				favoriteGamesIds: state.statistics.favoriteGamesIds.filter(
-					id => id !== action.payload
-				),
 			}
 			saveUserInfoInLocalStorage(state)
 		},
@@ -191,20 +199,22 @@ export const userSlice = createAppSlice({
 			state,
 			action: PayloadAction<{ GameId: GameId; AchievementId: number }>
 		) => {
-			state.statistics.favoriteGames[
-				action.payload.GameId
-			]?.completedAchievementIds.push(action.payload.AchievementId)
+			const game = state.statistics.favoriteGames[action.payload.GameId]
+			if (game) {
+				game.completedAchievementIds[action.payload.AchievementId] = true
+				saveUserInfoInLocalStorage(state)
+			}
 		},
 
 		setAchievementInCompleted: (
 			state,
 			action: PayloadAction<{ GameId: GameId; AchievementId: number }>
 		) => {
-			state.statistics.favoriteGames[
-				action.payload.GameId
-			]?.completedAchievementIds.filter(
-				id => id !== action.payload.AchievementId
-			)
+			const game = state.statistics.favoriteGames[action.payload.GameId]
+			if (game) {
+				game.completedAchievementIds[action.payload.AchievementId] = undefined
+				saveUserInfoInLocalStorage(state)
+			}
 		},
 
 		setUsersData: (state, action: PayloadAction<setUserDataPayloadType>) => {
@@ -265,7 +275,7 @@ export const userSlice = createAppSlice({
 								...acc,
 								[id]: {
 									isComplete: false,
-									completedAchievementIds: [],
+									completedAchievementIds: {},
 									game: action.payload[id],
 								},
 							}

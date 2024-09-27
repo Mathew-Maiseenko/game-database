@@ -1,5 +1,7 @@
+import { userSlice } from '@/entities/user'
 import { GameAchievementCard } from './ui/GameAchievementCard'
 import { Achievement, RawgApi } from '@/shared/api/RawgApi-hook'
+import { useAppSelector } from '@/shared/lib/redux/hooks'
 import { useEffect, useState } from 'react'
 
 interface GameAchievementsListProps {
@@ -8,6 +10,10 @@ interface GameAchievementsListProps {
 
 export function GameAchievementsList({ gameId }: GameAchievementsListProps) {
 	const [achievements, setAchievements] = useState<Achievement[]>([])
+	const isUserSigned = useAppSelector(userSlice.selectors.selectIsUserSigned)
+	const isGameFavorite = useAppSelector(state =>
+		userSlice.selectors.selectIsGameFavoriteById(state, gameId)
+	)
 	useEffect(() => {
 		RawgApi.getListGameAchievements(gameId).then(setAchievements)
 	}, [gameId])
@@ -21,6 +27,10 @@ export function GameAchievementsList({ gameId }: GameAchievementsListProps) {
 					? achievements.map((achievement: Achievement) => (
 							<GameAchievementCard
 								key={`${achievement.name}-${achievement.id}`}
+								isGameFavorite={isGameFavorite}
+								GameId={gameId}
+								AchievementId={achievement.id}
+								isUserSigned={isUserSigned}
 								title={achievement.name}
 								description={achievement.description}
 								percent={achievement.percent}
