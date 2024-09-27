@@ -4,9 +4,9 @@ import { HoverIconWithText } from '../..'
 export function HoverDownloadCalendarIcon() {
 	return (
 		<HoverIconWithText
-			title='Playtime'
+			title='Last update'
 			image={CalendarDownloadSwg}
-			alt='playtime icons'
+			alt='Last update icon'
 		/>
 	)
 }

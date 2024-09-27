@@ -19,7 +19,7 @@ export default function CardWithStatisticalInfo() {
 	}
 
 	return (
-		<section className='flex flex-row justify-between bg-whiteGray rounded-3xl w-[48%] p-7 '>
+		<section className='flex flex-row justify-between bg-whiteGray rounded-3xl w-1/2 p-7 '>
 			<article className='flex flex-col justify-between items-center'>
 				{/* <Image
 					src={star}

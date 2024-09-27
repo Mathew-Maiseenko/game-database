@@ -14,7 +14,7 @@ export default function CardWithBaseInfo() {
 		return
 	}
 	return (
-		<section className='flex flex-col bg-whiteGray rounded-3xl w-[48%] p-7'>
+		<section className='flex flex-col bg-whiteGray rounded-3xl w-1/2 mr-3 p-7'>
 			<section className='flex justify-between'>
 				<h2 className='text-xl font-bold text-white'>{currentGame.name}</h2>
 				<article className='flex items-center'>

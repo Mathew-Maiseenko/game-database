@@ -16,8 +16,6 @@ export interface usersFavoriteGameType {
 }
 
 export interface usersStatisticsType {
-	userRang: string
-	favoriteGenres: string[]
 	favoriteGames: Record<GameId, usersFavoriteGameType | undefined>
 	favoriteGamesIds: GameId[]
 }

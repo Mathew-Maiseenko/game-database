@@ -8,8 +8,6 @@ import type {
 	usersFavoriteGameType,
 	validationMessagesType,
 } from '../types'
-import { calculateUsersFavoriteGenres } from '../lib/calculate-users-favorite-genres'
-import { calculateUsersRang } from '../lib/calculate-users-rang'
 import {
 	saveIsUserSignedInLocalStorage,
 	saveUserInfoInLocalStorage,
@@ -27,8 +25,6 @@ const initialState: UserInfoStateType = {
 		userPassword: '',
 	},
 	statistics: {
-		userRang: '',
-		favoriteGenres: [],
 		favoriteGames: {},
 		favoriteGamesIds: [],
 	},
@@ -59,7 +55,6 @@ export const userSlice = createAppSlice({
 		selectUserPassword: state => state.userBasics.userPassword,
 		selectIsUserStatistics: state => state.statistics,
 		selectComputerSpecifications: state => state.computerSpecifications,
-		selectFavoriteGenres: state => state.statistics.favoriteGenres,
 		selectFavoriteGames: state => state.statistics.favoriteGames,
 		selectFavoriteGamesIds: state => state.statistics.favoriteGamesIds,
 		selectFavoriteGameById: (state, id) => state.statistics.favoriteGames[id],
@@ -147,14 +142,6 @@ export const userSlice = createAppSlice({
 					...state.statistics.favoriteGamesIds,
 					action.payload.id,
 				]
-
-				state.statistics = {
-					...state.statistics,
-					userRang: calculateUsersRang(
-						state.statistics.favoriteGamesIds.length
-					),
-					favoriteGenres: calculateUsersFavoriteGenres(state),
-				}
 				saveUserInfoInLocalStorage(state)
 			}
 		},
@@ -165,11 +152,7 @@ export const userSlice = createAppSlice({
 			}
 			state.statistics.favoriteGamesIds =
 				state.statistics.favoriteGamesIds.filter(id => id !== action.payload)
-			state.statistics = {
-				...state.statistics,
-				userRang: calculateUsersRang(state.statistics.favoriteGamesIds.length),
-				favoriteGenres: calculateUsersFavoriteGenres(state),
-			}
+
 			saveUserInfoInLocalStorage(state)
 		},
 

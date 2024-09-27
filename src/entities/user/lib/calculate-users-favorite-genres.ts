@@ -1,15 +1,28 @@
-import { UserInfoStateType } from '../types'
+import type { usersFavoriteGameType } from '../types'
 
-export const calculateUsersFavoriteGenres = (state: UserInfoStateType) => {
-	const gentesObj = state.statistics.favoriteGamesIds.reduce(
+interface calculateUsersFavoriteGenresArg {
+	ids: number[]
+	games: Record<number, usersFavoriteGameType | undefined>
+}
+
+export const calculateUsersFavoriteGenres = ({
+	ids,
+	games,
+}: calculateUsersFavoriteGenresArg): {
+	genres: string[]
+	ids: number[]
+} => {
+	const gentesObj = ids.reduce(
 		(totalAcc, id) => {
-			const genresList = state.statistics.favoriteGames[id]?.game.genres
+			const genresList = games[id]?.game.genres
 			if (genresList) {
 				let currentGamesGenresObj = genresList.reduce((acc, genre) => {
 					let currentGenre = acc[genre.name]
 					return {
 						...acc,
-						[genre.name]: currentGenre ? currentGenre + 1 : 1,
+						[genre.name]: currentGenre
+							? { count: currentGenre.count + 1, id: genre.id }
+							: { count: 1, id: genre.id },
 					}
 				}, totalAcc)
 				return {
@@ -23,37 +36,48 @@ export const calculateUsersFavoriteGenres = (state: UserInfoStateType) => {
 			}
 		},
 		{} as {
-			[key: string]: number
+			[key: string]: {
+				count: number
+				id: number
+			}
 		}
 	)
 	const theMostOftenGenresObj = Object.keys(gentesObj).reduce(
 		(genresAcc, currentGenre) => {
-			if (gentesObj[currentGenre] > genresAcc.max) {
+			if (gentesObj[currentGenre].count > genresAcc.max) {
 				return {
-					max: gentesObj[currentGenre],
+					max: gentesObj[currentGenre].count,
 					genres: [currentGenre],
+					ids: [gentesObj[currentGenre].id],
 				}
-			} else if (gentesObj[currentGenre] === genresAcc.max) {
+			} else if (gentesObj[currentGenre].count === genresAcc.max) {
 				return {
-					max: gentesObj[currentGenre],
+					max: gentesObj[currentGenre].count,
 					genres: [...genresAcc.genres, currentGenre],
+					ids: [...genresAcc.ids, gentesObj[currentGenre].id],
 				}
 			} else {
 				return {
 					max: genresAcc.max,
 					genres: [...genresAcc.genres],
+					ids: [...genresAcc.ids],
 				}
 			}
 		},
 		{
 			max: 0,
 			genres: [],
+			ids: [],
 		} as {
 			max: number
 			genres: string[]
+			ids: number[]
 		}
 	)
-	return theMostOftenGenresObj.genres
+	return {
+		genres: theMostOftenGenresObj.genres,
+		ids: theMostOftenGenresObj.ids,
+	}
 }
 
 // const gentesByIds = state.statistics.favoriteGamesIds.map(id =>
