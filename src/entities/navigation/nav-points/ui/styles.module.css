@@ -1,10 +1,8 @@
 .link {
-	/* margin-right: 20px; */
 	align-self: flex-end;
 	justify-self: end;
 	position: relative;
 	bottom: 5px;
-	/* border: 1px solid #000; */
 }
 
 .text {
@@ -22,8 +20,7 @@
 	left: 0;
 	width: 0%;
 	height: 2px;
-	/* background-color: #007bff; */
-	background-color: #66ffcc;
+	background-color: #0062ff;
 	transition: width 0.3s ease;
 }
 

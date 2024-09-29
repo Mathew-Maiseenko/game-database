@@ -1,1 +1,0 @@
-export { ExtendedRatedGameCard } from './ui'

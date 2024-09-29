@@ -1,11 +1,5 @@
-import { UsersGamesList } from '@/entities/user'
-import { UserMainInfo } from '@/widgets/user-main-info'
+import { UserPage } from '@/pages/user-page'
 
-export default function UserPage() {
-	return (
-		<>
-			<UserMainInfo />
-			<UsersGamesList withButton={false} />
-		</>
-	)
+export default function User() {
+	return <UserPage />
 }

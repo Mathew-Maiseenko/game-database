@@ -12,7 +12,7 @@ import {
 	fetchGameDetails,
 	gameDetailsSlice,
 } from '../../../entities/game/game-details/model'
-import { GameAchievementsList } from '@/entities/game/game-details/ui/game-achievements-list'
+import { GameAchievementsList } from '@/entities/game/game-details/ui'
 import { RawgApi } from '@/shared/api/RawgApi-hook'
 import Link from 'next/link'
 import { userSlice } from '@/entities/user'
@@ -91,7 +91,3 @@ export function GameDetailsMain() {
 		)
 	}
 }
-
-// const currentGame = useAppSelector(
-// 	(state: AppState) => state.gameDetails.games[currentGameId]
-// )

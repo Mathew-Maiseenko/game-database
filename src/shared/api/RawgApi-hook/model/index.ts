@@ -36,15 +36,23 @@ export const RawgApi = {
 				return GameDtoSchema.array().parse(res) as StoreGame[]
 			})
 	},
-	getGamesListWithParams: async (
-		gamesPerPage: number,
-		pageNumber: number,
-		title?: string,
-		genres?: string,
-		tags?: string,
-		year?: number | string | null,
+	getGamesListWithParams: async ({
+		gamesPerPage,
+		pageNumber,
+		title,
+		genres,
+		tags,
+		year,
+		developers,
+	}: {
+		gamesPerPage: number
+		pageNumber: number
+		title?: string
+		genres?: string
+		tags?: string
+		year?: number | string | null
 		developers?: string
-	) => {
+	}) => {
 		return await fetchingWrapper(
 			`${baseUrl}games?${ApiKey}&page=${pageNumber}&page_size=${gamesPerPage}` +
 				(title ? `&search=${title}` : '') +

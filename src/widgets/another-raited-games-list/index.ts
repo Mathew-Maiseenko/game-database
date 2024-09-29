@@ -1,1 +1,0 @@
-export { ExtendedGameCardsList } from './ui'
