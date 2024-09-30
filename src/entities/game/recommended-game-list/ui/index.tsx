@@ -1,3 +1,4 @@
+'use client'
 import { RecommendedGameCard } from '@/entities/game/recommended-game-list/ui/recommended-game-card'
 import { calculateUsersFavoriteGenres, userSlice } from '@/entities/user'
 import { RawgApi, StoreGame } from '@/shared/api/RawgApi-hook'

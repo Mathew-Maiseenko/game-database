@@ -4,7 +4,7 @@ import { HoverIconWithText } from '../..'
 export function HoverSettingCalendarIcon() {
 	return (
 		<HoverIconWithText
-			title='Release'
+			title='Release date'
 			image={CalendarSettingSwg}
 			alt='Release icon'
 		/>

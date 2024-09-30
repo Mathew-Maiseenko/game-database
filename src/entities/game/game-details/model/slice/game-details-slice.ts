@@ -1,14 +1,21 @@
 import type { Achievement, StoreGameDetails } from '@/shared/api/RawgApi-hook'
 import { createAppSlice } from '@/shared/lib'
 import { fetchGameDetails } from '../thunk/fetch-game-details'
+import { PayloadAction } from '@reduxjs/toolkit'
 
 type GameId = number
+
+interface ImageObj {
+	image: string
+	alt: string
+}
 
 interface initialGameDetailsStateType {
 	games: Record<GameId, StoreGameDetails>
 	gameAchievements: Achievement[] //Record<GameId, Achievement[]>
 	currentGameId: GameId | null | undefined
 	gameDetailsFetchingState: 'idle' | 'pending' | 'rejected' | 'fulfilled'
+	currentModalImage: ImageObj | undefined
 	//gameAchievementsFetchingState: 'idle' | 'pending' | 'rejected' | 'fulfilled'
 }
 
@@ -17,6 +24,7 @@ const initialGameDetailsState: initialGameDetailsStateType = {
 	gameAchievements: [],
 	currentGameId: null,
 	gameDetailsFetchingState: 'idle',
+	currentModalImage: undefined,
 	//gameAchievementsFetchingState: 'idle',
 }
 
@@ -27,11 +35,18 @@ export const gameDetailsSlice = createAppSlice({
 		selectGameDetailsById: (state, id) => state.games[id],
 		selectAllGamesDetails: state => state.games,
 		selectCurrentGameId: state => state.currentGameId,
-
+		selectCurrentModalImage: state => state.currentModalImage,
 		selectGameAchievementsById: (state, id) => state.gameAchievements[id],
 		selectAllGamesAchievementsById: state => state.gameAchievements,
 	},
-	reducers: {},
+	reducers: {
+		setCurrentModalImage: (state, action: PayloadAction<ImageObj>) => {
+			state.currentModalImage = action.payload
+		},
+		clearCurrentModalImage: state => {
+			state.currentModalImage = undefined
+		},
+	},
 	extraReducers: builder => {
 		builder
 			.addCase(fetchGameDetails.pending, state => {
@@ -45,16 +60,5 @@ export const gameDetailsSlice = createAppSlice({
 			.addCase(fetchGameDetails.rejected, state => {
 				state.gameDetailsFetchingState = 'rejected'
 			})
-
-		// .addCase(fetchGameAchievements.pending, state => {
-		// 	state.gameAchievementsFetchingState = 'pending'
-		// })
-		// .addCase(fetchGameAchievements.fulfilled, (state, action) => {
-		// 	state.gameAchievements = action.payload
-		// 	state.gameAchievementsFetchingState = 'fulfilled'
-		// })
-		// .addCase(fetchGameAchievements.rejected, state => {
-		// 	state.gameAchievementsFetchingState = 'rejected'
-		// })
 	},
 })

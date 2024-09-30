@@ -10,7 +10,7 @@ export function AchievementIcon({ classes }: iconProps) {
 			src={AchievementSWG}
 			width={20}
 			height={20}
-			className={`mr-1 ${classes}`}
+			className={`${classes}`}
 			alt='star icon'
 		/>
 	)

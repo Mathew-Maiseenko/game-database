@@ -5,7 +5,7 @@ import {
 	ListOfGameScreenshots,
 	PairOfGameInfoCards,
 } from '../../../entities/game/game-details/ui'
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { usePathname } from 'next/navigation'
 import { AppState } from '@/shared/lib'
 import {
@@ -16,22 +16,14 @@ import { GameAchievementsList } from '@/entities/game/game-details/ui'
 import { RawgApi } from '@/shared/api/RawgApi-hook'
 import Link from 'next/link'
 import { userSlice } from '@/entities/user'
+import { getUserIdByPathname } from '../lib'
 
 export function GameDetailsMain() {
 	const [screenshots, setScreenshots] = useState<string[]>([])
 	const dispatch = useAppDispatch()
 	const pathname = usePathname()
 
-	const getUserIdByPathname = (path: string | null) => {
-		const pointsList = path ? path.split('/') : null
-		if (!pointsList) {
-			return 0
-		} else {
-			return +pointsList[pointsList.length - 1]
-		}
-	}
-
-	const currentGameId = getUserIdByPathname(pathname)
+	const currentGameId = useMemo(() => getUserIdByPathname(pathname), [pathname])
 
 	const currentGame = useAppSelector((state: AppState) =>
 		gameDetailsSlice.selectors.selectGameDetailsById(state, currentGameId)
@@ -66,7 +58,7 @@ export function GameDetailsMain() {
 					<section className='flex flex-row w-full'>
 						<Link
 							href={currentGame.website}
-							className='w-1/2 mr-3 text-center rounded-3xl border-2 border-orange p-1 text-orange'
+							className='w-1/2 mr-3 text-center rounded-3xl border-2 border-orange p-1 text-orange hover:text-white hover:bg-orange active:bg-activeButtonRed active:text-white'
 						>
 							Download {currentGame.name} Now!
 						</Link>

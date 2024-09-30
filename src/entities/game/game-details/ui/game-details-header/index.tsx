@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import { memo } from 'react'
 
 interface GameDetailsHeaderPropsTypes {
 	mainImage: string | null | undefined
@@ -7,7 +8,7 @@ interface GameDetailsHeaderPropsTypes {
 	gameTitle: string | undefined
 }
 
-export function GameDetailsHeader({
+export const GameDetailsHeader = memo(function GameDetailsHeader({
 	mainImage,
 	firstScreenshot,
 	secondScreenshot,
@@ -48,4 +49,4 @@ export function GameDetailsHeader({
 			</header>
 		</>
 	)
-}
+})

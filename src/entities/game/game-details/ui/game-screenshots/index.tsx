@@ -22,7 +22,7 @@ export const ViewListOfGameScreenshots = (screenshots: string[]) =>
 			src={screenshot}
 			width={2560}
 			height={1440}
-			className='w-[32%] mr-3 rounded-lg'
+			className='w-1/3 mr-3 rounded-lg'
 			alt='first game photo'
 		/>
 	))
