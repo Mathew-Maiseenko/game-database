@@ -1,5 +1,7 @@
+import { ImageCardWithModal } from '@/entities/image'
+import { useAppDispatch } from '@/shared/lib/redux/hooks'
 import Image from 'next/image'
-import { memo } from 'react'
+import React from 'react'
 
 interface GameDetailsHeaderPropsTypes {
 	mainImage: string | null | undefined
@@ -8,12 +10,13 @@ interface GameDetailsHeaderPropsTypes {
 	gameTitle: string | undefined
 }
 
-export const GameDetailsHeader = memo(function GameDetailsHeader({
+export const GameDetailsHeader = React.memo(function GameDetailsHeader({
 	mainImage,
 	firstScreenshot,
 	secondScreenshot,
 	gameTitle,
 }: GameDetailsHeaderPropsTypes) {
+	const dispatch = useAppDispatch()
 	return (
 		<>
 			<header className='mb-10'>
@@ -26,8 +29,32 @@ export const GameDetailsHeader = memo(function GameDetailsHeader({
 						//className='flex flex-grow sm:w-2/3 lg:w-full object-cover'
 						alt='Main game photo'
 					/>
-					<section className='w-1/3 flex-col'>
-						<Image
+					{firstScreenshot && secondScreenshot && (
+						<section className='w-1/3 flex-col'>
+							<ImageCardWithModal
+								dispatch={dispatch}
+								image={firstScreenshot ? firstScreenshot : ''}
+								classes='flex flex-grow w-full rounded-md mb-1'
+								alt='first game screenshot'
+							/>
+							<ImageCardWithModal
+								dispatch={dispatch}
+								image={secondScreenshot ? secondScreenshot : ''}
+								classes='flex flex-grow w-full rounded-md'
+								alt='first game screenshot'
+							/>
+						</section>
+					)}
+				</article>
+				<h1 className='w-full text-5xl font-extrabold text-white text-center'>
+					{gameTitle} Details
+				</h1>
+			</header>
+		</>
+	)
+})
+/*
+<Image
 							src={firstScreenshot ? firstScreenshot : ''}
 							width={2048}
 							height={1080}
@@ -41,12 +68,4 @@ export const GameDetailsHeader = memo(function GameDetailsHeader({
 							className='flex flex-grow w-full rounded-md'
 							alt='second game screenshot'
 						/>
-					</section>
-				</article>
-				<h1 className='w-full text-5xl font-extrabold text-white text-center'>
-					{gameTitle} Details
-				</h1>
-			</header>
-		</>
-	)
-})
+*/

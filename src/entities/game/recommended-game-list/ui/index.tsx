@@ -33,7 +33,7 @@ export function RecommendedGameList() {
 	}, [isUserSigned, favoriteGames, favoriteGameIds])
 
 	return (
-		<section className='flex flex-col  min-w-full min-h-[46vh] bg-darkGray px-6 pr-10 pt-5 rounded-3xl relative'>
+		<section className='flex flex-col  min-w-full bg-darkGray px-6 pr-10 pt-5 rounded-3xl relative'>
 			<article className='text-orange text-2xl  mb-8'>
 				<h2 className='inline text-white underline'>Recommended</h2> Games
 			</article>
