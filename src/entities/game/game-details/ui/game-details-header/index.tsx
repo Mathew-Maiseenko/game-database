@@ -1,7 +1,6 @@
 import { ImageCardWithModal } from '@/entities/image'
 import { useAppDispatch } from '@/shared/lib/redux/hooks'
-import Image from 'next/image'
-import React from 'react'
+import { memo } from 'react'
 
 interface GameDetailsHeaderPropsTypes {
 	mainImage: string | null | undefined
@@ -10,7 +9,7 @@ interface GameDetailsHeaderPropsTypes {
 	gameTitle: string | undefined
 }
 
-export const GameDetailsHeader = React.memo(function GameDetailsHeader({
+export const GameDetailsHeader = memo(function GameDetailsHeader({
 	mainImage,
 	firstScreenshot,
 	secondScreenshot,
@@ -21,12 +20,12 @@ export const GameDetailsHeader = React.memo(function GameDetailsHeader({
 		<>
 			<header className='mb-10'>
 				<article className='flex justify-between sm:flex-col lg:flex-row min-h-[40vh] mb-10'>
-					<Image
-						src={mainImage ? mainImage : ''}
-						width={2048}
-						height={1080}
-						className='flex w-2/3 object-cover rounded-md mr-1'
-						//className='flex flex-grow sm:w-2/3 lg:w-full object-cover'
+					<ImageCardWithModal
+						dispatch={dispatch}
+						image={mainImage ? mainImage : ''}
+						classes={`flex object-cover rounded-md ${
+							firstScreenshot && secondScreenshot ? 'w-2/3 mr-1' : 'w-full'
+						}`}
 						alt='Main game photo'
 					/>
 					{firstScreenshot && secondScreenshot && (

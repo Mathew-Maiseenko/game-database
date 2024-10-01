@@ -24,10 +24,6 @@ export function FilteredGamesList() {
 		return <div>{gameListFetchingState}</div>
 	}
 
-	// fetch('https://api.rawg.io/api/stores?key=fd711517d11b45b0b5c432f288b02d33')
-	// 	.then(res => res.json())
-	// 	.then(console.log)
-
 	return (
 		<section className='flex flex-col  min-w-full min-h-[46vh] bg-darkGray px-6 pt-5 rounded-3xl relative mb-12'>
 			<article className='flex flex-row justify-between flex-wrap pb-0'>
@@ -50,7 +46,8 @@ function ViewGamesList({ gameList }: { gameList: StoreGame[] }) {
 			title={game.name}
 			image={game.backgroundImage}
 			rating={game.rating}
-			developer={game.slug}
+			playtime={game.playtime}
+			genres={game.genres?.map(genre => genre.name)}
 			stores={game.stores}
 		/>
 	))

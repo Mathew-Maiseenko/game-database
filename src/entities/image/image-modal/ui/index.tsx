@@ -5,15 +5,7 @@ import { CrossIcon, Modal } from '@/shared/ui'
 import Image from 'next/image'
 import { memo, useEffect } from 'react'
 
-interface ImageModalProps {
-	image?: string
-	alt?: string
-}
-
-export const ImageModal = memo(function ImageModal({
-	image,
-	alt,
-}: ImageModalProps) {
+export const ImageModal = memo(function ImageModal() {
 	const dispatch = useAppDispatch()
 
 	const ModalsImage = useAppSelector(
@@ -35,7 +27,7 @@ export const ImageModal = memo(function ImageModal({
 
 	return (
 		<Modal isOpen={isImageModalOpen}>
-			<section className='relative border-2 border-solid border-textGray bg-darkGray sm:w-1/3 lg:w-2/5 py-24 px-20 rounded-3xl'>
+			<section className='relative border-2 border-solid border-textGray bg-darkGray sm:w-1/3 lg:w-3/5 rounded-3xl overflow-hidden'>
 				<article
 					className='flex absolute top-5 left-5 w-full '
 					onClick={() =>
@@ -45,10 +37,10 @@ export const ImageModal = memo(function ImageModal({
 					<CrossIcon classes='sm:w-7 lg:w-10' />
 				</article>
 				<Image
-					src={image ? image : ''}
+					src={ModalsImage?.image ? ModalsImage.image : ''}
 					width={2560}
 					height={1440}
-					alt={alt ? alt : ''}
+					alt={ModalsImage?.alt ? ModalsImage.alt : ''}
 				/>
 			</section>
 		</Modal>

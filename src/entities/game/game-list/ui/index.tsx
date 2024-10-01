@@ -4,7 +4,7 @@ import { useAppDispatch, useAppSelector } from '@/shared/lib/redux/hooks'
 import { AppState } from '@/shared/lib'
 import { useEffect } from 'react'
 import { StoreGame } from '@/shared/api/RawgApi-hook'
-import { fetchGameList } from '@/widgets/popular-game-list/model/game-card-slice'
+import { fetchGameList } from '@/entities/game/popular-game-list/model/game-card-slice'
 
 export function PopularGamesList() {
 	const dispatch = useAppDispatch()
@@ -28,7 +28,7 @@ export function PopularGamesList() {
 			<article className='flex flex-row justify-between flex-wrap pb-0'>
 				<ViewGamesList gameList={games} />
 			</article>
-			<button className='bg-orange sm:w-1/2 md:w-1/3 m-auto p-2 relative bottom-[-20px] rounded-2xl text-white'>
+			<button className='bg-orange sm:w-1/2 md:w-1/3 m-auto p-2 relative -bottom-5 rounded-2xl text-white'>
 				Discover Popular
 			</button>
 		</section>
@@ -43,7 +43,8 @@ function ViewGamesList({ gameList }: { gameList: StoreGame[] }) {
 			title={game.name}
 			image={game.backgroundImage}
 			rating={game.rating}
-			developer={game.slug}
+			genres={game.genres?.map(genre => genre.name)}
+			playtime={game.playtime}
 		/>
 	))
 }

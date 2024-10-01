@@ -1,9 +1,7 @@
 'use client'
 import { gameDetailsSlice } from '@/entities/game/game-details/model'
 import { AppDispatch } from '@/shared/lib'
-import { useAppDispatch } from '@/shared/lib/redux/hooks'
 import Image from 'next/image'
-import { useEffect, useState } from 'react'
 
 interface ImageCardWithModalProps {
 	dispatch: AppDispatch
@@ -24,7 +22,7 @@ export function ImageCardWithModal({
 			src={image ? image : ''}
 			width={1920}
 			height={1080}
-			className={classes}
+			className={`cursor-pointer rounded-2xl ${classes}`}
 			onClick={() => {
 				if (image) {
 					dispatch(

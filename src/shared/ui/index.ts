@@ -1,3 +1,6 @@
+export { ClockIcon } from './clock-icon/ui'
+export { ErrorMessage } from './error-message'
+export { Loader } from './loader'
 export { Pagination } from './pagination'
 export { ValidatedPasswordInput } from './validated-password-input'
 export { MinimalistPasswordInput } from './minimalist-password-input'

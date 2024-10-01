@@ -1,5 +1,5 @@
 import { WelcomeMessage } from '@/widgets/welcome-message'
-import { PopularGamesList } from '@/widgets/popular-game-list'
+import { PopularGamesList } from '@/entities/game/popular-game-list'
 import { UsersGamesList } from '@/entities/user/ui/users-games-list'
 
 export function HomePage() {

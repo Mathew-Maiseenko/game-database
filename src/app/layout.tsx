@@ -4,6 +4,7 @@ import { NavBar } from '@/widgets/nav-bar'
 import './globals.css'
 import StoreProvider from './providers/StoreProvider'
 import { SignInModal, SignUpModal } from '@/features/logging'
+import { ImageModal } from '@/entities/image'
 
 const manrope = Manrope({ subsets: ['latin'] })
 
@@ -25,6 +26,7 @@ export default function RootLayout({
 				>
 					<SignInModal />
 					<SignUpModal />
+					<ImageModal />
 					<NavBar />
 					<main className={'bg-whiteGray rounded-3xl p-[7vh] overflow-hidden'}>
 						{children}

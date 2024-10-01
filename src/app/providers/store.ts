@@ -1,7 +1,7 @@
 'use client'
 import { extraArgument } from '@/shared/lib'
 import { configureStore } from '@reduxjs/toolkit'
-import { gameCardSlice } from '@/widgets/popular-game-list/model/game-card-slice'
+import { gameCardSlice } from '@/entities/game/popular-game-list/model/game-card-slice'
 import { gameDetailsSlice } from '@/entities/game/game-details/model'
 import { filteredGamesSlice } from '@/features/filtration/model/filtration-slice'
 import { userSlice } from '@/entities/user'

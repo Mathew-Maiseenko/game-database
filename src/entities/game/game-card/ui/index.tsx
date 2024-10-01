@@ -2,7 +2,7 @@ import Image from 'next/image'
 import getRandomDefaultImage from '@/shared/model/defaultImages'
 import Link from 'next/link'
 import { cardHoverClass } from '@/shared/styles'
-import { DownloadIcon, StarIcon } from '@/shared/ui'
+import { ClockIcon, StarIcon } from '@/shared/ui'
 import { StoreLogoList } from '@/shared/model'
 import { Store } from '@/shared/api/RawgApi-hook'
 
@@ -11,8 +11,9 @@ interface GameCardProps {
 	title: string
 	image: string
 	rating: number
-	developer: string
+	playtime: number
 	stores?: Store[] | undefined
+	genres?: string[]
 }
 
 export function GameCard({
@@ -20,8 +21,9 @@ export function GameCard({
 	title,
 	image,
 	rating,
-	developer,
+	playtime,
 	stores,
+	genres,
 }: GameCardProps) {
 	return (
 		<Link
@@ -39,15 +41,15 @@ export function GameCard({
 				<section className='flex flex-row md:mb-1 justify-between .text-white'>
 					<article className='text-white'>{title}</article>
 					<article className='flex flex-row text-white'>
-						<StarIcon />
+						<StarIcon classes='self-start' />
 						{rating}
 					</article>
 				</section>
 				<section className='flex flex-row justify-between mb-2'>
-					<article className='text-textGray'>{developer}</article>
+					<article className='text-textGray'>{genres?.join(',')}</article>
 					<article className='flex flex-row text-white'>
-						<DownloadIcon />
-						2.3M
+						<ClockIcon classes='mr-1' />
+						{playtime}
 					</article>
 				</section>
 

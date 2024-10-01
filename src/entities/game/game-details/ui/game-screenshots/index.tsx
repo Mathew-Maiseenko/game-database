@@ -1,28 +1,33 @@
-import Image from 'next/image'
 import { MinimalistCarousel } from '@/shared/ui'
+import { ImageCardWithModal } from '@/entities/image'
+import { useAppDispatch } from '@/shared/lib/redux/hooks'
+import { AppDispatch } from '@/shared/lib'
 
 export function ListOfGameScreenshots({
 	screenshots,
 }: {
 	screenshots: string[]
 }) {
+	const dispatch = useAppDispatch()
 	return (
 		<section className='mb-5'>
 			<MinimalistCarousel>
-				{...ViewListOfGameScreenshots(screenshots)}
+				{...ViewListOfGameScreenshots(screenshots, dispatch)}
 			</MinimalistCarousel>
 		</section>
 	)
 }
 
-export const ViewListOfGameScreenshots = (screenshots: string[]) =>
+export const ViewListOfGameScreenshots = (
+	screenshots: string[],
+	dispatch: AppDispatch
+) =>
 	screenshots.map((screenshot, i) => (
-		<Image
+		<ImageCardWithModal
 			key={`screenshot-${i}`}
-			src={screenshot}
-			width={2560}
-			height={1440}
-			className='w-1/3 mr-3 rounded-lg'
+			dispatch={dispatch}
+			image={screenshot}
+			classes='w-1/3 mr-3 rounded-lg'
 			alt='first game photo'
 		/>
 	))

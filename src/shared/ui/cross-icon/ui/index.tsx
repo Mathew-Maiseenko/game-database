@@ -12,7 +12,7 @@ export function CrossIcon({ classes }: iconProps) {
 			width={20}
 			height={20}
 			className={`cursor-pointer ${classes}`}
-			alt='cross icon'
+			alt='Cross icon'
 		/>
 	)
 }

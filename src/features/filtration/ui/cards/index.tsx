@@ -7,11 +7,7 @@ export interface GenreCardProps {
 	setFiltration: any
 	tagGameCount: number | null | undefined
 }
-//bg-[url('${image})'] bg-no-repeat bg-center bg-cover h-screen
 
-//${
-//					isActive ? 'bg-gray' : 'bg-pink'
-//				}
 export const MinimalistFiltrationCarouselCard = ({
 	title,
 	image,

@@ -21,7 +21,10 @@ export function RecommendedGameCard({
 }: RecommendedGameCardProps) {
 	return (
 		<section className='flex w-1/2 justify-between relative mb-5 after:h-0.5 after:w-full after:absolute after:-bottom-2 after:bg-grayLineAfterCard'>
-			<Link href={`details/${id}`} className='flex flex-grow'>
+			<Link
+				href={`http://localhost:3000/details/${id}`}
+				className='flex flex-grow'
+			>
 				<Image
 					src={poster || getRandomDefaultImage()}
 					width={300}
