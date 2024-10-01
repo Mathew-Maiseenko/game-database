@@ -1,4 +1,5 @@
 'use client'
+import React from 'react'
 import { useAppDispatch, useAppSelector } from '@/shared/lib/redux/hooks'
 import {
 	GameDetailsHeader,

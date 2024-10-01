@@ -5,6 +5,7 @@ import { AppState } from '@/shared/lib'
 import { useEffect } from 'react'
 import { StoreGame } from '@/shared/api/RawgApi-hook'
 import { fetchGameList } from '@/entities/game/popular-game-list/model/game-card-slice'
+import { ListWrapper } from '@/shared/ui'
 
 export function PopularGamesList() {
 	const dispatch = useAppDispatch()
@@ -16,22 +17,22 @@ export function PopularGamesList() {
 	useEffect(() => {
 		dispatch(fetchGameList())
 	}, [dispatch])
-	if (games.length === 0) {
-		return <div>{gameListFetchingState}</div>
-	}
 
 	return (
-		<section className='flex flex-col  min-w-full min-h-[46vh] bg-darkGray px-6 pt-5 rounded-3xl relative mb-12'>
-			<article className='text-orange text-2xl  mb-8'>
-				<h2 className='inline text-white underline'>Most Popular</h2> Right Now
-			</article>
-			<article className='flex flex-row justify-between flex-wrap pb-0'>
-				<ViewGamesList gameList={games} />
-			</article>
-			<button className='bg-orange sm:w-1/2 md:w-1/3 m-auto p-2 relative -bottom-5 rounded-2xl text-white'>
-				Discover Popular
-			</button>
-		</section>
+		<ListWrapper fetchingState={gameListFetchingState}>
+			<section className='flex flex-col  min-w-full min-h-[46vh] bg-darkGray px-6 pt-5 rounded-3xl relative mb-12'>
+				<article className='text-orange text-2xl  mb-8'>
+					<h2 className='inline text-white underline'>Most Popular</h2> Right
+					Now
+				</article>
+				<article className='flex flex-row justify-between flex-wrap pb-0'>
+					<ViewGamesList gameList={games} />
+				</article>
+				<button className='bg-orange sm:w-1/2 md:w-1/3 m-auto p-2 relative -bottom-5 rounded-2xl text-white'>
+					Discover Popular
+				</button>
+			</section>
+		</ListWrapper>
 	)
 }
 

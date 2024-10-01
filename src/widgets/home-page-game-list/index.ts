@@ -1,0 +1,1 @@
+export { HomePageGameList } from './ui'

@@ -15,6 +15,8 @@ export function UsersGamesList({ withButton }: UsersGamesListProps) {
 	const dispatch = useAppDispatch()
 	const router = useRouter()
 
+	const isUserSigned = useAppSelector(userSlice.selectors.selectIsUserSigned)
+
 	const userGamesIds = useAppSelector(
 		userSlice.selectors.selectFavoriteGamesIds
 	)
@@ -35,6 +37,9 @@ export function UsersGamesList({ withButton }: UsersGamesListProps) {
 	useEffect(() => {
 		dispatch(fetchDetailsByGamesIds(userGamesIds))
 	}, [userGamesIds, dispatch])
+	if (!isUserSigned) {
+		return
+	}
 
 	return (
 		<section className='flex flex-col  min-w-full min-h-[46vh] bg-darkGray px-6 pr-10 py-5 rounded-3xl relative'>
