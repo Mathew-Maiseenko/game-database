@@ -1,5 +1,5 @@
 'use client'
-
+import React from 'react'
 import { BurgerIcon, UserButton } from '@/shared/ui'
 import { Burger, MainLogo, NavPoint } from '@/entities/navigation'
 import { useState } from 'react'

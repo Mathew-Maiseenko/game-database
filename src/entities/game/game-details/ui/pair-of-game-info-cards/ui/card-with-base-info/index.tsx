@@ -2,6 +2,7 @@
 import { gameDetailsSlice } from '@/entities/game/game-details/model'
 import { useAppSelector } from '@/shared/lib/redux/hooks'
 import { StarIcon } from '@/shared/ui'
+import { useMemo } from 'react'
 
 export default function CardWithBaseInfo() {
 	const currentGameId = useAppSelector(
@@ -10,6 +11,12 @@ export default function CardWithBaseInfo() {
 	const currentGame = useAppSelector(state =>
 		gameDetailsSlice.selectors.selectGameDetailsById(state, currentGameId)
 	)
+
+	const currentGameGenres = useMemo(
+		() => currentGame.genres.map(game => game.name).join(',  '),
+		[currentGame]
+	)
+
 	if (!currentGame) {
 		return
 	}
@@ -24,7 +31,7 @@ export default function CardWithBaseInfo() {
 			</section>
 			<section className='flex-col justify-between'>
 				<h3 className='text-lg font-medium text-textGray mb-2'>
-					Genres: {currentGame.genres.map(game => game.name).join(',  ')}
+					Genres: {currentGameGenres}
 				</h3>
 			</section>
 		</section>

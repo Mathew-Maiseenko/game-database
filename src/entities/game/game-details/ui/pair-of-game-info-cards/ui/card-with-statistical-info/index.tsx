@@ -6,6 +6,7 @@ import {
 	HoverDownloadCalendarIcon,
 	HoverSettingCalendarIcon,
 } from '@/shared/ui'
+import { useMemo } from 'react'
 
 export default function CardWithStatisticalInfo() {
 	const currentGameId = useAppSelector(
@@ -14,11 +15,16 @@ export default function CardWithStatisticalInfo() {
 	const currentGame = useAppSelector(state =>
 		gameDetailsSlice.selectors.selectGameDetailsById(state, currentGameId)
 	)
+	const { playtime, released, lastUpdate, achievementsCount } = currentGame
+
+	const currentGameLastUpdate = useMemo(
+		() => lastUpdate?.slice(0, lastUpdate.indexOf('T')),
+		[lastUpdate]
+	)
+
 	if (!currentGame) {
 		return
 	}
-
-	const { playtime, released, lastUpdate, achievementsCount } = currentGame
 	return (
 		<section className='flex flex-row justify-between bg-whiteGray rounded-3xl w-1/2 p-7 '>
 			{playtime && (
@@ -38,7 +44,7 @@ export default function CardWithStatisticalInfo() {
 				<article className='flex flex-col justify-between items-center'>
 					<HoverDownloadCalendarIcon />
 					<h4 className='text-lg font-bold text-white'>
-						{lastUpdate.slice(0, lastUpdate.indexOf('T'))}
+						{currentGameLastUpdate}
 					</h4>
 				</article>
 			)}

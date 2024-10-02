@@ -1,5 +1,4 @@
 import Image from 'next/image'
-
 import getRandomDefaultImage from '@/shared/model/defaultImages'
 import { StarIcon } from '@/shared/ui'
 import Link from 'next/link'
