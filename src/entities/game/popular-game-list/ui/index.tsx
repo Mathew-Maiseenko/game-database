@@ -1,28 +1,24 @@
 'use client'
 import { GameCard } from '@/entities/game/game-card'
-import { useAppDispatch, useAppSelector } from '@/shared/lib/redux/hooks'
-import { fetchGameList } from '../model/game-card-slice'
-import { AppState } from '@/shared/lib'
-import { useEffect } from 'react'
-import { StoreGame } from '@/shared/api/RawgApi-hook'
-import { ErrorMessage, Loader } from '@/shared/ui'
+import { useEffect, useState } from 'react'
+import { RawgApi, StoreGame } from '@/shared/api/RawgApi-hook'
+import { ListWrapper } from '@/shared/ui'
 export function PopularGamesList() {
-	const dispatch = useAppDispatch()
-	const games = useAppSelector((state: AppState) => state.gamesList.entries)
-	const gameListFetchingState = useAppSelector(
-		(state: AppState) => state.gamesList.gameListFetchingState
-	)
+	const [games, setGames] = useState<StoreGame[]>([])
+	const [gameListFetchingState, setGameListFetchingState] = useState<
+		'idle' | 'pending' | 'rejected' | 'fulfilled'
+	>('idle')
 
 	useEffect(() => {
-		dispatch(fetchGameList())
-	}, [dispatch])
+		setGameListFetchingState('pending')
+		RawgApi.getGamesList()
+			.then(res => setGames(res))
+			.then(() => setGameListFetchingState('fulfilled'))
+			.catch(() => setGameListFetchingState('rejected'))
+	}, [])
 
-	if (gameListFetchingState === 'pending') {
-		return <Loader />
-	} else if (gameListFetchingState === 'rejected') {
-		return <ErrorMessage />
-	} else if (gameListFetchingState === 'fulfilled') {
-		return (
+	return (
+		<ListWrapper fetchingState={gameListFetchingState}>
 			<section className='flex flex-col  min-w-full min-h-[46vh] bg-darkGray px-6 pt-5 rounded-3xl relative mb-12'>
 				<h2 className='text-orange text-2xl  mb-8'>
 					<strong className='inline text-white underline'>Popular</strong> Games
@@ -31,8 +27,8 @@ export function PopularGamesList() {
 					<ViewGamesList gameList={games} />
 				</article>
 			</section>
-		)
-	} else return
+		</ListWrapper>
+	)
 }
 
 function ViewGamesList({ gameList }: { gameList: StoreGame[] }) {

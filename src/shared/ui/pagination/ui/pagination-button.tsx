@@ -3,7 +3,7 @@ import type { PaginationButtonProps } from '../types'
 export const PaginationButton = ({ setPage, page }: PaginationButtonProps) => {
 	return (
 		<button
-			className='border-2 transition-all duration-300 border-orange p-2 bg-orange text-center text-white rounded-md hover:bg-paginationHover hover:text-black active:bg-paginationActive active:text-black '
+			className='transition-all duration-300 py-2 px-4 mr-2 bg-orange text-center text-white rounded-md hover:bg-paginationHover hover:text-black active:bg-paginationActive active:text-black '
 			onClick={() => setPage(page)}
 		>
 			{page}

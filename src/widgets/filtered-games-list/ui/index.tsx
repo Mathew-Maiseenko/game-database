@@ -2,7 +2,7 @@
 import { GameCard } from '@/entities/game/game-card'
 import { useAppSelector } from '@/shared/lib/redux/hooks'
 import { filteredGamesSlice } from '@/features/filtration/model/filtration-slice'
-import { Pagination } from '@/shared/ui'
+import { ListWrapper, Pagination } from '@/shared/ui'
 import type { StoreGame } from '@/shared/api/RawgApi-hook'
 
 export function FilteredGamesList() {
@@ -23,15 +23,19 @@ export function FilteredGamesList() {
 	}
 
 	return (
-		<section className='flex flex-col  min-w-full min-h-[46vh] bg-darkGray px-6 pt-5 rounded-3xl relative mb-12'>
-			<article className='flex flex-row justify-between flex-wrap pb-0'>
-				<ViewGamesList gameList={games} />
-			</article>
-			<Pagination
-				totalPageCount={Math.ceil(gamesCount / 20)}
-				currentPage={activePage}
-			/>
-		</section>
+		<ListWrapper fetchingState={gameListFetchingState}>
+			<section className='flex flex-col  min-w-full min-h-[46vh] bg-darkGray px-6 pt-5 rounded-3xl relative mb-12'>
+				<article className='flex flex-row justify-between flex-wrap pb-0'>
+					<ViewGamesList gameList={games} />
+				</article>
+				<article className='flex justify-center w-full'>
+					<Pagination
+						totalPageCount={Math.ceil(gamesCount / 20)}
+						currentPage={activePage}
+					/>
+				</article>
+			</section>
+		</ListWrapper>
 	)
 }
 
