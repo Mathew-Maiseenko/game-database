@@ -57,21 +57,14 @@ export const filteredGamesSlice = createAppSlice({
 		selectCurrentGames: state => state.games,
 		selectDeveloperList: state => state.developers,
 		selectGenreList: state => state.genres,
+		selectGameListFetchingState: state => state.gameListFetchingState,
 		selectTagList: state => state.tags,
 		selectActivePage: state => state.activePage,
 		selectTotalGamesCount: state => state.totalGamesCount,
-		//selectFiltrationTitle: state => state.activeFiltrationGameTitle,
 		selectFiltrationGenreList: state => state.activeFiltrationGenres,
 		selectFiltrationTagList: state => state.activeFiltrationTags,
 	},
 	reducers: {
-		// setTitle: (state, action: PayloadAction<string>) => {
-		// 	state.activeFiltrationGameTitle = action.payload
-		// },
-		// clearTitle: state => {
-		// 	state.activeFiltrationGameTitle = ''
-		// },
-
 		setActivePage: (state, action: PayloadAction<number>) => {
 			state.activePage = action.payload
 		},
@@ -101,35 +94,6 @@ export const filteredGamesSlice = createAppSlice({
 				[action.payload.name]: action.payload.param,
 			}
 		},
-
-		// addActiveGenre: (state, action: PayloadAction<string>) => {
-		// 	state.activeFiltrationGenres = [
-		// 		...state.activeFiltrationGenres,
-		// 		action.payload,
-		// 	]
-		// },
-		// removeActiveGenre: (state, action: PayloadAction<string>) => {
-		// 	state.activeFiltrationGenres = state.activeFiltrationGenres.filter(
-		// 		genre => genre !== action.payload
-		// 	)
-		// },
-		// clearActiveGenres: state => {
-		// 	state.activeFiltrationGenres = []
-		// },
-		// addActiveTag: (state, action: PayloadAction<string>) => {
-		// 	state.activeFiltrationTags = {
-		// 		...state.activeFiltrationTags,
-		// 		[action.payload],
-		// 	}
-		// },
-		// removeActiveTag: (state, action: PayloadAction<string>) => {
-		// 	state.activeFiltrationTags = state.activeFiltrationTags.filter(
-		// 		tag => tag !== action.payload
-		// 	)
-		// },
-		// clearActiveTags: state => {
-		// 	state.activeFiltrationTags = []
-		// },
 	},
 	extraReducers: builder => {
 		builder
@@ -179,44 +143,3 @@ export const filteredGamesSlice = createAppSlice({
 			})
 	},
 })
-
-// export const fetchFilteredGameList = createAsyncThunk<
-// 	StoreGame[],
-// 	ThunkParams,
-// 	{ extra: extraArgumentType }
-// >(
-// 	'gamesFilteredList/fetchFilteredGameList',
-// 	async (
-// 		{ gamesPerPage, pageNumber, title, genres, tags, year, developers },
-// 		thunkApi
-// 	) => {
-// 		const response = await thunkApi.extra.api.getGamesListWithParams(
-// 			gamesPerPage,
-// 			pageNumber,
-// 			title,
-// 			genres,
-// 			tags,
-// 			year,
-// 			developers
-// 		)
-// 		return response
-// 	}
-// )
-
-// export const fetchGenresList = createAsyncThunk<
-// 	Genre[],
-// 	undefined,
-// 	{ extra: extraArgumentType }
-// >('gameDetails/fetchGameDetails', async (_, thunkApi) => {
-// 	const res = await thunkApi.extra.api.getGenresList()
-// 	return res
-// })
-
-// export const fetchTagsList = createAsyncThunk<
-// 	Tag[],
-// 	undefined,
-// 	{ extra: extraArgumentType }
-// >('gameDetails/fetchGameDetails', async (_, thunkApi) => {
-// 	const res = await thunkApi.extra.api.getTagsList()
-// 	return res
-// })

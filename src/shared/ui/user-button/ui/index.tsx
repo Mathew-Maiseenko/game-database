@@ -1,11 +1,8 @@
 'use client'
-//import { Teko } from 'next/font/google'
-import Link from 'next/link'
 import classes from './styles.module.css'
 import { useRouter } from 'next/navigation'
 import { userSlice } from '@/entities/user'
 import { useAppDispatch, useAppSelector } from '@/shared/lib/redux/hooks'
-//const teko = Teko({ subsets: ['latin'] })
 
 export function UserButton({ styles }: { styles?: string }) {
 	const dispatch = useAppDispatch()
@@ -25,7 +22,7 @@ export function UserButton({ styles }: { styles?: string }) {
 			className={`${
 				styles
 					? `group ${styles} ${classes.group}`
-					: `group ${classes.group} flex flex-row items-center justify-between font-semibold bg-whiteGray relative
+					: `group ${classes.group} flex flex-row items-center justify-between font-semibold bg-whiteGray relative cursor-pointer
       sm:rounded-full sm:px-1 sm:py-1 sm:h-13
       md:px-1 md:pl-3 md:py-1 md:order-3 md:rounded-3xl
       hover:bg-yellow hover:text-black`

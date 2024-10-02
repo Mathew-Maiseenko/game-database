@@ -2,44 +2,25 @@
 import {
 	MinimalistCarousel,
 	MinimalistInput,
-	//MinimalistMultiSelect,
 	MinimalistSelect,
 } from '@/shared/ui'
 import { filteredGamesSlice } from '../model/filtration-slice'
 import { useAppDispatch, useAppSelector } from '@/shared/lib/redux/hooks'
-import type { Genre } from '@/shared/api/RawgApi-hook/types/genre'
-import type { TagResult } from '@/shared/api/RawgApi-hook/types/tag'
 import { MinimalistFiltrationCarouselCard } from './cards'
-import { ActionCreatorWithPayload } from '@reduxjs/toolkit'
 import { useEffect, useState } from 'react'
 import { fetchFilteredGameList } from '../model/thunk/fetch-filtered-game-list'
 import { fetchTagsList } from '../model/thunk/fetch-tags-list'
 import { fetchGenresList } from '../model/thunk/fetch-genres-list'
 import { AppDispatch } from '@/shared/lib'
 import { fetchDeveloperList } from '../model/thunk/fetch-developers-list'
-
-type setGenreType = ActionCreatorWithPayload<
-	{
-		name: string
-		param: TagResult | Genre | undefined
-	},
-	'gamesFilteredList/setActiveGenres'
->
-type setTagType = ActionCreatorWithPayload<
-	{
-		name: string
-		param: TagResult | Genre | undefined
-	},
-	'gamesFilteredList/setActiveTags'
->
-
-type setParamFoo = setTagType | setGenreType
+import { toggleCardActiveness } from '../lib/toggle-card-activeness'
+import type { setGenreType, setParamFoo, setTagType } from '../types'
+import type { Genre } from '@/shared/api/RawgApi-hook/types/genre'
+import type { TagResult } from '@/shared/api/RawgApi-hook/types/tag'
 
 export function GameFiltration() {
 	const [filterTitle, setFilterTitle] = useState('')
 	const [filterDeveloper, setFilterDeveloper] = useState('')
-	// const [selectedGenres, setSelectedGenres] = useState<string[]>([])
-	// const [selectedTags, setSelectedTags] = useState<string[]>([])
 
 	const dispatch = useAppDispatch()
 
@@ -48,25 +29,20 @@ export function GameFiltration() {
 	const developers = useAppSelector(
 		filteredGamesSlice.selectors.selectDeveloperList
 	)
-
-	// const filterTitle = useAppSelector(
-	// 	filteredGamesSlice.selectors.selectFiltrationTitle
-	// )
 	const activeGenres = useAppSelector(
 		filteredGamesSlice.selectors.selectFiltrationGenreList
 	)
 	const activeTags = useAppSelector(
 		filteredGamesSlice.selectors.selectFiltrationTagList
 	)
-	const setGenre = filteredGamesSlice.actions.setActiveGenres
-	const setTag = filteredGamesSlice.actions.setActiveTags
 	const activePage = useAppSelector(
 		filteredGamesSlice.selectors.selectActivePage
 	)
-	//const setFilterTitle = filteredGamesSlice.actions.setTitle
+
+	const setGenre = filteredGamesSlice.actions.setActiveGenres
+	const setTag = filteredGamesSlice.actions.setActiveTags
 
 	useEffect(() => {
-		console.log('перерисовка с запросом')
 		dispatch(
 			fetchFilteredGameList({
 				gamesPerPage: 0,
@@ -96,6 +72,7 @@ export function GameFiltration() {
 		dispatch(fetchGenresList())
 		dispatch(fetchDeveloperList())
 	}, [dispatch])
+
 	return (
 		<article className='bg-inherit flex-col items-center justify-between flex-wrap w-full'>
 			<MinimalistInput
@@ -136,7 +113,7 @@ export function GameFiltration() {
 					setSelected={setFilterDeveloper}
 					withSearch={true}
 					searchMessage={'Search developer'}
-					className='w-11/12 font-medium'
+					className='w-11/12 font-medium mb-10'
 					message={'Select developer'}
 					options={developers.map(developer => developer.name)}
 				/>
@@ -145,24 +122,6 @@ export function GameFiltration() {
 			)}
 		</article>
 	)
-}
-
-function toggleCardActiveness(
-	dispatch: AppDispatch,
-	activeParamName: string,
-	activeParam: Genre | TagResult | undefined,
-	activeParamStore:
-		| Record<string, Genre | undefined>
-		| Record<string, TagResult | undefined>,
-	activeParamDispatcher: setParamFoo
-) {
-	if (!activeParamStore[activeParamName] && activeParamName) {
-		dispatch(
-			activeParamDispatcher({ name: activeParamName, param: activeParam })
-		)
-	} else if (activeParamStore[activeParamName] && activeParamName) {
-		dispatch(activeParamDispatcher({ name: activeParamName, param: undefined }))
-	}
 }
 
 const ViewCards = (

@@ -1,16 +1,14 @@
 'use client'
 import { GameCard } from '@/entities/game/game-card'
 import { useAppSelector } from '@/shared/lib/redux/hooks'
-import { StoreGame } from '@/shared/api/RawgApi-hook'
 import { filteredGamesSlice } from '@/features/filtration/model/filtration-slice'
-import { AppState } from '@/shared/lib'
 import { Pagination } from '@/shared/ui'
-//import { fetchFilteredGameList } from '@/features/filtration/model/thunk/fetch-filtered-game-list'
+import type { StoreGame } from '@/shared/api/RawgApi-hook'
 
 export function FilteredGamesList() {
 	const games = useAppSelector(filteredGamesSlice.selectors.selectCurrentGames)
 	const gameListFetchingState = useAppSelector(
-		(state: AppState) => state.gamesList.gameListFetchingState
+		filteredGamesSlice.selectors.selectGameListFetchingState
 	)
 	const activePage = useAppSelector(
 		filteredGamesSlice.selectors.selectActivePage
@@ -30,7 +28,6 @@ export function FilteredGamesList() {
 				<ViewGamesList gameList={games} />
 			</article>
 			<Pagination
-				setCurrentPage={filteredGamesSlice.actions.setActivePage}
 				totalPageCount={Math.ceil(gamesCount / 20)}
 				currentPage={activePage}
 			/>

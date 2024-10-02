@@ -16,6 +16,7 @@ export function PopularGamesList() {
 	useEffect(() => {
 		dispatch(fetchGameList())
 	}, [dispatch])
+
 	if (gameListFetchingState === 'pending') {
 		return <Loader />
 	} else if (gameListFetchingState === 'rejected') {

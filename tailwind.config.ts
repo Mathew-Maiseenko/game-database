@@ -44,6 +44,8 @@ const config: Config = {
 			validationOrange: '#FF9933',
 			validationGreen: '#28a745',
 			activeButtonRed: '#b52110',
+			paginationHover: '#cf562d',
+			paginationActive: '#ffd349',
 		},
 	},
 
