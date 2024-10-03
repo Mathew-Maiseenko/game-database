@@ -18,13 +18,9 @@ export function FilteredGamesList() {
 		filteredGamesSlice.selectors.selectTotalGamesCount
 	)
 
-	if (games.length === 0) {
-		return <div>{gameListFetchingState}</div>
-	}
-
 	return (
 		<ListWrapper fetchingState={gameListFetchingState}>
-			<section className='flex flex-col  min-w-full min-h-[46vh] bg-darkGray px-6 pt-5 rounded-3xl relative mb-12'>
+			<section className='flex flex-col  min-w-full bg-darkGray px-6 pt-5 rounded-3xl relative mb-12'>
 				<article className='flex flex-row justify-between flex-wrap pb-0'>
 					<ViewGamesList gameList={games} />
 				</article>

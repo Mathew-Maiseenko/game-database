@@ -18,7 +18,7 @@ export const MinimalistFiltrationCarouselCard = ({
 	return (
 		<section
 			onClick={setFiltration}
-			className={`cursor-pointer mx-3 rounded-lg overflow-hidden w-36 h-full`}
+			className={`inline-block cursor-pointer mx-3 rounded-lg overflow-hidden w-36 h-full`}
 		>
 			<article
 				className={` hover:bg-blue w-full min-h-12 h-2/3 bg-neutral-50 rounded-t-lg shadow flex items-center justify-between px-2

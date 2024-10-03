@@ -1,3 +1,4 @@
+export { Carousel } from './carousel'
 export { ListWrapper } from './list-wrapper'
 export { ClockIcon } from './clock-icon/ui'
 export { ErrorMessage } from './error-message'

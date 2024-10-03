@@ -1,6 +1,8 @@
 'use client'
 import {
-	MinimalistCarousel,
+	ArrowIcon,
+	Carousel,
+	Loader,
 	MinimalistInput,
 	MinimalistSelect,
 } from '@/shared/ui'
@@ -11,10 +13,9 @@ import { useEffect, useState } from 'react'
 import { fetchFilteredGameList } from '../model/thunk/fetch-filtered-game-list'
 import { fetchTagsList } from '../model/thunk/fetch-tags-list'
 import { fetchGenresList } from '../model/thunk/fetch-genres-list'
-import { AppDispatch } from '@/shared/lib'
 import { fetchDeveloperList } from '../model/thunk/fetch-developers-list'
 import { toggleCardActiveness } from '../lib/toggle-card-activeness'
-import type { setGenreType, setParamFoo, setTagType } from '../types'
+import type { setGenreType, setTagType, ViewCardsProps } from '../types'
 import type { Genre } from '@/shared/api/RawgApi-hook/types/genre'
 import type { TagResult } from '@/shared/api/RawgApi-hook/types/tag'
 
@@ -73,67 +74,71 @@ export function GameFiltration() {
 		dispatch(fetchDeveloperList())
 	}, [dispatch])
 
-	return (
-		<article className='bg-inherit flex-col items-center justify-between flex-wrap w-full'>
-			<MinimalistInput
-				inputValue={filterTitle}
-				setInputValue={setFilterTitle}
-				className='w-11/12 font-medium mb-16 bg-inherit'
-				message={'Input game title'}
-			/>
+	const loadingState = genres.length && tags.length && developers.length
 
-			{genres.length ? (
+	if (loadingState) {
+		return (
+			<article className='bg-inherit flex-col items-center justify-between flex-wrap w-full'>
+				<MinimalistInput
+					inputValue={filterTitle}
+					setInputValue={setFilterTitle}
+					className='w-full font-medium mb-16 bg-inherit mx-auto'
+					message={'Input game title'}
+				/>
 				<section className='mb-3'>
-					<MinimalistCarousel>
-						{...ViewCards(
-							dispatch,
-							genres,
-							activeGenres,
-							setGenre as setGenreType
-						)}
-					</MinimalistCarousel>
+					<Carousel
+						rightIcon={<ArrowIcon styles='w-full transform -rotate-90' />}
+						leftIcon={<ArrowIcon styles='w-full transform rotate-90' />}
+					>
+						<ViewCards
+							dispatch={dispatch}
+							filterParams={genres}
+							activeFiltrationParams={activeGenres}
+							setParam={setGenre as setGenreType}
+						/>
+					</Carousel>
 				</section>
-			) : (
-				<div>loading...</div>
-			)}
 
-			{tags.length ? (
 				<section className='mb-3'>
-					<MinimalistCarousel>
-						{...ViewCards(dispatch, tags, activeTags, setTag as setTagType)}
-					</MinimalistCarousel>
+					<Carousel
+						rightIcon={<ArrowIcon styles='w-full transform -rotate-90' />}
+						leftIcon={<ArrowIcon styles='w-full transform rotate-90' />}
+					>
+						<ViewCards
+							dispatch={dispatch}
+							filterParams={tags}
+							activeFiltrationParams={activeTags}
+							setParam={setTag as setTagType}
+						/>
+					</Carousel>
 				</section>
-			) : (
-				<div>loading...</div>
-			)}
 
-			{developers.length ? (
 				<MinimalistSelect
 					selectedOption={filterDeveloper}
 					setSelected={setFilterDeveloper}
 					withSearch={true}
 					searchMessage={'Search developer'}
-					className='w-11/12 font-medium mb-10'
+					className='w-full font-medium mb-10 mx-auto'
 					message={'Select developer'}
 					options={developers.map(developer => developer.name)}
 				/>
-			) : (
-				<div>loading...</div>
-			)}
-		</article>
-	)
+			</article>
+		)
+	} else {
+		return (
+			<section className='flex justify-center w-full p-3 mb-10'>
+				<Loader classes='w-1/4' />
+			</section>
+		)
+	}
 }
 
-const ViewCards = (
-	dispatch: AppDispatch,
-	filterParams: Genre[] | TagResult[],
-	activeFiltrationParams:
-		| Record<string, Genre | undefined>
-		| Record<string, TagResult | undefined>,
-	setParam: setParamFoo
-) => {
-	console.log(activeFiltrationParams)
-
+const ViewCards = ({
+	dispatch,
+	filterParams,
+	activeFiltrationParams,
+	setParam,
+}: ViewCardsProps) => {
 	return filterParams.map((filterParam: Genre | TagResult) => (
 		<MinimalistFiltrationCarouselCard
 			key={`${filterParam.name}-${filterParam.id}`}

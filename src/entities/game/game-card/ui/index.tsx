@@ -5,6 +5,7 @@ import { cardHoverClass } from '@/shared/styles'
 import { ClockIcon, StarIcon } from '@/shared/ui'
 import { StoreLogoList } from '@/shared/model'
 import type { Store } from '@/shared/api/RawgApi-hook'
+import { memo } from 'react'
 
 interface GameCardProps {
 	id: number
@@ -16,7 +17,7 @@ interface GameCardProps {
 	genres?: string[]
 }
 
-export function GameCard({
+export const GameCard = memo(function GameCard({
 	id,
 	title,
 	image,
@@ -61,4 +62,4 @@ export function GameCard({
 			</article>
 		</Link>
 	)
-}
+})

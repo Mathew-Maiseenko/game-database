@@ -3,7 +3,7 @@ interface ArrowIconProps {
 	fill?: string
 }
 
-export const ArrowIcon = ({ styles, fill }: ArrowIconProps) => {
+export const ArrowIcon = ({ styles, fill = '#fff' }: ArrowIconProps) => {
 	return (
 		<svg
 			width='14'

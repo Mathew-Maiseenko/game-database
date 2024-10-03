@@ -42,7 +42,7 @@ export function UsersGamesList({ withButton }: UsersGamesListProps) {
 					return [...acc]
 				}
 			}, [] as usersFavoriteGameType[]),
-		[userGamesIds]
+		[userGamesIds, userGamesObject]
 	)
 
 	useEffect(() => {

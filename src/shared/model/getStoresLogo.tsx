@@ -1,19 +1,3 @@
-// 0: Object { id: 1, name: "Steam", domain: "store.steampowered.com", … }
-// ​​
-// 1: Object { id: 3, name: "PlayStation Store", domain: "store.playstation.com", … }
-// ​​
-// 2: Object { id: 2, name: "Xbox Store", domain: "microsoft.com", … }
-// ​​
-// 3: Object { id: 4, name: "App Store", domain: "apps.apple.com", … }
-// ​​
-// 4: Object { id: 5, name: "GOG", domain: "gog.com", … }
-// ​​
-// 5: Object { id: 6, name: "Nintendo Store", domain: "nintendo.com", … }
-// ​​
-// 6: Object { id: 7, name: "Xbox 360 Store", domain: "marketplace.xbox.com", … }
-// ​​
-// 7: Object { id: 8, name: "Google Play", domain: "play.google.com", … }
-
 import Image from 'next/image'
 import Link from 'next/link'
 
