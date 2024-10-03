@@ -55,7 +55,6 @@ export interface UserInfoLocaleStorageType {
 		userPassword: string
 	}
 	statistics: {
-		//completedGamesIds: number[]
 		games: Record<GameId, Omit<usersFavoriteGameType, 'game'> | undefined>
 		favoriteGamesIds: number[]
 	}
