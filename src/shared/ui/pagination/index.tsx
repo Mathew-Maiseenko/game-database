@@ -11,8 +11,21 @@ export const Pagination = ({
 	currentPage,
 }: PaginationProps) => {
 	const dispatch = useAppDispatch()
-	const buttonsArr = []
-	console.log(totalPageCount, currentPage)
+	const buttonsArr: JSX.Element[] = []
+
+	function addPaginationButton(page: number | '...') {
+		if (page === '...') {
+			buttonsArr.push(
+				<button className='transition-all duration-300 py-2 px-4 mr-2 bg-orange text-center text-white rounded-md hover:bg-paginationHover hover:text-black active:bg-paginationActive active:text-black '>
+					...
+				</button>
+			)
+		} else {
+			buttonsArr.push(
+				<PaginationButton setPage={handlePageButtonClick} page={page} />
+			)
+		}
+	}
 
 	const handlePageButtonClick = useCallback(
 		(page: number) => {
@@ -27,108 +40,46 @@ export const Pagination = ({
 
 	for (let i = 0; i < totalPageCount && i < 3; i++) {
 		if (i === 0 && currentPage - 2 === 1) {
-			buttonsArr.push(
-				<PaginationButton setPage={handlePageButtonClick} page={1} />
-			)
+			addPaginationButton(1)
 		}
 		if (totalPageCount === currentPage && currentPage - i - 2 > 1 && i === 0) {
-			buttonsArr.push(
-				<PaginationButton setPage={handlePageButtonClick} page={1} />
-			)
-			buttonsArr.push(
-				<button className='p-3 bg-orange text-center text-white mr-2'>
-					...
-				</button>
-			)
+			addPaginationButton(1)
+			addPaginationButton('...')
 		} else if (totalPageCount === currentPage && currentPage - i - 2 === 1) {
-			buttonsArr.push(
-				<PaginationButton
-					setPage={handlePageButtonClick}
-					page={totalPageCount}
-				/>
-			)
+			addPaginationButton(totalPageCount)
 		} else if (
 			i === 0 &&
 			totalPageCount !== currentPage &&
 			currentPage - 2 > 1
 		) {
-			buttonsArr.push(
-				<PaginationButton setPage={handlePageButtonClick} page={1} />
-			)
-			buttonsArr.push(
-				<button className='p-3 bg-orange text-center text-white mr-2'>
-					...
-				</button>
-			)
+			addPaginationButton(1)
+			addPaginationButton('...')
 		}
 		if (currentPage === 1 && currentPage + i < totalPageCount) {
-			buttonsArr.push(
-				<PaginationButton
-					setPage={handlePageButtonClick}
-					page={currentPage + i}
-				/>
-			)
+			addPaginationButton(currentPage + i)
 		} else if (currentPage > 1 && currentPage + i - 1 < totalPageCount) {
-			buttonsArr.push(
-				<PaginationButton
-					setPage={handlePageButtonClick}
-					page={currentPage + i - 1}
-				/>
-			)
+			addPaginationButton(currentPage + i - 1)
 		} else if (totalPageCount === currentPage) {
 			if (i - 2 < 1 && currentPage - i - 2 > 1) {
-				buttonsArr.push(
-					<PaginationButton
-						setPage={handlePageButtonClick}
-						page={currentPage + i - 2}
-					/>
-				)
+				addPaginationButton(currentPage + i - 2)
 			} else if (currentPage - i - 2 === 1) {
-				buttonsArr.push(
-					<PaginationButton
-						setPage={handlePageButtonClick}
-						page={currentPage + i - 2}
-					/>
-				)
+				addPaginationButton(1)
 				break
 			}
 		}
 
 		if (currentPage + i === totalPageCount) {
-			buttonsArr.push(
-				<PaginationButton
-					setPage={handlePageButtonClick}
-					page={totalPageCount}
-				/>
-			)
+			addPaginationButton(totalPageCount)
 			break
 		}
 
 		if (i == 2 && currentPage + i + 1 === totalPageCount) {
-			buttonsArr.push(
-				<button className='p-3 bg-orange text-center text-white mr-2'>
-					...
-				</button>
-			)
-			buttonsArr.push(
-				<PaginationButton
-					setPage={handlePageButtonClick}
-					page={totalPageCount}
-				/>
-			)
+			addPaginationButton('...')
+			addPaginationButton(totalPageCount)
 			break
 		} else if (i == 2 && currentPage + 3 < totalPageCount) {
-			buttonsArr.push(
-				<button className='p-3 bg-orange text-center text-white mr-2'>
-					...
-				</button>
-			)
-			buttonsArr.push(
-				<PaginationButton
-					setPage={handlePageButtonClick}
-					page={totalPageCount}
-				/>
-			)
+			addPaginationButton('...')
+			addPaginationButton(totalPageCount)
 			break
 		}
 	}

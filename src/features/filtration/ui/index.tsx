@@ -18,6 +18,7 @@ import { toggleCardActiveness } from '../lib/toggle-card-activeness'
 import type { setGenreType, setTagType, ViewCardsProps } from '../types'
 import type { Genre } from '@/shared/api/RawgApi-hook/types/genre'
 import type { TagResult } from '@/shared/api/RawgApi-hook/types/tag'
+import { FiltrationSkeleton } from './filtration-skeleton'
 
 export function GameFiltration() {
 	const [filterTitle, setFilterTitle] = useState('')
@@ -126,9 +127,10 @@ export function GameFiltration() {
 		)
 	} else {
 		return (
-			<section className='flex justify-center w-full p-3 mb-10'>
+			<FiltrationSkeleton />
+			/*<section className='flex justify-center w-full p-3 mb-10'>
 				<Loader classes='w-1/4' />
-			</section>
+			</section>*/
 		)
 	}
 }

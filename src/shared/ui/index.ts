@@ -1,3 +1,5 @@
+export { ComplexHttpRequestWrapper } from './complex-list-wrapper'
+export { SkeletonRect } from './skeleton-rect'
 export { Carousel } from './carousel'
 export { ListWrapper } from './list-wrapper'
 export { ClockIcon } from './clock-icon/ui'
