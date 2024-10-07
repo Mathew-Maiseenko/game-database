@@ -54,16 +54,16 @@ export function SignUpModal() {
 	}, [isSignUpModalOpen])
 
 	return (
-		<Modal isOpen={isSignUpModalOpen}>
-			<section className='relative  border-2 border-solid border-textGray bg-darkGray sm:w-1/3 lg:w-2/3 min-h-52 pt-5 pb-10 px-44 rounded-3xl'>
+		<Modal isOpen={true}>
+			<section className='relative border-2 border-solid bg-white border-lightThemeBorderGray dark:border-textGray dark:bg-darkGray sm:w-1/3 lg:w-2/3 min-h-52 pt-5 pb-10 px-44 rounded-3xl'>
 				<article
-					className='flex absolute top-5 left-5 w-full '
+					className='flex absolute top-5 right-5'
 					onClick={() => dispatch(userSlice.actions.setUserSignUpModalClose())}
 				>
-					<CrossIcon classes=' sm:w-7 lg:w-10' />
+					<CrossIcon classes='sm:w-7 lg:w-10' />
 				</article>
 				<h2
-					className={`${teko.className} text-center text-yellow text-7xl font-medium self-center md:order-1 cursor-pointer`}
+					className={`${teko.className} text-center text-blue dark:text-yellow text-7xl font-medium self-center md:order-1 cursor-pointer`}
 				>
 					Cyber List
 				</h2>
@@ -72,7 +72,7 @@ export function SignUpModal() {
 					setInputValue={setUserName}
 					message='User name'
 					withMagnifierIcon={false}
-					className='w-full bg-darkGray mb-3'
+					className='w-full bg-inherit mb-3'
 					errorMessage={userNameValidationMessage}
 				/>
 				<ValidatedPasswordInput
@@ -80,17 +80,17 @@ export function SignUpModal() {
 					setInputValue={setUserPassword}
 					message='Enter password'
 					withMagnifierIcon={false}
-					className='w-full bg-darkGray mb-3'
+					className='w-full bg-inherit mb-3'
 				/>
 				<MinimalistPasswordInput
 					inputValue={userVerifiedPassword}
 					setInputValue={setUserVerifiedPassword}
 					message='Confirm password'
 					withMagnifierIcon={false}
-					className='w-full bg-darkGray mb-7'
+					className='w-full bg-inherit mb-9'
 					errorMessage={passwordValidationMessage}
 				/>
-				<h3 className='w-full text-center text-3xl text-gray-light mb-5 underline'>
+				<h3 className='w-full text-center text-3xl text-black dark:text-white mb-7 underline'>
 					Computer Specifications
 				</h3>
 				<MinimalistInput
@@ -98,7 +98,7 @@ export function SignUpModal() {
 					setInputValue={setUserProcessor}
 					message='Enter processor model'
 					withMagnifierIcon={false}
-					className='w-full bg-darkGray mb-3'
+					className='w-full bg-inherit mb-3'
 					errorMessage={CPUValidationMessage}
 				/>
 				<MinimalistInput
@@ -106,21 +106,21 @@ export function SignUpModal() {
 					setInputValue={setUserGraphicsCard}
 					message='Enter graphics card model'
 					withMagnifierIcon={false}
-					className='w-full bg-darkGray mb-3'
+					className='w-full bg-inherit mb-3'
 					errorMessage={GPUValidationMessage}
 				/>
 				<MinimalistNumberInput
 					inputValue={userRAM}
 					setInputValue={setUserRAM}
 					message='Enter the RAM size'
-					className='w-full bg-darkGray mb-3'
+					className='w-full bg-inherit mb-3'
 					errorMessage={RAMValidationMessage}
 				/>
 				<MinimalistNumberInput
 					inputValue={userVideoMemory}
 					setInputValue={setUserVideoMemory}
 					message='Enter amount of video memory'
-					className='w-full bg-darkGray mb-9'
+					className='w-full bg-inherit mb-9'
 					errorMessage={graphicsMemoryValidationMessage}
 				/>
 				<button
@@ -138,11 +138,11 @@ export function SignUpModal() {
 							graphicsMemory: userVideoMemory ? userVideoMemory : 0,
 						})
 					}}
-					className='w-full bg-orange rounded-3xl p-2 mb-5'
+					className='w-full dark:bg-orange bg-blue dark:text-inherit text-white rounded-3xl p-2 mb-5'
 				>
 					Sign Up
 				</button>
-				<article className='flex justify-center items-center w-full text-textGray'>
+				<article className='flex justify-center items-center w-full dark:text-textGray text-lightThemeTextGray'>
 					<h6 className='inline-block transition-all duration-150 mr-3'>
 						Have an account?
 					</h6>

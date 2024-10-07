@@ -30,7 +30,7 @@ export function LayoutWrapper({
 			<NavBar />
 			<main
 				className={
-					'bg-white dark:bg-whiteGray rounded-3xl p-[7vh] overflow-hidden'
+					'bg-white border-2 border-lightThemeBorderGray dark:bg-whiteGray dark:border-none rounded-3xl p-[7vh] overflow-hidden'
 				}
 			>
 				{children}

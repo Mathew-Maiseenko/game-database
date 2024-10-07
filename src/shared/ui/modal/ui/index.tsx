@@ -13,7 +13,7 @@ export function Modal({ children, isOpen = false }: ModalProps) {
 			<section
 				className={`${
 					isOpen ? 'flex flex-grow justify-center items-center' : 'hidden'
-				} z-40 fixed right-0 top-0 bottom-0 w-full min-h-screen transform transition-all duration-300 ease-in-out bg-darkGray opacity-80`}
+				} z-40 fixed right-0 top-0 bottom-0 w-full min-h-screen transform transition-all duration-300 ease-in-out dark:bg-darkGray bg-lightThemeGray opacity-80`}
 			></section>
 			<section
 				className={`${

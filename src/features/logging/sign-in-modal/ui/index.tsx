@@ -9,7 +9,6 @@ import {
 	Modal,
 } from '@/shared/ui'
 import { useEffect, useState } from 'react'
-//import { submitUserData } from '../model/submitUserData'
 import { useRouter } from 'next/navigation'
 import { signInUser } from '../model/signInUser'
 
@@ -42,15 +41,15 @@ export function SignInModal() {
 
 	return (
 		<Modal isOpen={isSignInModalOpen}>
-			<section className='relative border-2 border-solid border-textGray bg-darkGray sm:w-1/3 lg:w-2/5 py-24 px-20 rounded-3xl'>
+			<section className='relative border-2 border-solid bg-white border-lightThemeBorderGray dark:border-textGray dark:bg-darkGray sm:w-1/3 lg:w-2/5 py-24 px-20 rounded-3xl'>
 				<article
-					className='flex absolute top-5 left-5 w-full '
+					className='flex absolute top-5 right-5 '
 					onClick={() => dispatch(userSlice.actions.setUserSignInModalClose())}
 				>
 					<CrossIcon classes=' sm:w-7 lg:w-10' />
 				</article>
 				<h2
-					className={`${teko.className} text-center text-yellow text-7xl font-medium self-center md:order-1 cursor-pointer`}
+					className={`${teko.className} text-center dark:text-yellow text-blue text-7xl font-medium self-center md:order-1 cursor-pointer`}
 				>
 					Cyber List
 				</h2>
@@ -59,7 +58,7 @@ export function SignInModal() {
 					setInputValue={setUserName}
 					message='User name'
 					withMagnifierIcon={false}
-					className='w-full bg-darkGray mb-5'
+					className='w-full bg-inherit mb-5'
 					errorMessage={userNameValidationMessage}
 				/>
 				<MinimalistPasswordInput
@@ -67,7 +66,7 @@ export function SignInModal() {
 					setInputValue={setUserPassword}
 					message='Enter password'
 					withMagnifierIcon={false}
-					className='w-full bg-darkGray mb-5'
+					className='w-full bg-inherit mb-5'
 				/>
 				<button
 					onClick={() =>
@@ -79,11 +78,11 @@ export function SignInModal() {
 						})
 					}
 					type='submit'
-					className='w-full bg-orange rounded-3xl p-2 mb-5'
+					className='w-full dark:bg-orange bg-blue rounded-3xl p-2 mb-5'
 				>
 					Sign In
 				</button>
-				<article className='flex justify-center items-center w-full text-textGray'>
+				<article className='flex justify-center items-center w-full dark:text-textGray text-lightThemeTextGray'>
 					<h6 className='inline-block transition-all duration-150 mr-3'>
 						Do not have an account?
 					</h6>
@@ -100,22 +99,4 @@ export function SignInModal() {
 			</section>
 		</Modal>
 	)
-}
-//setLogModalOpen(!isLogModalOpen)
-{
-	/* <MinimalistInput
-					inputValue={userVideoMemory}
-					setInputValue={setUserVideoMemory}
-					message='Enter amount of video memory'
-					withMagnifierIcon={false}
-					className='w-full bg-darkGray mb-3'
-				/>
-				<MinimalistInput
-					inputValue={userRAM}
-					setInputValue={setUserRAM}
-					message='Enter the RAM size'
-					withMagnifierIcon={false}
-					className='w-full bg-darkGray mb-7'
-					errorMessage=''
-				/> */
 }

@@ -17,14 +17,14 @@ export const MinimalistNumberInput = ({
 	inputValue,
 	setInputValue,
 }: MinimalistNumberInputProps) => {
-	// const [inputValue, setInputValue] = useState<number | ''>('')
 	const [focus, setFocus] = useState(false)
 
 	return (
 		<section className={`relative ${className}`}>
 			<article
-				className={`bg-inherit text-textGray w-full p-2 flex items-center justify-between rounded relative after:absolute after:left-0 after:-bottom-0.5 after:h-px after:w-full after:bg-textGray  ${
-					focus && 'text-white after:bg-white '
+				className={`bg-inherit text-textGray w-full p-2 flex items-center justify-between rounded relative after:absolute after:left-0 after:-bottom-0.5 after:h-px after:w-full dark:after:bg-textGray after:bg-lightThemeTextGray  ${
+					focus &&
+					'dark:text-white dark:after:bg-white text-black after:bg-black '
 				}`}
 			>
 				<input
@@ -44,7 +44,7 @@ export const MinimalistNumberInput = ({
 							? setInputValue(+e.target.value)
 							: ''
 					}}
-					className='bg-inherit placeholder:text-textGray text-white outline-none'
+					className='bg-inherit placeholder:text-textGray dark:text-white text-black outline-none'
 				/>
 				<section className='flex flex-col'>
 					<section
@@ -83,7 +83,7 @@ export const MinimalistNumberInput = ({
 								? '-translate-y-1.5 -translate-x-1.5 text-xl px-0.5'
 								: 'translate-y-3 translate-x-9 px-2'
 						}
-						${focus ? 'text-white' : 'text-textGray'}
+						${focus ? 'text-white' : 'dark:text-textGray text-lightThemeTextGray'}
 						${errorMessage && 'text-validationRed'}
 					`}
 			>

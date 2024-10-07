@@ -5,7 +5,7 @@ interface StateType {
 }
 
 const initialState: StateType = {
-	isThemeDark: true,
+	isThemeDark: false,
 }
 
 export const themeSwitcherSlice = createAppSlice({
