@@ -3,6 +3,7 @@ import React from 'react'
 import { BurgerIcon, UserButton } from '@/shared/ui'
 import { Burger, MainLogo, NavPoint } from '@/entities/navigation'
 import { useState } from 'react'
+import { ThemeSwitcher } from '@/features/theme-switcher'
 
 export function NavBar() {
 	const [isBurgerOpen, setBurgerOpen] = useState(false)
@@ -13,6 +14,7 @@ export function NavBar() {
 					<MainLogo />
 					<article className='relative md:order-2 self-center'>
 						<NavPoint href='/game-list' title={'Games'} />
+						<ThemeSwitcher />
 					</article>
 					<UserButton />
 				</section>

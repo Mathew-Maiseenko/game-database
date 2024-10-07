@@ -2,6 +2,7 @@
 import type { Config } from 'tailwindcss'
 
 const config: Config = {
+	darkMode: 'selector',
 	content: [
 		'./src/pages/**/*.{js,ts,jsx,tsx,mdx}',
 		'./src/**/*.{js,ts,jsx,tsx,mdx}',
@@ -22,7 +23,7 @@ const config: Config = {
 			xl: '1440px',
 		},
 		colors: {
-			blue: '#1fb6ff',
+			blue: '#0ea5e9',
 			pink: '#ff49db',
 			orange: '#ff7849',
 			orangeBorder: 'rgb(251, 191, 36)',
@@ -30,6 +31,8 @@ const config: Config = {
 			'gray-dark': '#273444',
 			gray: '#8492a6',
 			'gray-light': '#d3dce6',
+			lightThemeBorderGray: '#888888',
+			lightThemeGray: '#f8fafc',
 			black: '#06040F',
 			white: 'white',
 			yellow: '#FF9C00',

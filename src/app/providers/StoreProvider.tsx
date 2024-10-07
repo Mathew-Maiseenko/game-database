@@ -1,6 +1,6 @@
 'use client'
 import { useRef } from 'react'
-import { Provider, useDispatch } from 'react-redux'
+import { Provider } from 'react-redux'
 import { makeStore } from './store'
 import type { AppStore } from '@/shared/lib'
 import { userSlice } from '@/entities/user'

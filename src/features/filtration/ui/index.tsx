@@ -2,7 +2,6 @@
 import {
 	ArrowIcon,
 	Carousel,
-	Loader,
 	MinimalistInput,
 	MinimalistSelect,
 } from '@/shared/ui'
