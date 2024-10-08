@@ -1,3 +1,5 @@
+export { ClosedEyeIcon } from './eyes-icons/ui/closed-eye'
+export { OpenEyeIcon } from './eyes-icons/ui/open-eye'
 export { ComplexHttpRequestWrapper } from './complex-list-wrapper'
 export { SkeletonRect } from './skeleton-rect'
 export { Carousel } from './carousel'

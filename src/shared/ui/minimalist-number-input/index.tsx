@@ -22,9 +22,9 @@ export const MinimalistNumberInput = ({
 	return (
 		<section className={`relative ${className}`}>
 			<article
-				className={`bg-inherit text-textGray w-full p-2 flex items-center justify-between rounded relative after:absolute after:left-0 after:-bottom-0.5 after:h-px after:w-full dark:after:bg-textGray after:bg-lightThemeTextGray  ${
+				className={`bg-inherit text-textGray w-full p-2 flex items-center justify-between rounded relative after:absolute after:left-0 after:-bottom-0.5 after:h-px after:w-full dark:after:bg-darkThemeTextGray after:bg-textGray  ${
 					focus &&
-					'dark:text-white dark:after:bg-white text-black after:bg-black '
+					'dark:text-white dark:after:bg-white text-lightThemeTextDarkGray after:bg-lightThemeTextDarkGray '
 				}`}
 			>
 				<input
@@ -44,7 +44,7 @@ export const MinimalistNumberInput = ({
 							? setInputValue(+e.target.value)
 							: ''
 					}}
-					className='bg-inherit placeholder:text-textGray dark:text-white text-black outline-none'
+					className='bg-inherit placeholder:text-textGray dark:text-white text-inherit outline-none w-full'
 				/>
 				<section className='flex flex-col'>
 					<section
@@ -53,8 +53,11 @@ export const MinimalistNumberInput = ({
 						}}
 					>
 						<ArrowIcon
-							styles={`transform rotate-180 w-3 h-3 hover:bg-darkGray`}
-							fill={focus ? 'white' : '#666666'}
+							styles={`transform rotate-180 w-3 h-3 hover:bg-darkGray ${
+								focus
+									? 'dark:fill-white dark:fill-lightThemeTextGray'
+									: 'fill-textGray dark:fill-lightThemeTextDarkGray'
+							}`}
 						/>
 					</section>
 					<section
@@ -69,8 +72,11 @@ export const MinimalistNumberInput = ({
 						}}
 					>
 						<ArrowIcon
-							styles={`w-3 h-3 hover:bg-darkGray`}
-							fill={focus ? 'white' : '#666666'}
+							styles={`w-3 h-3 hover:bg-darkGray ${
+								focus
+									? 'dark:fill-white dark:fill-lightThemeTextGray'
+									: 'fill-textGray dark:fill-lightThemeTextDarkGray'
+							}`}
 						/>
 					</section>
 				</section>
@@ -83,7 +89,11 @@ export const MinimalistNumberInput = ({
 								? '-translate-y-1.5 -translate-x-1.5 text-xl px-0.5'
 								: 'translate-y-3 translate-x-9 px-2'
 						}
-						${focus ? 'text-white' : 'dark:text-textGray text-lightThemeTextGray'}
+						${
+							focus
+								? 'dark:text-white text-lightThemeTextDarkGray'
+								: 'dark:text-darkThemeTextGray text-textGray'
+						}
 						${errorMessage && 'text-validationRed'}
 					`}
 			>

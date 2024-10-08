@@ -31,7 +31,8 @@ export const ValidatedPasswordInput = ({
 		<section className={`relative ${className}`}>
 			<article
 				className={`transition-all duration-200 bg-inherit text-textGray w-full p-2 flex items-center justify-between rounded relative after:absolute after:left-0 after:-bottom-0.5 after:h-px after:w-full after:bg-textGray  ${
-					focus && 'text-white after:bg-white '
+					focus &&
+					'dark:text-white dark:after:bg-white text-lightThemeTextDarkGray after:bg-lightThemeTextDarkGray '
 				}
 				${reliabilityLevel === 'red' && 'text-validationRed after:bg-validationRed '}
 				${
@@ -63,8 +64,11 @@ export const ValidatedPasswordInput = ({
 				/>
 				{withMagnifierIcon && (
 					<MagnifierIcon
-						styles={`w-5 h-5`}
-						fill={focus ? 'white' : '#666666'}
+						styles={`w-5 h-5 ${
+							focus
+								? 'dark:fill-white dark:fill-lightThemeTextGray'
+								: 'fill-textGray dark:fill-lightThemeTextDarkGray'
+						}`}
 					/>
 				)}
 			</article>

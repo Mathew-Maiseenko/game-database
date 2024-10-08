@@ -34,6 +34,8 @@ const config: Config = {
 			lightThemeBorderGray: '#888888',
 			lightThemeGray: '#f8fafc',
 			lightThemeTextGray: '#64748b',
+			lightThemeTextDarkGray: '#273444',
+			darkThemeTextGray: '#d3dce6',
 			black: '#06040F',
 			white: 'white',
 			yellow: '#FF9C00',

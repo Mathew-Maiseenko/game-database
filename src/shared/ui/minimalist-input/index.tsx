@@ -29,8 +29,11 @@ export const MinimalistInput = ({
 		<section className={`relative bg-inherit ${className}`}>
 			<article
 				className={`
-					transition-all duration-200 bg-inherit text-textGray w-full p-2 flex items-center justify-between rounded relative after:absolute after:left-0 after:-bottom-0.5 after:h-px after:w-full after:bg-textGray  
-					${focus && 'text-white after:bg-white'}
+					transition-all duration-200 bg-inherit dark:text-gray-light text-textGray w-full p-2 flex items-center justify-between rounded relative after:absolute after:left-0 after:-bottom-0.5 after:h-px after:w-full after:bg-textGray  
+					${
+						focus &&
+						'dark:text-white dark:after:bg-white text-lightThemeTextDarkGray after:bg-lightThemeTextDarkGray'
+					}
 					${errorMessage && 'text-validationRed after:bg-validationRed '}
 				`}
 			>
@@ -39,14 +42,16 @@ export const MinimalistInput = ({
 					onBlur={() => setFocus(false)}
 					type='text'
 					value={inputValue}
-					onChange={e => setInputValue(e.target.value)} //.toLowerCase()??? inset-0
-					//placeholder={message}
-					className='bg-inherit placeholder:text-textGray text-white outline-none pointer-events-auto w-full'
+					onChange={e => setInputValue(e.target.value)}
+					className='bg-inherit placeholder:text-textGray black:text-white text-inherit outline-none pointer-events-auto w-full'
 				/>
 				{withMagnifierIcon && (
 					<MagnifierIcon
-						styles={`w-5 h-5`}
-						fill={focus ? 'white' : '#666666'}
+						styles={`w-5 h-5 ${
+							focus
+								? 'dark:fill-white dark:fill-lightThemeTextGray'
+								: 'fill-textGray dark:fill-lightThemeTextDarkGray'
+						}`}
 					/>
 				)}
 			</article>
@@ -58,7 +63,11 @@ export const MinimalistInput = ({
 								? '-translate-y-1.5 -translate-x-1.5 text-xl px-0.5'
 								: 'translate-y-3 translate-x-9 px-2'
 						}
-						${focus ? 'text-white' : 'text-textGray'}
+						${
+							focus
+								? 'dark:text-white text-lightThemeTextDarkGray'
+								: 'dark:text-darkThemeTextGray text-textGray'
+						}
 						${errorMessage && 'text-validationRed'}
 					`}
 			>
