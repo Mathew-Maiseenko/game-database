@@ -40,8 +40,13 @@ export function SignInModal() {
 	}, [isSignInModalOpen])
 
 	return (
-		<Modal isOpen={isSignInModalOpen}>
-			<section className='relative border-2 border-solid bg-white border-lightThemeBorderGray dark:border-textGray dark:bg-darkGray sm:w-1/3 lg:w-2/5 py-24 px-20 rounded-3xl'>
+		<Modal
+			isOpen={isSignInModalOpen}
+			setModalCloseFunction={() =>
+				dispatch(userSlice.actions.setUserSignInModalClose())
+			}
+		>
+			<section className='relative border-2 border-solid bg-white border-lightThemeBorderGray dark:border-textGray dark:bg-darkGray sm:w-4/5 lg:w-2/5 p-5 rounded-3xl cursor-default'>
 				<article
 					className='flex absolute top-5 right-5 '
 					onClick={() => dispatch(userSlice.actions.setUserSignInModalClose())}
@@ -65,7 +70,6 @@ export function SignInModal() {
 					inputValue={userPassword}
 					setInputValue={setUserPassword}
 					message='Enter password'
-					withMagnifierIcon={false}
 					className='w-full bg-inherit mb-5'
 				/>
 				<button

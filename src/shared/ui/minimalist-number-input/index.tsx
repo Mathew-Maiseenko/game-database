@@ -20,7 +20,7 @@ export const MinimalistNumberInput = ({
 	const [focus, setFocus] = useState(false)
 
 	return (
-		<section className={`relative ${className}`}>
+		<section className={`relative text-lg ${className}`}>
 			<article
 				className={`bg-inherit text-textGray w-full p-2 flex items-center justify-between rounded relative after:absolute after:left-0 after:-bottom-0.5 after:h-px after:w-full dark:after:bg-darkThemeTextGray after:bg-textGray  ${
 					focus &&
@@ -44,7 +44,7 @@ export const MinimalistNumberInput = ({
 							? setInputValue(+e.target.value)
 							: ''
 					}}
-					className='bg-inherit placeholder:text-textGray dark:text-white text-inherit outline-none w-full'
+					className='bg-inherit font-normal focus:font-medium placeholder:text-textGray dark:text-white text-inherit outline-none w-full py-0.5'
 				/>
 				<section className='flex flex-col'>
 					<section
@@ -83,16 +83,16 @@ export const MinimalistNumberInput = ({
 			</article>
 			<span
 				className={`
-						flex absolute z-20 bottom-0 left-4 bg-inherit transition-all duration-200 ease-in-out select-none pointer-events-none 
+						flex absolute z-20 bottom-0 left-4 bg-inherit transition-all duration-200 ease-in-out select-none pointer-events-none py-1
 						${
 							!inputValue
 								? '-translate-y-1.5 -translate-x-1.5 text-xl px-0.5'
-								: 'translate-y-3 translate-x-9 px-2'
+								: 'translate-y-3 translate-x-9 px-2 py-0'
 						}
 						${
 							focus
-								? 'dark:text-white text-lightThemeTextDarkGray'
-								: 'dark:text-darkThemeTextGray text-textGray'
+								? 'dark:text-white text-lightThemeTextDarkGray font-medium'
+								: 'dark:text-darkThemeTextGray text-textGray font-normal'
 						}
 						${errorMessage && 'text-validationRed'}
 					`}

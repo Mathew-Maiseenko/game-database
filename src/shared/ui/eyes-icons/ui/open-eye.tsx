@@ -16,7 +16,7 @@ export function OpenEyeIcon({ mainStyles, colorStyles }: OpenEyeIconProps) {
 				fill-rule='evenodd'
 				clip-rule='evenodd'
 				d='M22 12.0002C20.2531 15.5764 15.8775 19 11.9998 19C8.12201 19 3.74646 15.5764 2 11.9998'
-				className={colorStyles}
+				//className={colorStyles}
 				stroke-width='2'
 				stroke-linecap='round'
 				stroke-linejoin='round'
@@ -26,7 +26,7 @@ export function OpenEyeIcon({ mainStyles, colorStyles }: OpenEyeIconProps) {
 				fill-rule='evenodd'
 				clip-rule='evenodd'
 				d='M22 12.0002C20.2531 8.42398 15.8782 5 12.0005 5C8.1227 5 3.74646 8.42314 2 11.9998'
-				stroke='#000000'
+				//stroke='#000000'
 				stroke-width='2'
 				stroke-linecap='round'
 				stroke-linejoin='round'

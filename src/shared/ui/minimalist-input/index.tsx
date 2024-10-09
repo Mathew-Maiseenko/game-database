@@ -43,7 +43,7 @@ export const MinimalistInput = ({
 					type='text'
 					value={inputValue}
 					onChange={e => setInputValue(e.target.value)}
-					className='bg-inherit placeholder:text-textGray black:text-white text-inherit outline-none pointer-events-auto w-full'
+					className='bg-inherit font-normal focus:font-medium placeholder:text-textGray black:text-white text-inherit outline-none pointer-events-auto w-full py-1'
 				/>
 				{withMagnifierIcon && (
 					<MagnifierIcon
@@ -57,16 +57,16 @@ export const MinimalistInput = ({
 			</article>
 			<span
 				className={`
-						flex absolute z-20 bottom-0 left-4 bg-inherit transition-all duration-200 ease-in-out select-none pointer-events-none 
+						flex absolute z-20 bottom-0 left-4 bg-inherit transition-all duration-200 ease-in-out select-none pointer-events-none py-1
 						${
 							!inputValue
 								? '-translate-y-1.5 -translate-x-1.5 text-xl px-0.5'
-								: 'translate-y-3 translate-x-9 px-2'
+								: 'translate-y-3 translate-x-9 px-2 py-0'
 						}
 						${
 							focus
-								? 'dark:text-white text-lightThemeTextDarkGray'
-								: 'dark:text-darkThemeTextGray text-textGray'
+								? 'dark:text-white text-lightThemeTextDarkGray font-medium'
+								: 'dark:text-darkThemeTextGray text-textGray font-normal'
 						}
 						${errorMessage && 'text-validationRed'}
 					`}

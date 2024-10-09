@@ -1,6 +1,5 @@
 'use client'
 import React, { useState } from 'react'
-import { MagnifierIcon } from '../magnifier-icon'
 import type { ActionCreatorWithPayload } from '@reduxjs/toolkit'
 import { OpenEyeIcon } from '../eyes-icons/ui/open-eye'
 import { ClosedEyeIcon } from '../eyes-icons/ui/closed-eye'
@@ -24,7 +23,7 @@ export const MinimalistPasswordInput = ({
 	errorMessage = '',
 }: MinimalistInputProps) => {
 	const [focus, setFocus] = useState(false)
-	const [isPasswordShow, setPasswordShow] = useState(false)
+	const [isPasswordShow, setPasswordShown] = useState(false)
 	return (
 		<section className={`relative ${className}`}>
 			<article
@@ -37,31 +36,47 @@ export const MinimalistPasswordInput = ({
 					${errorMessage && 'text-validationRed after:bg-validationRed '}
 				`}
 			>
-				<input
-					onFocus={() => setFocus(true)}
-					onBlur={() => setFocus(false)}
-					type='password'
-					value={inputValue}
-					onChange={e => setInputValue(e.target.value)} //.toLowerCase()??? inset-0
-					//placeholder={message}
-					className='bg-inherit placeholder:text-textGray black:text-white text-inherit outline-none pointer-events-auto w-full'
-				/>
+				{isPasswordShow ? (
+					<input
+						onFocus={() => setFocus(true)}
+						onBlur={() => setFocus(false)}
+						type='text'
+						value={inputValue}
+						onChange={e => setInputValue(e.target.value)}
+						className='bg-inherit font-normal focus:font-medium placeholder:text-textGray black:text-white text-inherit outline-none pointer-events-auto w-full py-1'
+					/>
+				) : (
+					<input
+						onFocus={() => setFocus(true)}
+						onBlur={() => setFocus(false)}
+						type='password'
+						value={inputValue}
+						onChange={e => setInputValue(e.target.value)}
+						className='bg-inherit font-normal focus:font-medium placeholder:text-textGray black:text-white text-inherit outline-none pointer-events-auto w-full py-1'
+					/>
+				)}
+
 				{inputValue && (
-					<section className='w-5 h-5 bg-inherit min-h-full absolute right-4 top-0'>
+					<section
+						onClick={() => setPasswordShown(!isPasswordShow)}
+						className='w-5 h-full cursor-pointer flex justify-center items-center absolute right-4'
+					>
 						{isPasswordShow ? (
 							<OpenEyeIcon
+								mainStyles='w-full h-full'
 								colorStyles={`${
 									focus
-										? 'dark:fill-white dark:fill-lightThemeTextGray'
-										: 'fill-textGray dark:fill-lightThemeTextDarkGray'
+										? 'dark:stroke-white stroke-lightThemeTextGray'
+										: 'stroke-textGray dark:stroke-lightThemeTextDarkGray'
 								}`}
 							/>
 						) : (
 							<ClosedEyeIcon
+								mainStyles='w-full h-full'
 								colorStyles={`${
 									focus
-										? 'dark:fill-white dark:fill-lightThemeTextGray'
-										: 'fill-textGray dark:fill-lightThemeTextDarkGray'
+										? 'dark:stroke-white stroke-lightThemeTextGray'
+										: 'stroke-textGray dark:stroke-lightThemeTextDarkGray'
 								}`}
 							/>
 						)}
@@ -70,16 +85,16 @@ export const MinimalistPasswordInput = ({
 			</article>
 			<span
 				className={`
-						flex absolute z-10 bottom-0 left-4 bg-opacity-100 bg-inherit transition-all duration-200 ease-in-out select-none pointer-events-none
+						flex absolute z-10 bottom-0 left-4 bg-opacity-100 bg-inherit transition-all duration-200 ease-in-out select-none pointer-events-none py-1
 						${
 							!inputValue
 								? '-translate-y-1.5 -translate-x-1.5 text-xl bg-opacity-0 px-0.5'
-								: 'translate-y-3 translate-x-9 px-2'
+								: 'translate-y-3 translate-x-9 px-2 py-0'
 						}
 						${
 							focus
-								? 'dark:text-white text-lightThemeTextDarkGray'
-								: 'dark:text-darkThemeTextGray text-textGray'
+								? 'dark:text-white text-lightThemeTextDarkGray font-medium'
+								: 'dark:text-darkThemeTextGray text-textGray font-normal'
 						}
 						${errorMessage && 'text-validationRed'}
 					`}

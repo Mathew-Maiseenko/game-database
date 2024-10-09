@@ -54,8 +54,13 @@ export function SignUpModal() {
 	}, [isSignUpModalOpen])
 
 	return (
-		<Modal isOpen={true}>
-			<section className='relative border-2 border-solid bg-white border-lightThemeBorderGray dark:border-textGray dark:bg-darkGray sm:w-1/3 lg:w-2/3 min-h-52 pt-5 pb-10 px-44 rounded-3xl'>
+		<Modal
+			isOpen={isSignUpModalOpen}
+			setModalCloseFunction={() =>
+				dispatch(userSlice.actions.setUserSignUpModalClose())
+			}
+		>
+			<section className='relative border-2 border-solid bg-white border-lightThemeBorderGray dark:border-textGray dark:bg-darkGray sm:w-1/3 lg:w-2/3 min-h-52 pt-5 pb-10 px-44 cursor-default rounded-3xl'>
 				<article
 					className='flex absolute top-5 right-5'
 					onClick={() => dispatch(userSlice.actions.setUserSignUpModalClose())}
@@ -79,18 +84,16 @@ export function SignUpModal() {
 					inputValue={userPassword}
 					setInputValue={setUserPassword}
 					message='Enter password'
-					withMagnifierIcon={false}
 					className='w-full bg-inherit mb-3'
 				/>
 				<MinimalistPasswordInput
 					inputValue={userVerifiedPassword}
 					setInputValue={setUserVerifiedPassword}
 					message='Confirm password'
-					withMagnifierIcon={false}
 					className='w-full bg-inherit mb-9'
 					errorMessage={passwordValidationMessage}
 				/>
-				<h3 className='w-full text-center text-3xl text-black dark:text-white mb-7 underline'>
+				<h3 className='w-full text-center text-3xl text-lightThemeTextDarkGray dark:text-white mb-7 underline'>
 					Computer Specifications
 				</h3>
 				<MinimalistInput
