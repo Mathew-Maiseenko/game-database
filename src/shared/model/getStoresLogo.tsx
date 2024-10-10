@@ -1,61 +1,84 @@
-import Image from 'next/image'
 import Link from 'next/link'
 
-import Steam from '../../../public/StoresLogo/steam-svgrepo-com.svg'
-import XboxStore from '../../../public/StoresLogo/xbox-svgrepo-com.svg'
-import Xbox360Store from '../../../public/StoresLogo/xbox-360.svg'
-import PlayStationStore from '../../../public/StoresLogo/playstation-svgrepo-com.svg'
-import AppStore from '../../../public/StoresLogo/app-store-svgrepo-com.svg'
-import GOG from '../../../public/StoresLogo/gog-dot-com-svgrepo-com.svg'
-import NintendoStore from '../../../public/StoresLogo/nintendo-switch-svgrepo-com.svg'
-import GooglePlay from '../../../public/StoresLogo/google-play-svgrepo-com.svg'
-
 import type { Store } from '../api/RawgApi-hook'
+import {
+	AppStoreIcon,
+	GOGIcon,
+	GooglePlayIcon,
+	NintendoSwitchIcon,
+	PlaystationIcon,
+	SteamIcon,
+	Xbox360Icon,
+	XboxIcon,
+} from '../ui'
 
 export const StoreLogoList = ({ stores }: { stores: Store[] }) =>
 	stores.map((store: Store) => {
-		let storeImage
 		switch (store.id) {
 			case 1:
-				storeImage = Steam
-				break
+				return (
+					<StoreLink store={store}>
+						<SteamIcon />
+					</StoreLink>
+				)
 			case 2:
-				storeImage = XboxStore
-				break
+				return (
+					<StoreLink store={store}>
+						<XboxIcon />
+					</StoreLink>
+				)
 			case 3:
-				storeImage = PlayStationStore
-				break
+				return (
+					<StoreLink store={store}>
+						<PlaystationIcon />
+					</StoreLink>
+				)
 			case 4:
-				storeImage = AppStore
-				break
+				return (
+					<StoreLink store={store}>
+						<AppStoreIcon />
+					</StoreLink>
+				)
 			case 5:
-				storeImage = GOG
-				break
+				return (
+					<StoreLink store={store}>
+						<GOGIcon />
+					</StoreLink>
+				)
 			case 6:
-				storeImage = NintendoStore
+				;<StoreLink store={store}>
+					<NintendoSwitchIcon />
+				</StoreLink>
 				break
 			case 7:
-				storeImage = Xbox360Store
-				break
+				return (
+					<StoreLink store={store}>
+						<Xbox360Icon />
+					</StoreLink>
+				)
 			case 8:
-				storeImage = GooglePlay
-				break
+				return (
+					<StoreLink store={store}>
+						<GooglePlayIcon />
+					</StoreLink>
+				)
 			default:
 				return
 		}
-		return (
-			<Link
-				key={`${store.name}-${store.id}`}
-				href={`https://${store.domain}`}
-				className={`mr-1`}
-			>
-				<Image
-					src={storeImage}
-					width={20}
-					height={20}
-					alt='Picture of the author'
-					className=''
-				/>
-			</Link>
-		)
 	})
+
+const StoreLink = ({
+	children,
+	store,
+}: {
+	children: JSX.Element
+	store: Store
+}) => (
+	<Link
+		key={`${store.name}-${store.id}`}
+		href={`https://${store.domain} text-errorMessageRed`}
+		className={`mr-1 w-5 h-5`}
+	>
+		{children}
+	</Link>
+)

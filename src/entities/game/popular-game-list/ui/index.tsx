@@ -22,9 +22,12 @@ export function PopularGamesList() {
 			fetchingState={gameListFetchingState}
 			ErrorMessageStyles='mb-12'
 		>
-			<section className='flex flex-col  min-w-full min-h-[46vh] bg-white dark:bg-darkGray px-6 pt-5 pb-3 rounded-3xl relative mb-12 dark:border-none border-2 border-lightThemeBorderGray'>
-				<h2 className='text-orange text-3xl  mb-8'>
-					<strong className='inline text-white underline'>Popular</strong> Games
+			<section className='flex flex-col  min-w-full min-h-[46vh] bg-white dark:bg-darkGray px-6 pt-5 pb-3 rounded-3xl relative mb-12 dark:border-none border-2 border-lightThemeBorderGray transition-all duration-200 ease-in-out'>
+				<h2 className='dark:text-orange text-blue text-3xl font-medium  mb-8 transition-all duration-200 ease-in-out'>
+					<strong className='inline font-bold dark:text-white text-black underline transition-all duration-200 ease-in-out'>
+						Popular
+					</strong>{' '}
+					Games
 				</h2>
 				<article className='flex flex-row justify-between flex-wrap pb-0'>
 					<ViewGamesList gameList={games} />

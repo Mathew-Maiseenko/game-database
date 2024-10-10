@@ -29,12 +29,12 @@ export const GameCard = memo(function GameCard({
 	return (
 		<Link
 			href={`/details/${id}`}
-			className={`${cardHoverClass} flex flex-col  bg-whiteGray sm:w-[47%] md:w-[24%] min-h-full rounded-xl mb-3`}
+			className={`${cardHoverClass} flex flex-col bg-white dark:bg-whiteGray sm:w-[47%] md:w-[24%] min-h-full rounded-xl mb-3`}
 		>
 			<Image
 				src={image || getRandomDefaultImage()}
-				width={500}
-				height={500}
+				width={1280}
+				height={720}
 				alt='Game poster'
 				className='h-3/5 w-full rounded-t-xl mb-2 object-cover'
 			/>
