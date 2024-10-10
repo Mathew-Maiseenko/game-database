@@ -60,7 +60,10 @@ export function SignUpModal() {
 				dispatch(userSlice.actions.setUserSignUpModalClose())
 			}
 		>
-			<section className='relative border-2 border-solid bg-white border-lightThemeBorderGray dark:border-textGray dark:bg-darkGray sm:w-1/3 lg:w-2/3 min-h-52 pt-5 pb-10 px-44 cursor-default rounded-3xl'>
+			<section
+				onClick={e => e.stopPropagation()}
+				className='relative border-2 border-solid bg-white border-lightThemeBorderGray dark:border-textGray dark:bg-darkGray sm:w-1/3 lg:w-2/3 min-h-52 pt-5 pb-10 px-44 cursor-default rounded-3xl'
+			>
 				<article
 					className='flex absolute top-5 right-5'
 					onClick={() => dispatch(userSlice.actions.setUserSignUpModalClose())}

@@ -37,9 +37,10 @@ export const GameAchievementsList = memo(function GameAchievementsList({
 		return <ErrorMessage />
 	} else if (achievementsFetchStatus === 'fulfilled' && achievements.length) {
 		return (
-			<section className='flex flex-col min-w-full bg-darkGray px-6 pr-10 pt-5 rounded-3xl relative mb-5'>
-				<article className='text-orange text-2xl  mb-8'>
-					<h2 className='inline text-white underline'>All</h2> Achievements
+			<section className='flex flex-col min-w-full bg-lightThemeGray dark:bg-darkGray dark:border-none border-2 border-lightThemeBorderGray px-6 pr-10 pt-5 rounded-3xl relative mb-5'>
+				<article className='dark:text-orange text-blue text-2xl font-semibold mb-8'>
+					<h2 className='inline dark:text-white text-black underline'>All</h2>{' '}
+					Achievements
 				</article>
 				<article className='flex flex-col justify-between w-full p-3'>
 					{achievements.length &&

@@ -23,7 +23,7 @@ export const GameDetailsHeader = memo(function GameDetailsHeader({
 					<ImageCardWithModal
 						dispatch={dispatch}
 						image={mainImage ? mainImage : ''}
-						classes={`flex object-cover rounded-md ${
+						classes={`flex object-cover rounded-md dark:border-none border-2 border-lightThemeBorderGray ${
 							firstScreenshot && secondScreenshot ? 'w-2/3 mr-1' : 'w-full'
 						}`}
 						alt='Main game photo'
@@ -33,19 +33,19 @@ export const GameDetailsHeader = memo(function GameDetailsHeader({
 							<ImageCardWithModal
 								dispatch={dispatch}
 								image={firstScreenshot ? firstScreenshot : ''}
-								classes='flex flex-grow w-full rounded-md mb-1'
+								classes='flex flex-grow w-full rounded-md mb-1 dark:border-none border-2 border-lightThemeBorderGray'
 								alt='first game screenshot'
 							/>
 							<ImageCardWithModal
 								dispatch={dispatch}
 								image={secondScreenshot ? secondScreenshot : ''}
-								classes='flex flex-grow w-full rounded-md'
+								classes='flex flex-grow w-full rounded-md dark:border-none border-2 border-lightThemeBorderGray'
 								alt='first game screenshot'
 							/>
 						</section>
 					)}
 				</article>
-				<h1 className='w-full text-5xl font-extrabold text-white text-center'>
+				<h1 className='w-full text-5xl font-extrabold dark:text-white text-black text-center'>
 					{gameTitle} Details
 				</h1>
 			</header>

@@ -22,13 +22,13 @@ export function UserButton({ styles }: { styles?: string }) {
 			className={`${
 				styles
 					? `group ${styles} ${classes.group}`
-					: `group ${classes.group} flex flex-row items-center justify-between font-semibold bg-whiteGray relative cursor-pointer
+					: `group ${classes.group} flex flex-row items-center justify-between font-semibold bg-white dark:bg-whiteGray relative cursor-pointer transition-all duration-300 ease-in-out
       sm:rounded-full sm:px-1 sm:py-1 sm:h-13
-      md:px-1 md:pl-3 md:py-1 md:order-3 md:rounded-3xl
-      hover:bg-yellow hover:text-black`
+      md:px-1 md:pl-3 md:py-1 md:rounded-3xl
+      dark:hover:bg-yellow hover:bg-blue hover:text-black`
 			}`}
 		>
-			<article className='sm:hidden md:inline group-hover:text-black group-hover:font-bold text-xl'>
+			<article className='transition-all duration-300 ease-in-out sm:hidden md:inline group-hover:text-black group-hover:font-bold text-xl'>
 				Profile
 			</article>
 			<svg

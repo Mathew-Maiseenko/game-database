@@ -28,7 +28,7 @@ export const ViewListOfGameScreenshots = (
 			key={`screenshot-${i}`}
 			dispatch={dispatch}
 			image={screenshot}
-			classes='w-1/3 mr-3 rounded-lg'
+			classes='w-1/3 mr-3 rounded-lg dark:border-none border-2 border-lightThemeBorderGray'
 			alt='first game photo'
 		/>
 	))

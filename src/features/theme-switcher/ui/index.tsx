@@ -20,13 +20,13 @@ export function ThemeSwitcher({ styles }: { styles?: string }) {
 			<input
 				id='themeSwitcher'
 				type='checkbox'
-				className={`appearance-none w-16 h-8 inline-block relative rounded-full           overflow-hidden outline-none border-2 border-orange cursor-pointer bg-red-500 transition-all duration-300 ease-in-out
-          ${isThemeDark ? 'border-none' : ''}
+				className={`appearance-none w-16 h-8 inline-block box-border rounded-full overflow-hidden outline-none dark:bg-yellow bg-blue cursor-pointer 
+        transition-all duration-300 ease-in-out
         `}
 			/>
 			<span
-				className={`flex justify-center items-center p-4 absolute w-6 h-6 rounded-full text-white text-center leading-8 transition-all duration-300 ease-in-out cursor-pointer top-0 bg-white 
-        ${isThemeDark ? 'left-1 rotate-0' : 'left-8 rotate-45'} 
+				className={`flex justify-center items-center p-5 absolute w-6 h-6 rounded-full text-white text-center leading-8 transition-all duration-300 ease-in-out cursor-pointer -top-1 bg-white
+        ${isThemeDark ? '-left-1 rotate-0' : 'left-8 rotate-45'} 
         `}
 			>
 				{isThemeDark ? <MoonIcon /> : <SunIcon />}
@@ -36,6 +36,9 @@ export function ThemeSwitcher({ styles }: { styles?: string }) {
 }
 
 /*
+
+${isThemeDark ? 'border-none' : ''}
+
 before:content-[''] before:block before:absolute before:w-6 before:h-6 before:bg-black before:rounded-full
 
 bg-white

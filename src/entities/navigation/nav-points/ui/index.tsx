@@ -17,7 +17,7 @@ export function NavPoint({ href, title, onClickFunction }: NavPointProps) {
 		>
 			<span
 				className={
-					'dark:text-orange text-blue relative font-medium text-4xl dark:after:bg-orange after:bg-blue after:absolute after:left-0 after:h-0.5 after:w-0 after:hover:w-full after:-bottom-0.5 after:transition-all after:duration-200 after:ease-in'
+					'dark:text-yellow text-blue relative font-medium text-4xl dark:after:bg-yellow after:bg-blue after:absolute after:left-0 after:h-0.5 after:w-0 after:hover:w-full after:-bottom-0.5 after:transition-all after:duration-200 after:ease-in'
 				}
 			>
 				{title}

@@ -50,7 +50,7 @@ export function GameDetailsMain() {
 					secondScreenshot={screenshots[1]}
 					gameTitle={currentGame.name}
 				/>
-				<section className='flex flex-col bg-darkGray rounded-3xl p-5 mb-5'>
+				<section className='flex flex-col bg-lightThemeGray dark:bg-darkGray dark:border-none border-2 border-lightThemeBorderGray rounded-3xl p-5 mb-5'>
 					<PairOfGameInfoCards />
 					<ListOfGameScreenshots screenshots={screenshots.slice(2)} />
 					<h3 className='text-textGray text-base mb-5'>
@@ -64,7 +64,7 @@ export function GameDetailsMain() {
 							Download {currentGame.name} Now!
 						</Link>
 						<button
-							className='w-1/2 rounded-3xl border-2 transition-all duration-300 border-orange p-1 text-orange hover:text-white hover:bg-orange active:bg-activeButtonRed active:text-white'
+							className='w-1/2 rounded-3xl border-2 transition-all duration-300 dark:border-orange border-blue p-1 text-blue dark:text-orange dark:hover:text-white hover:text-black dark:hover:bg-orange hover:bg-blue dark:active:bg-activeButtonRed dark:active:text-white active:text-black'
 							onClick={() => {
 								if (!isGameAddedInUserList) {
 									dispatch(userSlice.actions.addFavoriteGame(currentGame))

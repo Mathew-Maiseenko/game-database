@@ -32,7 +32,7 @@ const config: Config = {
 			gray: '#8492a6',
 			'gray-light': '#d3dce6',
 			lightThemeBorderGray: '#888888',
-			lightThemeGray: '#f8fafc',
+			lightThemeGray: '#f2f2f2',
 			lightThemeTextGray: '#64748b',
 			lightThemeTextDarkGray: '#273444',
 			darkThemeTextGray: '#d3dce6',

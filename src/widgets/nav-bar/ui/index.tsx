@@ -14,9 +14,11 @@ export function NavBar() {
 					<MainLogo />
 					<article className='relative md:order-2 self-center'>
 						<NavPoint href='/game-list' title={'Games'} />
-						<ThemeSwitcher />
 					</article>
-					<UserButton />
+					<section className='md:order-3 flex items-center'>
+						<ThemeSwitcher styles='mr-5' />
+						<UserButton />
+					</section>
 				</section>
 			</nav>
 			<nav className='block md:hidden text-textGray mb-7 p-3'>
