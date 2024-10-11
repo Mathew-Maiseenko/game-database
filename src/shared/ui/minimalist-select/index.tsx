@@ -1,7 +1,7 @@
 'use client'
 import React, { useState } from 'react'
-import { MagnifierIcon } from '../magnifier-icon'
-import { ArrowIcon } from '../arrow-icon'
+import { MagnifierIcon } from '../icon/magnifier-icon'
+import { ArrowIcon } from '../icon/arrow-icon'
 
 interface MinimalistSelectProps {
 	options: string[]

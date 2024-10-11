@@ -23,6 +23,8 @@ const config: Config = {
 			xl: '1440px',
 		},
 		colors: {
+			hoverBlue: '#37ceff',
+			activeBlue: '#16adf1',
 			blue: '#0ea5e9',
 			pink: '#ff49db',
 			orange: '#ff7849',

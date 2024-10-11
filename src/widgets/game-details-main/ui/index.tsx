@@ -59,7 +59,7 @@ export function GameDetailsMain() {
 					<section className='flex flex-row w-full'>
 						<Link
 							href={currentGame.website}
-							className='w-1/2 mr-3 text-center rounded-3xl border-2 border-orange p-1 text-orange hover:text-white hover:bg-orange active:bg-activeButtonRed active:text-white'
+							className='w-1/2 mr-3 text-center rounded-3xl border-2 dark:border-orange border-blue p-1 text-blue dark:text-orange dark:hover:text-white hover:text-black dark:hover:bg-orange hover:bg-blue dark:active:bg-activeButtonRed dark:active:text-white active:text-black'
 						>
 							Download {currentGame.name} Now!
 						</Link>

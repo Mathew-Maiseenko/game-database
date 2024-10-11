@@ -1,6 +1,3 @@
-import Image from 'next/image'
-import ClockSwg from '../../../../../public/clock.svg'
-
 interface iconProps {
 	classes?: string | undefined
 }

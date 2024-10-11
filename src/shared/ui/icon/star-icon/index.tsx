@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import star from '../../../../public/star.svg'
+import star from '../../../../../public/star.svg'
 
 interface iconProps {
 	classes?: string | undefined

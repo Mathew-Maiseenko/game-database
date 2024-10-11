@@ -72,7 +72,9 @@ export function GameAchievementCard({
 				</article>
 				<article className='flex flex-col justify-self-start rounded-3xl min-w-[70%] p-3'>
 					<section className='flex justify-between'>
-						<h3 className='text-xl font-bold text-white'>{title}</h3>
+						<h3 className='text-xl font-bold text-black dark:text-white'>
+							{title}
+						</h3>
 					</section>
 					<section className='flex justify-between'>
 						<h4 className='text-lg font-medium text-textGray'>{description}</h4>
@@ -80,8 +82,10 @@ export function GameAchievementCard({
 				</article>
 			</section>
 			<section className='flex items-center'>
-				<h4 className='text-lg font-bold text-white mr-3'>{percent}%</h4>
-				<AchievementIcon />
+				<h4 className='text-lg font-bold text-black dark:text-white mr-3'>
+					{percent}%
+				</h4>
+				<AchievementIcon classes='stroke-blue dark:stroke-orange' />
 			</section>
 		</section>
 	)

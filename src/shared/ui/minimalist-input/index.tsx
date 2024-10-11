@@ -1,6 +1,6 @@
 'use client'
 import React, { useState } from 'react'
-import { MagnifierIcon } from '../magnifier-icon'
+import { MagnifierIcon } from '../icon/magnifier-icon'
 import type { ActionCreatorWithPayload } from '@reduxjs/toolkit'
 
 interface MinimalistInputProps {

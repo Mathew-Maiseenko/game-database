@@ -1,7 +1,7 @@
 'use client'
 import React, { useState } from 'react'
-import { MagnifierIcon } from '../magnifier-icon'
-import { ArrowIcon } from '../arrow-icon'
+import { MagnifierIcon } from '../icon/magnifier-icon'
+import { ArrowIcon } from '../icon/arrow-icon'
 // import { BiChevronDown } from 'react-icons/bi'
 // import { AiOutlineSearch } from 'react-icons/ai'
 
@@ -49,7 +49,7 @@ export const MinimalistMultiSelect = ({
 					styles={`transform transition-transform duration-300 rotate-0 ${
 						open ? 'rotate-180' : ''
 					}`}
-					fill={selected.length ? 'white' : '#666666'}
+					fill={selected.length ? 'white' : '#666666'} //?
 				/>
 				{/* <svg
 					width='14'

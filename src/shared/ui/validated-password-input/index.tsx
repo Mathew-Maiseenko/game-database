@@ -1,8 +1,8 @@
 'use client'
 import React, { useCallback, useState } from 'react'
 import type { ActionCreatorWithPayload } from '@reduxjs/toolkit'
-import { ClosedEyeIcon } from '../eyes-icons/ui/closed-eye'
-import { OpenEyeIcon } from '../eyes-icons/ui/open-eye'
+import { ClosedEyeIcon } from '../icon/eyes-icons/ui/closed-eye'
+import { OpenEyeIcon } from '../icon/eyes-icons/ui/open-eye'
 
 interface MinimalistInputProps {
 	inputValue: string

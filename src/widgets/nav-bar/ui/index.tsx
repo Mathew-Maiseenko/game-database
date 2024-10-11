@@ -22,25 +22,28 @@ export function NavBar() {
 				</section>
 			</nav>
 			<nav className='block md:hidden text-textGray mb-7 p-3'>
-				<section className='flex min-w-full justify-between md:flex-wrap sm:flex-wrap'>
+				<section className='flex min-w-full justify-between items-center md:flex-wrap sm:flex-wrap'>
 					<MainLogo />
 					<Burger isActive={isBurgerOpen} setActive={setBurgerOpen}>
-						<>
-							<article className='flex justify-between w-full items-center py-1 px-3'>
+						<aside className='flex flex-col justify-start items-center py-6 px-2'>
+							<article className='flex justify-between w-full items-center py-1 px-3 mb-2'>
 								<BurgerIcon
 									isIconActive={isBurgerOpen}
 									setIconActive={setBurgerOpen}
 								/>
+								<ThemeSwitcher />
 								<section onClick={() => setBurgerOpen(!isBurgerOpen)}>
-									<UserButton />
+									<UserButton styles='w-10 h-10 sm:rounded-full' />
 								</section>
 							</article>
-							<NavPoint
-								onClickFunction={() => setBurgerOpen(!isBurgerOpen)}
-								href='/game-list'
-								title={'Games'}
-							/>
-						</>
+							<article>
+								<NavPoint
+									onClickFunction={() => setBurgerOpen(!isBurgerOpen)}
+									href='/game-list'
+									title={'Games'}
+								/>
+							</article>
+						</aside>
 					</Burger>
 				</section>
 			</nav>

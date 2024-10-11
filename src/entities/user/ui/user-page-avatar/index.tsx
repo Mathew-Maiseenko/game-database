@@ -12,7 +12,7 @@ export function UsersAvatar() {
 	const userName = useAppSelector(userSlice.selectors.selectUserName)
 	return (
 		<article className='flex flex-col sm:mr-0 md:mr-5 lg:mr-10 sm:w-full md:w-1/3 rounded-3xl relative after:h-full after:w-px after:absolute md:after:-right-2 lg:after:-right-5  sm:after:bg-none md:after:bg-grayLineAfterCard'>
-			<h2 className='text-center inline-block w-full text-white font-bold sm:text-xl md:text-2xl xl:text-3xl mb-2 underline'>
+			<h2 className='text-center inline-block w-full text-black dark:text-white font-bold sm:text-xl md:text-2xl xl:text-3xl mb-2 underline'>
 				{userName}
 			</h2>
 			<Image
@@ -27,7 +27,7 @@ export function UsersAvatar() {
 					dispatch(userSlice.actions.setUserUnsigned())
 					router.push('http://localhost:3000')
 				}}
-				className='flex text-white justify-center items-center bg-accountExitRed rounded-2xl p-3'
+				className='flex text-white justify-center items-center bg-accountExitRed rounded-2xl p-3 font-semibold'
 			>
 				Log out
 			</button>

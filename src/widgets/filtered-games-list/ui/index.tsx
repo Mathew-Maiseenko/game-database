@@ -20,7 +20,7 @@ export function FilteredGamesList() {
 
 	return (
 		<ListWrapper fetchingState={gameListFetchingState}>
-			<section className='flex flex-col  min-w-full bg-darkGray px-6 py-5 rounded-3xl relative mb-12'>
+			<section className='flex flex-col  min-w-full bg-lightThemeGray dark:bg-darkGray px-6 py-5 rounded-3xl relative mb-12'>
 				<article className='flex flex-row justify-between flex-wrap pb-0 mb-1'>
 					<ViewGamesList gameList={games} />
 				</article>

@@ -1,6 +1,6 @@
 'use client'
 import React, { useState } from 'react'
-import { ArrowIcon } from '../arrow-icon'
+import { ArrowIcon } from '../icon/arrow-icon'
 
 interface MinimalistNumberInputProps {
 	message?: string

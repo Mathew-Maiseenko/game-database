@@ -21,12 +21,16 @@ export default function CardWithBaseInfo() {
 		return
 	}
 	return (
-		<section className='flex flex-col bg-whiteGray rounded-3xl w-1/2 mr-3 p-7'>
+		<section className='flex flex-col bg-white dark:border-none border-2 border-lightThemeBorderGray dark:bg-whiteGray rounded-3xl w-1/2 mr-3 p-7'>
 			<section className='flex justify-between'>
-				<h2 className='text-xl font-bold text-white'>{currentGame.name}</h2>
+				<h2 className='text-xl font-bold text-black dark:text-white'>
+					{currentGame.name}
+				</h2>
 				<article className='flex items-center'>
 					<StarIcon />
-					<h4 className='text-lg font-bold text-white'>{currentGame.rating}</h4>
+					<h4 className='text-lg font-bold text-black dark:text-white'>
+						{currentGame.rating}
+					</h4>
 				</article>
 			</section>
 			<section className='flex-col justify-between'>
@@ -36,11 +40,4 @@ export default function CardWithBaseInfo() {
 			</section>
 		</section>
 	)
-}
-
-{
-	/* <section className='flex items-center'>
-					<DownloadIcon />
-					<h4 className='text-lg font-bold text-white'>2.3M</h4>
-				</section> */
 }

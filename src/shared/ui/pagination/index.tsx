@@ -16,7 +16,7 @@ export const Pagination = ({
 	function addPaginationButton(page: number | '...') {
 		if (page === '...') {
 			buttonsArr.push(
-				<button className='transition-all duration-300 py-2 px-4 mr-2 bg-orange text-center text-white rounded-md hover:bg-paginationHover hover:text-black active:bg-paginationActive active:text-black '>
+				<button className='transition-all duration-300 py-2 px-4 mr-2 bg-blue dark:bg-orange text-center text-white rounded-md dark:hover:bg-paginationHover hover:bg-hoverBlue hover:text-black dark:active:bg-paginationActive active:bg-activeBlue active:text-black '>
 					...
 				</button>
 			)

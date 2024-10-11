@@ -52,9 +52,11 @@ export function UsersGamesList({ withButton }: UsersGamesListProps) {
 	if (isUserSigned) {
 		return (
 			<ListWrapper fetchingState={fetchingDetailsByGamesIdsState}>
-				<section className='flex flex-col  min-w-full min-h-[46vh] bg-darkGray px-6 pr-10 py-5 rounded-3xl relative'>
-					<h2 className='text-orange text-2xl  mb-5'>
-						<strong className='inline text-white underline'>Your Gaming</strong>{' '}
+				<section className='flex flex-col  min-w-full min-h-[46vh] bg-white dark:border-none border-2 border-lightThemeBorderGray dark:bg-whiteGray px-6 pr-10 py-5 rounded-3xl relative'>
+					<h2 className='text-blue dark:text-orange text-2xl  mb-5'>
+						<strong className='inline text-black dark:text-white underline'>
+							Your Gaming
+						</strong>{' '}
 						Library
 					</h2>
 					<section className='flex flex-col'>
@@ -63,7 +65,7 @@ export function UsersGamesList({ withButton }: UsersGamesListProps) {
 					<button
 						className={`${
 							withButton ? '' : 'hidden'
-						} bg-orange sm:w-1/2 md:w-1/3 m-auto p-2 relative -bottom-5 rounded-2xl text-white`}
+						} bg-blue dark:bg-orange sm:w-1/2 md:w-1/3 m-auto p-2 relative -bottom-5 rounded-2xl text-black dark:text-white`}
 						onClick={() => {
 							router.push('http://localhost:3000/user')
 						}}

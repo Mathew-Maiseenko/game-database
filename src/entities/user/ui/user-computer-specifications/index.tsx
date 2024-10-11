@@ -7,8 +7,8 @@ export function ComputerSpecifications() {
 		userSlice.selectors.selectComputerSpecifications
 	)
 	return (
-		<article className='flex flex-col text-white sm:mr-0 md:mr-2 sm:w-full md:w-1/3'>
-			<h2 className='text-center inline-block w-full text-white font-medium sm:text-2xl xl:text-3xl mb-2 underline'>
+		<article className='flex flex-col text-black dark:text-white font-medium sm:mr-0 md:mr-2 sm:w-full md:w-1/3'>
+			<h2 className='text-center inline-block w-full text-black dark:text-white font-semibold sm:text-2xl xl:text-3xl mb-2 underline'>
 				Характеристики компьютера:
 			</h2>
 			<article className='flex flex-col justify-between w-full h-full pb-5 sm:text-md md:text-lg'>
