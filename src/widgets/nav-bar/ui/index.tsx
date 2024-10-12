@@ -1,9 +1,10 @@
 'use client'
 import React from 'react'
-import { BurgerIcon, UserButton } from '@/shared/ui'
+import { BurgerIcon } from '@/shared/ui'
 import { Burger, MainLogo, NavPoint } from '@/entities/navigation'
 import { useState } from 'react'
 import { ThemeSwitcher } from '@/features/theme-switcher'
+import { UserButton } from '@/entities/user'
 
 export function NavBar() {
 	const [isBurgerOpen, setBurgerOpen] = useState(false)

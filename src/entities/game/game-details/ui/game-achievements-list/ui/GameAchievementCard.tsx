@@ -2,8 +2,7 @@
 import Image from 'next/image'
 
 import getRandomDefaultImage from '@/shared/model/defaultImages'
-import { AchievementIcon } from '@/shared/ui'
-import { AnimatedTickIcon } from '@/shared/ui/animated-tick-icon'
+import { AchievementIcon, AnimatedTickIcon } from '@/shared/ui'
 import { useAppDispatch, useAppSelector } from '@/shared/lib/redux/hooks'
 import { userSlice } from '@/entities/user'
 

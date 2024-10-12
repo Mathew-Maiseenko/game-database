@@ -1,3 +1,5 @@
+export { UserButton } from './ui/user-button/ui'
+
 export type { UserInfoLocaleStorageType, usersFavoriteGameType } from './types'
 
 export { userSlice } from './model/user-slice'

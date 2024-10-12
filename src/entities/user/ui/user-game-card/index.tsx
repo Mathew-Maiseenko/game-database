@@ -45,7 +45,7 @@ export function UsersGameCard({
 				onClick={() => router.push(`http://localhost:3000/details/${id}`)}
 			/>
 			<article className='flex flex-row justify-between w-full'>
-				<section className='flex flex-col justify-center text-white'>
+				<section className='flex flex-col justify-center text-black dark:text-white'>
 					<h2 className='text-white mb-1 font-semibold'>{title}</h2>
 					<section className='flex flex-row justify-between'>
 						<article className='flex flex-row text-white'>
@@ -54,22 +54,28 @@ export function UsersGameCard({
 					</section>
 				</section>
 
-				<section className='flex flex-col justify-center  items-center'>
-					<h2 className='text-white mb-1 font-semibold'>Date Added</h2>
+				<section className='flex flex-col justify-center items-center'>
+					<h2 className='text-black dark:text-white mb-1 font-semibold'>
+						Date Added
+					</h2>
 					<p className='flex flex-row text-textGray font-light'>
 						{releaseDate}
 					</p>
 				</section>
 
 				<section className='flex flex-col justify-center items-center'>
-					<h2 className='text-white mb-1 font-semibold'>Playtime</h2>
+					<h2 className='text-black dark:text-white mb-1 font-semibold'>
+						Playtime
+					</h2>
 					<p className='flex flex-row text-textGray font-light'>
 						{playtime} hours
 					</p>
 				</section>
 
 				<section className='flex flex-col justify-center items-center'>
-					<h2 className='text-white mb-1 font-semibold'>Achievements</h2>
+					<h2 className='text-black dark:text-white mb-1 font-semibold'>
+						Achievements
+					</h2>
 					<p className='flex flex-row text-textGray font-light'>
 						{completedAchievementsCount}/{achievementsCount}
 					</p>
@@ -85,15 +91,15 @@ export function UsersGameCard({
 						Complete
 					</button>
 					<article className='flex flex-row'>
-						<button className='flex justify-center items-center bg-orangeBorder p-1 w-1/2 text-white font-semibold rounded-md mr-1'>
-							<DownloadIcon />
+						<button className='flex justify-center items-center bg-downloadGameButton p-1 w-1/2 text-white font-semibold rounded-md mr-1'>
+							<DownloadIcon classes='w-5 h-5 fill-white dark:fill-black' />
 						</button>
 
 						<button
-							className='flex justify-center items-center bg-accountExitRed p-1 w-1/2 text-white font-semibold rounded-md'
+							className='flex justify-center items-center bg-gameDeleteRedLightTheme p-1 w-1/2 text-white font-semibold rounded-md'
 							onClick={() => dispatch(userSlice.actions.removeFavoriteGame(id))}
 						>
-							<GarbageIcon />
+							<GarbageIcon classes='w-5 h-5 fill-white dark:fill-black' />
 						</button>
 					</article>
 				</section>

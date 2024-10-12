@@ -33,9 +33,12 @@ export function RecommendedGameList() {
 	}, [isUserSigned, favoriteGames, favoriteGameIds])
 
 	return (
-		<section className='flex flex-col  min-w-full bg-darkGray px-6 pr-10 pt-5 rounded-3xl relative'>
-			<article className='text-orange text-2xl  mb-8'>
-				<h2 className='inline text-white underline'>Recommended</h2> Games
+		<section className='flex flex-col  min-w-full bg-lightThemeGray dark:bg-darkGray dark:border-none border-2 border-lightThemeBorderGray   px-6 pr-10 pt-5 rounded-3xl relative'>
+			<article className='dark:text-orange text-blue text-2xl font-medium  mb-8'>
+				<h2 className='inline text-black dark:text-white underline font-bold'>
+					Recommended
+				</h2>{' '}
+				Games
 			</article>
 			<article className='flex flex-col'>
 				<article className='flex flex-row flex-wrap justify-between w-full p-3'>
@@ -43,7 +46,7 @@ export function RecommendedGameList() {
 				</article>
 			</article>
 			{isUserSigned && (
-				<button className='bg-orange sm:w-1/2 md:w-1/3 m-auto p-2 relative -bottom-5 rounded-2xl text-white'>
+				<button className='dark:bg-orange bg-blue sm:w-1/2 md:w-1/3 m-auto p-2 relative -bottom-5 rounded-2xl text-black dark:text-whit'>
 					View Your Library
 				</button>
 			)}

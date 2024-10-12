@@ -23,14 +23,18 @@ export const MinimalistFiltrationCarouselCard = ({
 				md:w-1/5 lg:w-1/6 h-full`}
 		>
 			<article
-				className={` hover:bg-blue w-full min-h-12 h-2/3 bg-neutral-50 rounded-t-lg shadow flex items-center justify-between px-2
+				className={` hover:bg-hoverBlue dark:hover:bg-orangeHover w-full min-h-12 h-2/3 bg-neutral-50 rounded-t-lg shadow flex items-center justify-between px-2
 				bg-no-repeat bg-center bg-cover`}
 				style={{ backgroundImage: `url(${image})` }}
 			></article>
 			<article
 				className={`
-					flex items-center justify-between h-1/3 p-2 rounded-b-lg transition-all bg-darkGray text-white duration-200
-					${isActive && 'bg-orange text-black'}
+					flex items-center justify-between h-1/3 p-2 rounded-b-lg transition-all hover:bg-hoverBlue dark:hover:bg-orangeHover dark:border-none border-2 border-t-0 border-lightThemeBorderGray duration-200
+					${
+						isActive
+							? 'dark:bg-orangeActive bg-activeBlue dark:text-black text-white'
+							: 'bg-white dark:bg-darkGray text-black dark:text-white'
+					}
 				`}
 			>
 				<span className='ml-2'>{title}</span>

@@ -22,7 +22,7 @@ export function LayoutWrapper({
 		<body
 			className={`${manrope.className} ${
 				isThemeDark && 'dark'
-			} relative flex flex-col bg-lightThemeGray h-full px-[7vw] pt-[3vh] min-h-screen overflow-x-hidden dark:bg-darkGray`}
+			} relative flex flex-col bg-mainBgColor h-full px-[7vw] pt-[3vh] min-h-screen overflow-x-hidden dark:bg-darkGray`}
 		>
 			<SignInModal />
 			<SignUpModal />

@@ -1,16 +1,15 @@
 'use client'
-import { useAppDispatch } from '@/shared/lib/redux/hooks'
-import { PaginationProps } from './types'
+import { useAppDispatch, useAppSelector } from '@/shared/lib/redux/hooks'
+import { PaginationProps } from '../types'
 import { filteredGamesSlice } from '@/features/filtration/model/filtration-slice'
 import { useCallback } from 'react'
-import { PaginationButton } from './ui/pagination-button'
+import { PaginationButton } from './pagination-button'
 
-export const Pagination = ({
-	styles,
-	totalPageCount,
-	currentPage,
-}: PaginationProps) => {
+export const Pagination = ({ styles, totalPageCount }: PaginationProps) => {
 	const dispatch = useAppDispatch()
+	const currentPage = useAppSelector(
+		filteredGamesSlice.selectors.selectActivePage
+	)
 	const buttonsArr: JSX.Element[] = []
 
 	function addPaginationButton(page: number | '...') {
@@ -19,6 +18,14 @@ export const Pagination = ({
 				<button className='transition-all duration-300 py-2 px-4 mr-2 bg-blue dark:bg-orange text-center text-white rounded-md dark:hover:bg-paginationHover hover:bg-hoverBlue hover:text-black dark:active:bg-paginationActive active:bg-activeBlue active:text-black '>
 					...
 				</button>
+			)
+		} else if (page === currentPage) {
+			buttonsArr.push(
+				<PaginationButton
+					setPage={handlePageButtonClick}
+					page={page}
+					isCurrentPage={true}
+				/>
 			)
 		} else {
 			buttonsArr.push(

@@ -2,16 +2,14 @@
 import { GameCard } from '@/entities/game/game-card'
 import { useAppSelector } from '@/shared/lib/redux/hooks'
 import { filteredGamesSlice } from '@/features/filtration/model/filtration-slice'
-import { ListWrapper, Pagination } from '@/shared/ui'
+import { ListWrapper } from '@/shared/ui'
 import type { StoreGame } from '@/shared/api/RawgApi-hook'
+import { Pagination } from '@/features/pagination'
 
 export function FilteredGamesList() {
 	const games = useAppSelector(filteredGamesSlice.selectors.selectCurrentGames)
 	const gameListFetchingState = useAppSelector(
 		filteredGamesSlice.selectors.selectGameListFetchingState
-	)
-	const activePage = useAppSelector(
-		filteredGamesSlice.selectors.selectActivePage
 	)
 
 	const gamesCount = useAppSelector(
@@ -25,10 +23,7 @@ export function FilteredGamesList() {
 					<ViewGamesList gameList={games} />
 				</article>
 				<article className='flex justify-center w-full'>
-					<Pagination
-						totalPageCount={Math.ceil(gamesCount / 20)}
-						currentPage={activePage}
-					/>
+					<Pagination totalPageCount={Math.ceil(gamesCount / 20)} />
 				</article>
 			</section>
 		</ListWrapper>
