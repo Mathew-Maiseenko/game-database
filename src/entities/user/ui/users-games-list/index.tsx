@@ -16,8 +16,6 @@ export function UsersGamesList({ withButton }: UsersGamesListProps) {
 	const dispatch = useAppDispatch()
 	const router = useRouter()
 
-	const isUserSigned = useAppSelector(userSlice.selectors.selectIsUserSigned)
-
 	const fetchingDetailsByGamesIdsState = useAppSelector(
 		userSlice.selectors.selectFetchingDetailsByGamesIdsState
 	)
@@ -48,36 +46,31 @@ export function UsersGamesList({ withButton }: UsersGamesListProps) {
 	useEffect(() => {
 		dispatch(fetchDetailsByGamesIds(userGamesIds))
 	}, [userGamesIds, dispatch])
-
-	if (isUserSigned) {
-		return (
-			<ListWrapper fetchingState={fetchingDetailsByGamesIdsState}>
-				<section className='flex flex-col  min-w-full min-h-[46vh] bg-white dark:border-none border-2 border-lightThemeBorderGray dark:bg-whiteGray px-6 pr-10 py-5 rounded-3xl relative'>
-					<h2 className='text-blue dark:text-orange text-2xl  mb-5'>
-						<strong className='inline text-black dark:text-white underline'>
-							Your Gaming
-						</strong>{' '}
-						Library
-					</h2>
-					<section className='flex flex-col'>
-						<ViewUsersGamesList gameList={userGames} />
-					</section>
-					<button
-						className={`${
-							withButton ? '' : 'hidden'
-						} bg-blue dark:bg-orange sm:w-1/2 md:w-1/3 m-auto p-2 relative -bottom-5 rounded-2xl text-black dark:text-white`}
-						onClick={() => {
-							router.push('http://localhost:3000/user')
-						}}
-					>
-						View Your Library
-					</button>
+	return (
+		<ListWrapper fetchingState={fetchingDetailsByGamesIdsState}>
+			<section className='flex flex-col  min-w-full min-h-[46vh] bg-white dark:border-none border-2 border-lightThemeBorderGray dark:bg-whiteGray px-6 pr-10 py-5 rounded-3xl relative'>
+				<h2 className='text-blue dark:text-orange text-2xl  mb-5'>
+					<strong className='inline text-black dark:text-white underline'>
+						Your Gaming
+					</strong>{' '}
+					Library
+				</h2>
+				<section className='flex flex-col'>
+					<ViewUsersGamesList gameList={userGames} />
 				</section>
-			</ListWrapper>
-		)
-	} else {
-		return
-	}
+				<button
+					className={`${
+						withButton ? '' : 'hidden'
+					} bg-blue dark:bg-orange sm:w-1/2 md:w-1/3 m-auto p-2 relative -bottom-5 rounded-2xl text-black dark:text-white`}
+					onClick={() => {
+						router.push('http://localhost:3000/user')
+					}}
+				>
+					View Your Library
+				</button>
+			</section>
+		</ListWrapper>
+	)
 }
 
 function ViewUsersGamesList({

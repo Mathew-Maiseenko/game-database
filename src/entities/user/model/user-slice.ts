@@ -57,6 +57,8 @@ export const userSlice = createAppSlice({
 		selectComputerSpecifications: state => state.computerSpecifications,
 		selectFavoriteGames: state => state.statistics.favoriteGames,
 		selectFavoriteGamesIds: state => state.statistics.favoriteGamesIds,
+		selectFavoriteGamesIdsCount: state =>
+			state.statistics.favoriteGamesIds.length,
 		selectFavoriteGameById: (state, id) => state.statistics.favoriteGames[id],
 		selectIsGameFavoriteById: (state, id) =>
 			!!state.statistics.favoriteGames[id],

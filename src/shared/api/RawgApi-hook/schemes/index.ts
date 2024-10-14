@@ -222,6 +222,8 @@ export const GenreDtoSchema = z.object({
 	image: z.string(),
 })
 
+export const PostersDtoSchema = z.string()
+
 export const TagDtoSchema = z.object({
 	id: z.number(),
 	name: z.string(),

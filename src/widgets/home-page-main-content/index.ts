@@ -1,0 +1,1 @@
+export { HomePageMainContent } from './ui'

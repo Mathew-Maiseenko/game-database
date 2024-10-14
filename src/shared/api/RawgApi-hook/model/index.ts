@@ -12,6 +12,7 @@ import {
 	GameDetailsDtoSchema,
 	GameDtoSchema,
 	GenreDtoSchema,
+	PostersDtoSchema,
 	ScreenshotsDtoSchema,
 	TagDtoSchema,
 } from '../schemes'
@@ -23,6 +24,7 @@ import type { StoreGamesFiltrationObj, TagResult } from '../'
 import { DeveloperResult } from '../types/developer'
 import getListGameScreenshotsParams from '../lib/getting-params/getting-screenshots-params'
 import getFilteredGameListParams from '../lib/getting-params/getting-filtered-game-list-params'
+import getRandomGamesPostersParams from '../lib/getting-params/getting-posters-params'
 
 const baseUrl: string = 'https://api.rawg.io/api/'
 const ApiKey: string = 'key=fd711517d11b45b0b5c432f288b02d33'
@@ -116,6 +118,14 @@ export const RawgApi = {
 			.then(res => {
 				console.log(res)
 				return GenreDtoSchema.array().parse(res) as Genre[]
+			})
+	},
+	getRandomGamesPosters: async () => {
+		return await fetchingWrapper(`${baseUrl}genres?${ApiKey}`)
+			.then(res => getRandomGamesPostersParams(res))
+			.then(res => {
+				console.log(res)
+				return PostersDtoSchema.array().parse(res) as string[]
 			})
 	},
 	getTagsList: async () => {

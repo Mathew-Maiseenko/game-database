@@ -1,13 +1,11 @@
-import { WelcomeMessage } from '@/widgets/welcome-message'
-import { UsersGamesList } from '@/entities/user/ui/users-games-list'
-import { PopularGamesList } from '@/entities/game/popular-game-list'
+import { WelcomeMessage } from '@/entities/message'
+import { HomePageMainContent } from '@/widgets/home-page-main-content'
 
 export function HomePage() {
 	return (
 		<>
 			<WelcomeMessage />
-			<PopularGamesList />
-			<UsersGamesList withButton={true} />
+			{/* <HomePageMainContent /> */}
 		</>
 	)
 }
