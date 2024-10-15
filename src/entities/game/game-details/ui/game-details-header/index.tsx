@@ -9,7 +9,57 @@ interface GameDetailsHeaderPropsTypes {
 	secondScreenshot?: string | null
 	gameTitle: string | undefined
 }
+export const GameDetailsHeader = memo(function GameDetailsHeader({
+	mainImage,
+	firstScreenshot,
+	secondScreenshot,
+	gameTitle,
+}: GameDetailsHeaderPropsTypes) {
+	const dispatch = useAppDispatch()
+	return (
+		<>
+			<header className='mb-10'>
+				<article className='flex justify-between sm:flex-col lg:flex-row flex-grow mb-10'>
+					<ImageCardWithModal
+						dispatch={dispatch}
+						image={mainImage ? mainImage : ''}
+						classes={`flex flex-shrink rounded-md dark:border-none border-2 border-lightThemeBorderGray min-h-full ${
+							firstScreenshot && secondScreenshot
+								? `${classes['game-main-pictures']}`
+								: 'w-full'
+						}`}
+						alt='Main game photo'
+					/>
+					{firstScreenshot && secondScreenshot && (
+						<section className='flex flex-grow h-full flex-col'>
+							<ImageCardWithModal
+								dispatch={dispatch}
+								image={firstScreenshot ? firstScreenshot : ''}
+								classes={`flex w-full  rounded-md dark:border-none border-2 border-lightThemeBorderGray 
+								${classes['game-first-screenshot']}
+								`}
+								alt='The first game screenshot'
+							/>
+							<ImageCardWithModal
+								dispatch={dispatch}
+								image={secondScreenshot ? secondScreenshot : ''}
+								classes={`flex w-full rounded-md dark:border-none border-2 border-lightThemeBorderGray
+								${classes['game-second-screenshot']}
+								`}
+								alt='The second game screenshot'
+							/>
+						</section>
+					)}
+				</article>
+				<h1 className='w-full text-5xl font-extrabold dark:text-white text-black text-center'>
+					{gameTitle} Details
+				</h1>
+			</header>
+		</>
+	)
+})
 
+/*
 export const GameDetailsHeader = memo(function GameDetailsHeader({
 	mainImage,
 	firstScreenshot,
@@ -53,7 +103,6 @@ export const GameDetailsHeader = memo(function GameDetailsHeader({
 		</>
 	)
 })
-/*
 import { ImageCardWithModal } from '@/entities/image'
 import { useAppDispatch } from '@/shared/lib/redux/hooks'
 import { memo } from 'react'

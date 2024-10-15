@@ -1,27 +1,12 @@
-.game-pictures-container {
-	display: grid;
-	grid-template-columns: auto 33%;
-	grid-template-rows: 1fr 1fr;
-	gap: 8px;
-}
-
 .game-main-pictures {
-	grid-row: 1 / span 2;
-	grid-column: 1;
-	min-width: 67%; /* Минимальная ширина, чтобы остальные элементы занимали 33% */
-}
-
-.game-first-screenshot,
-.game-second-screenshot {
-	grid-column: 2;
-	min-height: 50%; /* Высота для каждого, чтобы вместе занимали 100% */
+	max-width: 66%;
 }
 
 .game-first-screenshot {
-	grid-row: 1;
 	height: max-content;
+	min-height: 50%;
 }
 
 .game-second-screenshot {
-	grid-row: 2;
+	min-height: 50%;
 }

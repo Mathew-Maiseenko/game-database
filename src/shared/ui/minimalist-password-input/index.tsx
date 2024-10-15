@@ -85,10 +85,10 @@ export const MinimalistPasswordInput = ({
 			</article>
 			<span
 				className={`
-						flex absolute z-10 bottom-0 left-4 bg-opacity-100 bg-inherit transition-all duration-200 ease-in-out select-none pointer-events-none py-1
+						flex absolute z-10 bottom-0 left-4 bg-opacity-100 bg-inherit transition-all duration-200 ease-in-out select-none pointer-events-none
 						${
 							!inputValue
-								? '-translate-y-1.5 -translate-x-1.5 text-xl bg-opacity-0 px-0.5'
+								? '-translate-y-1.5 -translate-x-1.5 text-xl bg-opacity-0 px-0.5 py-1'
 								: 'translate-y-3 translate-x-9 px-2 py-0'
 						}
 						${

@@ -30,6 +30,8 @@ export function GameDetailsMain() {
 		gameDetailsSlice.selectors.selectGameDetailsById(state, currentGameId)
 	)
 
+	const isUserSigned = useAppSelector(userSlice.selectors.selectIsUserSigned)
+
 	const isGameAddedInUserList = useAppSelector((state: AppState) =>
 		userSlice.selectors.selectIsUserContainGameById(state, currentGameId)
 	)
@@ -66,10 +68,16 @@ export function GameDetailsMain() {
 						<button
 							className='w-1/2 rounded-3xl border-2 transition-all duration-300 dark:border-orange border-blue p-1 text-blue dark:text-orange dark:hover:text-white hover:text-black dark:hover:bg-orange hover:bg-blue dark:active:bg-activeButtonRed dark:active:text-white active:text-black'
 							onClick={() => {
-								if (!isGameAddedInUserList) {
-									dispatch(userSlice.actions.addFavoriteGame(currentGame))
+								if (isUserSigned) {
+									if (!isGameAddedInUserList) {
+										dispatch(userSlice.actions.addFavoriteGame(currentGame))
+									} else {
+										dispatch(
+											userSlice.actions.removeFavoriteGame(currentGameId)
+										)
+									}
 								} else {
-									dispatch(userSlice.actions.removeFavoriteGame(currentGameId))
+									dispatch(userSlice.actions.setUserSignUpModalOpen())
 								}
 							}}
 						>

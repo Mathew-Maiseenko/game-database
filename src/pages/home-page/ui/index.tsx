@@ -5,7 +5,7 @@ export function HomePage() {
 	return (
 		<>
 			<WelcomeMessage />
-			{/* <HomePageMainContent /> */}
+			<HomePageMainContent />
 		</>
 	)
 }
