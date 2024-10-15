@@ -65,6 +65,9 @@ export const filteredGamesSlice = createAppSlice({
 		selectFiltrationTagList: state => state.activeFiltrationTags,
 	},
 	reducers: {
+		initGenres: (state, action: PayloadAction<Genre[]>) => {
+			state.genres = action.payload
+		},
 		setActivePage: (state, action: PayloadAction<number>) => {
 			state.activePage = action.payload
 		},

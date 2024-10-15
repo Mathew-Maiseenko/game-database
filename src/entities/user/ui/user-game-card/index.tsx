@@ -34,6 +34,7 @@ export function UsersGameCard({
 }: UsersGameCardProps) {
 	const dispatch = useAppDispatch()
 	const router = useRouter()
+
 	return (
 		<article className='flex flex-row relative w-full h-1/3 overflow-x-hidden rounded-xl mb-3 after:h-0.5 after:w-full after:absolute after:bottom-0 after:bg-textGray'>
 			<Image
