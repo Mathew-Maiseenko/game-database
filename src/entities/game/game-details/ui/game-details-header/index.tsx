@@ -1,3 +1,59 @@
+import classes from './classes.module.css'
+import { ImageCardWithModal } from '@/entities/image'
+import { useAppDispatch } from '@/shared/lib/redux/hooks'
+import { memo } from 'react'
+
+interface GameDetailsHeaderPropsTypes {
+	mainImage: string | null | undefined
+	firstScreenshot?: string | null
+	secondScreenshot?: string | null
+	gameTitle: string | undefined
+}
+
+export const GameDetailsHeader = memo(function GameDetailsHeader({
+	mainImage,
+	firstScreenshot,
+	secondScreenshot,
+	gameTitle,
+}: GameDetailsHeaderPropsTypes) {
+	const dispatch = useAppDispatch()
+	return (
+		<>
+			<header className='mb-10 w-full'>
+				<article
+					className={`${classes['game-pictures-container']} mb-10 w-full`}
+				>
+					<ImageCardWithModal
+						dispatch={dispatch}
+						image={mainImage ? mainImage : ''}
+						classes={`${
+							classes['game-main-pictures']
+						} flex flex-shrink items-stretch rounded-md dark:border-none border-2 border-lightThemeBorderGray ${
+							firstScreenshot && secondScreenshot ? 'h-full mr-1' : 'w-full'
+						}`}
+						alt='Main game photo'
+					/>
+					<ImageCardWithModal
+						dispatch={dispatch}
+						image={firstScreenshot ? firstScreenshot : ''}
+						classes={`${classes['game-first-screenshot']} object-cover flex flex-grow items-stretch w-full rounded-md mb-1 dark:border-none border-2 border-lightThemeBorderGray`}
+						alt='first game screenshot'
+					/>
+					<ImageCardWithModal
+						dispatch={dispatch}
+						image={secondScreenshot ? secondScreenshot : ''}
+						classes={`${classes['game-second-screenshot']} object-cover flex flex-grow items-stretch w-full rounded-md dark:border-none border-2 border-lightThemeBorderGray`}
+						alt='first game screenshot'
+					/>
+				</article>
+				<h1 className='w-full text-5xl font-extrabold dark:text-white text-black text-center'>
+					{gameTitle} Details
+				</h1>
+			</header>
+		</>
+	)
+})
+/*
 import { ImageCardWithModal } from '@/entities/image'
 import { useAppDispatch } from '@/shared/lib/redux/hooks'
 import { memo } from 'react'
@@ -24,9 +80,7 @@ export const GameDetailsHeader = memo(function GameDetailsHeader({
 						dispatch={dispatch}
 						image={mainImage ? mainImage : ''}
 						classes={`flex flex-shrink object-cover rounded-md dark:border-none border-2 border-lightThemeBorderGray ${
-							firstScreenshot && secondScreenshot
-								? 'h-full mr-1 max-w-2/3'
-								: 'w-full'
+							firstScreenshot && secondScreenshot ? 'h-full mr-1' : 'w-full'
 						}`}
 						alt='Main game photo'
 					/>
@@ -54,7 +108,7 @@ export const GameDetailsHeader = memo(function GameDetailsHeader({
 		</>
 	)
 })
-/*
+
 <Image
 							src={firstScreenshot ? firstScreenshot : ''}
 							width={2048}
