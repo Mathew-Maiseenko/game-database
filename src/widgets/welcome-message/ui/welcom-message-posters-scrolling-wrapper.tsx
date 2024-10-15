@@ -1,20 +1,21 @@
 'use client'
 import { RawgApi } from '@/shared/api/RawgApi-hook'
 import Image from 'next/image'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import logo from '../../../../public/logo.png'
 import { useAppDispatch, useAppSelector } from '@/shared/lib/redux/hooks'
 import { filteredGamesSlice } from '@/features/filtration'
+import { useWindowWidth } from '@/shared/model'
 
 export function WelcomeMessagePostersScrollingWrapper({
 	children,
 }: {
 	children: JSX.Element
 }) {
+	const windowWidth = useWindowWidth()
 	const [position, setPosition] = useState(0)
 	const [curPoster, setCurPoster] = useState(1)
 	const [gamesPosters, setGamesPosters] = useState<string[]>([])
-	const welcomeMessageRef = useRef<HTMLDivElement | null>(null)
 
 	const dispatch = useAppDispatch()
 	const gameGenres = useAppSelector(
@@ -37,26 +38,20 @@ export function WelcomeMessagePostersScrollingWrapper({
 	useEffect(() => {
 		if (gamesPosters.length) {
 			const movingProcessInterval = setInterval(() => {
-				if (welcomeMessageRef.current) {
-					if (curPoster < gamesPosters.length) {
-						const parentWidth = welcomeMessageRef.current.offsetWidth
-						setPosition(prevPosition => prevPosition - parentWidth)
-						setCurPoster(prevPoster => prevPoster + 1)
-					} else {
-						setCurPoster(1)
-						setPosition(0)
-					}
+				if (curPoster < gamesPosters.length) {
+					setPosition(prevPosition => prevPosition - windowWidth)
+					setCurPoster(prevPoster => prevPoster + 1)
+				} else {
+					setCurPoster(1)
+					setPosition(0)
 				}
 			}, 3000)
 			return () => clearInterval(movingProcessInterval)
 		}
-	}, [welcomeMessageRef, gamesPosters.length, curPoster])
+	}, [gamesPosters.length, curPoster, windowWidth])
 
 	return (
-		<section
-			ref={welcomeMessageRef}
-			className='relative inline-flex flex-col justify-between min-w-full min-h-[46vh] dark:border-none border-2 border-lightThemeBorderGray mb-10 rounded-3xl overflow-hidden'
-		>
+		<section className='relative inline-flex flex-col justify-between min-w-full dark:border-none border-2 border-lightThemeBorderGray mb-10 rounded-3xl overflow-hidden'>
 			<Image
 				className='absolute top-0 left-0 z-10 w-full h-full'
 				src={logo}
@@ -68,34 +63,21 @@ export function WelcomeMessagePostersScrollingWrapper({
 				style={{ transform: `translateX(${position}px)` }}
 				className={`flex flex-grow transition-transform duration-500 ease-out transform absolute top-0 left-0 origin-top-right h-full z-20 `}
 			>
-				<ViewPostersList
-					width={
-						welcomeMessageRef.current
-							? welcomeMessageRef.current.offsetWidth
-							: 0
-					}
-					posters={gamesPosters}
-				/>
+				<ViewPostersList posters={gamesPosters} />
 			</article>
 			{children}
 		</section>
 	)
 }
 
-function ViewPostersList({
-	posters,
-	width,
-}: {
-	posters: string[]
-	width?: number
-}) {
+function ViewPostersList({ posters }: { posters: string[] }) {
 	return posters.map((poster, i) => (
 		<article
 			style={{
-				background: `left / cover no-repeat url(${poster})`,
+				background: `center / cover no-repeat url(${poster})`,
 			}}
 			key={`Game poster ${i}`}
-			className={`w-screen object-cover flex flex-grow `}
+			className={`w-screen object-cover flex flex-grow brightness-50`}
 		/>
 	))
 }

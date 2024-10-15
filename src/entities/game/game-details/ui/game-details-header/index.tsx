@@ -19,17 +19,19 @@ export const GameDetailsHeader = memo(function GameDetailsHeader({
 	return (
 		<>
 			<header className='mb-10'>
-				<article className='flex justify-between sm:flex-col lg:flex-row min-h-[40vh] mb-10'>
+				<article className='flex justify-between sm:flex-col lg:flex-row mb-10'>
 					<ImageCardWithModal
 						dispatch={dispatch}
 						image={mainImage ? mainImage : ''}
-						classes={`flex object-cover rounded-md dark:border-none border-2 border-lightThemeBorderGray ${
-							firstScreenshot && secondScreenshot ? 'w-2/3 mr-1' : 'w-full'
+						classes={`flex flex-shrink object-cover rounded-md dark:border-none border-2 border-lightThemeBorderGray ${
+							firstScreenshot && secondScreenshot
+								? 'h-full mr-1 max-w-2/3'
+								: 'w-full'
 						}`}
 						alt='Main game photo'
 					/>
 					{firstScreenshot && secondScreenshot && (
-						<section className='w-1/3 flex-col'>
+						<section className='h-full w-1/3 flex-col flex-grow'>
 							<ImageCardWithModal
 								dispatch={dispatch}
 								image={firstScreenshot ? firstScreenshot : ''}
