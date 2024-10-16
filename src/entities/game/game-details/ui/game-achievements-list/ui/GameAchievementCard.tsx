@@ -39,7 +39,7 @@ export function GameAchievementCard({
 		<section className='flex w-full justify-between relative mb-5 after:h-0.5 after:w-full after:absolute after:-bottom-2 after:bg-grayLineAfterCard'>
 			<section className='flex'>
 				<article
-					className='relative min-w-20'
+					className='relative sm:max-w-10 md:max-w-20 lg:max-w-40'
 					onClick={() => {
 						if (isUserSigned && isGameFavorite && !isComplete) {
 							dispatch(
@@ -58,15 +58,17 @@ export function GameAchievementCard({
 						}
 					}}
 				>
-					<section className={`${!isComplete && 'hidden'} absolute w-full`}>
+					<section
+						className={`${!isComplete && 'hidden'} absolute w-full h-full`}
+					>
 						<AnimatedTickIcon />
 					</section>
 					<Image
 						src={image || getRandomDefaultImage()}
-						width={300}
-						height={300}
+						width={500}
+						height={500}
 						alt='Picture of the achievement'
-						className='w-auto h-full'
+						className='w-full h-full'
 					/>
 				</article>
 				<article className='flex flex-col justify-self-start rounded-3xl min-w-[70%] p-3'>
