@@ -12,18 +12,23 @@ export const ListOfGameScreenshots = memo(function ListOfGameScreenshots({
 	const dispatch = useAppDispatch()
 	return (
 		<section className='mb-5'>
-			{/* <MinimalistCarousel>
-				{...ViewListOfGameScreenshots(screenshots, dispatch)}
-			</MinimalistCarousel> */}
-			<Carousel>{...ViewListOfGameScreenshots(screenshots, dispatch)}</Carousel>
+			<Carousel>
+				<ViewListOfGameScreenshots
+					screenshots={screenshots}
+					dispatch={dispatch}
+				/>
+			</Carousel>
 		</section>
 	)
 })
 
-export const ViewListOfGameScreenshots = (
-	screenshots: string[],
+export const ViewListOfGameScreenshots = ({
+	screenshots,
+	dispatch,
+}: {
+	screenshots: string[]
 	dispatch: AppDispatch
-) =>
+}) =>
 	screenshots.map((screenshot, i) => (
 		<ImageCardWithModal
 			key={`screenshot-${i}`}

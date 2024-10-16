@@ -36,7 +36,7 @@ export function GameAchievementCard({
 		)
 	)
 	return (
-		<section className='flex w-full justify-between relative mb-5 after:h-0.5 after:w-full after:absolute after:-bottom-2 after:bg-grayLineAfterCard'>
+		<section className='flex w-full justify-between relative mb-5 after:h-0.5 after:w-full after:absolute after:-bottom-2 after:bg-grayLineAfterCard py-2'>
 			<section className='flex'>
 				<article
 					className='relative sm:max-w-10 md:max-w-20 lg:max-w-40'

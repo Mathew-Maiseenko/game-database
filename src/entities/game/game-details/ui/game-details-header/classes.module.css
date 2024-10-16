@@ -1,5 +1,7 @@
-.game-main-pictures {
-	max-width: 66%;
+@media (min-width: 976px) {
+	.game-main-pictures {
+		max-width: 66%;
+	}
 }
 
 .game-first-screenshot {
