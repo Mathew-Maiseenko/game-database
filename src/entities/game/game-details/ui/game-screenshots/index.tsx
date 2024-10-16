@@ -1,4 +1,4 @@
-import { MinimalistCarousel } from '@/shared/ui'
+import { Carousel, MinimalistCarousel } from '@/shared/ui'
 import { ImageCardWithModal } from '@/entities/image'
 import { useAppDispatch } from '@/shared/lib/redux/hooks'
 import { AppDispatch } from '@/shared/lib'
@@ -12,9 +12,10 @@ export const ListOfGameScreenshots = memo(function ListOfGameScreenshots({
 	const dispatch = useAppDispatch()
 	return (
 		<section className='mb-5'>
-			<MinimalistCarousel>
+			{/* <MinimalistCarousel>
 				{...ViewListOfGameScreenshots(screenshots, dispatch)}
-			</MinimalistCarousel>
+			</MinimalistCarousel> */}
+			<Carousel>{...ViewListOfGameScreenshots(screenshots, dispatch)}</Carousel>
 		</section>
 	)
 })

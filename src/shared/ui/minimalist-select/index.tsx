@@ -34,7 +34,7 @@ export const MinimalistSelect = ({
 				// 	!selected && 'text-textGray'
 				// }`}
 
-				className={`bg-inherit text-textGray w-full p-2 flex items-center justify-between rounded relative after:absolute after:left-0 after:bottom-[-2px] after:h-[1px] after:w-full after:bg-textGray after:content-['']  ${
+				className={`bg-inherit text-textGray w-full p-2 flex items-center justify-between rounded relative after:absolute after:left-0 after:-bottom-0.5 after:h-[1px] after:w-full after:bg-textGray after:content-['']  ${
 					selectedOption && 'text-white after:bg-white'
 				}`}
 			>

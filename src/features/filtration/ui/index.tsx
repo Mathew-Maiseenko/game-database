@@ -87,8 +87,8 @@ export function GameFiltration() {
 				/>
 				<section className='mb-3'>
 					<Carousel
-						rightIcon={<ArrowIcon styles='w-full transform -rotate-90' />}
-						leftIcon={<ArrowIcon styles='w-full transform rotate-90' />}
+					// rightIcon={<ArrowIcon styles='w-full transform -rotate-90' />}
+					// leftIcon={<ArrowIcon styles='w-full transform rotate-90' />}
 					>
 						<ViewCards
 							dispatch={dispatch}
@@ -101,8 +101,8 @@ export function GameFiltration() {
 
 				<section className='mb-3'>
 					<Carousel
-						rightIcon={<ArrowIcon styles='w-full transform -rotate-90' />}
-						leftIcon={<ArrowIcon styles='w-full transform rotate-90' />}
+					// rightIcon={<ArrowIcon styles='w-full transform -rotate-90' />}
+					// leftIcon={<ArrowIcon styles='w-full transform rotate-90' />}
 					>
 						<ViewCards
 							dispatch={dispatch}
@@ -125,12 +125,7 @@ export function GameFiltration() {
 			</article>
 		)
 	} else {
-		return (
-			<FiltrationSkeleton />
-			/*<section className='flex justify-center w-full p-3 mb-10'>
-				<Loader classes='w-1/4' />
-			</section>*/
-		)
+		return <FiltrationSkeleton />
 	}
 }
 
