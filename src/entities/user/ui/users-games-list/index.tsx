@@ -10,9 +10,10 @@ import { ListWrapper } from '@/shared/ui'
 
 interface UsersGamesListProps {
 	withButton: boolean
+	styles?: string
 }
 
-export function UsersGamesList({ withButton }: UsersGamesListProps) {
+export function UsersGamesList({ withButton, styles }: UsersGamesListProps) {
 	const dispatch = useAppDispatch()
 	const router = useRouter()
 
@@ -48,8 +49,10 @@ export function UsersGamesList({ withButton }: UsersGamesListProps) {
 	}, [userGamesIds, dispatch])
 	return (
 		<ListWrapper fetchingState={fetchingDetailsByGamesIdsState}>
-			<section className='flex flex-col  min-w-full min-h-[46vh] bg-white dark:border-none border-2 border-lightThemeBorderGray dark:bg-whiteGray px-6 pr-10 py-5 rounded-3xl relative'>
-				<h2 className='text-blue dark:text-orange text-2xl  mb-5'>
+			<section
+				className={`flex flex-col  min-w-full bg-white dark:border-none border-2 border-lightThemeBorderGray dark:bg-whiteGray px-5 py-2 md:px-7 md:py-4  lg:px-9 lg:py-6 rounded-2xl relative ${styles}`}
+			>
+				<h2 className='text-blue dark:text-orange text-xl lg:text-2xl xl:text-3xl mb-5'>
 					<strong className='inline text-black dark:text-white underline'>
 						Your Gaming
 					</strong>{' '}
@@ -61,7 +64,7 @@ export function UsersGamesList({ withButton }: UsersGamesListProps) {
 				<button
 					className={`${
 						withButton ? '' : 'hidden'
-					} bg-blue dark:bg-orange sm:w-1/2 md:w-1/3 m-auto p-2 relative -bottom-5 rounded-2xl text-black dark:text-white`}
+					} bg-blue dark:bg-orange w-1/2 md:w-1/3 m-auto p-2 relative -bottom-7 rounded-2xl text-black dark:text-white`}
 					onClick={() => {
 						router.push('http://localhost:3000/user')
 					}}

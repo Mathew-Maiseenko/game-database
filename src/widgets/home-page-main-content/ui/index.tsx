@@ -12,7 +12,7 @@ export function HomePageMainContent() {
 	if (isUserSigned && userGamesIdsCount) {
 		return (
 			<>
-				<UsersGamesList withButton={true} />
+				<UsersGamesList styles='mb-9 md:mb-14 lg:mb-16' withButton={true} />
 				<RecommendedGameList />
 			</>
 		)

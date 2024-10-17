@@ -22,7 +22,7 @@ export function LayoutWrapper({
 		<body
 			className={`${manrope.className} ${
 				isThemeDark && 'dark'
-			} transition-colors duration-300 ease-in-out relative flex flex-col bg-mainBgColor h-full px-[7vw] pt-[3vh] min-h-screen overflow-x-hidden dark:bg-darkGray`}
+			} transition-colors duration-300 ease-in-out relative flex flex-col bg-mainBgColor h-full px-[1vw] py-[1vh] lg:px-[7vw] lg:py-[3vh] min-h-screen overflow-x-hidden dark:bg-darkGray`}
 		>
 			<SignInModal />
 			<SignUpModal />
@@ -30,12 +30,12 @@ export function LayoutWrapper({
 			<NavBar />
 			<main
 				className={
-					'bg-white border-2 border-lightThemeBorderGray dark:bg-whiteGray dark:border-none rounded-3xl p-[7vh] overflow-hidden'
+					'bg-white border-2 border-lightThemeBorderGray dark:bg-whiteGray dark:border-none rounded-2xl lg:rounded-3xl lg:px-[3vw] lg:py-[7vh] overflow-hidden'
 				}
 			>
 				{children}
 			</main>
-			<footer className='text-center flex-grow justify-self-center text-textGray px-14 py-7'>
+			<footer className='text-center text-base lg:text-lg xl:text-xl flex-grow justify-self-center text-textGray px-8 pt-5 lg:px-14 lg:py-7'>
 				All data about the games that are on this site are taken from the site
 				https://rawg.io and the author has no intention of assigning this
 				intellectual property

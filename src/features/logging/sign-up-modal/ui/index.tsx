@@ -62,7 +62,7 @@ export function SignUpModal() {
 		>
 			<section
 				onClick={e => e.stopPropagation()}
-				className='relative border-2 border-solid bg-white border-lightThemeBorderGray dark:border-textGray dark:bg-darkGray sm:w-1/3 lg:w-2/3 min-h-52 pt-5 pb-10 px-44 cursor-default rounded-3xl'
+				className='relative border-2 border-solid bg-white border-lightThemeBorderGray dark:border-textGray dark:bg-darkGray sm:w-1/3 lg:w-2/3 min-h-[35vh] pt-5 pb-7 px-12 md:px-28 lg:px-40 xl:px-44 cursor-default rounded-3xl'
 			>
 				<article
 					className='flex absolute top-5 right-5'
@@ -71,7 +71,7 @@ export function SignUpModal() {
 					<CrossIcon classes='sm:w-7 lg:w-10' />
 				</article>
 				<h2
-					className={`${teko.className} text-center text-blue dark:text-yellow text-7xl font-medium self-center md:order-1 cursor-pointer`}
+					className={`${teko.className} text-center text-blue dark:text-yellow text-2xl md:text-3xl lg:text-7xl font-medium self-center md:order-1 cursor-pointer`}
 				>
 					Cyber List
 				</h2>

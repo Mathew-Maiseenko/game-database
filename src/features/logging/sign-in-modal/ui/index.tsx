@@ -48,7 +48,7 @@ export function SignInModal() {
 		>
 			<section
 				onClick={e => e.stopPropagation()}
-				className='relative border-2 border-solid bg-white border-lightThemeBorderGray dark:border-textGray dark:bg-darkGray sm:w-4/5 lg:w-2/5 p-5 rounded-3xl cursor-default'
+				className='relative border-2 border-solid bg-white border-lightThemeBorderGray dark:border-textGray dark:bg-darkGray sm:w-4/5 lg:w-2/5 p-3 md:p-5 lg:p-7 rounded-2xl lg:rounded-3xl cursor-default'
 			>
 				<article
 					className='flex absolute top-5 right-5 '
@@ -57,7 +57,7 @@ export function SignInModal() {
 					<CrossIcon classes=' sm:w-7 lg:w-10' />
 				</article>
 				<h2
-					className={`${teko.className} text-center dark:text-yellow text-blue text-7xl font-medium self-center md:order-1 cursor-pointer`}
+					className={`${teko.className} text-center dark:text-yellow text-blue text-2xl md:text-3xl lg:text-7xl font-medium self-center md:order-1 cursor-pointer`}
 				>
 					Cyber List
 				</h2>
@@ -85,7 +85,7 @@ export function SignInModal() {
 						})
 					}
 					type='submit'
-					className='w-full dark:bg-orange bg-blue rounded-3xl p-2 mb-5'
+					className='w-full dark:bg-orange bg-blue rounded-3xl p-2 md:p-3 lg:p-4 mb-5'
 				>
 					Sign In
 				</button>
