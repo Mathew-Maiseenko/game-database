@@ -2,7 +2,7 @@
 import Image from 'next/image'
 import getRandomDefaultImage from '@/shared/model/defaultImages'
 import { Store } from '@/shared/api/RawgApi-hook'
-import { AnimatedTickIcon, DownloadIcon } from '@/shared/ui'
+import { AnimatedTickIcon } from '@/shared/ui'
 import { GarbageIcon } from '@/shared/ui/icon/garbage-icon'
 import { useAppDispatch } from '@/shared/lib/redux/hooks'
 import { userSlice } from '../../model/user-slice'

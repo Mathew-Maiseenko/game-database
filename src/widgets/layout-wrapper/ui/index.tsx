@@ -22,7 +22,7 @@ export function LayoutWrapper({
 		<body
 			className={`${manrope.className} ${
 				isThemeDark && 'dark'
-			} transition-colors duration-300 ease-in-out relative flex flex-col bg-mainBgColor h-full px-[1vw] py-[1vh] lg:px-[7vw] lg:py-[3vh] min-h-screen overflow-x-hidden dark:bg-darkGray`}
+			} transition-colors duration-300 ease-in-out relative flex flex-col bg-mainBgColor h-full px-[2vw] py-[1vh] lg:px-[7vw] lg:py-[3vh] min-h-screen overflow-x-hidden dark:bg-darkGray`}
 		>
 			<SignInModal />
 			<SignUpModal />
@@ -30,7 +30,7 @@ export function LayoutWrapper({
 			<NavBar />
 			<main
 				className={
-					'bg-white border-2 border-lightThemeBorderGray dark:bg-whiteGray dark:border-none rounded-2xl lg:rounded-3xl lg:px-[3vw] lg:py-[7vh] overflow-hidden'
+					'bg-white border-2 border-lightThemeBorderGray dark:bg-whiteGray dark:border-none rounded-2xl lg:rounded-3xl px-[2vw] py-[3vh] lg:px-[3vw] lg:py-[7vh] overflow-hidden'
 				}
 			>
 				{children}

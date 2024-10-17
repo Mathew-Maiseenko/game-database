@@ -4,7 +4,7 @@ import { WelcomeMessagePostersScrollingWrapper } from './welcome-message-posters
 export function WelcomeMessage() {
 	return (
 		<WelcomeMessagePostersScrollingWrapper>
-			<article className='relative z-30 text-white flex flex-grow flex-col justify-between min-w-full min-h-full dark:border-none sm:px-7 md:px-10 lg:px-12 xl:px-14 sm:py-7 md:py-10 xl:py-16 rounded-3xl overflow-hidden'>
+			<article className='relative z-20 text-white flex flex-grow flex-col justify-between min-w-full min-h-full dark:border-none sm:px-7 md:px-10 lg:px-12 xl:px-14 sm:py-7 md:py-10 xl:py-16 rounded-3xl overflow-hidden'>
 				<h2 className='text-white sm:text-lg md:text-2xl lg:text-3xl mb-2'>
 					Welcome To Cyborg
 				</h2>

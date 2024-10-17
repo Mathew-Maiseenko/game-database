@@ -18,11 +18,12 @@ export function RecommendedGameCard({
 	rating,
 	genres,
 }: RecommendedGameCardProps) {
+	//w-2/6
 	return (
-		<section className='flex w-1/2 justify-between relative mb-5 after:h-0.5 after:w-full after:absolute after:-bottom-2 dark:after:bg-grayLineAfterCard after:bg-lightThemeBorderGray'>
+		<section className='flex flex-col sm:flex-row w-full md:w-1/2 justify-between relative mb-5 after:h-0.5 after:w-full after:absolute after:-bottom-2 dark:after:bg-grayLineAfterCard after:bg-lightThemeBorderGray'>
 			<Link
 				href={`http://localhost:3000/details/${id}`}
-				className='flex flex-grow'
+				className='flex justify-center items-center flex-grow sm:h-full w-full sm:w-auto'
 			>
 				<Image
 					src={poster || getRandomDefaultImage()}
@@ -33,20 +34,20 @@ export function RecommendedGameCard({
 				/>
 			</Link>
 
-			<article className='flex flex-col rounded-3xl min-w-[70%] p-3'>
-				<section className='flex justify-between'>
-					<h3 className='text-xl font-bold text-black dark:text-white'>
+			<article className='flex flex-row justify-between sm:flex-col sm:justify-start rounded-3xl min-w-full sm:min-w-[70%] p-3'>
+				<section className='flex sm:flex-row flex-col justify-between mb-1 md:mb-2'>
+					<h3 className='text-lg md:text-xl font-bold text-black dark:text-white'>
 						{title}
 					</h3>
 					<section className='flex items-center'>
 						<StarIcon />
-						<h4 className='text-lg font-bold text-black dark:text-white'>
+						<h4 className='text-base md:text-lg font-bold text-black dark:text-white'>
 							{rating}
 						</h4>
 					</section>
 				</section>
 				<section className='flex justify-between'>
-					<h3 className='text-lg font-medium text-textGray'>
+					<h3 className='text-base md:text-lg font-medium text-textGray'>
 						{genres?.join(', ')}
 					</h3>
 				</section>

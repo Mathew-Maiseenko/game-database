@@ -53,7 +53,7 @@ export function WelcomeMessagePostersScrollingWrapper({
 	return (
 		<section className='relative inline-flex flex-col justify-between min-w-full min-h-[50vh] dark:border-none border-2 border-lightThemeBorderGray mb-10 rounded-3xl overflow-hidden'>
 			<Image
-				className='absolute top-0 left-0 z-10 w-full h-full'
+				className='absolute top-0 left-0 z-0 w-full h-full'
 				src={logo}
 				width={1080}
 				height={720}
@@ -61,7 +61,7 @@ export function WelcomeMessagePostersScrollingWrapper({
 			/>
 			<article
 				style={{ transform: `translateX(${position}px)` }}
-				className={`flex flex-grow transition-transform duration-500 ease-out transform absolute top-0 left-0 origin-top-right h-full z-20 `}
+				className={`flex flex-grow transition-transform duration-500 ease-out transform absolute top-0 left-0 origin-top-right h-full z-10 `}
 			>
 				<ViewPostersList posters={gamesPosters} />
 			</article>

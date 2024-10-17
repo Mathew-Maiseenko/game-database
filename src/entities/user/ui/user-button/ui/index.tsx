@@ -28,7 +28,7 @@ export function UserButton({ styles }: { styles?: string }) {
       dark:hover:bg-yellow hover:bg-blue hover:text-black`
 			}`}
 		>
-			<article className='transition-all duration-300 ease-in-out sm:hidden md:inline group-hover:text-black group-hover:font-bold text-xl'>
+			<article className='transition-all duration-300 ease-in-out hidden md:inline group-hover:text-black group-hover:font-bold text-xl'>
 				Profile
 			</article>
 			<svg

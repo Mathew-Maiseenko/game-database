@@ -33,20 +33,20 @@ export function RecommendedGameList() {
 	}, [isUserSigned, favoriteGames, favoriteGameIds])
 
 	return (
-		<section className='flex flex-col  min-w-full bg-lightThemeGray dark:bg-darkGray dark:border-none border-2 border-lightThemeBorderGray   px-6 pr-10 pt-5 rounded-3xl relative'>
-			<article className='dark:text-orange text-blue text-2xl font-medium  mb-8'>
+		<section className='flex flex-col min-w-full bg-lightThemeGray dark:bg-darkGray dark:border-none border-2 border-lightThemeBorderGray px-6 pr-10 pt-5 rounded-3xl relative'>
+			<article className='dark:text-orange text-blue text-2xl font-medium mb-8'>
 				<h2 className='inline text-black dark:text-white underline font-bold'>
 					Recommended
 				</h2>{' '}
 				Games
 			</article>
-			<article className='flex flex-col'>
-				<article className='flex flex-row flex-wrap justify-between w-full p-3'>
+			<article className='flex flex-col w-full'>
+				<article className='flex flex-col justify-start md:flex-row md:flex-wrap md:justify-between w-full p-3'>
 					<ViewRecommendedGameCards games={recommendedGames} />
 				</article>
 			</article>
 			{isUserSigned && (
-				<button className='dark:bg-orange bg-blue sm:w-1/2 md:w-1/3 m-auto p-2 relative -bottom-5 rounded-2xl text-black dark:text-whit'>
+				<button className='dark:bg-orange bg-blue w-1/2 md:w-1/3 m-auto p-2 relative -bottom-5 rounded-2xl text-black dark:text-whit'>
 					View Your Library
 				</button>
 			)}
