@@ -13,6 +13,7 @@ import type { setGenreType, setTagType, ViewCardsProps } from '../types'
 import type { Genre } from '@/shared/api/RawgApi-hook/types/genre'
 import type { TagResult } from '@/shared/api/RawgApi-hook/types/tag'
 import { FiltrationSkeleton } from './filtration-skeleton'
+import { InputWithDebounce } from './input-with-debounce'
 // rightIcon={<ArrowIcon styles='w-full transform -rotate-90' />}
 // leftIcon={<ArrowIcon styles='w-full transform rotate-90' />}
 export function GameFiltration() {
@@ -75,9 +76,9 @@ export function GameFiltration() {
 	if (loadingState) {
 		return (
 			<article className='bg-inherit flex-col items-center justify-between flex-wrap w-full'>
-				<MinimalistInput
-					inputValue={filterTitle}
-					setInputValue={setFilterTitle}
+				<InputWithDebounce
+					filtrationValue={filterTitle}
+					setFiltrationValue={setFilterTitle}
 					className='w-full font-medium mb-16 bg-inherit mx-auto'
 					message={'Input game title'}
 				/>
@@ -131,7 +132,6 @@ const ViewCards = ({
 			title={filterParam.name}
 			image={filterParam.image}
 			isActive={!!activeFiltrationParams[filterParam.name]}
-			tagGameCount={filterParam.gamesCount}
 			setFiltration={() =>
 				toggleCardActiveness(
 					dispatch,

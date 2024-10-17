@@ -5,7 +5,6 @@ export interface GenreCardProps {
 	image: string
 	isActive: boolean
 	setFiltration: any
-	tagGameCount: number | null | undefined
 }
 
 export const MinimalistFiltrationCarouselCard = ({
@@ -13,7 +12,6 @@ export const MinimalistFiltrationCarouselCard = ({
 	image,
 	isActive,
 	setFiltration,
-	tagGameCount,
 }: GenreCardProps) => {
 	return (
 		<section
@@ -37,7 +35,6 @@ export const MinimalistFiltrationCarouselCard = ({
 				`}
 			>
 				<span className='ml-2'>{title}</span>
-				<span className='ml-2'>{tagGameCount}</span>
 			</article>
 		</section>
 	)

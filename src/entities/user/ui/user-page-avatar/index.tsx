@@ -11,7 +11,7 @@ export function UsersAvatar() {
 	const router = useRouter()
 	const userName = useAppSelector(userSlice.selectors.selectUserName)
 	return (
-		<article className='flex flex-col mr-0 md:mr-5 lg:mr-10 :w-full md:w-1/3 rounded-xl md:rounded-2xl relative after:h-full after:w-px after:absolute md:after:-right-2 lg:after:-right-5  after:bg-none md:after:bg-grayLineAfterCard'>
+		<article className='flex flex-col mr-0 md:mr-5 lg:mr-10 w-full md:w-1/3 rounded-xl md:rounded-2xl relative after:h-full after:w-px after:absolute md:after:-right-2 lg:after:-right-5  after:bg-none md:after:bg-grayLineAfterCard'>
 			<h2 className='text-center inline-block w-full text-black dark:text-white font-bold text-xl md:text-2xl xl:text-3xl mb-2 underline'>
 				{userName}
 			</h2>

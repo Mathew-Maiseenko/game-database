@@ -8,6 +8,7 @@ interface MinimalistInputProps {
 	setInputValue:
 		| ActionCreatorWithPayload<string, string>
 		| React.Dispatch<React.SetStateAction<string>>
+		| ((value: string) => void)
 	message?: string
 	searchMessage?: string
 	className?: string

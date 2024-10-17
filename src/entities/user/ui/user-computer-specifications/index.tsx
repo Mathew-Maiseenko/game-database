@@ -12,19 +12,19 @@ export function ComputerSpecifications() {
 				Характеристики компьютера:
 			</h2>
 			<article className='flex flex-col justify-between w-full h-full pb-5 text-base md:text-lg'>
-				<section className='flex flex-row relative justify-between sm:after:h-px md:after:h-0.5 after:w-full after:absolute md:after:-bottom-2.5 sm:after:-bottom-1 after:bg-grayLineAfterCard text-base md:text-md lg:text-lg xl:text-2xl md:mb-5 sm:mb-2'>
+				<section className='flex flex-row flex-wrap relative justify-between sm:after:h-px md:after:h-0.5 after:w-full after:absolute md:after:-bottom-2.5 after:-bottom-1 after:bg-grayLineAfterCard text-base md:text-md lg:text-lg xl:text-2xl md:mb-5 sm:mb-2'>
 					<h3>Процессор:</h3>
 					<h4>{CPU}</h4>
 				</section>
-				<section className='flex flex-row relative justify-between after:h-px md:after:h-0.5 after:w-full after:absolute md:after:-bottom-2.5 after:-bottom-1 after:bg-grayLineAfterCard text-base md:text-md lg:text-lg xl:text-2xl md:mb-5 mb-2'>
+				<section className='flex flex-row flex-wrap relative justify-between after:h-px md:after:h-0.5 after:w-full after:absolute md:after:-bottom-2.5 after:-bottom-1 after:bg-grayLineAfterCard text-base md:text-md lg:text-lg xl:text-2xl md:mb-5 mb-2'>
 					<h3>Видеокарта:</h3>
 					<h4>{GPU}</h4>
 				</section>
-				<section className='flex flex-row relative justify-between after:h-px md:after:h-0.5 after:w-full after:absolute md:after:-bottom-2.5 after:-bottom-1 after:bg-grayLineAfterCard text-base md:text-md lg:text-lg xl:text-2xl md:mb-5 mb-2'>
+				<section className='flex flex-row flex-wrap relative justify-between after:h-px md:after:h-0.5 after:w-full after:absolute md:after:-bottom-2.5 after:-bottom-1 after:bg-grayLineAfterCard text-base md:text-md lg:text-lg xl:text-2xl md:mb-5 mb-2'>
 					<h3>Размер видеопамяти:</h3>
 					<h4>{graphicsMemory}ГБ</h4>
 				</section>
-				<section className='flex flex-row relative justify-between after:h-px md:after:h-0.5 after:w-full after:absolute md:after:-bottom-2.5 after:-bottom-1 after:bg-grayLineAfterCard text-base md:text-md lg:text-lg xl:text-2xl'>
+				<section className='flex flex-row flex-wrap relative justify-between after:h-px md:after:h-0.5 after:w-full after:absolute md:after:-bottom-2.5 after:-bottom-1 after:bg-grayLineAfterCard text-base md:text-md lg:text-lg xl:text-2xl'>
 					<h3>ОЗУ:</h3>
 					<h4>{RAM}ГБ</h4>
 				</section>

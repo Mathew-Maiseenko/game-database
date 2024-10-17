@@ -1,9 +1,11 @@
 export const Loader = ({
 	color = '#FF7849',
 	classes,
+	loaderIconClasses = 'dark:fill-orange dark:stroke-orange fill-blue stroke-blue',
 }: {
 	color?: string
 	classes?: string
+	loaderIconClasses?: string
 }) => (
 	<svg
 		className={classes}
@@ -11,8 +13,9 @@ export const Loader = ({
 		viewBox='0 0 200 200'
 	>
 		<circle
-			fill={color}
-			stroke={color}
+			className={loaderIconClasses}
+			// fill={color}
+			// stroke={color}
 			stroke-width='15'
 			r='15'
 			cx='40'
@@ -29,8 +32,9 @@ export const Loader = ({
 			></animate>
 		</circle>
 		<circle
-			fill={color}
-			stroke={color}
+			className={loaderIconClasses}
+			// fill={color}
+			// stroke={color}
 			stroke-width='15'
 			r='15'
 			cx='100'
@@ -47,8 +51,9 @@ export const Loader = ({
 			></animate>
 		</circle>
 		<circle
-			fill={color}
-			stroke={color}
+			className={loaderIconClasses}
+			// fill={color}
+			// stroke={color}
 			stroke-width='15'
 			r='15'
 			cx='160'
