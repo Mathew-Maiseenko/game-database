@@ -48,7 +48,10 @@ export function UsersGamesList({ withButton, styles }: UsersGamesListProps) {
 		dispatch(fetchDetailsByGamesIds(userGamesIds))
 	}, [userGamesIds, dispatch])
 	return (
-		<ListWrapper fetchingState={fetchingDetailsByGamesIdsState}>
+		<ListWrapper
+			fetchingState={fetchingDetailsByGamesIdsState}
+			ErrorMessageStyles='mb-7'
+		>
 			<section
 				className={`flex flex-col  min-w-full bg-white dark:border-none border-2 border-lightThemeBorderGray dark:bg-whiteGray px-5 py-2 md:px-7 md:py-4  lg:px-9 lg:py-6 rounded-2xl relative ${styles}`}
 			>

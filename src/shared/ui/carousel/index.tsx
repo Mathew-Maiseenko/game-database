@@ -96,7 +96,7 @@ export const Carousel = ({
 				)
 			)
 		}
-	}, [scrollRef])
+	}, [scrollRef, leftIcon, rightIcon])
 
 	const scrollLeft = useCallback(() => {
 		if (scrollRef.current) {
@@ -113,7 +113,7 @@ export const Carousel = ({
 				)
 			)
 		}
-	}, [scrollRef])
+	}, [scrollRef, leftIcon, rightIcon])
 
 	useEffect(() => {
 		if (scrollRef.current) {
@@ -132,7 +132,7 @@ export const Carousel = ({
 
 	return (
 		<>
-			<article className='flex items-center justify-center flex-col relative  w-full select-none'>
+			<article className='flex items-center justify-center flex-col relative w-full select-none'>
 				{isWithLeftIcon && (
 					<section
 						className='absolute -left-5 top-1/2 w-5 h-5'

@@ -36,7 +36,7 @@ export const ErrorMessage = ({
 				stroke-linejoin='round'
 			/>
 		</svg>
-		<h2 className='font-semibold text-5xl mt-3 text-errorMessageRed'>
+		<h2 className='text-center font-semibold text-2xl sm:text-3xl md:text-4xl lg:text-5xl mt-3 text-errorMessageRed'>
 			{'Oops... Something went wrong :('}
 		</h2>
 	</>

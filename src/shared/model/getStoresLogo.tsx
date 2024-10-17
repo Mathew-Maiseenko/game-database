@@ -77,7 +77,7 @@ const StoreLink = ({
 	<Link
 		key={`${store.name}-${store.id}`}
 		href={`https://${store.domain} text-errorMessageRed`}
-		className={`mr-1 w-5 h-5`}
+		className={`mr-1 w-4 h-4 sm:w-5 sm:h-5`}
 	>
 		{children}
 	</Link>

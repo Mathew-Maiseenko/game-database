@@ -51,7 +51,7 @@ export function WelcomeMessagePostersScrollingWrapper({
 	}, [gamesPosters.length, curPoster, windowWidth])
 
 	return (
-		<section className='relative inline-flex flex-col justify-between min-w-full min-h-[50vh] dark:border-none border-2 border-lightThemeBorderGray mb-10 rounded-3xl overflow-hidden'>
+		<section className='relative inline-flex flex-col justify-between min-w-full md:min-h-[50vh] dark:border-none border-2 border-lightThemeBorderGray mb-10 rounded-3xl overflow-hidden'>
 			<Image
 				className='absolute top-0 left-0 z-0 w-full h-full'
 				src={logo}

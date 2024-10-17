@@ -15,7 +15,7 @@ export const Pagination = ({ styles, totalPageCount }: PaginationProps) => {
 	function addPaginationButton(page: number | '...') {
 		if (page === '...') {
 			buttonsArr.push(
-				<button className='transition-all duration-300 py-2 px-4 mr-2 bg-blue dark:bg-orange text-center text-white rounded-md dark:hover:bg-paginationHover hover:bg-hoverBlue hover:text-black dark:active:bg-paginationActive active:bg-activeBlue active:text-black '>
+				<button className='transition-all duration-300 py-1 px-3 md:py-3 md:px-4  lg:py-4 lg:px-5 mr-2 bg-blue dark:bg-orange text-center text-white rounded-md dark:hover:bg-paginationHover hover:bg-hoverBlue hover:text-black dark:active:bg-paginationActive active:bg-activeBlue active:text-black '>
 					...
 				</button>
 			)

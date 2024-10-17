@@ -18,10 +18,7 @@ export function PopularGamesList() {
 	}, [])
 
 	return (
-		<ListWrapper
-			fetchingState={gameListFetchingState}
-			ErrorMessageStyles='mb-12'
-		>
+		<ListWrapper fetchingState={gameListFetchingState}>
 			<section className='flex flex-col  min-w-full min-h-[46vh] bg-lightThemeGray dark:bg-darkGray px-6 pt-5 pb-3 rounded-3xl relative mb-12 dark:border-none border-2 border-lightThemeBorderGray transition-all duration-200 ease-in-out'>
 				<h2 className='dark:text-orange text-blue text-3xl font-medium  mb-8 transition-all duration-200 ease-in-out'>
 					<strong className='inline font-bold dark:text-white text-black underline transition-all duration-200 ease-in-out'>

@@ -35,7 +35,7 @@ export function LayoutWrapper({
 			>
 				{children}
 			</main>
-			<footer className='text-center text-base lg:text-lg xl:text-xl flex-grow justify-self-center text-textGray px-8 pt-5 lg:px-14 lg:py-7'>
+			<footer className='text-center text-base lg:text-lg xl:text-xl flex-grow justify-self-center text-textGray px-8 py-6 lg:px-14 lg:py-7'>
 				All data about the games that are on this site are taken from the site
 				https://rawg.io and the author has no intention of assigning this
 				intellectual property

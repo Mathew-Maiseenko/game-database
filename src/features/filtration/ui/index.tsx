@@ -13,7 +13,8 @@ import type { setGenreType, setTagType, ViewCardsProps } from '../types'
 import type { Genre } from '@/shared/api/RawgApi-hook/types/genre'
 import type { TagResult } from '@/shared/api/RawgApi-hook/types/tag'
 import { FiltrationSkeleton } from './filtration-skeleton'
-
+// rightIcon={<ArrowIcon styles='w-full transform -rotate-90' />}
+// leftIcon={<ArrowIcon styles='w-full transform rotate-90' />}
 export function GameFiltration() {
 	const [filterTitle, setFilterTitle] = useState('')
 	const [filterDeveloper, setFilterDeveloper] = useState('')
@@ -81,10 +82,7 @@ export function GameFiltration() {
 					message={'Input game title'}
 				/>
 				<section className='mb-3'>
-					<Carousel
-					// rightIcon={<ArrowIcon styles='w-full transform -rotate-90' />}
-					// leftIcon={<ArrowIcon styles='w-full transform rotate-90' />}
-					>
+					<Carousel>
 						<ViewCards
 							dispatch={dispatch}
 							filterParams={genres}
@@ -95,10 +93,7 @@ export function GameFiltration() {
 				</section>
 
 				<section className='mb-3'>
-					<Carousel
-					// rightIcon={<ArrowIcon styles='w-full transform -rotate-90' />}
-					// leftIcon={<ArrowIcon styles='w-full transform rotate-90' />}
-					>
+					<Carousel>
 						<ViewCards
 							dispatch={dispatch}
 							filterParams={tags}

@@ -3,10 +3,14 @@ import { RecommendedGameCard } from '@/entities/game/recommended-game-list/ui/re
 import { calculateUsersFavoriteGenres, userSlice } from '@/entities/user'
 import { RawgApi, StoreGame } from '@/shared/api/RawgApi-hook'
 import { useAppSelector } from '@/shared/lib/redux/hooks'
+import { ListWrapper } from '@/shared/ui'
 import { useEffect, useState } from 'react'
 
 export function RecommendedGameList() {
 	const [recommendedGames, setRecommendedGames] = useState<StoreGame[]>([])
+	const [recommendedGameListFetchingState, setGameListFetchingState] = useState<
+		'idle' | 'pending' | 'rejected' | 'fulfilled'
+	>('idle')
 	const favoriteGames = useAppSelector(userSlice.selectors.selectFavoriteGames)
 	const favoriteGameIds = useAppSelector(
 		userSlice.selectors.selectFavoriteGamesIds
@@ -14,6 +18,7 @@ export function RecommendedGameList() {
 	const isUserSigned = useAppSelector(userSlice.selectors.selectIsUserSigned)
 
 	useEffect(() => {
+		setGameListFetchingState('pending')
 		if (isUserSigned && favoriteGameIds.length) {
 			const { ids: favoriteGenresIds } = calculateUsersFavoriteGenres({
 				ids: favoriteGameIds,
@@ -23,34 +28,45 @@ export function RecommendedGameList() {
 				gamesPerPage: 6,
 				pageNumber: 1,
 				genres: favoriteGenresIds.join(','),
-			}).then(res => setRecommendedGames(res.games))
+			})
+				.then(res => setRecommendedGames(res.games))
+				.then(() => setGameListFetchingState('fulfilled'))
+				.catch(() => setGameListFetchingState('rejected'))
 		} else {
 			RawgApi.getGamesListWithParams({
 				gamesPerPage: 6,
 				pageNumber: 1,
-			}).then(res => setRecommendedGames(res.games))
+			})
+				.then(res => setRecommendedGames(res.games))
+				.then(() => setGameListFetchingState('fulfilled'))
+				.catch(() => setGameListFetchingState('rejected'))
 		}
 	}, [isUserSigned, favoriteGames, favoriteGameIds])
 
 	return (
-		<section className='flex flex-col min-w-full bg-lightThemeGray dark:bg-darkGray dark:border-none border-2 border-lightThemeBorderGray px-6 pr-10 pt-5 rounded-3xl relative'>
-			<article className='dark:text-orange text-blue text-2xl font-medium mb-8'>
-				<h2 className='inline text-black dark:text-white underline font-bold'>
-					Recommended
-				</h2>{' '}
-				Games
-			</article>
-			<article className='flex flex-col w-full'>
-				<article className='flex flex-col justify-start md:flex-row md:flex-wrap md:justify-between w-full p-3'>
-					<ViewRecommendedGameCards games={recommendedGames} />
+		<ListWrapper
+			fetchingState={recommendedGameListFetchingState}
+			ErrorMessageStyles='mb-4'
+		>
+			<section className='flex flex-col min-w-full bg-lightThemeGray dark:bg-darkGray dark:border-none border-2 border-lightThemeBorderGray px-6 pr-10 pt-5 rounded-3xl relative'>
+				<article className='dark:text-orange text-blue text-2xl font-medium mb-8'>
+					<h2 className='inline text-black dark:text-white underline font-bold'>
+						Recommended
+					</h2>{' '}
+					Games
 				</article>
-			</article>
-			{isUserSigned && (
-				<button className='dark:bg-orange bg-blue w-1/2 md:w-1/3 m-auto p-2 relative -bottom-5 rounded-2xl text-black dark:text-whit'>
-					View Your Library
-				</button>
-			)}
-		</section>
+				<article className='flex flex-col w-full'>
+					<article className='flex flex-col justify-start md:flex-row md:flex-wrap md:justify-between w-full p-3'>
+						<ViewRecommendedGameCards games={recommendedGames} />
+					</article>
+				</article>
+				{isUserSigned && (
+					<button className='dark:bg-orange bg-blue w-1/2 md:w-1/3 m-auto p-2 relative -bottom-5 rounded-2xl text-black dark:text-whit'>
+						View Your Library
+					</button>
+				)}
+			</section>
+		</ListWrapper>
 	)
 }
 
