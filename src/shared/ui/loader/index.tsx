@@ -1,9 +1,7 @@
 export const Loader = ({
-	color = '#FF7849',
 	classes,
 	loaderIconClasses = 'dark:fill-orange dark:stroke-orange fill-blue stroke-blue',
 }: {
-	color?: string
 	classes?: string
 	loaderIconClasses?: string
 }) => (

@@ -11,7 +11,7 @@ interface RecommendedGameCardProps {
 	genres?: string[]
 }
 
-export function RecommendedGameCard({
+export function RecommendationListsGameCard({
 	id,
 	title,
 	poster,

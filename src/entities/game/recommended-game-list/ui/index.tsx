@@ -1,5 +1,5 @@
 'use client'
-import { RecommendedGameCard } from '@/entities/game/recommended-game-list/ui/recommended-game-card'
+import { RecommendationListsGameCard } from '@/entities/game/game-card/'
 import { calculateUsersFavoriteGenres, userSlice } from '@/entities/user'
 import { RawgApi, StoreGame } from '@/shared/api/RawgApi-hook'
 import { useAppSelector } from '@/shared/lib/redux/hooks'
@@ -72,7 +72,7 @@ export function RecommendedGameList() {
 
 const ViewRecommendedGameCards = ({ games }: { games: StoreGame[] }) =>
 	games.map(game => (
-		<RecommendedGameCard
+		<RecommendationListsGameCard
 			key={`${game.name}_${game.id}`}
 			id={game.id}
 			title={game.name}

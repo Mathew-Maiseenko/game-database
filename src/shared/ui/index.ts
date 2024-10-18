@@ -1,3 +1,4 @@
+export { TriplePointIcon } from './icon/triple-point-icon'
 export { AnimatedTickIcon } from './icon/animated-tick-icon'
 export { AppStoreIcon } from './icon/stores-icons/ui/App-Store-icon'
 export { GOGIcon } from './icon/stores-icons/ui/gog-icon'

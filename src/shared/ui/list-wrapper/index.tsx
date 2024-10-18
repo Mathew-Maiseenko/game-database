@@ -12,7 +12,7 @@ export function ListWrapper({
 	fetchingState,
 	ErrorMessageStyles,
 }: ListWrapperProps) {
-	if (fetchingState === 'pending') {
+	if (fetchingState === 'pending' || fetchingState === 'idle') {
 		return (
 			<section className='flex justify-center items-center w-full bg-lightThemeGray dark:bg-darkGray rounded-3xl px-10 py-10'>
 				<Loader classes='w-1/3' />

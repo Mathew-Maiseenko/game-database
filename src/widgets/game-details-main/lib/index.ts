@@ -1,4 +1,4 @@
-export const getUserIdByPathname = (path: string | null) => {
+export const getGamesIdByPathname = (path: string | null) => {
 	const pointsList = path ? path.split('/') : null
 	if (!pointsList) {
 		return 0

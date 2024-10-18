@@ -14,9 +14,8 @@ interface initialGameDetailsStateType {
 	games: Record<GameId, StoreGameDetails>
 	gameAchievements: Achievement[] //Record<GameId, Achievement[]>
 	currentGameId: GameId | null | undefined
-	gameDetailsFetchingState: 'idle' | 'pending' | 'rejected' | 'fulfilled'
+	gameDetailsFetchingState: 'idle' | 'pending' | 'fulfilled' | 'rejected'
 	currentModalImage: ImageObj | undefined
-	//gameAchievementsFetchingState: 'idle' | 'pending' | 'rejected' | 'fulfilled'
 }
 
 const initialGameDetailsState: initialGameDetailsStateType = {
@@ -33,11 +32,13 @@ export const gameDetailsSlice = createAppSlice({
 	initialState: initialGameDetailsState,
 	selectors: {
 		selectGameDetailsById: (state, id) => state.games[id],
+		selectIsGameAlreadyLoaded: (state, id) => !!state.games[id],
 		selectAllGamesDetails: state => state.games,
 		selectCurrentGameId: state => state.currentGameId,
 		selectCurrentModalImage: state => state.currentModalImage,
 		selectGameAchievementsById: (state, id) => state.gameAchievements[id],
 		selectAllGamesAchievementsById: state => state.gameAchievements,
+		selectGameDetailsFetchingState: state => state.gameDetailsFetchingState,
 	},
 	reducers: {
 		setCurrentModalImage: (state, action: PayloadAction<ImageObj>) => {

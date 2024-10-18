@@ -17,14 +17,18 @@ import { GameAchievementsList } from '@/entities/game/game-details/ui'
 import { RawgApi } from '@/shared/api/RawgApi-hook'
 import Link from 'next/link'
 import { userSlice } from '@/entities/user'
-import { getUserIdByPathname } from '../lib'
+import { getGamesIdByPathname } from '../lib'
+import { ErrorMessage, Loader } from '@/shared/ui'
 
 export function GameDetailsMain() {
 	const [screenshots, setScreenshots] = useState<string[]>([])
 	const dispatch = useAppDispatch()
 	const pathname = usePathname()
 
-	const currentGameId = useMemo(() => getUserIdByPathname(pathname), [pathname])
+	const currentGameId = useMemo(
+		() => getGamesIdByPathname(pathname),
+		[pathname]
+	)
 
 	const currentGame = useAppSelector((state: AppState) =>
 		gameDetailsSlice.selectors.selectGameDetailsById(state, currentGameId)
@@ -36,14 +40,26 @@ export function GameDetailsMain() {
 		userSlice.selectors.selectIsUserContainGameById(state, currentGameId)
 	)
 
-	useEffect(() => {
-		RawgApi.getListGameScreenshots(currentGameId).then(setScreenshots)
-		dispatch(fetchGameDetails(currentGameId))
-	}, [dispatch, currentGameId])
+	const isGameAlreadyLoaded = useAppSelector((state: AppState) =>
+		gameDetailsSlice.selectors.selectGameDetailsById(state, currentGameId)
+	)
 
-	if (!currentGame) {
-		return <div>Loading...</div>
-	} else {
+	const gameDetailsFetchingState = useAppSelector(
+		gameDetailsSlice.selectors.selectGameDetailsFetchingState
+	)
+
+	useEffect(() => {
+		if (!isGameAlreadyLoaded) {
+			RawgApi.getListGameScreenshots(currentGameId).then(setScreenshots)
+			dispatch(fetchGameDetails(currentGameId))
+		}
+	}, [dispatch, currentGameId, isGameAlreadyLoaded])
+
+	if (
+		gameDetailsFetchingState === 'fulfilled' &&
+		screenshots.length &&
+		currentGame
+	) {
 		return (
 			<>
 				<GameDetailsHeader
@@ -89,6 +105,23 @@ export function GameDetailsMain() {
 				</section>
 				<GameAchievementsList gameId={currentGameId} />
 			</>
+		)
+	} else if (
+		gameDetailsFetchingState === 'pending' ||
+		gameDetailsFetchingState === 'idle'
+	) {
+		return (
+			<section className='flex justify-center items-center w-full bg-lightThemeGray dark:bg-darkGray rounded-3xl px-10 py-10'>
+				<Loader classes='w-1/3' />
+			</section>
+		)
+	} else if (gameDetailsFetchingState === 'rejected') {
+		return (
+			<section
+				className={`flex flex-col justify-center items-center w-full dark:border-none border-2 border-lightThemeBorderGray bg-lightThemeGray dark:bg-darkGray px-10 py-40 rounded-3xl`}
+			>
+				<ErrorMessage classes='w-1/3' />
+			</section>
 		)
 	}
 }
