@@ -53,7 +53,7 @@ export function UsersGamesList({ withButton, styles }: UsersGamesListProps) {
 			ErrorMessageStyles='mb-7'
 		>
 			<section
-				className={`flex flex-col  min-w-full bg-white dark:border-none border-2 border-lightThemeBorderGray dark:bg-whiteGray px-5 py-2 md:px-7 md:py-4  lg:px-9 lg:py-6 rounded-2xl relative ${styles}`}
+				className={`flex flex-col  min-w-full bg-white dark:border-none border-2 border-lightThemeBorderGray dark:bg-darkGray px-5 py-2 md:px-7 md:py-4  lg:px-9 lg:py-6 rounded-2xl relative ${styles}`}
 			>
 				<h2 className='text-blue dark:text-orange text-xl lg:text-2xl xl:text-3xl mb-5'>
 					<strong className='inline text-black dark:text-white underline'>

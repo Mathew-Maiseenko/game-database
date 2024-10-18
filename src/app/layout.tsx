@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import './globals.css'
+//import './../../public/output.css'
 import StoreProvider from './providers/StoreProvider'
 import { LayoutWrapper } from '@/widgets/layout-wrapper'
 import Head from 'next/head'

@@ -10,26 +10,23 @@
 	z-index: 2;
 	transition: 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
-.icon span {
-	/* display: block; */
+/* .icon span {
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	flex-direction: column;
 	align-items: center;
-	/* height: 60px;
-	width: 60px; */
 	border-radius: 50%;
 	position: relative;
 	z-index: 2;
 	box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
 	transition: 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-}
+} */
 .icon .tooltip {
 	position: absolute;
 	top: 0;
 	z-index: -1;
-	background: #fff;
+	/* background: #fff; */
 	color: #fff;
 	padding: 10px 8px;
 	font-size: 20px;
@@ -40,8 +37,8 @@
 	box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.1);
 	transition: 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
-.icon:hover .tooltip {
-	top: -50px;
+.activeIcon .tooltip {
+	top: -80px;
 	display: flex;
 	flex-grow: 1;
 	opacity: 1;
@@ -52,20 +49,23 @@
 	content: '';
 	height: 15px;
 	width: 15px;
-	background: #fff;
+	/* background: #fff; */
 	left: 50%;
 	bottom: -6px;
 	transform: translateX(-50%) rotate(45deg);
 	transition: 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
-.icon:hover span {
+.activeIcon span {
 	color: #fff;
 }
-.icon:hover span,
-.icon:hover .tooltip {
+.tooltip article {
+	z-index: 5;
+}
+.activeIcon span,
+.activeIcon .tooltip {
 	text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.4);
 }
-.message:hover .tooltip,
-.message:hover .tooltip:before {
+/* .activeMessage .tooltip,
+.activeMessage .tooltip:before {
 	background: #000;
-}
+} */
