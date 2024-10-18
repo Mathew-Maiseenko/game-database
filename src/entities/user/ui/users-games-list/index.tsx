@@ -67,7 +67,7 @@ export function UsersGamesList({ withButton, styles }: UsersGamesListProps) {
 				<button
 					className={`${
 						withButton ? '' : 'hidden'
-					} bg-blue dark:bg-orange w-1/2 md:w-1/3 m-auto p-2 relative -bottom-7 rounded-2xl text-black dark:text-white`}
+					} bg-blue dark:bg-orange w-2/3 sm:w-1/2 md:w-1/3 m-auto p-2 relative -bottom-7 lg:-bottom-11 rounded-2xl text-black dark:text-white`}
 					onClick={() => {
 						router.push('http://localhost:3000/user')
 					}}

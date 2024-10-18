@@ -41,6 +41,14 @@ export function GameFiltration() {
 	const setTag = filteredGamesSlice.actions.setActiveTags
 
 	useEffect(() => {
+		let activeDeveloperFetchingParam: string = ''
+
+		if (filterDeveloper) {
+			activeDeveloperFetchingParam = developers
+				.filter(developer => developer.name === filterDeveloper)[0]
+				.id.toString()
+		}
+
 		dispatch(
 			fetchFilteredGameList({
 				gamesPerPage: 0,
@@ -53,7 +61,7 @@ export function GameFiltration() {
 					.reduce((acc, tag) => (tag ? `${acc}${tag.id},` : acc), '')
 					.slice(0, -1),
 				year: 0,
-				developers: filterDeveloper,
+				developers: activeDeveloperFetchingParam,
 			})
 		)
 	}, [

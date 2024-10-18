@@ -56,15 +56,10 @@ export function RecommendedGameList() {
 					Games
 				</article>
 				<article className='flex flex-col w-full'>
-					<article className='flex flex-col justify-start md:flex-row md:flex-wrap md:justify-between w-full p-3'>
+					<article className='flex flex-col justify-start gap-px md:flex-row md:flex-wrap md:justify-between w-full p-3'>
 						<ViewRecommendedGameCards games={recommendedGames} />
 					</article>
 				</article>
-				{isUserSigned && (
-					<button className='dark:bg-orange bg-blue w-1/2 md:w-1/3 m-auto p-2 relative -bottom-5 rounded-2xl text-black dark:text-whit'>
-						View Your Library
-					</button>
-				)}
 			</section>
 		</ListWrapper>
 	)

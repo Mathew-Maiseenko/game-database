@@ -46,12 +46,14 @@ export const MinimalistSelect = ({
 				/>
 			</article>
 			<ul
-				className={`bg-darkGray mt-2 overflow-y-auto rounded-md  ${
-					open ? 'max-h-60' : 'max-h-0'
+				className={`dark:text-white bg-white dark:bg-darkGray mt-2 overflow-y-auto rounded-md  ${
+					open
+						? 'max-h-60 dark:border-none border-2 border-lightThemeBorderGray'
+						: 'max-h-0'
 				} `}
 			>
 				{withSearch && (
-					<section className='flex justify-between items-center px-2 py-1 sticky top-0 dark:border-none border-2 border-lightThemeBorderGray bg-white dark:bg-darkGray'>
+					<section className='flex justify-between items-center px-2 py-1 sticky top-0 dark:border-none border-b-2 border-lightThemeBorderGray bg-white dark:bg-darkGray'>
 						<MagnifierIcon
 							styles={`bg-inherit min-h-full absolute right-4 top-0 w-4 h-4 fill-textGray ${
 								open && 'dark:fill-white fill-black'
@@ -69,7 +71,7 @@ export const MinimalistSelect = ({
 				{options.map(option => (
 					<li
 						key={option}
-						className={`p-2 text-black dark:text-white text-sm hover:bg-hoverBlue dark:hover:bg-orange hover:text-black
+						className={`p-2 bg-white dark:bg-darkGray text-black dark:text-white text-sm hover:bg-hoverBlue dark:hover:bg-orange hover:text-black
             ${
 							option?.toLowerCase() === selectedOption?.toLowerCase() &&
 							'bg-activeBlue dark:bg-orange text-black'

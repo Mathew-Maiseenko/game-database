@@ -20,7 +20,7 @@ export function RecommendationListsGameCard({
 }: RecommendedGameCardProps) {
 	//w-2/6
 	return (
-		<section className='flex flex-col sm:flex-row w-full md:w-1/2 justify-between relative mb-5 after:h-0.5 after:w-full after:absolute after:-bottom-2 dark:after:bg-grayLineAfterCard after:bg-lightThemeBorderGray'>
+		<section className='flex flex-col sm:flex-row w-full md:max-w-[49%] justify-between relative mb-5 after:h-0.5 after:w-full after:absolute after:-bottom-2 dark:after:bg-grayLineAfterCard after:bg-lightThemeBorderGray'>
 			<Link
 				href={`http://localhost:3000/details/${id}`}
 				className='flex justify-center items-center flex-grow sm:h-full w-full sm:w-auto'
