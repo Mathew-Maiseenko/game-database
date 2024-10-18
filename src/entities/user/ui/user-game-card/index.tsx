@@ -1,11 +1,11 @@
 'use client'
 import Image from 'next/image'
 import getRandomDefaultImage from '@/shared/model/defaultImages'
-import { Store } from '@/shared/api/RawgApi-hook'
-import { AnimatedTickIcon, TriplePointIcon } from '@/shared/ui'
+import { AnimatedTickIcon } from '@/shared/ui'
 import { useAppDispatch } from '@/shared/lib/redux/hooks'
 import { userSlice } from '../../model/user-slice'
 import { useRouter } from 'next/navigation'
+import { UsersOpeningActionsMenuButton } from './ui'
 
 interface UsersGameCardProps {
 	id: number
@@ -13,7 +13,7 @@ interface UsersGameCardProps {
 	poster: string | null | undefined
 	releaseDate: string | null | undefined
 	playtime: number | null | undefined
-	stores?: Store[] | null
+	website?: string | null
 	achievementsCount: number | null
 	completedAchievementsCount?: number
 	isComplete: boolean
@@ -25,6 +25,7 @@ export function UsersGameCard({
 	poster,
 	releaseDate,
 	playtime,
+	website,
 	achievementsCount,
 	completedAchievementsCount,
 	isComplete,
@@ -33,7 +34,7 @@ export function UsersGameCard({
 	const router = useRouter()
 
 	return (
-		<article className='flex flex-row relative w-full h-1/3 overflow-x-hidden rounded-xl mb-3 after:h-0.5 after:w-full after:absolute after:bottom-0 after:bg-textGray overflow-hidden'>
+		<article className='flex flex-row relative w-full h-1/3 overflow-x-hidden rounded-xl mb-3 after:h-0.5 after:w-full after:absolute after:bottom-0 after:bg-textGray'>
 			<section
 				className='flex justify-center items-center relative mr-5 w-2/6 cursor-pointer min-h-full '
 				onDoubleClick={() => router.push(`http://localhost:3000/details/${id}`)}
@@ -98,7 +99,7 @@ export function UsersGameCard({
 						{/* <button className='flex justify-center items-center bg-downloadGameButton py-1 px-3 h-1/2 text-white rounded-md mb-1'>
 							<DownloadIcon classes='w-5 h-5 fill-white dark:fill-black' />
 						</button> */}
-						<TriplePointIcon classes='w-8 h-8' />
+						<UsersOpeningActionsMenuButton website={website} id={1} />
 						{/* <button
 							className='flex justify-center items-center bg-gameDeleteRedLightTheme p-2 md:p-3 lg:p-4 text-white rounded-full'
 							onClick={() => dispatch(userSlice.actions.removeFavoriteGame(id))}

@@ -31,7 +31,7 @@
 	z-index: -1;
 	background: #fff;
 	color: #fff;
-	padding: 10px 18px;
+	padding: 10px 8px;
 	font-size: 20px;
 	font-weight: 500;
 	border-radius: 25px;
@@ -41,7 +41,7 @@
 	transition: 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 .icon:hover .tooltip {
-	top: -100px;
+	top: -50px;
 	display: flex;
 	flex-grow: 1;
 	opacity: 1;

@@ -98,7 +98,7 @@ function ViewUsersGamesList({
 				completedAchievementsCount={
 					Object.keys(currentGame.completedAchievementIds).length
 				}
-				stores={currentGame.game.stores}
+				website={currentGame.game.website}
 				isComplete={currentGame.isComplete}
 			/>
 		))
