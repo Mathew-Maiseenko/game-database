@@ -41,7 +41,7 @@ export function RecommendedGameList() {
 				.then(() => setGameListFetchingState('fulfilled'))
 				.catch(() => setGameListFetchingState('rejected'))
 		}
-	}, [isUserSigned, favoriteGames, favoriteGameIds])
+	}, [isUserSigned, favoriteGameIds])
 
 	return (
 		<ListWrapper
@@ -56,9 +56,9 @@ export function RecommendedGameList() {
 					Games
 				</article>
 				<article className='flex flex-col w-full'>
-					<article className='flex flex-col justify-start gap-px md:flex-row md:flex-wrap md:justify-between w-full p-3'>
+					<ul className='flex flex-col justify-start gap-px md:flex-row md:flex-wrap md:justify-between w-full p-3'>
 						<ViewRecommendedGameCards games={recommendedGames} />
-					</article>
+					</ul>
 				</article>
 			</section>
 		</ListWrapper>

@@ -48,9 +48,9 @@ export function SimilarGameList() {
 					Games
 				</article>
 				<article className='flex flex-col w-full'>
-					<article className='flex flex-col justify-start md:flex-row md:flex-wrap md:justify-between gap-1 w-full p-3'>
+					<ul className='flex flex-col justify-start md:flex-row md:flex-wrap md:justify-between gap-1 w-full p-3'>
 						<ViewRecommendedGameCards games={similarGames} />
-					</article>
+					</ul>
 				</article>
 			</section>
 		</ListWrapper>

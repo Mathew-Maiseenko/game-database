@@ -19,9 +19,9 @@ export function FilteredGamesList() {
 	return (
 		<ListWrapper fetchingState={gameListFetchingState}>
 			<section className='flex flex-col min-w-full bg-lightThemeGray border-2 border-lightThemeBorderGray dark:bg-darkGray px-4 py-3 md:px-6 md:py-5 rounded-2xl relative mb-7 md:mb-12'>
-				<article className='flex flex-row justify-between flex-wrap pb-0 mb-1'>
+				<ul className='flex flex-row justify-between flex-wrap pb-0 mb-1'>
 					<ViewGamesList gameList={games} />
-				</article>
+				</ul>
 				<article className='flex justify-center w-full'>
 					<Pagination totalPageCount={Math.ceil(gamesCount / 20)} />
 				</article>

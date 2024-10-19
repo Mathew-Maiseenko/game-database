@@ -26,9 +26,9 @@ export function PopularGamesList() {
 					</strong>{' '}
 					Games
 				</h2>
-				<article className='flex flex-row justify-between flex-wrap pb-0'>
+				<ul className='flex flex-row justify-between flex-wrap pb-0'>
 					<ViewGamesList gameList={games} />
-				</article>
+				</ul>
 			</section>
 		</ListWrapper>
 	)

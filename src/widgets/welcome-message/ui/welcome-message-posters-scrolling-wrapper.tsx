@@ -2,7 +2,8 @@
 import { RawgApi } from '@/shared/api/RawgApi-hook'
 import Image from 'next/image'
 import { useEffect, useState } from 'react'
-import logo from '../../../../public/logo.png'
+import logoDark from '../../../../public/welcome-message-empty-poster-dark.png'
+import logoWhite from '../../../../public/welcome-message-empty-poster.png'
 import { useAppDispatch, useAppSelector } from '@/shared/lib/redux/hooks'
 import { filteredGamesSlice } from '@/features/filtration'
 import { useWindowWidth } from '@/shared/model'
@@ -53,11 +54,22 @@ export function WelcomeMessagePostersScrollingWrapper({
 	return (
 		<section className='relative inline-flex flex-col justify-between min-w-full md:min-h-[50vh] dark:border-none border-2 border-lightThemeBorderGray mb-10 rounded-3xl overflow-hidden'>
 			<Image
-				className='absolute top-0 left-0 z-0 w-full h-full'
-				src={logo}
+				className='dark:hidden block absolute top-0 left-0 z-0 w-full h-full'
+				src={logoWhite}
 				width={1080}
 				height={720}
 				alt='Empty poster'
+				loading='lazy'
+				placeholder='blur'
+			/>
+			<Image
+				className='hidden dark:block absolute top-0 left-0 z-0 w-full h-full'
+				src={logoDark}
+				width={1080}
+				height={720}
+				alt='Empty poster'
+				loading='lazy'
+				placeholder='blur'
 			/>
 			<article
 				style={{ transform: `translateX(${position}px)` }}

@@ -61,9 +61,9 @@ export function UsersGamesList({ withButton, styles }: UsersGamesListProps) {
 					</strong>{' '}
 					Library
 				</h2>
-				<section className='flex flex-col'>
+				<ul className='flex flex-col'>
 					<ViewUsersGamesList gameList={userGames} />
-				</section>
+				</ul>
 				<button
 					className={`${
 						withButton ? '' : 'hidden'
