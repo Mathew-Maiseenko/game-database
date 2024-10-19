@@ -16,8 +16,11 @@ export function UsersAvatar() {
 			<UserIcon className='flex flex-grow w-1/2 md:w-full rounded-2xl self-center mb-2' />
 			<button
 				onClick={() => {
-					dispatch(userSlice.actions.setUserUnsigned())
 					router.push('http://localhost:3000')
+
+					setTimeout(() => {
+						dispatch(userSlice.actions.setUserUnsigned())
+					}, 100)
 				}}
 				className='flex text-white justify-center items-center bg-accountExitRed rounded-2xl p-3 lg:p-5 font-semibold'
 			>
@@ -26,3 +29,15 @@ export function UsersAvatar() {
 		</article>
 	)
 }
+
+/*
+<button
+				onClick={() => {
+					router.push('http://localhost:3000')
+					dispatch(userSlice.actions.setUserUnsigned())
+				}}
+				className='flex text-white justify-center items-center bg-accountExitRed rounded-2xl p-3 lg:p-5 font-semibold'
+			>
+				Log out
+			</button>
+ */

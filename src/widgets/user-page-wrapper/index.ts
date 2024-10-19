@@ -1,0 +1,1 @@
+export { UserPageWrapper } from './ui'

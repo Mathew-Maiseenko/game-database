@@ -45,7 +45,7 @@ const config: Config = {
 		colors: {
 			mainBgColor: '#f2f2f2',
 			hoverBlue: '#37ceff',
-			activeBlue: '#256de8',
+			activeBlue: '#5e7fdc',
 			blue: '#0ea5e9',
 			pink: '#ff49db',
 			orange: '#ff7849',
