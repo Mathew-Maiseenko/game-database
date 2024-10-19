@@ -56,8 +56,6 @@ export function WelcomeMessagePostersScrollingWrapper({
 			<Image
 				className='dark:hidden block absolute top-0 left-0 z-0 w-full h-full'
 				src={logoWhite}
-				width={1080}
-				height={720}
 				alt='Empty poster'
 				loading='lazy'
 				placeholder='blur'
@@ -65,18 +63,16 @@ export function WelcomeMessagePostersScrollingWrapper({
 			<Image
 				className='hidden dark:block absolute top-0 left-0 z-0 w-full h-full'
 				src={logoDark}
-				width={1080}
-				height={720}
 				alt='Empty poster'
 				loading='lazy'
 				placeholder='blur'
 			/>
-			<article
+			<ul
 				style={{ transform: `translateX(${position}px)` }}
 				className={`flex flex-grow transition-transform duration-500 ease-out transform absolute top-0 left-0 origin-top-right h-full z-10 `}
 			>
 				<ViewPostersList posters={gamesPosters} />
-			</article>
+			</ul>
 			{children}
 		</section>
 	)
@@ -84,7 +80,7 @@ export function WelcomeMessagePostersScrollingWrapper({
 
 function ViewPostersList({ posters }: { posters: string[] }) {
 	return posters.map((poster, i) => (
-		<article
+		<li
 			style={{
 				background: `center / cover no-repeat url(${poster})`,
 			}}

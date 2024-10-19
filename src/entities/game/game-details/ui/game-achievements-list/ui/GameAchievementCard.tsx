@@ -36,7 +36,7 @@ export function GameAchievementCard({
 		)
 	)
 	return (
-		<section className='flex w-full justify-between relative mb-5 after:h-0.5 after:w-full after:absolute after:-bottom-2 after:bg-grayLineAfterCard py-2'>
+		<li className='flex w-full justify-between relative mb-5 after:h-0.5 after:w-full after:absolute after:-bottom-2 after:bg-grayLineAfterCard py-2'>
 			<section className='flex'>
 				<article
 					className='relative sm:max-w-10 md:max-w-20 lg:max-w-40'
@@ -88,6 +88,6 @@ export function GameAchievementCard({
 				</h4>
 				<AchievementIcon classes='stroke-blue dark:stroke-orange' />
 			</section>
-		</section>
+		</li>
 	)
 }

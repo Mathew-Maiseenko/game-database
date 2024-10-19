@@ -1,3 +1,4 @@
+export { ImageWithFallback } from './image-with-fallback'
 export { TickIcon } from './icon/tick-icon'
 export { TriplePointIcon } from './icon/triple-point-icon'
 export { AnimatedTickIcon } from './icon/animated-tick-icon'

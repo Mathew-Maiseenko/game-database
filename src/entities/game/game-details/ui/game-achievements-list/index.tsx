@@ -42,7 +42,7 @@ export const GameAchievementsList = memo(function GameAchievementsList({
 					<h2 className='inline dark:text-white text-black underline'>All</h2>{' '}
 					Achievements
 				</article>
-				<article className='flex flex-col justify-between w-full p-3'>
+				<ul className='flex flex-col justify-between w-full p-3'>
 					{achievements.length &&
 						achievements.map((achievement: Achievement) => (
 							<GameAchievementCard
@@ -57,7 +57,7 @@ export const GameAchievementsList = memo(function GameAchievementsList({
 								image={achievement.image}
 							/>
 						))}
-				</article>
+				</ul>
 			</section>
 		)
 	} else {
