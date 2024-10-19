@@ -1,8 +1,7 @@
 'use client'
 import { gameDetailsSlice } from '@/entities/game/game-details/model'
 import { useAppDispatch, useAppSelector } from '@/shared/lib/redux/hooks'
-import { CrossIcon, Modal } from '@/shared/ui'
-import Image from 'next/image'
+import { CrossIcon, ImageWithFallback, Modal } from '@/shared/ui'
 import { memo, useEffect } from 'react'
 
 export const ImageModal = memo(function ImageModal() {
@@ -44,7 +43,7 @@ export const ImageModal = memo(function ImageModal() {
 				>
 					<CrossIcon classes='sm:w-7 lg:w-10' />
 				</article>
-				<Image
+				<ImageWithFallback
 					className='w-full'
 					src={ModalsImage?.image ? ModalsImage.image : ''}
 					width={2560}

@@ -2,7 +2,11 @@
 import Image from 'next/image'
 
 import getRandomDefaultImage from '@/shared/model/defaultImages'
-import { AchievementIcon, AnimatedTickIcon } from '@/shared/ui'
+import {
+	AchievementIcon,
+	AnimatedTickIcon,
+	ImageWithFallback,
+} from '@/shared/ui'
 import { useAppDispatch, useAppSelector } from '@/shared/lib/redux/hooks'
 import { userSlice } from '@/entities/user'
 
@@ -63,8 +67,8 @@ export function GameAchievementCard({
 					>
 						<AnimatedTickIcon />
 					</section>
-					<Image
-						src={image || getRandomDefaultImage()}
+					<ImageWithFallback
+						src={image}
 						width={500}
 						height={500}
 						alt='Picture of the achievement'

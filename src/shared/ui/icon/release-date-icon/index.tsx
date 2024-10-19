@@ -10,8 +10,9 @@ export function ReleaseDateIcon({ classes }: iconProps) {
 			src={releaseSwg}
 			width={20}
 			height={20}
-			className={`mr-1 ${classes}`}
+			className={classes}
 			alt='star icon'
+			loading='lazy'
 		/>
 	)
 }

@@ -1,8 +1,6 @@
-import Image from 'next/image'
-import getRandomDefaultImage from '@/shared/model/defaultImages'
 import Link from 'next/link'
 import { cardHoverClass } from '@/shared/styles'
-import { ClockIcon, StarIcon } from '@/shared/ui'
+import { ClockIcon, ImageWithFallback, StarIcon } from '@/shared/ui'
 import { StoreLogoList } from '@/shared/model'
 import type { Store } from '@/shared/api/RawgApi-hook'
 import { memo } from 'react'
@@ -32,10 +30,10 @@ export const GameCard = memo(function GameCard({
 		>
 			<Link
 				href={`/details/${id}`}
-				className={` flex flex-col w-full min-h-full`}
+				className={`flex flex-col w-full min-h-full`}
 			>
-				<Image
-					src={image || getRandomDefaultImage()}
+				<ImageWithFallback
+					src={image}
 					width={1280}
 					height={720}
 					alt='Game poster'

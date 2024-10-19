@@ -13,7 +13,7 @@ interface ImageWithFallbackProps
 }
 
 export const ImageWithFallback = ({
-	src,
+	src = emptyImage,
 	width = 500,
 	height = 500,
 	fallbackSrc = emptyImage,
@@ -29,7 +29,10 @@ export const ImageWithFallback = ({
 			width={width}
 			height={height}
 			placeholder='blur'
-			src={imgSrc ?? fallbackSrc}
+			blurDataURL={
+				'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNcvH79JgAGswK11g2dbAAAAABJRU5ErkJggg=='
+			}
+			src={imgSrc}
 			onError={() => {
 				setImgSrc(fallbackSrc)
 			}}

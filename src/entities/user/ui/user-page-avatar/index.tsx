@@ -1,10 +1,8 @@
 'use client'
-import getRandomDefaultImage from '@/shared/model/defaultImages'
-
-import Image from 'next/image'
 import { userSlice } from '../../model/user-slice'
 import { useAppDispatch, useAppSelector } from '@/shared/lib/redux/hooks'
 import { useRouter } from 'next/navigation'
+import { UserIcon } from '@/shared/ui'
 
 export function UsersAvatar() {
 	const dispatch = useAppDispatch()
@@ -15,13 +13,7 @@ export function UsersAvatar() {
 			<h2 className='text-center inline-block w-full text-black dark:text-white font-bold text-xl md:text-2xl xl:text-3xl mb-2 underline'>
 				{userName}
 			</h2>
-			<Image
-				src={false || getRandomDefaultImage()}
-				width={80}
-				height={80}
-				alt='user avatar'
-				className='flex flex-grow w-1/2 md:w-full rounded-2xl self-center mb-2'
-			/>
+			<UserIcon className='flex flex-grow w-1/2 md:w-full rounded-2xl self-center mb-2' />
 			<button
 				onClick={() => {
 					dispatch(userSlice.actions.setUserUnsigned())

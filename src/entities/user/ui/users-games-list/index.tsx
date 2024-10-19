@@ -52,29 +52,56 @@ export function UsersGamesList({ withButton, styles }: UsersGamesListProps) {
 			fetchingState={fetchingDetailsByGamesIdsState}
 			ErrorMessageStyles='mb-7'
 		>
-			<section
+			<article
 				className={`flex flex-col  min-w-full bg-white dark:border-none border-2 border-lightThemeBorderGray dark:bg-darkGray px-5 py-2 md:px-7 md:py-4  lg:px-9 lg:py-6 rounded-2xl relative ${styles}`}
 			>
-				<h2 className='text-blue dark:text-orange text-xl lg:text-2xl xl:text-3xl mb-5'>
-					<strong className='inline text-black dark:text-white underline'>
-						Your Gaming
-					</strong>{' '}
-					Library
-				</h2>
-				<ul className='flex flex-col'>
-					<ViewUsersGamesList gameList={userGames} />
-				</ul>
-				<button
-					className={`${
-						withButton ? '' : 'hidden'
-					} bg-blue dark:bg-orange w-2/3 sm:w-1/2 md:w-1/3 m-auto p-2 relative -bottom-7 lg:-bottom-11 rounded-2xl text-black dark:text-white`}
-					onClick={() => {
-						router.push('http://localhost:3000/user')
-					}}
-				>
-					View Your Library
-				</button>
-			</section>
+				{userGames.length ? (
+					<>
+						<h2 className='text-blue dark:text-orange text-xl lg:text-2xl xl:text-3xl mb-5'>
+							<strong className='inline text-black dark:text-white underline'>
+								Your Gaming
+							</strong>{' '}
+							Library
+						</h2>
+						<ul className='flex flex-col'>
+							<ViewUsersGamesList gameList={userGames} />
+						</ul>
+						<button
+							className={`${
+								withButton ? '' : 'hidden'
+							} bg-blue dark:bg-orange w-2/3 sm:w-1/2 md:w-1/3 m-auto p-2 relative -bottom-7 lg:-bottom-11 rounded-2xl text-black dark:text-white`}
+							onClick={() => {
+								router.push('http://localhost:3000/user')
+							}}
+						>
+							View Your Library
+						</button>
+					</>
+				) : (
+					<section className='flex flex-col justify-center items-center'>
+						<h2 className='text-black dark:text-white text-2xl lg:text-3xl xl:text-4xl mb-5 uppercase'>
+							Your{' '}
+							<strong className='inline text-blue dark:text-orange'>
+								Gaming Library
+							</strong>{' '}
+							is empty!
+						</h2>
+						<h3 className='text-lightThemeTextGray dark:text-textGray text-lg lg:text-xl xl:text-2xl'>
+							Your can add a new game in Cyber Game List
+						</h3>
+						<button
+							className={
+								'bg-blue dark:bg-orange w-2/3 sm:w-1/2 md:w-1/3 m-auto p-2 relative -bottom-7 lg:-bottom-11 rounded-2xl text-black dark:text-white'
+							}
+							onClick={() => {
+								router.push('http://localhost:3000/')
+							}}
+						>
+							Go to Cyber Game List
+						</button>
+					</section>
+				)}
+			</article>
 		</ListWrapper>
 	)
 }
