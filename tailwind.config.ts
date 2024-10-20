@@ -23,7 +23,7 @@ const config: Config = {
 					'100%': { opacity: '1' },
 				},
 				cardShowing: {
-					'0%': { transform: 'translateY(-35%)', opacity: '0' },
+					'0%': { transform: 'translateY(-10%)', opacity: '0' },
 					'100%': { transform: 'translateY(0)', opacity: '1' },
 				},
 				slideIn: {

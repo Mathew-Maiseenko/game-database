@@ -32,9 +32,17 @@ export const GameAchievementsList = memo(function GameAchievementsList({
 	}, [gameId])
 
 	if (achievementsFetchStatus === 'pending') {
-		return <Loader />
+		return (
+			<section className='flex flex-col min-w-full bg-lightThemeGray dark:bg-darkGray dark:border-none border-2 border-lightThemeBorderGray px-20 py-20 rounded-3xl relative mb-5'>
+				<Loader />
+			</section>
+		)
 	} else if (achievementsFetchStatus === 'rejected') {
-		return <ErrorMessage />
+		return (
+			<section className='flex flex-col min-w-full bg-lightThemeGray dark:bg-darkGray dark:border-none border-2 border-lightThemeBorderGray px-20 py-20 rounded-3xl relative mb-5'>
+				<ErrorMessage />
+			</section>
+		)
 	} else if (achievementsFetchStatus === 'fulfilled' && achievements.length) {
 		return (
 			<section className='flex flex-col min-w-full bg-lightThemeGray dark:bg-darkGray dark:border-none border-2 border-lightThemeBorderGray px-6 pr-10 pt-5 rounded-3xl relative mb-5'>

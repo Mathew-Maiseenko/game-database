@@ -7,6 +7,7 @@ interface RecommendedGameCardProps {
 	poster: string
 	rating: number
 	genres?: string[]
+	sequenceNumber?: number
 }
 
 export function RecommendationListsGameCard({
@@ -15,10 +16,18 @@ export function RecommendationListsGameCard({
 	poster,
 	rating,
 	genres,
+	sequenceNumber = 0,
 }: RecommendedGameCardProps) {
 	//w-2/6
 	return (
-		<li className='flex flex-col sm:flex-row w-full md:max-w-[49%] justify-between relative mb-5 after:h-0.5 after:w-full after:absolute after:-bottom-2 dark:after:bg-grayLineAfterCard after:bg-lightThemeBorderGray'>
+		<li
+			className='flex flex-col sm:flex-row w-full md:max-w-[49%] justify-between relative mb-5 after:h-0.5 after:w-full after:absolute after:-bottom-2 dark:after:bg-grayLineAfterCard after:bg-lightThemeBorderGray'
+			style={{
+				animation: `cardShowing ${
+					0.5 + 0.2 * sequenceNumber
+				}s ease-out forwards`,
+			}}
+		>
 			<Link
 				href={`http://localhost:3000/details/${id}`}
 				className='flex justify-center items-center flex-grow sm:h-full w-full sm:w-auto'

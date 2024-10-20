@@ -13,6 +13,7 @@ interface GameCardProps {
 	playtime: number
 	stores?: Store[] | undefined
 	genres?: string[]
+	sequenceNumber?: number
 }
 
 export const GameCard = memo(function GameCard({
@@ -23,10 +24,16 @@ export const GameCard = memo(function GameCard({
 	playtime,
 	stores,
 	genres,
+	sequenceNumber = 0,
 }: GameCardProps) {
 	return (
 		<li
-			className={`${cardHoverClass} flex dark:border-none border-2 border-lightThemeBorderGray bg-white dark:bg-whiteGray w-full sm:w-[49%] lg:w-[24%] min-h-full rounded-xl mb-3 overflow-hidden animate-card-showing`}
+			className={`${cardHoverClass} flex dark:border-none border-2 border-lightThemeBorderGray bg-white dark:bg-whiteGray w-full sm:w-[49%] lg:w-[24%] min-h-full rounded-xl mb-3 overflow-hidden`}
+			style={{
+				animation: `cardShowing ${
+					0.5 + 0.2 * sequenceNumber
+				}s ease-out forwards`,
+			}}
 		>
 			<Link
 				href={`/details/${id}`}

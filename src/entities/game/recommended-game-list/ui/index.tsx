@@ -66,7 +66,7 @@ export function RecommendedGameList() {
 }
 
 const ViewRecommendedGameCards = ({ games }: { games: StoreGame[] }) =>
-	games.map(game => (
+	games.map((game, i) => (
 		<RecommendationListsGameCard
 			key={`${game.name}_${game.id}`}
 			id={game.id}
@@ -74,5 +74,6 @@ const ViewRecommendedGameCards = ({ games }: { games: StoreGame[] }) =>
 			poster={game.backgroundImage}
 			rating={game.rating}
 			genres={game.genres?.map(genre => genre.name)}
+			sequenceNumber={i}
 		/>
 	))

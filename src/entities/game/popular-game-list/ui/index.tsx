@@ -35,7 +35,7 @@ export function PopularGamesList() {
 }
 
 function ViewGamesList({ gameList }: { gameList: StoreGame[] }) {
-	return gameList.map((game: StoreGame) => (
+	return gameList.map((game: StoreGame, i) => (
 		<GameCard
 			key={game.id}
 			id={game.id}
@@ -45,6 +45,7 @@ function ViewGamesList({ gameList }: { gameList: StoreGame[] }) {
 			playtime={game.playtime}
 			genres={game.genres?.map(genre => genre.name)}
 			stores={game.stores}
+			sequenceNumber={i}
 		/>
 	))
 }
