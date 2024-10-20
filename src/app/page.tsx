@@ -1,4 +1,3 @@
-//import { HomePage } from '@/pages/home-page'
 import { Metadata } from 'next'
 import dynamic from 'next/dynamic'
 

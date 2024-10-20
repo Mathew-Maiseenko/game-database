@@ -1,6 +1,9 @@
-import { NotFoundPage } from '@/pages/not-found-page'
-import { Metadata } from 'next'
+import dynamic from 'next/dynamic'
+const NotFoundPage = dynamic(() =>
+	import('@/pages/not-found-page').then(file => file.NotFoundPage)
+)
 
+import { Metadata } from 'next'
 export const metadata: Metadata = {
 	title: '404',
 }

@@ -1,14 +1,30 @@
 'use client'
-import { PopularGamesList } from '@/entities/game/popular-game-list'
-import { RecommendedGameList } from '@/entities/game/recommended-game-list'
-import { UsersGamesList, userSlice } from '@/entities/user'
+import dynamic from 'next/dynamic'
+import { userSlice } from '@/entities/user'
 import { useAppSelector } from '@/shared/lib/redux/hooks'
+
+const PopularGamesList = dynamic(() =>
+	import('@/entities/game/popular-game-list').then(
+		file => file.PopularGamesList
+	)
+)
+
+const RecommendedGameList = dynamic(() =>
+	import('@/entities/game/recommended-game-list').then(
+		file => file.RecommendedGameList
+	)
+)
+
+const UsersGamesList = dynamic(() =>
+	import('@/entities/user').then(file => file.UsersGamesList)
+)
 
 export function HomePageMainContent() {
 	const isUserSigned = useAppSelector(userSlice.selectors.selectIsUserSigned)
 	const userGamesIdsCount = useAppSelector(
 		userSlice.selectors.selectFavoriteGamesIdsCount
 	)
+
 	if (isUserSigned && userGamesIdsCount) {
 		return (
 			<>
