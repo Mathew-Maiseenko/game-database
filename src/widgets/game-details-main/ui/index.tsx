@@ -71,9 +71,9 @@ export function GameDetailsMain() {
 				<section className='flex flex-col bg-lightThemeGray dark:bg-darkGray dark:border-none border-2 border-lightThemeBorderGray rounded-3xl p-5 mb-5'>
 					<PairOfGameInfoCards />
 					<ListOfGameScreenshots screenshots={screenshots.slice(2)} />
-					<h3 className='text-textGray text-base mb-5'>
+					<p className='text-textGray text-base mb-5'>
 						{currentGame.descriptionRaw}
-					</h3>
+					</p>
 					<section className='flex flex-row w-full'>
 						<Link
 							href={currentGame.website}

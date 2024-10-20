@@ -29,15 +29,3 @@ export function UsersAvatar() {
 		</article>
 	)
 }
-
-/*
-<button
-				onClick={() => {
-					router.push('http://localhost:3000')
-					dispatch(userSlice.actions.setUserUnsigned())
-				}}
-				className='flex text-white justify-center items-center bg-accountExitRed rounded-2xl p-3 lg:p-5 font-semibold'
-			>
-				Log out
-			</button>
- */
