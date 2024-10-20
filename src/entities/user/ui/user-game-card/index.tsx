@@ -1,9 +1,6 @@
 'use client'
-import Image from 'next/image'
-import getRandomDefaultImage from '@/shared/model/defaultImages'
-import { AnimatedTickIcon } from '@/shared/ui'
+import { AnimatedTickIcon, ImageWithFallback } from '@/shared/ui'
 import { useAppDispatch } from '@/shared/lib/redux/hooks'
-import { userSlice } from '../../model/user-slice'
 import { useRouter } from 'next/navigation'
 import { UsersOpeningActionsMenuButton } from './ui'
 
@@ -46,8 +43,8 @@ export function UsersGameCard({
 				>
 					<AnimatedTickIcon />
 				</article>
-				<Image
-					src={poster || getRandomDefaultImage()}
+				<ImageWithFallback
+					src={poster ? poster : ''}
 					width={500}
 					height={500}
 					alt='Poster of the game'

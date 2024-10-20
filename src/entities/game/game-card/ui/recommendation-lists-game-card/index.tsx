@@ -1,6 +1,4 @@
-import Image from 'next/image'
-import getRandomDefaultImage from '@/shared/model/defaultImages'
-import { StarIcon } from '@/shared/ui'
+import { ImageWithFallback, StarIcon } from '@/shared/ui'
 import Link from 'next/link'
 
 interface RecommendedGameCardProps {
@@ -25,8 +23,8 @@ export function RecommendationListsGameCard({
 				href={`http://localhost:3000/details/${id}`}
 				className='flex justify-center items-center flex-grow sm:h-full w-full sm:w-auto'
 			>
-				<Image
-					src={poster || getRandomDefaultImage()}
+				<ImageWithFallback
+					src={poster}
 					width={300}
 					height={200}
 					alt='Picture of the game'

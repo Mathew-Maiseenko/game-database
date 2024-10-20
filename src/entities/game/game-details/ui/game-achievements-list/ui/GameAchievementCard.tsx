@@ -1,7 +1,4 @@
 'use client'
-import Image from 'next/image'
-
-import getRandomDefaultImage from '@/shared/model/defaultImages'
 import {
 	AchievementIcon,
 	AnimatedTickIcon,
