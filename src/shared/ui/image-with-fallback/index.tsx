@@ -1,3 +1,4 @@
+'use client'
 import { useState } from 'react'
 import Image from 'next/image'
 import emptyImage from '../../../../public/empty-image.svg'
@@ -22,6 +23,8 @@ export const ImageWithFallback = ({
 	...rest
 }: ImageWithFallbackProps) => {
 	const [imgSrc, setImgSrc] = useState(src)
+	const base64Image =
+		'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNcvH79JgAGswK11g2dbAAAAABJRU5ErkJggg=='
 	return (
 		<Image
 			{...rest}
@@ -29,9 +32,7 @@ export const ImageWithFallback = ({
 			width={width}
 			height={height}
 			placeholder='blur'
-			blurDataURL={
-				'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNcvH79JgAGswK11g2dbAAAAABJRU5ErkJggg=='
-			}
+			blurDataURL={base64Image}
 			src={imgSrc}
 			onError={() => {
 				setImgSrc(fallbackSrc)
