@@ -13,8 +13,19 @@ const config: Config = {
 			animation: {
 				'slide-in': 'slideIn 0.3s ease-in-out',
 				'slide-out': 'slideOut 0.3s ease-in-out forwards',
+				'base-showing': 'cardShowing 0.7s ease-out forwards',
+				'card-showing': 'cardShowing 0.5s ease-out forwards',
+				'main-showing': 'baseShowing 1s ease-out forwards',
 			},
 			keyframes: {
+				baseShowing: {
+					'0%': { opacity: '0' },
+					'100%': { opacity: '1' },
+				},
+				cardShowing: {
+					'0%': { transform: 'translateY(-35%)', opacity: '0' },
+					'100%': { transform: 'translateY(0)', opacity: '1' },
+				},
 				slideIn: {
 					'0%': { transform: 'translateX(100%)' },
 					'100%': { transform: 'translateX(0)' },

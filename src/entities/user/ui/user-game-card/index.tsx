@@ -27,7 +27,6 @@ export function UsersGameCard({
 	completedAchievementsCount,
 	isComplete,
 }: UsersGameCardProps) {
-	const dispatch = useAppDispatch()
 	const router = useRouter()
 
 	return (

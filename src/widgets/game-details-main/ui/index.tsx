@@ -68,7 +68,7 @@ export function GameDetailsMain() {
 					secondScreenshot={screenshots[1]}
 					gameTitle={currentGame.name}
 				/>
-				<section className='flex flex-col bg-lightThemeGray dark:bg-darkGray dark:border-none border-2 border-lightThemeBorderGray rounded-3xl p-5 mb-5'>
+				<section className='flex flex-col bg-lightThemeGray dark:bg-darkGray dark:border-none border-2 border-lightThemeBorderGray rounded-3xl p-5 mb-5 animate-base-showing'>
 					<PairOfGameInfoCards />
 					<ListOfGameScreenshots screenshots={screenshots.slice(2)} />
 					<p className='text-textGray text-base mb-5'>

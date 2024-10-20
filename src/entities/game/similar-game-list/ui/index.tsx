@@ -40,7 +40,7 @@ export function SimilarGameList() {
 			fetchingState={similarGameListFetchingState}
 			ErrorMessageStyles='mb-4'
 		>
-			<section className='flex flex-col min-w-full bg-lightThemeGray dark:bg-darkGray dark:border-none border-2 border-lightThemeBorderGray px-6 pr-10 pt-5 rounded-3xl relative'>
+			<section className='flex flex-col min-w-full bg-lightThemeGray dark:bg-darkGray dark:border-none border-2 border-lightThemeBorderGray px-6 pr-10 pt-5 rounded-3xl relative animate-base-showing'>
 				<article className='dark:text-orange text-blue text-2xl font-medium mb-8'>
 					<h2 className='inline text-black dark:text-white underline font-bold'>
 						Similar
