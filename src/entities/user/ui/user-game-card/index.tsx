@@ -1,6 +1,5 @@
 'use client'
 import { AnimatedTickIcon, ImageWithFallback } from '@/shared/ui'
-import { useAppDispatch } from '@/shared/lib/redux/hooks'
 import { useRouter } from 'next/navigation'
 import { UsersOpeningActionsMenuButton } from './ui'
 import { baseSiteUrl } from '@/shared/model'

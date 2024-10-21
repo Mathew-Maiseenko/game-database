@@ -4,7 +4,7 @@ export interface PaginationProps {
 }
 
 export interface PaginationButtonProps {
-	setPage: (page: number) => void
+	setPage(page: number): void
 	page: number
 	isCurrentPage?: boolean
 }

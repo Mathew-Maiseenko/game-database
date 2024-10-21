@@ -27,10 +27,10 @@ export function InputWithDebounce({
 	const [preDebouncedInputValue, setPreDebouncedInputValue] =
 		useState<string>(filtrationValue)
 
-	const handleInputValueChange = useCallback((inputValue: string) => {
+	const handleInputValueChange = (inputValue: string) => {
 		setPreDebouncedInputValue(inputValue)
 		parseFiltrationValue(inputValue)
-	}, [])
+	}
 
 	return (
 		<MinimalistInput
