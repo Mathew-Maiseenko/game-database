@@ -12,7 +12,6 @@ export default function StoreProvider({
 }) {
 	const storeRef = useRef<AppStore>()
 	if (!storeRef.current) {
-		// сюда можно  инициальзацию слайсов
 		storeRef.current = makeStore()
 		storeRef.current.dispatch(userSlice.actions.initCurrentUser())
 	}

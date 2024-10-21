@@ -42,7 +42,6 @@ export function SignUpModal() {
 	} = useAppSelector(userSlice.selectors.selectValidationMessages)
 
 	useEffect(() => {
-		//говно-код
 		if (isSignUpModalOpen) {
 			document.body.style.overflow = 'hidden'
 		} else {
@@ -165,22 +164,4 @@ export function SignUpModal() {
 			</section>
 		</Modal>
 	)
-}
-//setLogModalOpen(!isLogModalOpen)
-{
-	/* <MinimalistInput
-					inputValue={userVideoMemory}
-					setInputValue={setUserVideoMemory}
-					message='Enter amount of video memory'
-					withMagnifierIcon={false}
-					className='w-full bg-darkGray mb-3'
-				/>
-				<MinimalistInput
-					inputValue={userRAM}
-					setInputValue={setUserRAM}
-					message='Enter the RAM size'
-					withMagnifierIcon={false}
-					className='w-full bg-darkGray mb-7'
-					errorMessage=''
-				/> */
 }

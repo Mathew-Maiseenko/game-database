@@ -1,7 +1,4 @@
-interface iconProps {
-	classes?: string | undefined
-}
-export function DownloadIcon({ classes }: iconProps) {
+export function DownloadIcon({ classes }: { classes?: string | undefined }) {
 	return (
 		<svg
 			className={classes}

@@ -2,8 +2,6 @@
 import React, { useState } from 'react'
 import { MagnifierIcon } from '../icon/magnifier-icon'
 import { ArrowIcon } from '../icon/arrow-icon'
-// import { BiChevronDown } from 'react-icons/bi'
-// import { AiOutlineSearch } from 'react-icons/ai'
 
 interface MinimalistMultiSelectProps {
 	options: string[] | undefined
@@ -27,7 +25,6 @@ export const MinimalistMultiSelect = ({
 	setSelected,
 }: MinimalistMultiSelectProps) => {
 	const [inputValue, setInputValue] = useState('')
-	//const [selected, setSelected] = useState<string[]>([])
 	const [open, setOpen] = useState(false)
 
 	return (
@@ -49,21 +46,7 @@ export const MinimalistMultiSelect = ({
 					styles={`transform transition-transform duration-300 rotate-0 ${
 						open ? 'rotate-180' : ''
 					}`}
-					fill={selected.length ? 'white' : '#666666'} //?
 				/>
-				{/* <svg
-					width='14'
-					height='9'
-					viewBox='0 0 14 9'
-					fill={selected.length ? 'white' : '#666666'}
-					xmlns='http://www.w3.org/2000/svg'
-					// className={`rotate-0 ${open ? 'rotate-180' : ''}`}
-					className={`transform transition-transform duration-300 rotate-0 ${
-						open ? 'rotate-180' : ''
-					}`}
-				>
-					<path d='M13.6673 1.83333L7.00065 8.5L0.333984 1.83333L1.51732 0.649999L7.00065 6.13333L12.484 0.649999L13.6673 1.83333Z' />
-				</svg> */}
 			</article>
 			<ul
 				className={`bg-darkGray mt-2 overflow-y-auto rounded-md  ${

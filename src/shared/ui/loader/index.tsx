@@ -12,8 +12,6 @@ export const Loader = ({
 	>
 		<circle
 			className={loaderIconClasses}
-			// fill={color}
-			// stroke={color}
 			stroke-width='15'
 			r='15'
 			cx='40'
@@ -31,8 +29,6 @@ export const Loader = ({
 		</circle>
 		<circle
 			className={loaderIconClasses}
-			// fill={color}
-			// stroke={color}
 			stroke-width='15'
 			r='15'
 			cx='100'
@@ -50,8 +46,6 @@ export const Loader = ({
 		</circle>
 		<circle
 			className={loaderIconClasses}
-			// fill={color}
-			// stroke={color}
 			stroke-width='15'
 			r='15'
 			cx='160'

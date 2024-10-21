@@ -9,8 +9,8 @@ const getFilteredGameListParams = (response: ApiGameResponse) => ({
 		name: game.name,
 		backgroundImage: game.background_image,
 		playtime: game.playtime,
-		released: game.released ? transformDate(game.updated) : null, //new Date(Date.parse(game.released))
-		lastUpdate: game.updated ? transformDate(game.updated) : null, //new Date(Date.parse(game.updated))
+		released: game.released ? transformDate(game.updated) : null,
+		lastUpdate: game.updated ? transformDate(game.updated) : null,
 		rating: game.rating,
 		ratingTop: game.rating_top,
 		detailedRating: game.ratings.map((rating: any) => ({

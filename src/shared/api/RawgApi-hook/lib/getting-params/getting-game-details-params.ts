@@ -10,12 +10,12 @@ const getGameDetailsParams = (game: GameDetails) => ({
 	alternativeNames: game.alternative_names,
 	description: game.description,
 	descriptionRaw: game['description_raw'],
-	released: game.released ? transformDate(game.released) : null, //new Date(Date.parse(game.released))
+	released: game.released ? transformDate(game.released) : null,
 	achievementsCount: game['achievements_count'],
 	backgroundImage: game.background_image,
 	backgroundImageAdditional: game['background_image_additional'],
 	playtime: game.playtime,
-	lastUpdate: game.updated ? transformDate(game.updated) : null, //new Date(Date.parse(game.updated))
+	lastUpdate: game.updated ? transformDate(game.updated) : null,
 	rating: game.rating,
 	ratingTop: game.rating_top,
 	website: game.website,

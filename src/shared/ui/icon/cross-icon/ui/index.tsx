@@ -1,11 +1,4 @@
-import Image from 'next/image'
-import CrossSwg from '../../../../../public/cross-svgrepo-com.svg'
-
-interface iconProps {
-	classes?: string
-}
-
-export function CrossIcon({ classes }: iconProps) {
+export function CrossIcon({ classes }: { classes?: string }) {
 	return (
 		<svg
 			className={`cursor-pointer ${classes}`}
@@ -30,12 +23,3 @@ export function CrossIcon({ classes }: iconProps) {
 		</svg>
 	)
 }
-/*
-<Image
-			src={CrossSwg}
-			width={20}
-			height={20}
-			className={`cursor-pointer ${classes}`}
-			alt='Cross icon'
-		/>
- */

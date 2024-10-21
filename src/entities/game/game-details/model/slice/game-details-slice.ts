@@ -12,7 +12,7 @@ interface ImageObj {
 
 interface initialGameDetailsStateType {
 	games: Record<GameId, StoreGameDetails>
-	gameAchievements: Achievement[] //Record<GameId, Achievement[]>
+	gameAchievements: Achievement[]
 	currentGameId: GameId | null | undefined
 	gameDetailsFetchingState: 'idle' | 'pending' | 'fulfilled' | 'rejected'
 	currentModalImage: ImageObj | undefined
@@ -24,7 +24,6 @@ const initialGameDetailsState: initialGameDetailsStateType = {
 	currentGameId: null,
 	gameDetailsFetchingState: 'idle',
 	currentModalImage: undefined,
-	//gameAchievementsFetchingState: 'idle',
 }
 
 export const gameDetailsSlice = createAppSlice({

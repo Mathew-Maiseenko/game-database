@@ -1,1 +1,1 @@
-export { RecommendedGameList } from './ui'
+export { SimilarGameList } from './ui'

@@ -14,15 +14,24 @@ const config: Config = {
 				'slide-in': 'slideIn 0.3s ease-in-out',
 				'slide-out': 'slideOut 0.3s ease-in-out forwards',
 				'base-showing': 'cardShowing 0.7s ease-out forwards',
+				'fast-base-showing': 'cardShowing 0.3s ease-out forwards',
+				'fast-modal-background-hiding':
+					'modalBackgroundHiding 0.3s ease-out forwards',
 				'card-showing': 'cardShowing 0.5s ease-out forwards',
 				'main-showing': 'baseShowing 1s ease-out forwards',
 				'modal-showing':
 					'modalShowing 0.6s cubic-bezier(0.230, 1.000, 0.320, 1.000) forwards',
+				'modal-hiding':
+					'modalHiding 0.6s cubic-bezier(0.230, 1.000, 0.320, 1.000) forwards',
 			},
 			keyframes: {
 				baseShowing: {
 					'0%': { opacity: '0' },
 					'100%': { opacity: '1' },
+				},
+				modalBackgroundHiding: {
+					'0%': { opacity: '1' },
+					'100%': { opacity: '0', display: 'none' },
 				},
 				cardShowing: {
 					'0%': { transform: 'translateY(-10%)', opacity: '0' },
@@ -57,7 +66,24 @@ const config: Config = {
 						opacity: '1',
 					},
 				},
+				modalHiding: {
+					'0%': {
+						display: 'flex',
+						transform: 'translateY(0) scaleY(1) scaleX(1)',
+						transformOrigin: '50% 50%',
+						filter: 'blur(0)',
+						opacity: '1',
+					},
+					'100%': {
+						transform: 'translateY(-1000px) scaleY(2.5) scaleX(0.2)',
+						transformOrigin: '50% 0%',
+						filter: 'blur(40px)',
+						opacity: '0',
+						display: 'none',
+					},
+				},
 			},
+
 			backgroundImage: {
 				'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
 				'gradient-conic':

@@ -7,7 +7,6 @@ import { fetchFilteredGameList } from './thunk/fetch-filtered-game-list'
 import { fetchGenresList } from './thunk/fetch-genres-list'
 import { fetchTagsList } from './thunk/fetch-tags-list'
 import { fetchDeveloperList } from './thunk/fetch-developers-list'
-//переделать структуру хранилища
 interface StateType {
 	games: StoreGame[]
 	gameListFetchingState: 'idle' | 'pending' | 'rejected' | 'fulfilled'
@@ -21,14 +20,10 @@ interface StateType {
 	tags: TagResult[]
 	tagListFetchingState: 'idle' | 'pending' | 'rejected' | 'fulfilled'
 
-	//activeFiltrationGameTitle: string
 	activePage: number
 	totalGamesCount: number
 	activeFiltrationGenres: Record<string, Genre | undefined>
 	activeFiltrationTags: Record<string, TagResult | undefined>
-
-	// activeFiltrationGenres: string[]
-	// activeFiltrationTags: string[]
 }
 
 const initialState: StateType = {

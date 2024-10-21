@@ -18,7 +18,6 @@ export function RecommendationListsGameCard({
 	genres,
 	sequenceNumber = 0,
 }: RecommendedGameCardProps) {
-	//w-2/6
 	return (
 		<li
 			className='flex flex-col sm:flex-row w-full md:max-w-[49%] justify-between relative mb-5 after:h-0.5 after:w-full after:absolute after:-bottom-2 dark:after:bg-grayLineAfterCard after:bg-lightThemeBorderGray'

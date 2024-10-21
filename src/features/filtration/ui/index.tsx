@@ -1,5 +1,5 @@
 'use client'
-import { Carousel, MinimalistInput, MinimalistSelect } from '@/shared/ui'
+import { Carousel, MinimalistSelect } from '@/shared/ui'
 import { filteredGamesSlice } from '../model/filtration-slice'
 import { useAppDispatch, useAppSelector } from '@/shared/lib/redux/hooks'
 import { MinimalistFiltrationCarouselCard } from './cards'
@@ -14,8 +14,6 @@ import type { Genre } from '@/shared/api/RawgApi-hook/types/genre'
 import type { TagResult } from '@/shared/api/RawgApi-hook/types/tag'
 import { FiltrationSkeleton } from './filtration-skeleton'
 import { InputWithDebounce } from './input-with-debounce'
-// rightIcon={<ArrowIcon styles='w-full transform -rotate-90' />}
-// leftIcon={<ArrowIcon styles='w-full transform rotate-90' />}
 export function GameFiltration() {
 	const [filterTitle, setFilterTitle] = useState('')
 	const [filterDeveloper, setFilterDeveloper] = useState('')

@@ -16,9 +16,6 @@ import {
 	createAsyncThunk,
 } from '@reduxjs/toolkit'
 
-// export const useAppDispatch = useDispatch.withTypes<AppDispatch>()
-// export const useAppSelector = useSelector.withTypes<AppState>()
-//export const useAppStore = useStore.withTypes<AppStore>()
 export const useAppDispatch: () => AppDispatch = useDispatch
 export const useAppSelector: TypedUseSelectorHook<AppState> = useSelector
 export const useAppStore = () => useStore<AppStore>()

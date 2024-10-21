@@ -12,4 +12,3 @@ export const fetchGameDetails = createAsyncThunk<
 	const res = await thunkApi.extra.api.getGameDetails(id)
 	return res
 })
-//4291

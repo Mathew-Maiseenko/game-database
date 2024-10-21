@@ -102,8 +102,3 @@ export const MinimalistNumberInput = ({
 		</section>
 	)
 }
-/*						
-	Number.isFinite(Number(e.target.value))
-	? setInputValue(+e.target.value)
-	: ''
-*/

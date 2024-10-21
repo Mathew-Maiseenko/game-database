@@ -1,7 +1,6 @@
 'use client'
 import { Manrope } from 'next/font/google'
 import { NavBar } from '@/widgets/nav-bar'
-//import './globals.css'
 import { SignInModal, SignUpModal } from '@/features/logging'
 import { ImageModal } from '@/entities/image'
 import { useAppSelector } from '@/shared/lib/redux/hooks'

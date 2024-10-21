@@ -11,14 +11,11 @@
 	transition: 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 .icon span {
-	/* display: block; */
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	flex-direction: column;
 	align-items: center;
-	/* height: 60px;
-	width: 60px; */
 	border-radius: 50%;
 	position: relative;
 	z-index: 2;
