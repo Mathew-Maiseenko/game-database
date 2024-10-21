@@ -14,7 +14,7 @@ export const ImageModal = memo(function ImageModal() {
 	)
 
 	const isImageModalOpen = !!ModalsImage
-	console.log(ModalsImage)
+
 	useEffect(() => {
 		if (isImageModalOpen) {
 			document.body.style.overflow = 'hidden'
