@@ -35,7 +35,7 @@ export const ImageModal = memo(function ImageModal() {
 		>
 			<section
 				onClick={e => e.stopPropagation()}
-				className='relative border-2 border-solid bg-white border-lightThemeBorderGray dark:border-textGray dark:bg-darkGray sm:w-1/3 lg:w-3/5 rounded-3xl overflow-hidden cursor-default'
+				className='flex justify-center items-center relative border-2 border-solid bg-white border-lightThemeBorderGray dark:border-textGray dark:bg-darkGray sm:w-1/3 lg:w-3/5 rounded-3xl overflow-hidden cursor-default '
 			>
 				<article
 					className='flex absolute top-5 left-5 w-full '
@@ -46,7 +46,7 @@ export const ImageModal = memo(function ImageModal() {
 					<CrossIcon classes='sm:w-7 lg:w-10' />
 				</article>
 				<Image
-					className='w-full'
+					className={ModalsImage?.image ? 'w-full' : 'w-1/3'}
 					src={ModalsImage?.image ? ModalsImage.image : emptyImage}
 					width={2560}
 					height={1440}

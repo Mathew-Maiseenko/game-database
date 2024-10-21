@@ -18,14 +18,23 @@ export function FilteredGamesList() {
 
 	return (
 		<ListWrapper fetchingState={gameListFetchingState}>
-			<section className='flex flex-col min-w-full bg-lightThemeGray border-2 border-lightThemeBorderGray dark:border-none dark:bg-darkGray px-4 py-3 md:px-6 md:py-5 rounded-2xl relative mb-7 md:mb-12'>
-				<ul className='flex flex-row justify-between flex-wrap pb-0 mb-1'>
-					<ViewGamesList gameList={games} />
-				</ul>
-				<article className='flex justify-center w-full'>
-					<Pagination totalPageCount={Math.ceil(gamesCount / 20)} />
+			{games.length ? (
+				<section className='flex flex-col min-w-full bg-lightThemeGray border-2 border-lightThemeBorderGray dark:border-none dark:bg-darkGray px-4 py-3 md:px-6 md:py-5 rounded-2xl relative mb-7 md:mb-12'>
+					<ul className='flex flex-row justify-between flex-wrap pb-0 mb-1'>
+						<ViewGamesList gameList={games} />
+					</ul>
+					<article className='flex justify-center w-full'>
+						<Pagination totalPageCount={Math.ceil(gamesCount / 20)} />
+					</article>
+				</section>
+			) : (
+				<article className='flex flex-col justify-center items-center py-2 sm:py-3 md:py-4 lg:py-5'>
+					<h2 className='text-black dark:text-white text-2xl lg:text-3xl xl:text-4xl mb-5 uppercase'>
+						<strong className='inline text-blue dark:text-orange'>No</strong>
+						such game has been found.
+					</h2>
 				</article>
-			</section>
+			)}
 		</ListWrapper>
 	)
 }

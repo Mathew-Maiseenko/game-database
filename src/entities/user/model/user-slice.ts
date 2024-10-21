@@ -158,6 +158,12 @@ export const userSlice = createAppSlice({
 			saveUserInfoInLocalStorage(state)
 		},
 
+		removeAllFavoriteGames: state => {
+			state.statistics.favoriteGames = {}
+			state.statistics.favoriteGamesIds = []
+			saveUserInfoInLocalStorage(state)
+		},
+
 		setFavoriteGameCompleted: (state, action: PayloadAction<GameId>) => {
 			const curGame = state.statistics.favoriteGames[action.payload]
 			if (curGame) {

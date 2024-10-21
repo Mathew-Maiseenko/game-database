@@ -5,26 +5,21 @@ import { useAppDispatch, useAppSelector } from '@/shared/lib/redux/hooks'
 import { MinimalistFiltrationCarouselCard } from './cards'
 import { useEffect, useState } from 'react'
 import { fetchFilteredGameList } from '../model/thunk/fetch-filtered-game-list'
-import { fetchTagsList } from '../model/thunk/fetch-tags-list'
-import { fetchGenresList } from '../model/thunk/fetch-genres-list'
-import { fetchDeveloperList } from '../model/thunk/fetch-developers-list'
 import { toggleCardActiveness } from '../lib/toggle-card-activeness'
 import type { setGenreType, setTagType, ViewCardsProps } from '../types'
 import type { Genre } from '@/shared/api/RawgApi-hook/types/genre'
 import type { TagResult } from '@/shared/api/RawgApi-hook/types/tag'
 import { FiltrationSkeleton } from './filtration-skeleton'
 import { InputWithDebounce } from './input-with-debounce'
+import { DeveloperResult, RawgApi } from '@/shared/api/RawgApi-hook'
 export function GameFiltration() {
 	const [filterTitle, setFilterTitle] = useState('')
 	const [filterDeveloper, setFilterDeveloper] = useState('')
-
+	const [genres, setGenres] = useState<Genre[]>([])
+	const [tags, setTags] = useState<TagResult[]>([])
+	const [developers, setDevelopers] = useState<DeveloperResult[]>([])
 	const dispatch = useAppDispatch()
 
-	const genres = useAppSelector(filteredGamesSlice.selectors.selectGenreList)
-	const tags = useAppSelector(filteredGamesSlice.selectors.selectTagList)
-	const developers = useAppSelector(
-		filteredGamesSlice.selectors.selectDeveloperList
-	)
 	const activeGenres = useAppSelector(
 		filteredGamesSlice.selectors.selectFiltrationGenreList
 	)
@@ -33,6 +28,10 @@ export function GameFiltration() {
 	)
 	const activePage = useAppSelector(
 		filteredGamesSlice.selectors.selectActivePage
+	)
+
+	const reduxStoredGenres = useAppSelector(
+		filteredGamesSlice.selectors.selectGenreList
 	)
 
 	const setGenre = filteredGamesSlice.actions.setActiveGenres
@@ -72,9 +71,17 @@ export function GameFiltration() {
 	])
 
 	useEffect(() => {
-		dispatch(fetchTagsList())
-		dispatch(fetchGenresList())
-		dispatch(fetchDeveloperList())
+		RawgApi.getTagsList().then(setTags)
+		RawgApi.getDevelopersList().then(setDevelopers)
+
+		if (reduxStoredGenres.length) {
+			setGenres(reduxStoredGenres)
+		} else {
+			RawgApi.getGenresList().then(genres => {
+				setGenres(genres)
+				dispatch(filteredGamesSlice.actions.initGenres(genres))
+			})
+		}
 	}, [dispatch])
 
 	const loadingState = genres.length && tags.length && developers.length

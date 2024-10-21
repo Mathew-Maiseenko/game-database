@@ -1,24 +1,15 @@
-import type { DeveloperResult, StoreGame } from '@/shared/api/RawgApi-hook'
+import type { StoreGame } from '@/shared/api/RawgApi-hook'
 import type { Genre } from '@/shared/api/RawgApi-hook/types/genre'
 import type { TagResult } from '@/shared/api/RawgApi-hook/types/tag'
 import { createAppSlice } from '@/shared/lib'
 import { PayloadAction } from '@reduxjs/toolkit'
 import { fetchFilteredGameList } from './thunk/fetch-filtered-game-list'
-import { fetchGenresList } from './thunk/fetch-genres-list'
-import { fetchTagsList } from './thunk/fetch-tags-list'
-import { fetchDeveloperList } from './thunk/fetch-developers-list'
 interface StateType {
 	games: StoreGame[]
 	gameListFetchingState: 'idle' | 'pending' | 'rejected' | 'fulfilled'
 
-	developers: DeveloperResult[]
-	developerListFetchingState: 'idle' | 'pending' | 'rejected' | 'fulfilled'
-
 	genres: Genre[]
 	genreListFetchingState: 'idle' | 'pending' | 'rejected' | 'fulfilled'
-
-	tags: TagResult[]
-	tagListFetchingState: 'idle' | 'pending' | 'rejected' | 'fulfilled'
 
 	activePage: number
 	totalGamesCount: number
@@ -30,14 +21,8 @@ const initialState: StateType = {
 	games: [],
 	gameListFetchingState: 'idle',
 
-	developers: [],
-	developerListFetchingState: 'idle',
-
 	genres: [],
 	genreListFetchingState: 'idle',
-
-	tags: [],
-	tagListFetchingState: 'idle',
 
 	activePage: 1,
 	totalGamesCount: 0,
@@ -50,10 +35,8 @@ export const filteredGamesSlice = createAppSlice({
 	initialState,
 	selectors: {
 		selectCurrentGames: state => state.games,
-		selectDeveloperList: state => state.developers,
 		selectGenreList: state => state.genres,
 		selectGameListFetchingState: state => state.gameListFetchingState,
-		selectTagList: state => state.tags,
 		selectActivePage: state => state.activePage,
 		selectTotalGamesCount: state => state.totalGamesCount,
 		selectFiltrationGenreList: state => state.activeFiltrationGenres,
@@ -105,39 +88,6 @@ export const filteredGamesSlice = createAppSlice({
 			})
 			.addCase(fetchFilteredGameList.rejected, state => {
 				state.gameListFetchingState = 'rejected'
-			})
-
-			.addCase(fetchGenresList.pending, state => {
-				state.genreListFetchingState = 'pending'
-			})
-			.addCase(fetchGenresList.fulfilled, (state, action) => {
-				state.genreListFetchingState = 'fulfilled'
-				state.genres = action.payload
-			})
-			.addCase(fetchGenresList.rejected, state => {
-				state.genreListFetchingState = 'rejected'
-			})
-
-			.addCase(fetchTagsList.pending, state => {
-				state.tagListFetchingState = 'pending'
-			})
-			.addCase(fetchTagsList.fulfilled, (state, action) => {
-				state.tagListFetchingState = 'fulfilled'
-				state.tags = action.payload
-			})
-			.addCase(fetchTagsList.rejected, state => {
-				state.tagListFetchingState = 'rejected'
-			})
-
-			.addCase(fetchDeveloperList.pending, state => {
-				state.developerListFetchingState = 'pending'
-			})
-			.addCase(fetchDeveloperList.fulfilled, (state, action) => {
-				state.developerListFetchingState = 'fulfilled'
-				state.developers = action.payload
-			})
-			.addCase(fetchDeveloperList.rejected, state => {
-				state.developerListFetchingState = 'rejected'
 			})
 	},
 })

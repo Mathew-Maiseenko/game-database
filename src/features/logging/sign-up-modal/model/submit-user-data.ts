@@ -48,6 +48,7 @@ export function submitUserData({
 				},
 			})
 		)
+		dispatch(userSlice.actions.removeAllFavoriteGames())
 		router.push('http://localhost:3000/user')
 		dispatch(userSlice.actions.setUserSignUpModalClose())
 	} else {

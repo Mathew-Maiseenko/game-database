@@ -78,7 +78,7 @@ export function UsersGamesList({ withButton, styles }: UsersGamesListProps) {
 						</button>
 					</>
 				) : (
-					<section className='flex flex-col justify-center items-center'>
+					<article className='flex flex-col justify-center items-center'>
 						<h2 className='text-black dark:text-white text-2xl lg:text-3xl xl:text-4xl mb-5 uppercase'>
 							Your{' '}
 							<strong className='inline text-blue dark:text-orange'>
@@ -99,7 +99,7 @@ export function UsersGamesList({ withButton, styles }: UsersGamesListProps) {
 						>
 							Go to Cyber Game List
 						</button>
-					</section>
+					</article>
 				)}
 			</article>
 		</ListWrapper>

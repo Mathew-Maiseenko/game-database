@@ -16,7 +16,7 @@ export const layoutMetadata = {
 		url: '',
 		name: 'Maiseenko Mathew',
 	},
-	viewport: 'width=device-width, initial-scale=1',
+	//viewport: 'width=device-width, initial-scale=1',
 	openGraph: {
 		type: 'website',
 		locale: 'en_US',

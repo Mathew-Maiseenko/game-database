@@ -17,6 +17,15 @@ export const themeSwitcherSlice = createAppSlice({
 	reducers: {
 		toggleActiveTheme: state => {
 			state.isThemeDark = !state.isThemeDark
+			localStorage.setItem('current-theme', state.isThemeDark ? 'true' : '')
+		},
+		initActiveTheme: state => {
+			const startedSiteColorTheme = localStorage.getItem('current-theme')
+			if (startedSiteColorTheme) {
+				state.isThemeDark = !!startedSiteColorTheme
+			} else {
+				state.isThemeDark = false
+			}
 		},
 	},
 })
