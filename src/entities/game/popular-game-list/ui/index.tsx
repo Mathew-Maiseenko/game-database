@@ -1,4 +1,5 @@
 'use client'
+
 import { GameCard } from '@/entities/game/game-card'
 import { useEffect, useState } from 'react'
 import { RawgApi, StoreGame } from '@/shared/api/RawgApi-hook'
