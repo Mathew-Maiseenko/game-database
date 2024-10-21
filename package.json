@@ -8,18 +8,16 @@
 		"start": "next start",
 		"lint": "next lint",
 		"watch:css": "postcss ./src/app/globals.css -o ./public/output.css --watch",
-		"build:css": "postcss ./src/app/globals.css -o ./public/output.css"
+		"build:css": "postcss ./src/app/globals.css -o ./src/app/styles/post-global-styles.css"
 	},
 	"dependencies": {
 		"@reduxjs/toolkit": "^2.2.7",
-		"@trendyol-js/react-carousel": "^3.0.2",
 		"next": "14.2.5",
 		"post": "^0.0.1",
 		"postcss-preset-env": "^10.0.7",
 		"react": "^18.3.1",
 		"react-dom": "^18.3.1",
 		"react-redux": "^9.1.2",
-		"swiper": "^11.1.12",
 		"zod": "^3.23.8"
 	},
 	"devDependencies": {
