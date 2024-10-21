@@ -1,4 +1,8 @@
-import type { PaginationButtonProps } from '../types'
+interface PaginationButtonProps {
+	setPage(page: number): void
+	page: number
+	isCurrentPage?: boolean
+}
 
 export const PaginationButton = ({
 	setPage,

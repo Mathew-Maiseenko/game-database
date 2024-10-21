@@ -1,7 +1,7 @@
 'use client'
 import { MinimalistInput } from '@/shared/ui'
 import { ActionCreatorWithPayload } from '@reduxjs/toolkit'
-import { useCallback, useState } from 'react'
+import { useState } from 'react'
 import { useDebounce } from '../../lib/use-debounce'
 
 interface MinimalistInputProps {
