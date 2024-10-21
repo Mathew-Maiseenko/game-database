@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
-import './globals.css'
-//import './../../public/output.css'
+//import './globals.css'
+import './styles/post-global-styles.css'
 import StoreProvider from './providers/store-provider'
 import { LayoutWrapper } from '@/widgets/layout-wrapper'
 import { layoutMetadata } from '@/shared/model'

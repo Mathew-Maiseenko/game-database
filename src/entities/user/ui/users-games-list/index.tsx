@@ -7,6 +7,7 @@ import { useEffect, useMemo } from 'react'
 import { fetchDetailsByGamesIds } from '../../model/thunk/fetch-game-details'
 import { usersFavoriteGameType } from '../../types'
 import { ListWrapper } from '@/shared/ui'
+import { baseSiteUrl } from '@/shared/model'
 
 interface UsersGamesListProps {
 	withButton: boolean
@@ -71,7 +72,7 @@ export function UsersGamesList({ withButton, styles }: UsersGamesListProps) {
 								withButton ? '' : 'hidden'
 							} bg-blue dark:bg-orange w-2/3 sm:w-1/2 md:w-1/3 m-auto p-2 relative -bottom-7 lg:-bottom-11 rounded-2xl text-black dark:text-white`}
 							onClick={() => {
-								router.push('http://localhost:3000/user')
+								router.push(`${baseSiteUrl}/user`)
 							}}
 						>
 							View Your Library
@@ -94,7 +95,7 @@ export function UsersGamesList({ withButton, styles }: UsersGamesListProps) {
 								'bg-blue dark:bg-orange w-2/3 sm:w-1/2 md:w-1/3 m-auto p-2 relative -bottom-7 lg:-bottom-11 rounded-2xl text-black dark:text-white'
 							}
 							onClick={() => {
-								router.push('http://localhost:3000/')
+								router.push(`${baseSiteUrl}/`)
 							}}
 						>
 							Go to Cyber Game List

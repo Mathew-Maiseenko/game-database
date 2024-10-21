@@ -1,4 +1,5 @@
 'use client'
+import { baseSiteUrl } from '@/shared/model'
 import Link from 'next/link'
 
 export function NotFoundPage() {
@@ -21,7 +22,7 @@ export function NotFoundPage() {
 				Oops! Something went wrong!
 			</h1>
 			<Link
-				href={'http://localhost:3000/'}
+				href={`${baseSiteUrl}/`}
 				className='font-normal p-5 bg-blue dark:bg-orange text-white dark:text-black w-1/2 mx-auto my-0 text-center text-xl rounded-md cursor-pointer mt-20 mb-12 transition-all duration-200 linear md:mx-auto md:my-0 md:mt-14 md:mb-12 md:w-48 hover:bg-hoverBlue dark:hover:bg-orangeHover hover:transition-all hover:duration-200 hover:linear'
 			>
 				Return to Home

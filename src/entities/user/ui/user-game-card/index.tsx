@@ -3,6 +3,7 @@ import { AnimatedTickIcon, ImageWithFallback } from '@/shared/ui'
 import { useAppDispatch } from '@/shared/lib/redux/hooks'
 import { useRouter } from 'next/navigation'
 import { UsersOpeningActionsMenuButton } from './ui'
+import { baseSiteUrl } from '@/shared/model'
 
 interface UsersGameCardProps {
 	id: number
@@ -28,12 +29,11 @@ export function UsersGameCard({
 	isComplete,
 }: UsersGameCardProps) {
 	const router = useRouter()
-
 	return (
 		<li className='flex flex-row relative w-full h-1/3 mb-3 after:h-0.5 after:w-full after:absolute after:-bottom-2 dark:after:bg-grayLineAfterCard after:bg-lightThemeBorderGray animate-card-showing'>
 			<section
 				className='flex justify-center items-center relative mr-1 sm:mr-5 w-2/6 cursor-pointer min-h-full '
-				onClick={() => router.push(`http://localhost:3000/details/${id}`)}
+				onClick={() => router.push(`${baseSiteUrl}/details/${id}`)}
 			>
 				<article
 					className={`${

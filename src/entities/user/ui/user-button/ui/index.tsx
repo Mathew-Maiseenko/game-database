@@ -4,18 +4,18 @@ import { useRouter } from 'next/navigation'
 import { userSlice } from '@/entities/user'
 import { useAppDispatch, useAppSelector } from '@/shared/lib/redux/hooks'
 import { UserIcon } from '@/shared/ui'
+import { baseSiteUrl } from '@/shared/model'
 
 export function UserButton({ styles }: { styles?: string }) {
 	const dispatch = useAppDispatch()
 	const router = useRouter()
-
 	const isUserSigned = useAppSelector(userSlice.selectors.selectIsUserSigned)
 
 	return (
 		<section
 			onClick={() => {
 				if (isUserSigned) {
-					router.push('http://localhost:3000/user')
+					router.push(`${baseSiteUrl}/user`)
 				} else {
 					dispatch(userSlice.actions.setUserSignUpModalOpen())
 				}

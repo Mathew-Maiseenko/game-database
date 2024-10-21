@@ -1,6 +1,7 @@
 import { UserInfoLocaleStorageType, userSlice } from '@/entities/user'
 import type { signInUserParams } from '../types'
 import { checkLogParams } from '../lib/check-log-params'
+import { baseSiteUrl } from '@/shared/model'
 
 export function signInUser({
 	dispatch,
@@ -22,7 +23,7 @@ export function signInUser({
 		if (isUserNameCorrect && isPasswordCorrect) {
 			dispatch(userSlice.actions.setUserSigned())
 			dispatch(userSlice.actions.setUserSignInModalClose())
-			router.push('http://localhost:3000/user')
+			router.push(`${baseSiteUrl}/user`)
 		} else {
 			dispatch(
 				userSlice.actions.setValidationMessages({

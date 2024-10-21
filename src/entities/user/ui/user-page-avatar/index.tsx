@@ -3,6 +3,7 @@ import { userSlice } from '../../model/user-slice'
 import { useAppDispatch, useAppSelector } from '@/shared/lib/redux/hooks'
 import { useRouter } from 'next/navigation'
 import { UserIcon } from '@/shared/ui'
+import { baseSiteUrl } from '@/shared/model'
 
 export function UsersAvatar() {
 	const dispatch = useAppDispatch()
@@ -16,7 +17,7 @@ export function UsersAvatar() {
 			<UserIcon className='flex flex-grow w-1/2 md:w-full rounded-2xl self-center mb-2' />
 			<button
 				onClick={() => {
-					router.push('http://localhost:3000')
+					router.push(`${baseSiteUrl}/`)
 
 					setTimeout(() => {
 						dispatch(userSlice.actions.setUserUnsigned())

@@ -1,3 +1,4 @@
+import { baseSiteUrl } from '@/shared/model'
 import { ImageWithFallback, StarIcon } from '@/shared/ui'
 import Link from 'next/link'
 
@@ -28,7 +29,7 @@ export function RecommendationListsGameCard({
 			}}
 		>
 			<Link
-				href={`http://localhost:3000/details/${id}`}
+				href={`${baseSiteUrl}/details/${id}`}
 				className='flex justify-center items-center flex-grow sm:h-full w-full sm:w-auto'
 			>
 				<ImageWithFallback

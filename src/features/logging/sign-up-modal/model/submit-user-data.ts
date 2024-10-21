@@ -5,6 +5,7 @@ import { validateHardwareName } from '../lib/validate-CPU'
 import { validateRAM } from '../lib/validate-RAM'
 import { validateGraphicMemory } from '../lib/validate-graphic-memory'
 import type { submitUserDataFooParams } from '../types'
+import { baseSiteUrl } from '@/shared/model'
 
 export function submitUserData({
 	dispatch,
@@ -49,7 +50,8 @@ export function submitUserData({
 			})
 		)
 		dispatch(userSlice.actions.removeAllFavoriteGames())
-		router.push('http://localhost:3000/user')
+
+		router.push(`${baseSiteUrl}/user`)
 		dispatch(userSlice.actions.setUserSignUpModalClose())
 	} else {
 		dispatch(
