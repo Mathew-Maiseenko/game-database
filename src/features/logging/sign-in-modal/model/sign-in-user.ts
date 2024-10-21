@@ -1,6 +1,6 @@
 import { UserInfoLocaleStorageType, userSlice } from '@/entities/user'
 import type { signInUserParams } from '../types'
-import { checkLogParams } from '../lib/checkLogParams'
+import { checkLogParams } from '../lib/check-log-params'
 
 export function signInUser({
 	dispatch,

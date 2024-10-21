@@ -1,5 +1,5 @@
 import { userSlice } from '@/entities/user'
-import { GameAchievementCard } from './ui/GameAchievementCard'
+import { GameAchievementCard } from './ui/games-achievement-card'
 import { Achievement, RawgApi } from '@/shared/api/RawgApi-hook'
 import { useAppSelector } from '@/shared/lib/redux/hooks'
 import { memo, useEffect, useState } from 'react'

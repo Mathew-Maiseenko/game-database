@@ -11,7 +11,7 @@ import {
 	ValidatedPasswordInput,
 } from '@/shared/ui'
 import { useEffect, useState } from 'react'
-import { submitUserData } from '../model/submitUserData'
+import { submitUserData } from '../model/submit-user-data'
 import { useRouter } from 'next/navigation'
 
 const teko = Teko({ subsets: ['latin'] })

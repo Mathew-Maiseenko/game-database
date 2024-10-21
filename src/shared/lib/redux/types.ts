@@ -1,6 +1,6 @@
 import { makeStore } from '@/app/providers/store'
 import { ThunkAction, UnknownAction } from '@reduxjs/toolkit'
-import { extraArgument } from './extraArgument'
+import { extraArgument } from './extra-argument'
 
 export type AppStore = ReturnType<typeof makeStore>
 export type AppState = ReturnType<AppStore['getState']>

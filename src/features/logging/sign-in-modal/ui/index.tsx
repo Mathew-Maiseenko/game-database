@@ -10,7 +10,7 @@ import {
 } from '@/shared/ui'
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { signInUser } from '../model/signInUser'
+import { signInUser } from '../model/sign-in-user'
 
 const teko = Teko({ subsets: ['latin'] })
 

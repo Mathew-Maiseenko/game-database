@@ -1,12 +1,10 @@
 import { userSlice } from '@/entities/user'
-import { useAppDispatch } from '@/shared/lib/redux/hooks'
-import { passwordsMatchCheck } from '../lib/passwordsMatchCheck'
-import { validateName } from '../lib/validateName'
-import { validateHardwareName } from '../lib/validateCPU'
-import { validateRAM } from '../lib/validateRAM'
-import { validateGraphicMemory } from '../lib/validateGraphicMemory'
+import { passwordsMatchCheck } from '../lib/passwords-match-check'
+import { validateName } from '../lib/validate-name'
+import { validateHardwareName } from '../lib/validate-CPU'
+import { validateRAM } from '../lib/validate-RAM'
+import { validateGraphicMemory } from '../lib/validate-graphic-memory'
 import type { submitUserDataFooParams } from '../types'
-import { useRouter } from 'next/navigation'
 
 export function submitUserData({
 	dispatch,
