@@ -10,7 +10,6 @@ export function TickIcon({ classes }: { classes?: string }) {
 			<path
 				d='M4.89163 13.2687L9.16582 17.5427L18.7085 8'
 				className={classes}
-				//stroke='#000000'
 				stroke-width='2.5'
 				stroke-linecap='round'
 				stroke-linejoin='round'
