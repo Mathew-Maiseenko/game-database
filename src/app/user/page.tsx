@@ -1,6 +1,6 @@
 import dynamic from 'next/dynamic'
 const UserPage = dynamic(() =>
-	import('@/pages/user-page').then(file => file.UserPage)
+	import('@/FSD_pages/user-page').then(file => file.UserPage)
 )
 
 import { Metadata } from 'next'
