@@ -68,6 +68,7 @@ export function GameFiltration() {
 		activeTags,
 		filterDeveloper,
 		activePage,
+		developers,
 	])
 
 	useEffect(() => {
@@ -82,7 +83,7 @@ export function GameFiltration() {
 				dispatch(filteredGamesSlice.actions.initGenres(genres))
 			})
 		}
-	}, [dispatch])
+	}, [dispatch, reduxStoredGenres])
 
 	const loadingState = genres.length && tags.length && developers.length
 

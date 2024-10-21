@@ -128,7 +128,7 @@ export const Carousel = ({
 				)
 			)
 		}
-	}, [])
+	}, [rightIcon, leftIcon])
 
 	return (
 		<>

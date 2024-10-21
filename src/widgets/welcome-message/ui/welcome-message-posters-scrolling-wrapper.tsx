@@ -34,7 +34,7 @@ export function WelcomeMessagePostersScrollingWrapper({
 				dispatch(filteredGamesSlice.actions.initGenres(res))
 			})
 		}
-	}, [])
+	}, [dispatch, gameGenres])
 
 	useEffect(() => {
 		if (gamesPosters.length) {

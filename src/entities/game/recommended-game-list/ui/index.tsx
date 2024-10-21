@@ -41,7 +41,7 @@ export function RecommendedGameList() {
 				.then(() => setGameListFetchingState('fulfilled'))
 				.catch(() => setGameListFetchingState('rejected'))
 		}
-	}, [isUserSigned, favoriteGameIds])
+	}, [isUserSigned, favoriteGameIds, favoriteGames])
 
 	return (
 		<ListWrapper
