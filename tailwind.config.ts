@@ -16,6 +16,8 @@ const config: Config = {
 				'base-showing': 'cardShowing 0.7s ease-out forwards',
 				'card-showing': 'cardShowing 0.5s ease-out forwards',
 				'main-showing': 'baseShowing 1s ease-out forwards',
+				'modal-showing':
+					'modalShowing 0.6s cubic-bezier(0.230, 1.000, 0.320, 1.000) forwards',
 			},
 			keyframes: {
 				baseShowing: {
@@ -38,6 +40,21 @@ const config: Config = {
 					'100%': {
 						transform: 'translateX(100%)',
 						display: 'none',
+					},
+				},
+				modalShowing: {
+					'0%': {
+						display: 'flex',
+						transform: 'translateY(-1000px) scaleY(2.5) scaleX(0.2)',
+						transformOrigin: '50% 0%',
+						filter: 'blur(40px)',
+						opacity: '0',
+					},
+					'100%': {
+						transform: 'translateY(0) scaleY(1) scaleX(1)',
+						transformOrigin: '50% 50%',
+						filter: 'blur(0)',
+						opacity: '1',
 					},
 				},
 			},

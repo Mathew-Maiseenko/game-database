@@ -1,7 +1,9 @@
 'use client'
 import { gameDetailsSlice } from '@/entities/game/game-details/model'
 import { useAppDispatch, useAppSelector } from '@/shared/lib/redux/hooks'
-import { CrossIcon, ImageWithFallback, Modal } from '@/shared/ui'
+import { CrossIcon, Modal } from '@/shared/ui'
+import Image from 'next/image'
+import emptyImage from '../../../../../public/empty-image.svg'
 import { memo, useEffect } from 'react'
 
 export const ImageModal = memo(function ImageModal() {
@@ -12,7 +14,7 @@ export const ImageModal = memo(function ImageModal() {
 	)
 
 	const isImageModalOpen = !!ModalsImage
-
+	console.log(ModalsImage)
 	useEffect(() => {
 		if (isImageModalOpen) {
 			document.body.style.overflow = 'hidden'
@@ -43,12 +45,12 @@ export const ImageModal = memo(function ImageModal() {
 				>
 					<CrossIcon classes='sm:w-7 lg:w-10' />
 				</article>
-				<ImageWithFallback
+				<Image
 					className='w-full'
-					src={ModalsImage?.image ? ModalsImage.image : ''}
+					src={ModalsImage?.image ? ModalsImage.image : emptyImage}
 					width={2560}
 					height={1440}
-					alt={ModalsImage?.alt ? ModalsImage.alt : ''}
+					alt={ModalsImage?.alt ? ModalsImage.alt : emptyImage}
 				/>
 			</section>
 		</Modal>

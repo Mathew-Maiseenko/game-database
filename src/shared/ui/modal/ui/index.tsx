@@ -18,7 +18,9 @@ export function Modal({
 			></section>
 			<section
 				className={`${
-					isOpen ? 'flex flex-grow justify-center items-center' : 'hidden'
+					isOpen
+						? 'flex flex-grow justify-center items-center animate-modal-showing'
+						: 'hidden'
 				} z-50 fixed right-0 top-0 bottom-0 w-full min-h-full transform transition-all duration-300 ease-in-out opacity-100 cursor-pointer`}
 			>
 				{children}

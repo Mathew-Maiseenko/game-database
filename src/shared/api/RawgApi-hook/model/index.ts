@@ -26,8 +26,8 @@ import getListGameScreenshotsParams from '../lib/getting-params/getting-screensh
 import getFilteredGameListParams from '../lib/getting-params/getting-filtered-game-list-params'
 import getRandomGamesPostersParams from '../lib/getting-params/getting-posters-params'
 
-const baseUrl: string | undefined = process.env.RAWG_Api_BASE_URL
-const ApiKey: string | undefined = process.env.RAWG_Api_KEY
+const baseUrl = process.env.NEXT_PUBLIC_RAWG_Api_BASE_URL
+const ApiKey = process.env.NEXT_PUBLIC_RAWG_Api_KEY
 
 export const RawgApi = {
 	getGamesList: async () => {

@@ -30,7 +30,7 @@ export function UsersGameCard({
 	const router = useRouter()
 
 	return (
-		<li className='flex flex-row relative w-full h-1/3 mb-3 after:h-0.5 after:w-full after:absolute after:-bottom-2 dark:after:bg-grayLineAfterCard after:bg-lightThemeBorderGray'>
+		<li className='flex flex-row relative w-full h-1/3 mb-3 after:h-0.5 after:w-full after:absolute after:-bottom-2 dark:after:bg-grayLineAfterCard after:bg-lightThemeBorderGray animate-card-showing'>
 			<section
 				className='flex justify-center items-center relative mr-1 sm:mr-5 w-2/6 cursor-pointer min-h-full '
 				onClick={() => router.push(`http://localhost:3000/details/${id}`)}
