@@ -2,7 +2,7 @@ import { Metadata } from 'next'
 import dynamic from 'next/dynamic'
 
 const HomePage = dynamic(() =>
-	import('@/pages/home-page').then(file => file.HomePage)
+	import('@/FSD_pages/home-page').then(file => file.HomePage)
 )
 
 export const metadata: Metadata = {

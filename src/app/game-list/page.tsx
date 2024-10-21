@@ -5,7 +5,7 @@ export const metadata: Metadata = {
 
 import dynamic from 'next/dynamic'
 const GameListPage = dynamic(() =>
-	import('@/pages/game-list-page').then(file => file.GameListPage)
+	import('@/FSD_pages/game-list-page').then(file => file.GameListPage)
 )
 
 export default function GameList() {

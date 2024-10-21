@@ -1,6 +1,6 @@
 import dynamic from 'next/dynamic'
 const NotFoundPage = dynamic(() =>
-	import('@/pages/not-found-page').then(file => file.NotFoundPage)
+	import('@/FSD_pages/not-found-page').then(file => file.NotFoundPage)
 )
 
 import { Metadata } from 'next'
