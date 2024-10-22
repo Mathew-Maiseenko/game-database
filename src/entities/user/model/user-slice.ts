@@ -165,21 +165,6 @@ export const userSlice = createAppSlice({
 			//saveUserInfoInLocalStorage(state) //delete removing
 		},
 
-		// setFavoriteGameCompleted: (state, action: PayloadAction<GameId>) => {
-		// 	const curGame = state.statistics.favoriteGames[action.payload]
-		// 	if (curGame) {
-		// 		curGame.isComplete = true
-		// 	}
-		// 	saveUserInfoInLocalStorage(state)
-		// },
-		// setFavoriteGameInCompleted: (state, action: PayloadAction<GameId>) => {
-		// 	const curGame = state.statistics.favoriteGames[action.payload]
-		// 	if (curGame) {
-		// 		curGame.isComplete = false
-		// 	}
-		// 	saveUserInfoInLocalStorage(state)
-		// },
-
 		toggleFavoriteGameComplete: (state, action: PayloadAction<GameId>) => {
 			const curGame = state.statistics.favoriteGames[action.payload]
 			if (curGame) {
