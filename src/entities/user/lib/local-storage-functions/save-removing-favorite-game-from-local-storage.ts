@@ -14,9 +14,11 @@ export function saveRemovingFavoriteGameFromLocalStorage(gameId: number) {
 				statistics: {
 					games: {
 						...user.statistics.games,
-						[gameId]: { isComplete: false, completedAchievementIds: [] },
+						[gameId]: undefined,
 					},
-					favoriteGamesIds: [...user.statistics.favoriteGamesIds, gameId],
+					favoriteGamesIds: user.statistics.favoriteGamesIds.filter(
+						curId => curId !== gameId
+					),
 				},
 				computerSpecifications: {
 					CPU: user.computerSpecifications.CPU,

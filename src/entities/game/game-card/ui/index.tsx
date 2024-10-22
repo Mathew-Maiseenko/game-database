@@ -40,7 +40,7 @@ export const GameCard = memo(function GameCard({
 				className={`flex flex-col w-full min-h-full`}
 			>
 				<ImageWithFallback
-					src={image}
+					srcImage={image}
 					width={1280}
 					height={720}
 					alt='Game poster'

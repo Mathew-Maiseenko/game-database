@@ -7,14 +7,14 @@ interface ImageWithFallbackProps
 	extends React.ImgHTMLAttributes<HTMLImageElement> {
 	width?: number
 	height?: number
-	src?: string
+	srcImage?: string | null
 	fallbackSrc?: string
 	alt: string
 	className?: string
 }
 
 export const ImageWithFallback = ({
-	src = emptyImage,
+	srcImage = emptyImage,
 	width = 500,
 	height = 500,
 	fallbackSrc = emptyImage,
@@ -22,7 +22,7 @@ export const ImageWithFallback = ({
 	className,
 	...rest
 }: ImageWithFallbackProps) => {
-	const [imgSrc, setImgSrc] = useState(src)
+	const [imgSrc, setImgSrc] = useState(srcImage)
 	const base64Image =
 		'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNcvH79JgAGswK11g2dbAAAAABJRU5ErkJggg=='
 	return (
@@ -33,7 +33,7 @@ export const ImageWithFallback = ({
 			height={height}
 			placeholder='blur'
 			blurDataURL={base64Image}
-			src={imgSrc}
+			src={imgSrc ?? fallbackSrc}
 			onError={() => {
 				setImgSrc(fallbackSrc)
 			}}

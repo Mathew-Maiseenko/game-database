@@ -1,7 +1,5 @@
 export { saveIsUserSignedInLocalStorage } from './lib/local-storage-functions/save-is-user-signed-in-local-storage'
 
-export { saveRemovingAllFavoriteGameFromLocalStorage } from './lib/local-storage-functions/save-removing-all-favorite-games-from-local-storage'
-
 export { saveAddingFavoriteGameInLocalStorage } from './lib/local-storage-functions/save-adding-favorite-game-in-local-storage'
 
 export { saveSettingGameAchievementCompleteInLocalStorage } from './lib/local-storage-functions/save-setting-game-achievement-complete-in-local-storage'

@@ -18,9 +18,7 @@ export function saveSettingGameAchievementCompleteInLocalStorage(
 					games: {
 						...user.statistics.games,
 						[gameId]: {
-							isComplete: user.statistics.games[gameId]?.isComplete
-								? user.statistics.games[gameId].isComplete
-								: true,
+							isComplete: user.statistics.games[gameId]?.isComplete,
 							completedAchievementIds: {
 								...user.statistics.games[gameId]?.completedAchievementIds,
 								[achievementId]: true,

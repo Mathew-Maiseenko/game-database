@@ -63,7 +63,7 @@ export const StoreLogoList = ({ stores }: { stores: Store[] }) =>
 					</StoreLink>
 				)
 			default:
-				return
+				return ''
 		}
 	})
 

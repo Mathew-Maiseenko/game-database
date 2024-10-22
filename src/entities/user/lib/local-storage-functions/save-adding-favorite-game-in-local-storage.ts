@@ -14,11 +14,9 @@ export function saveAddingFavoriteGameInLocalStorage(gameId: number) {
 				statistics: {
 					games: {
 						...user.statistics.games,
-						[gameId]: undefined,
+						[gameId]: { isComplete: false, completedAchievementIds: {} },
 					},
-					favoriteGamesIds: user.statistics.favoriteGamesIds.filter(
-						curId => curId !== gameId
-					),
+					favoriteGamesIds: [...user.statistics.favoriteGamesIds, gameId],
 				},
 				computerSpecifications: {
 					CPU: user.computerSpecifications.CPU,

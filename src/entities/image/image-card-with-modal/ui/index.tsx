@@ -2,6 +2,7 @@
 import { gameDetailsSlice } from '@/entities/game/game-details/model'
 import { AppDispatch } from '@/shared/lib'
 import Image from 'next/image'
+import emptyImage from '../../../../../public/empty-image.svg'
 
 interface ImageCardWithModalProps {
 	dispatch: AppDispatch
@@ -19,7 +20,7 @@ export function ImageCardWithModal({
 	return (
 		<Image
 			alt={alt}
-			src={image ? image : ''}
+			src={image ? image : emptyImage}
 			width={1920}
 			height={1080}
 			className={`cursor-pointer rounded-2xl ${classes}`}

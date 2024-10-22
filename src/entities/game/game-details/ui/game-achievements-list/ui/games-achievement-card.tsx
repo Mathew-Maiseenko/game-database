@@ -44,7 +44,7 @@ export function GameAchievementCard({
 		<li className='flex w-full justify-between relative mb-5 after:h-0.5 after:w-full after:absolute after:-bottom-2 after:bg-grayLineAfterCard py-2'>
 			<section className='flex'>
 				<article
-					className='relative sm:max-w-10 md:max-w-20 lg:max-w-40'
+					className='relative w-10 sm:w-14 md:w-20 lg:w-24 overflow-hidden'
 					onClick={() => {
 						if (isUserSigned && isGameFavorite && !isComplete) {
 							dispatch(
@@ -74,18 +74,22 @@ export function GameAchievementCard({
 					}}
 				>
 					<section
-						className={`${!isComplete && 'hidden'} absolute w-full h-full`}
+						className={`${
+							!isComplete && 'hidden'
+						} flex justify-center items-center absolute w-full h-full`}
 					>
-						<AnimatedTickIcon />
+						<AnimatedTickIcon styles='w-1/2' />
 					</section>
+
 					<ImageWithFallback
-						src={image}
+						srcImage={image}
 						width={500}
 						height={500}
 						alt='Picture of the achievement'
-						className='w-full h-full'
+						className='flex flex-grow object-cover w-full h-auto'
 					/>
 				</article>
+
 				<article className='flex flex-col justify-self-start rounded-3xl min-w-[70%] p-3'>
 					<section className='flex justify-between'>
 						<h3 className='text-xl font-bold text-black dark:text-white'>

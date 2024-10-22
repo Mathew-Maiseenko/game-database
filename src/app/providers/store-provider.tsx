@@ -17,6 +17,8 @@ export default function StoreProvider({
 
 		let userInfoJSON = localStorage.getItem('UserInfo')
 		if (userInfoJSON) {
+			console.log(userInfoJSON)
+
 			const initialsUsersParams = {
 				user: JSON.parse(userInfoJSON) as UserInfoLocaleStorageType,
 				isSigned: localStorage.getItem('isUserSigned'),
@@ -25,6 +27,8 @@ export default function StoreProvider({
 			storeRef.current.dispatch(
 				userSlice.actions.initCurrentUser(initialsUsersParams)
 			)
+		} else {
+			console.log('error local storage')
 		}
 
 		const startedSiteColorTheme = localStorage.getItem('current-theme')

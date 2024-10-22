@@ -31,18 +31,18 @@ export function UsersGameCard({
 	return (
 		<li className='flex flex-row relative w-full h-1/3 mb-3 after:h-0.5 after:w-full after:absolute after:-bottom-2 dark:after:bg-grayLineAfterCard after:bg-lightThemeBorderGray animate-card-showing'>
 			<section
-				className='flex justify-center items-center relative mr-1 sm:mr-5 w-2/6 cursor-pointer min-h-full '
+				className='flex justify-center items-center relative mr-1 sm:mr-5 w-2/6 cursor-pointer min-h-full overflow-hidden'
 				onClick={() => router.push(`${baseSiteUrl}/details/${id}`)}
 			>
 				<article
 					className={`${
 						!isComplete && 'hidden'
-					} top-0 bottom-0 absolute w-1/2 h-1/2`}
+					} flex justify-center items-center absolute  w-full h-full`}
 				>
-					<AnimatedTickIcon />
+					<AnimatedTickIcon styles='w-1/2' />
 				</article>
 				<ImageWithFallback
-					src={poster ? poster : ''}
+					srcImage={poster ? poster : ''}
 					width={500}
 					height={500}
 					alt='Poster of the game'

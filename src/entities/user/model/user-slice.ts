@@ -4,7 +4,6 @@ import type {
 	GameId,
 	initCurrentUserActionPayloadType,
 	setUserDataPayloadType,
-	UserInfoLocaleStorageType,
 	UserInfoStateType,
 	usersFavoriteGameType,
 	validationMessagesType,
@@ -12,7 +11,6 @@ import type {
 
 import { fetchDetailsByGamesIds } from './thunk/fetch-game-details'
 import { StoreGameDetails } from '@/shared/api/RawgApi-hook'
-import { saveIsUserSignedInLocalStorage } from '../lib/local-storage-functions/save-is-user-signed-in-local-storage'
 
 const initialState: UserInfoStateType = {
 	isUserSigned: false,
@@ -114,7 +112,7 @@ export const userSlice = createAppSlice({
 			state.userBasics = {
 				...user.userBasics,
 			}
-			state.statistics.favoriteGamesIds = [...user.statistics.favoriteGamesIds]
+			state.statistics.favoriteGamesIds = user.statistics.favoriteGamesIds
 			state.statistics.favoriteGames = {
 				...user.statistics.favoriteGamesIds.reduce(
 					(acc, id) => ({

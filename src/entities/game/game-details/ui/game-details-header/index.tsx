@@ -23,7 +23,7 @@ export const GameDetailsHeader = memo(function GameDetailsHeader({
 					<ImageCardWithModal
 						dispatch={dispatch}
 						image={mainImage ? mainImage : ''}
-						classes={`block lg:flex lg:flex-shrink rounded-md dark:border-none border-2 border-lightThemeBorderGray min-h-full w-full lg:w-auto ${
+						classes={`block lg:flex lg:flex-shrink rounded-md dark:border-none border-2 border-lightThemeBorderGray min-h-full w-full lg:w-auto mr-1 ${
 							firstScreenshot && secondScreenshot
 								? `${classes['game-main-pictures']}`
 								: 'w-full'
@@ -35,7 +35,7 @@ export const GameDetailsHeader = memo(function GameDetailsHeader({
 							<ImageCardWithModal
 								dispatch={dispatch}
 								image={firstScreenshot ? firstScreenshot : ''}
-								classes={`flex w-full rounded-md dark:border-none border-2 border-lightThemeBorderGray 
+								classes={`flex w-full rounded-md mb-1 dark:border-none border-2 border-lightThemeBorderGray 
 								${classes['game-first-screenshot']}
 								`}
 								alt='The first game screenshot'

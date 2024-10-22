@@ -33,7 +33,7 @@ export function RecommendationListsGameCard({
 				className='flex justify-center items-center flex-grow sm:h-full w-full sm:w-auto'
 			>
 				<ImageWithFallback
-					src={poster}
+					srcImage={poster}
 					width={300}
 					height={200}
 					alt='Picture of the game'

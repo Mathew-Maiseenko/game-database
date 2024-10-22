@@ -17,13 +17,9 @@ export function saveTogglingFavoriteGameСompletionInLocalStorage(
 					games: {
 						...user.statistics.games,
 						[gameId]: {
-							isComplete: user.statistics.games[gameId]?.isComplete
-								? user.statistics.games[gameId].isComplete
-								: false,
-							completedAchievementIds: user.statistics.games[gameId]
-								?.completedAchievementIds
-								? user.statistics.games[gameId].completedAchievementIds
-								: [],
+							isComplete: !user.statistics.games[gameId]?.isComplete,
+							completedAchievementIds:
+								user.statistics.games[gameId]?.completedAchievementIds,
 						},
 					},
 					favoriteGamesIds: user.statistics.favoriteGamesIds,
