@@ -15,26 +15,28 @@ export default function StoreProvider({
 	if (!storeRef.current) {
 		storeRef.current = makeStore()
 
-		let userInfoJSON = localStorage.getItem('UserInfo')
-		if (userInfoJSON) {
-			console.log(userInfoJSON)
+		if (typeof window !== 'undefined') {
+			let userInfoJSON = localStorage.getItem('UserInfo')
+			if (userInfoJSON) {
+				console.log(userInfoJSON)
 
-			const initialsUsersParams = {
-				user: JSON.parse(userInfoJSON) as UserInfoLocaleStorageType,
-				isSigned: localStorage.getItem('isUserSigned'),
+				const initialsUsersParams = {
+					user: JSON.parse(userInfoJSON) as UserInfoLocaleStorageType,
+					isSigned: localStorage.getItem('isUserSigned'),
+				}
+
+				storeRef.current.dispatch(
+					userSlice.actions.initCurrentUser(initialsUsersParams)
+				)
+			} else {
+				console.log('error local storage')
 			}
 
+			const startedSiteColorTheme = localStorage.getItem('current-theme')
 			storeRef.current.dispatch(
-				userSlice.actions.initCurrentUser(initialsUsersParams)
+				themeSwitcherSlice.actions.initActiveTheme(startedSiteColorTheme)
 			)
-		} else {
-			console.log('error local storage')
 		}
-
-		const startedSiteColorTheme = localStorage.getItem('current-theme')
-		storeRef.current.dispatch(
-			themeSwitcherSlice.actions.initActiveTheme(startedSiteColorTheme)
-		)
 	}
 
 	return <Provider store={storeRef.current}>{children}</Provider>
