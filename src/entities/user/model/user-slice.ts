@@ -11,7 +11,7 @@ import type {
 import {
 	saveIsUserSignedInLocalStorage,
 	saveUserInfoInLocalStorage,
-} from '../lib/save-user-in-local-storage'
+} from '../lib/local-storage-functions/save-user-in-local-storage-back-up'
 import { fetchDetailsByGamesIds } from './thunk/fetch-game-details'
 import { StoreGameDetails } from '@/shared/api/RawgApi-hook'
 

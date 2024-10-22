@@ -1,4 +1,4 @@
-import type { UserInfoStateType } from '../types'
+import { UserInfoStateType } from '../../types'
 
 export function saveUserInfoInLocalStorage(state: UserInfoStateType) {
 	localStorage.setItem(

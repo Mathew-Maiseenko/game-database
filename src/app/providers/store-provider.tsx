@@ -14,6 +14,7 @@ export default function StoreProvider({
 	const storeRef = useRef<AppStore>()
 	if (!storeRef.current) {
 		storeRef.current = makeStore()
+
 		storeRef.current.dispatch(userSlice.actions.initCurrentUser())
 		storeRef.current.dispatch(themeSwitcherSlice.actions.initActiveTheme())
 	}
