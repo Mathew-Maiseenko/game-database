@@ -1,4 +1,8 @@
-import { UserInfoLocaleStorageType, userSlice } from '@/entities/user'
+import {
+	saveIsUserSignedInLocalStorage,
+	UserInfoLocaleStorageType,
+	userSlice,
+} from '@/entities/user'
 import type { signInUserParams } from '../types'
 import { checkLogParams } from '../lib/check-log-params'
 import { baseSiteUrl } from '@/shared/model'
@@ -23,6 +27,7 @@ export function signInUser({
 		if (isUserNameCorrect && isPasswordCorrect) {
 			dispatch(userSlice.actions.setUserSigned())
 			dispatch(userSlice.actions.setUserSignInModalClose())
+			saveIsUserSignedInLocalStorage(true)
 			router.push(`${baseSiteUrl}/user`)
 		} else {
 			dispatch(

@@ -5,7 +5,11 @@ import {
 	ImageWithFallback,
 } from '@/shared/ui'
 import { useAppDispatch, useAppSelector } from '@/shared/lib/redux/hooks'
-import { userSlice } from '@/entities/user'
+import {
+	saveSettingGameAchievementCompleteInLocalStorage,
+	saveSettingGameAchievementIncompleteInLocalStorage,
+	userSlice,
+} from '@/entities/user'
 
 interface GameAchievementCardProps {
 	GameId: number
@@ -49,12 +53,22 @@ export function GameAchievementCard({
 									AchievementId,
 								})
 							)
+
+							saveSettingGameAchievementCompleteInLocalStorage(
+								GameId,
+								AchievementId
+							)
 						} else if (isUserSigned && isGameFavorite && isComplete) {
 							dispatch(
 								userSlice.actions.setAchievementInCompleted({
 									GameId,
 									AchievementId,
 								})
+							)
+
+							saveSettingGameAchievementIncompleteInLocalStorage(
+								GameId,
+								AchievementId
 							)
 						}
 					}}

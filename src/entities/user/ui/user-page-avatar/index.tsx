@@ -4,6 +4,7 @@ import { useAppDispatch, useAppSelector } from '@/shared/lib/redux/hooks'
 import { useRouter } from 'next/navigation'
 import { UserIcon } from '@/shared/ui'
 import { baseSiteUrl } from '@/shared/model'
+import { saveIsUserSignedInLocalStorage } from '../../lib/local-storage-functions/save-is-user-signed-in-local-storage'
 
 export function UsersAvatar() {
 	const dispatch = useAppDispatch()
@@ -14,13 +15,14 @@ export function UsersAvatar() {
 			<h2 className='text-center inline-block w-full text-black dark:text-white font-bold text-xl md:text-2xl xl:text-3xl mb-2 underline'>
 				{userName}
 			</h2>
-			<UserIcon className='flex flex-grow w-1/2 md:w-full rounded-2xl self-center mb-2' />
+			<UserIcon className='dark:fill-white fill-black flex flex-grow w-1/2 md:w-full rounded-2xl self-center mb-2' />
 			<button
 				onClick={() => {
 					router.push(`${baseSiteUrl}/`)
 
 					setTimeout(() => {
 						dispatch(userSlice.actions.setUserUnsigned())
+						saveIsUserSignedInLocalStorage(false)
 					}, 100)
 				}}
 				className='flex text-white justify-center items-center bg-accountExitRed rounded-2xl p-3 lg:p-5 font-semibold'

@@ -65,3 +65,8 @@ export interface UserInfoLocaleStorageType {
 		graphicsMemory: number
 	}
 }
+
+export interface initCurrentUserActionPayloadType {
+	user: UserInfoLocaleStorageType
+	isSigned: string | null
+}

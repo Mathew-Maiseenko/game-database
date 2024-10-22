@@ -3,6 +3,7 @@ import { MoonIcon } from './icons/moon-icon'
 import { SunIcon } from './icons/sun-icon'
 import { useAppDispatch, useAppSelector } from '@/shared/lib/redux/hooks'
 import { themeSwitcherSlice } from '../model/theme-switcher-slice'
+import { saveCurrentTheme } from '../lib/save-current-theme'
 
 export function ThemeSwitcher({ styles }: { styles?: string }) {
 	const dispatch = useAppDispatch()
@@ -13,7 +14,10 @@ export function ThemeSwitcher({ styles }: { styles?: string }) {
 
 	return (
 		<section
-			onClick={() => dispatch(themeSwitcherSlice.actions.toggleActiveTheme())}
+			onClick={() => {
+				dispatch(themeSwitcherSlice.actions.toggleActiveTheme())
+				saveCurrentTheme(isThemeDark)
+			}}
 			className={`relative top-1 ${styles}`}
 		>
 			<input

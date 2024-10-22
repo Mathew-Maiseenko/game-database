@@ -31,7 +31,3 @@ export function saveUserInfoInLocalStorage(state: UserInfoStateType) {
 		})
 	)
 }
-
-export function saveIsUserSignedInLocalStorage(isSigned: boolean) {
-	localStorage.setItem('isUserSigned', isSigned ? '1' : '')
-}

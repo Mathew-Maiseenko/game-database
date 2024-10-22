@@ -1,6 +1,6 @@
 import { UserInfoLocaleStorageType } from '../../types'
 
-export function saveSettingGameAchievementCompleteInLocalStorage(
+export function saveSettingGameAchievementIncompleteInLocalStorage(
 	gameId: number,
 	achievementId: number
 ) {
@@ -23,7 +23,7 @@ export function saveSettingGameAchievementCompleteInLocalStorage(
 								: true,
 							completedAchievementIds: {
 								...user.statistics.games[gameId]?.completedAchievementIds,
-								[achievementId]: true,
+								[achievementId]: undefined,
 							},
 						},
 					},

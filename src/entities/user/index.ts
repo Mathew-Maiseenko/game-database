@@ -1,3 +1,17 @@
+export { saveIsUserSignedInLocalStorage } from './lib/local-storage-functions/save-is-user-signed-in-local-storage'
+
+export { saveRemovingAllFavoriteGameFromLocalStorage } from './lib/local-storage-functions/save-removing-all-favorite-games-from-local-storage'
+
+export { saveAddingFavoriteGameInLocalStorage } from './lib/local-storage-functions/save-adding-favorite-game-in-local-storage'
+
+export { saveSettingGameAchievementCompleteInLocalStorage } from './lib/local-storage-functions/save-setting-game-achievement-complete-in-local-storage'
+export { saveSettingGameAchievementIncompleteInLocalStorage } from './lib/local-storage-functions/save-setting-game-achievement-incomplete-in-local-storage'
+
+export { saveTogglingFavoriteGameСompletionInLocalStorage } from './lib/local-storage-functions/save-toggling-favorite-game-completion-in-local-storage'
+
+export { saveRemovingFavoriteGameFromLocalStorage } from './lib/local-storage-functions/save-removing-favorite-game-from-local-storage'
+
+export { saveUserInfoInLocalStorageAfterSigningUp } from './lib/local-storage-functions/save-user-in-local-storage'
 export { UserButton } from './ui/user-button/ui'
 
 export type { UserInfoLocaleStorageType, usersFavoriteGameType } from './types'

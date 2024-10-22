@@ -16,7 +16,11 @@ import {
 import { GameAchievementsList } from '@/entities/game/game-details/ui'
 import { RawgApi } from '@/shared/api/RawgApi-hook'
 import Link from 'next/link'
-import { userSlice } from '@/entities/user'
+import {
+	saveAddingFavoriteGameInLocalStorage,
+	saveRemovingFavoriteGameFromLocalStorage,
+	userSlice,
+} from '@/entities/user'
 import { getGamesIdByPathname } from '../lib'
 import { ErrorMessage, Loader } from '@/shared/ui'
 
@@ -87,10 +91,14 @@ export function GameDetailsMain() {
 								if (isUserSigned) {
 									if (!isGameAddedInUserList) {
 										dispatch(userSlice.actions.addFavoriteGame(currentGame))
+
+										saveAddingFavoriteGameInLocalStorage(currentGameId)
 									} else {
 										dispatch(
 											userSlice.actions.removeFavoriteGame(currentGameId)
 										)
+
+										saveRemovingFavoriteGameFromLocalStorage(currentGameId)
 									}
 								} else {
 									dispatch(userSlice.actions.setUserSignUpModalOpen())

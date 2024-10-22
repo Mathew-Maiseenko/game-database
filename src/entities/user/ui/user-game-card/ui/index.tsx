@@ -6,6 +6,8 @@ import { useAppDispatch } from '@/shared/lib/redux/hooks'
 import { userSlice } from '@/entities/user/model/user-slice'
 import Link from 'next/link'
 import { useState } from 'react'
+import { saveRemovingFavoriteGameFromLocalStorage } from '@/entities/user/lib/local-storage-functions/save-removing-favorite-game-from-local-storage'
+import { saveTogglingFavoriteGameСompletionInLocalStorage } from '@/entities/user/lib/local-storage-functions/save-toggling-favorite-game-completion-in-local-storage'
 
 export function UsersOpeningActionsMenuButton({
 	id,
@@ -30,9 +32,10 @@ export function UsersOpeningActionsMenuButton({
 			>
 				<article className='flex gap-1'>
 					<button
-						onClick={() =>
+						onClick={() => {
 							dispatch(userSlice.actions.toggleFavoriteGameComplete(id))
-						}
+							saveTogglingFavoriteGameСompletionInLocalStorage(id)
+						}}
 						className='dark:bg-darkGray bg-white text-white rounded-full p-2 lg:p-3'
 					>
 						<TickIcon classes='w-5 h-5 dark:stroke-white stroke-black' />
@@ -49,7 +52,10 @@ export function UsersOpeningActionsMenuButton({
 
 					<button
 						className='dark:bg-darkGray bg-white text-white rounded-full p-2 lg:p-3'
-						onClick={() => dispatch(userSlice.actions.removeFavoriteGame(id))}
+						onClick={() => {
+							dispatch(userSlice.actions.removeFavoriteGame(id))
+							saveRemovingFavoriteGameFromLocalStorage(id)
+						}}
 					>
 						<GarbageIcon classes='w-5 h-5 dark:fill-white fill-black' />
 					</button>

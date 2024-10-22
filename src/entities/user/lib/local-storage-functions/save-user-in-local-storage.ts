@@ -1,13 +1,3 @@
-interface saveUserInfoInLocalStorageAfterSigningUpParams {
-	name: string
-	password: string
-	verifiedPassword: string
-	CPU: string
-	GPU: string
-	graphicsMemory: number
-	RAM: number
-}
-
 export function saveUserInfoInLocalStorageAfterSigningUp(
 	name: string,
 	password: string,
@@ -35,8 +25,4 @@ export function saveUserInfoInLocalStorageAfterSigningUp(
 			},
 		})
 	)
-}
-
-export function saveIsUserSignedInLocalStorage(isSigned: boolean) {
-	localStorage.setItem('isUserSigned', isSigned ? '1' : '')
 }

@@ -2,18 +2,17 @@ import { createAppSlice } from '@/shared/lib'
 import { PayloadAction } from '@reduxjs/toolkit'
 import type {
 	GameId,
+	initCurrentUserActionPayloadType,
 	setUserDataPayloadType,
 	UserInfoLocaleStorageType,
 	UserInfoStateType,
 	usersFavoriteGameType,
 	validationMessagesType,
 } from '../types'
-import {
-	saveIsUserSignedInLocalStorage,
-	saveUserInfoInLocalStorage,
-} from '../lib/local-storage-functions/save-user-in-local-storage-back-up'
+
 import { fetchDetailsByGamesIds } from './thunk/fetch-game-details'
 import { StoreGameDetails } from '@/shared/api/RawgApi-hook'
+import { saveIsUserSignedInLocalStorage } from '../lib/local-storage-functions/save-is-user-signed-in-local-storage'
 
 const initialState: UserInfoStateType = {
 	isUserSigned: false,
@@ -75,11 +74,11 @@ export const userSlice = createAppSlice({
 	reducers: {
 		setUserUnsigned: state => {
 			state.isUserSigned = false
-			saveIsUserSignedInLocalStorage(false)
+			//saveIsUserSignedInLocalStorage(false) ///!!!
 		},
 		setUserSigned: state => {
 			state.isUserSigned = true
-			saveIsUserSignedInLocalStorage(true)
+			//saveIsUserSignedInLocalStorage(true)
 		},
 
 		setUserSignUpModalOpen: state => {
@@ -96,36 +95,39 @@ export const userSlice = createAppSlice({
 			state.isUserSignInModalOpen = false
 		},
 
-		initCurrentUser: state => {
-			let userInfoJSON = localStorage.getItem('UserInfo')
-			if (userInfoJSON) {
-				const isSigned = localStorage.getItem('isUserSigned')
-				const user = JSON.parse(userInfoJSON) as UserInfoLocaleStorageType
+		initCurrentUser: (
+			state,
+			action: PayloadAction<initCurrentUserActionPayloadType>
+		) => {
+			// let userInfoJSON = localStorage.getItem('UserInfo')
+			// if (userInfoJSON) {
+			// 	const isSigned = localStorage.getItem('isUserSigned')
+			// 	const user = JSON.parse(userInfoJSON) as UserInfoLocaleStorageType
 
-				state.isUserSigned = !!isSigned
-				state.computerSpecifications = {
-					...user.computerSpecifications,
-				}
-				state.userBasics = {
-					...user.userBasics,
-				}
-				state.statistics.favoriteGamesIds = [
-					...user.statistics.favoriteGamesIds,
-				]
-				state.statistics.favoriteGames = {
-					...user.statistics.favoriteGamesIds.reduce(
-						(acc, id) => ({
-							...acc,
-							[id]: {
-								isComplete: user.statistics.games[id]?.isComplete,
-								completedAchievementIds:
-									user.statistics.games[id]?.completedAchievementIds || [],
-								game: {},
-							},
-						}),
-						{}
-					),
-				}
+			const user = action.payload.user
+			const isSigned = action.payload.user
+
+			state.isUserSigned = !!isSigned
+			state.computerSpecifications = {
+				...user.computerSpecifications,
+			}
+			state.userBasics = {
+				...user.userBasics,
+			}
+			state.statistics.favoriteGamesIds = [...user.statistics.favoriteGamesIds]
+			state.statistics.favoriteGames = {
+				...user.statistics.favoriteGamesIds.reduce(
+					(acc, id) => ({
+						...acc,
+						[id]: {
+							isComplete: user.statistics.games[id]?.isComplete,
+							completedAchievementIds:
+								user.statistics.games[id]?.completedAchievementIds || [],
+							game: {},
+						},
+					}),
+					{}
+				),
 			}
 		},
 
@@ -144,9 +146,10 @@ export const userSlice = createAppSlice({
 					...state.statistics.favoriteGamesIds,
 					action.payload.id,
 				]
-				saveUserInfoInLocalStorage(state)
+				//saveUserInfoInLocalStorage(state) // saveAddingFavoriteGameInLocalStorage(gameId: number)
 			}
 		},
+
 		removeFavoriteGame: (state, action: PayloadAction<GameId>) => {
 			state.statistics.favoriteGames = {
 				...state.statistics.favoriteGames,
@@ -155,35 +158,36 @@ export const userSlice = createAppSlice({
 			state.statistics.favoriteGamesIds =
 				state.statistics.favoriteGamesIds.filter(id => id !== action.payload)
 
-			saveUserInfoInLocalStorage(state)
+			//saveUserInfoInLocalStorage(state) //saveRemovingFavoriteGameFromLocalStorage(id)
 		},
 
 		removeAllFavoriteGames: state => {
 			state.statistics.favoriteGames = {}
 			state.statistics.favoriteGamesIds = []
-			saveUserInfoInLocalStorage(state)
+			//saveUserInfoInLocalStorage(state) //delete removing
 		},
 
-		setFavoriteGameCompleted: (state, action: PayloadAction<GameId>) => {
-			const curGame = state.statistics.favoriteGames[action.payload]
-			if (curGame) {
-				curGame.isComplete = true
-			}
-			saveUserInfoInLocalStorage(state)
-		},
-		setFavoriteGameInCompleted: (state, action: PayloadAction<GameId>) => {
-			const curGame = state.statistics.favoriteGames[action.payload]
-			if (curGame) {
-				curGame.isComplete = false
-			}
-			saveUserInfoInLocalStorage(state)
-		},
+		// setFavoriteGameCompleted: (state, action: PayloadAction<GameId>) => {
+		// 	const curGame = state.statistics.favoriteGames[action.payload]
+		// 	if (curGame) {
+		// 		curGame.isComplete = true
+		// 	}
+		// 	saveUserInfoInLocalStorage(state)
+		// },
+		// setFavoriteGameInCompleted: (state, action: PayloadAction<GameId>) => {
+		// 	const curGame = state.statistics.favoriteGames[action.payload]
+		// 	if (curGame) {
+		// 		curGame.isComplete = false
+		// 	}
+		// 	saveUserInfoInLocalStorage(state)
+		// },
+
 		toggleFavoriteGameComplete: (state, action: PayloadAction<GameId>) => {
 			const curGame = state.statistics.favoriteGames[action.payload]
 			if (curGame) {
 				curGame.isComplete = !curGame.isComplete
 			}
-			saveUserInfoInLocalStorage(state)
+			//saveUserInfoInLocalStorage(state) //saveTogglingFavoriteGameСompletionInLocalStorage(id)
 		},
 
 		setAchievementCompleted: (
@@ -193,7 +197,7 @@ export const userSlice = createAppSlice({
 			const game = state.statistics.favoriteGames[action.payload.GameId]
 			if (game) {
 				game.completedAchievementIds[action.payload.AchievementId] = true
-				saveUserInfoInLocalStorage(state)
+				//saveUserInfoInLocalStorage(state) //saveSettingGameAchievementCompleteInLocalStorage
 			}
 		},
 
@@ -204,13 +208,13 @@ export const userSlice = createAppSlice({
 			const game = state.statistics.favoriteGames[action.payload.GameId]
 			if (game) {
 				game.completedAchievementIds[action.payload.AchievementId] = undefined
-				saveUserInfoInLocalStorage(state)
+				//saveUserInfoInLocalStorage(state) //saveSettingGameAchievementInCompleteInLocalStorage
 			}
 		},
 
 		setUsersData: (state, action: PayloadAction<setUserDataPayloadType>) => {
 			state.isUserSigned = true
-			saveIsUserSignedInLocalStorage(true)
+			//saveIsUserSignedInLocalStorage(true)
 			state.userBasics.userName = action.payload.userName
 			state.userBasics.userPassword = action.payload.userPassword
 			state.computerSpecifications = {
@@ -227,7 +231,7 @@ export const userSlice = createAppSlice({
 				RAMValidationMessage: '',
 				graphicsMemoryValidationMessage: '',
 			}
-			saveUserInfoInLocalStorage(state)
+			// saveUserInfoInLocalStorage(state) //saveUserInfoInLocalStorageAfterSigningUp
 		},
 
 		setValidationMessages: (

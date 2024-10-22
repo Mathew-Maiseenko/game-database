@@ -1,4 +1,5 @@
 import { createAppSlice } from '@/shared/lib'
+import { PayloadAction } from '@reduxjs/toolkit'
 
 interface StateType {
 	isThemeDark: boolean
@@ -17,10 +18,10 @@ export const themeSwitcherSlice = createAppSlice({
 	reducers: {
 		toggleActiveTheme: state => {
 			state.isThemeDark = !state.isThemeDark
-			localStorage.setItem('current-theme', state.isThemeDark ? 'true' : '')
+			//localStorage.setItem('current-theme', state.isThemeDark ? 'true' : '')
 		},
-		initActiveTheme: state => {
-			const startedSiteColorTheme = localStorage.getItem('current-theme')
+		initActiveTheme: (state, action: PayloadAction<string | null>) => {
+			const startedSiteColorTheme = action.payload
 			if (startedSiteColorTheme) {
 				state.isThemeDark = !!startedSiteColorTheme
 			} else {

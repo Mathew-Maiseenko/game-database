@@ -1,4 +1,8 @@
-import { userSlice } from '@/entities/user'
+import {
+	saveIsUserSignedInLocalStorage,
+	saveUserInfoInLocalStorageAfterSigningUp,
+	userSlice,
+} from '@/entities/user'
 import { passwordsMatchCheck } from '../lib/passwords-match-check'
 import { validateName } from '../lib/validate-name'
 import { validateHardwareName } from '../lib/validate-CPU'
@@ -50,6 +54,16 @@ export function submitUserData({
 			})
 		)
 		dispatch(userSlice.actions.removeAllFavoriteGames())
+
+		saveUserInfoInLocalStorageAfterSigningUp(
+			name,
+			password,
+			CPU,
+			GPU,
+			graphicsMemory,
+			RAM
+		)
+		saveIsUserSignedInLocalStorage(true)
 
 		router.push(`${baseSiteUrl}/user`)
 		dispatch(userSlice.actions.setUserSignUpModalClose())
