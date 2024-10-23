@@ -12,8 +12,12 @@ import { ArrowIcon } from '../icon/arrow-icon'
 
 export const Carousel = ({
 	children,
-	rightIcon = <ArrowIcon styles='w-full transform -rotate-90' />,
-	leftIcon = <ArrowIcon styles='w-full transform rotate-90' />,
+	rightIcon = (
+		<ArrowIcon styles='w-full transform -rotate-90 fill-black dark:fill-textGray' />
+	),
+	leftIcon = (
+		<ArrowIcon styles='w-full transform rotate-90 fill-black dark:fill-textGray' />
+	),
 }: {
 	children: ReactElement | JSX.Element[]
 	rightIcon?: ReactElement
@@ -132,7 +136,7 @@ export const Carousel = ({
 
 	return (
 		<>
-			<article className='flex items-center justify-center flex-col relative w-full select-none'>
+			<article className='flex  items-center justify-center flex-col relative w-full select-none'>
 				{isWithLeftIcon && (
 					<section
 						className='absolute -left-5 top-1/2 w-5 h-5'

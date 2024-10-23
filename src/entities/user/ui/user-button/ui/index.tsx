@@ -1,5 +1,4 @@
 'use client'
-import classes from './styles.module.css'
 import { useRouter } from 'next/navigation'
 import { userSlice } from '@/entities/user'
 import { useAppDispatch, useAppSelector } from '@/shared/lib/redux/hooks'
@@ -22,8 +21,8 @@ export function UserButton({ styles }: { styles?: string }) {
 			}}
 			className={`${
 				styles
-					? `group ${styles} ${classes.group} dark:hover:bg-yellow hover:bg-blue cursor-pointer transition-all duration-300 ease-in-out`
-					: `group ${classes.group} flex flex-row items-center justify-between font-semibold bg-white dark:bg-whiteGray relative cursor-pointer transition-all duration-300 ease-in-out
+					? `group ${styles} dark:hover:bg-yellow hover:bg-blue cursor-pointer transition-all duration-300 ease-in-out`
+					: `group flex flex-row items-center justify-between font-semibold bg-white dark:bg-whiteGray relative cursor-pointer transition-all duration-300 ease-in-out
       sm:rounded-full sm:px-1 sm:py-1 sm:h-13
       md:px-1 md:pl-3 md:py-1 md:rounded-3xl
       dark:hover:bg-yellow hover:bg-blue hover:text-black`
