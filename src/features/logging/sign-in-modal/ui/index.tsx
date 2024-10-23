@@ -48,16 +48,17 @@ export function SignInModal() {
 		>
 			<section
 				onClick={e => e.stopPropagation()}
-				className='relative border-2 border-solid bg-white border-lightThemeBorderGray dark:border-textGray dark:bg-darkGray sm:w-4/5 lg:w-2/5 p-3 md:p-5 lg:p-7 rounded-2xl lg:rounded-3xl cursor-default'
+				className='relative border-2 border-solid bg-white border-lightThemeBorderGray dark:border-textGray dark:bg-darkGray 
+				w-4/5 lg:w-2/5 p-5 md:p-6 lg:p-7 rounded-2xl lg:rounded-3xl cursor-default'
 			>
 				<article
-					className='flex absolute top-5 right-5 '
+					className='flex absolute top-5 right-5 z-[51]'
 					onClick={() => dispatch(userSlice.actions.setUserSignInModalClose())}
 				>
-					<CrossIcon classes=' sm:w-7 lg:w-10' />
+					<CrossIcon classes='w-6 sm:w-7 lg:w-10' />
 				</article>
 				<h2
-					className={`${teko.className} text-center dark:text-yellow text-blue text-2xl md:text-3xl lg:text-7xl font-medium self-center md:order-1 cursor-pointer`}
+					className={`${teko.className} text-center dark:text-yellow text-blue text-4xl md:text-5xl lg:text-7xl xl:text-9xl font-medium self-center md:order-1 cursor-pointer`}
 				>
 					Cyber List
 				</h2>

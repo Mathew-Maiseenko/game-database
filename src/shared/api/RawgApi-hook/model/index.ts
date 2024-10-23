@@ -34,7 +34,6 @@ export const RawgApi = {
 		return await fetchingWrapper(`${baseUrl}games?${ApiKey}&page_size=8`)
 			.then(res => getGameListParams(res))
 			.then(res => {
-				console.log(res)
 				return GameDtoSchema.array().parse(res) as StoreGame[]
 			})
 	},
@@ -63,22 +62,8 @@ export const RawgApi = {
 				(tags ? `&tags=${tags}` : '') +
 				(year ? `&dates=${year}` : '')
 		)
-			.then(res => {
-				console.log(res, 'fetchingWrapper details')
-				return res
-			})
 			.then(res => getFilteredGameListParams(res))
 			.then(res => {
-				console.log(
-					'getGameListParams',
-					`&page=${pageNumber}&page_size=${gamesPerPage}` +
-						(title ? `&search=${title}` : '') +
-						(developers ? `&developers=${developers}` : '') +
-						(genres ? `&genres=${genres}` : '') +
-						(tags ? `&tags=${tags}` : '') +
-						(year ? `&dates=${year}` : ''),
-					res
-				)
 				return FilteredGameDtoSchema.parse(res) as StoreGamesFiltrationObj
 			})
 	},
@@ -86,7 +71,6 @@ export const RawgApi = {
 		return await fetchingWrapper(`${baseUrl}games/${id}?${ApiKey}`)
 			.then(res => getGameDetailsParams(res))
 			.then(res => {
-				console.log(res, 'details')
 				return GameDetailsDtoSchema.parse(res) as StoreGameDetails
 			})
 	},
@@ -94,7 +78,6 @@ export const RawgApi = {
 		return await fetchingWrapper(`${baseUrl}games/${id}/achievements?${ApiKey}`)
 			.then(res => getListGameAchievementsParams(res))
 			.then(res => {
-				console.log(res)
 				return AchievementDtoSchema.array().parse(res) as Achievement[]
 			})
 	},
@@ -102,7 +85,6 @@ export const RawgApi = {
 		return await fetchingWrapper(`${baseUrl}games/${id}/screenshots?${ApiKey}`)
 			.then(res => getListGameScreenshotsParams(res))
 			.then(res => {
-				console.log(res)
 				return ScreenshotsDtoSchema.array().parse(res) as string[]
 			})
 	},
@@ -110,7 +92,6 @@ export const RawgApi = {
 		return await fetchingWrapper(`${baseUrl}genres?${ApiKey}`)
 			.then(res => getGenreListParams(res))
 			.then(res => {
-				console.log(res)
 				return GenreDtoSchema.array().parse(res) as Genre[]
 			})
 	},
@@ -118,7 +99,6 @@ export const RawgApi = {
 		return await fetchingWrapper(`${baseUrl}genres?${ApiKey}`)
 			.then(res => getRandomGamesPostersParams(res))
 			.then(res => {
-				console.log(res)
 				return PostersDtoSchema.array().parse(res) as string[]
 			})
 	},
@@ -126,7 +106,6 @@ export const RawgApi = {
 		return await fetchingWrapper(`${baseUrl}tags?${ApiKey}`)
 			.then(res => getTagsListParams(res))
 			.then(res => {
-				console.log(res)
 				return TagDtoSchema.array().parse(res) as TagResult[]
 			})
 	},
@@ -134,7 +113,6 @@ export const RawgApi = {
 		return await fetchingWrapper(`${baseUrl}developers?${ApiKey}`)
 			.then(res => getDevelopersListParams(res))
 			.then(res => {
-				console.log(res)
 				return DeveloperDtoSchema.array().parse(res) as DeveloperResult[]
 			})
 	},

@@ -586,6 +586,9 @@ video {
 .z-50 {
   z-index: 50;
 }
+.z-\[51\] {
+  z-index: 51;
+}
 .order-last {
   order: 9999;
 }
@@ -762,6 +765,9 @@ video {
 .h-80 {
   height: 20rem;
 }
+.h-auto {
+  height: auto;
+}
 .h-full {
   height: 100%;
 }
@@ -815,6 +821,9 @@ video {
 }
 .w-4 {
   width: 1rem;
+}
+.w-4\/5 {
+  width: 80%;
 }
 .w-44 {
   width: 11rem;
@@ -2120,10 +2129,6 @@ body {
     width: 3.5rem;
   }
 
-  .sm\:w-4\/5 {
-    width: 80%;
-  }
-
   .sm\:w-5 {
     width: 1.25rem;
   }
@@ -2146,10 +2151,6 @@ body {
 
   .sm\:min-w-\[70\%\] {
     min-width: 70%;
-  }
-
-  .sm\:max-w-10 {
-    max-width: 2.5rem;
   }
 
   .sm\:flex-row {
@@ -2385,10 +2386,6 @@ body {
     width: 100%;
   }
 
-  .md\:max-w-20 {
-    max-width: 5rem;
-  }
-
   .md\:max-w-\[49\%\] {
     max-width: 49%;
   }
@@ -2437,6 +2434,10 @@ body {
 
   .md\:p-5 {
     padding: 1.25rem;
+  }
+
+  .md\:p-6 {
+    padding: 1.5rem;
   }
 
   .md\:px-1 {
@@ -2540,6 +2541,11 @@ body {
     line-height: 2.5rem;
   }
 
+  .md\:text-5xl {
+    font-size: 3rem;
+    line-height: 1;
+  }
+
   .md\:text-lg {
     font-size: 1.125rem;
     line-height: 1.75rem;
@@ -2615,6 +2621,10 @@ body {
     width: 40%;
   }
 
+  .lg\:w-24 {
+    width: 6rem;
+  }
+
   .lg\:w-3\/5 {
     width: 60%;
   }
@@ -2625,10 +2635,6 @@ body {
 
   .lg\:w-auto {
     width: auto;
-  }
-
-  .lg\:max-w-40 {
-    max-width: 10rem;
   }
 
   .lg\:max-w-64 {
@@ -2822,6 +2828,11 @@ body {
 
   .xl\:text-5xl {
     font-size: 3rem;
+    line-height: 1;
+  }
+
+  .xl\:text-9xl {
+    font-size: 8rem;
     line-height: 1;
   }
 

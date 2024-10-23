@@ -27,13 +27,13 @@ export function ThemeSwitcher({ styles }: { styles?: string }) {
         transition-all duration-300 ease-in-out 
         `}
 			/>
-			<span
+			<article
 				className={`flex justify-center items-center p-4 md:p-5 absolute w-6 h-6 rounded-full text-white text-center leading-8 transition-all duration-300 ease-in-out cursor-pointer -top-0.5 md:-top-1 bg-white
         ${isThemeDark ? '-left-1 rotate-0' : 'left-8 rotate-45'} 
         `}
 			>
 				{isThemeDark ? <MoonIcon /> : <SunIcon />}
-			</span>
+			</article>
 		</section>
 	)
 }
