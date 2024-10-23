@@ -1,17 +1,26 @@
 'use client'
-import { gameDetailsSlice } from '@/entities/game/game-details/model'
 import { AppDispatch } from '@/shared/lib'
 import Image from 'next/image'
-import emptyImage from '../../../../../public/empty-image.svg'
+import emptyImage from '../../../../../../public/empty-image.svg'
+import { imageModalSlice } from '@/entities/image/model/image-modal-slice'
+
+interface ImageObj {
+	image?: string | null
+	alt?: string | null
+}
 
 interface ImageCardWithModalProps {
 	dispatch: AppDispatch
 	classes?: string
+	imageList?: ImageObj[]
+	imageIndexInList?: number
 	image?: string
 	alt: string
 }
 
 export function ImageCardWithModal({
+	imageList,
+	imageIndexInList,
 	image,
 	alt,
 	classes,
@@ -25,9 +34,10 @@ export function ImageCardWithModal({
 			height={1080}
 			className={`cursor-pointer rounded-2xl ${classes}`}
 			onClick={() => {
-				if (image) {
+				if (imageList && imageIndexInList !== undefined) {
+					dispatch(imageModalSlice.actions.setModalImages(imageList))
 					dispatch(
-						gameDetailsSlice.actions.setCurrentModalImage({ image, alt })
+						imageModalSlice.actions.setCurrentModalImageId(imageIndexInList)
 					)
 				}
 			}}

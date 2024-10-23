@@ -28,13 +28,21 @@ export const ViewListOfGameScreenshots = ({
 }: {
 	screenshots: string[]
 	dispatch: AppDispatch
-}) =>
-	screenshots.map((screenshot, i) => (
+}) => {
+	const screenshotObjList = screenshots.map(screenshot => ({
+		image: screenshot,
+		alt: 'Game screenshot',
+	}))
+
+	return screenshots.map((screenshot, i) => (
 		<ImageCardWithModal
 			key={`screenshot-${i}`}
 			dispatch={dispatch}
+			imageList={screenshotObjList}
+			imageIndexInList={i}
 			image={screenshot}
 			classes='inline-block w-1/3 mr-3 rounded-lg dark:border-none border-2 border-lightThemeBorderGray'
 			alt={`Game screenshot ${i}`}
 		/>
 	))
+}
