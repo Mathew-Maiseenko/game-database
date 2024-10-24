@@ -87,7 +87,7 @@ export const MinimalistNumberInput = ({
 						${
 							!inputValue
 								? '-translate-y-1.5 -translate-x-1.5 text-sm sm:text-xl px-0.5 py-1'
-								: 'translate-y-3 translate-x-7 sm:translate-x-9 px-2 text-sm sm:text-xl py-0'
+								: 'translate-y-3 translate-x-1 sm:translate-x-9 px-2 text-sm sm:text-xl py-0'
 						}
 						${
 							focus

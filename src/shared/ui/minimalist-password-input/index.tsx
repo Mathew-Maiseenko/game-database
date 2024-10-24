@@ -89,7 +89,7 @@ export const MinimalistPasswordInput = ({
 						${
 							!inputValue
 								? '-translate-y-1.5 -translate-x-1.5 text-base sm:text-xl bg-opacity-0 px-0.5 py-1'
-								: 'translate-y-3 translate-x-7 sm:translate-x-9 text-sm sm:text-xl px-2 py-0'
+								: 'translate-y-3 translate-x-1 sm:translate-x-9 text-sm sm:text-xl px-2 py-0'
 						}
 						${
 							focus

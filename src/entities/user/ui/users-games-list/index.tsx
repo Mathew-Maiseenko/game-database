@@ -80,7 +80,7 @@ export function UsersGamesList({ withButton, styles }: UsersGamesListProps) {
 					</>
 				) : (
 					<article className='flex flex-col justify-center items-center'>
-						<h2 className='text-black dark:text-white text-2xl lg:text-3xl xl:text-4xl mb-5 uppercase'>
+						<h2 className='text-white text-2xl lg:text-3xl xl:text-4xl mb-5 uppercase'>
 							Your{' '}
 							<strong className='inline text-blue dark:text-orange'>
 								Gaming Library

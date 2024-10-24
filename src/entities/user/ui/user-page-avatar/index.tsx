@@ -23,7 +23,7 @@ export function UsersAvatar() {
 					setTimeout(() => {
 						dispatch(userSlice.actions.setUserUnsigned())
 						saveIsUserSignedInLocalStorage(false)
-					}, 100)
+					}, 300)
 				}}
 				className='flex text-white justify-center items-center bg-accountExitRed rounded-2xl p-3 lg:p-5 font-semibold'
 			>

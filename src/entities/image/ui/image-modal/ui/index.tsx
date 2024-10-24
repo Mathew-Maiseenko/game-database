@@ -5,7 +5,6 @@ import Image from 'next/image'
 import emptyImage from '../../../../../../public/empty-image.svg'
 import { memo, useEffect } from 'react'
 import { imageModalSlice } from '@/entities/image/model/image-modal-slice'
-import { ImageObj } from '@/entities/image/types'
 
 export const ImageModal = memo(function ImageModal() {
 	const dispatch = useAppDispatch()
@@ -40,7 +39,7 @@ export const ImageModal = memo(function ImageModal() {
 		>
 			<section
 				onClick={e => e.stopPropagation()}
-				className='flex justify-center items-center relative border-2 border-solid bg-white border-lightThemeBorderGray dark:border-textGray dark:bg-darkGray w-2/3 lg:w-3/5 rounded-3xl overflow-hidden cursor-default box-content left-28'
+				className='flex justify-center items-center relative border-2 border-solid bg-white border-lightThemeBorderGray dark:border-textGray dark:bg-darkGray w-2/3 lg:w-3/5 rounded-3xl overflow-hidden cursor-default box-content'
 			>
 				<article
 					className='flex absolute top-5 left-5 w-full '
