@@ -41,7 +41,7 @@ export const ViewListOfGameScreenshots = ({
 			imageList={screenshotObjList}
 			imageIndexInList={i}
 			image={screenshot}
-			classes='inline-block w-1/3 mr-3 rounded-lg dark:border-none border-2 border-lightThemeBorderGray'
+			classes='inline-block w-2/3 sm:w-1/2 md:w-1/3 xl:w-1/4 mr-3 rounded-lg dark:border-none border-2 border-lightThemeBorderGray'
 			alt={`Game screenshot ${i}`}
 		/>
 	))

@@ -33,8 +33,8 @@ export const GameDetailsHeader = memo(function GameDetailsHeader({
 
 	return (
 		<>
-			<header className='mb-10'>
-				<article className='flex justify-between sm:flex-col lg:flex-row flex-grow mb-10 '>
+			<header className='mb-5 sm:mb-7 md:mb-10'>
+				<article className='flex justify-between sm:flex-col lg:flex-row flex-grow mb-5 sm:mb-7 md:mb-10 '>
 					<ImageCardWithModal
 						dispatch={dispatch}
 						imageList={headerImageList}
@@ -72,7 +72,7 @@ export const GameDetailsHeader = memo(function GameDetailsHeader({
 						</section>
 					)}
 				</article>
-				<h1 className='w-full text-lg sm:text-xl md:text-2xl lg:text-4xl xl:text-5xl font-extrabold dark:text-white text-black text-center'>
+				<h1 className='w-full text-3xl md:text-2xl lg:text-4xl xl:text-5xl font-extrabold dark:text-white text-black text-center'>
 					{gameTitle} Details
 				</h1>
 			</header>

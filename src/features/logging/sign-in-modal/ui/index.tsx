@@ -49,7 +49,7 @@ export function SignInModal() {
 			<section
 				onClick={e => e.stopPropagation()}
 				className='relative border-2 border-solid bg-white border-lightThemeBorderGray dark:border-textGray dark:bg-darkGray 
-				w-4/5 lg:w-2/5 p-5 md:p-6 lg:p-7 rounded-2xl lg:rounded-3xl cursor-default'
+				w-4/5 lg:w-3/5 p-5 md:p-6 lg:p-7 rounded-2xl lg:rounded-3xl cursor-default'
 			>
 				<article
 					className='flex absolute top-5 right-5 z-[51]'

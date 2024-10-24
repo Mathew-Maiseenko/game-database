@@ -26,34 +26,34 @@ export default function CardWithStatisticalInfo() {
 		return
 	}
 	return (
-		<section className='flex flex-row justify-between bg-white dark:border-none border-2 border-lightThemeBorderGray dark:bg-whiteGray rounded-3xl w-1/2 p-7 '>
+		<section className='flex flex-row flex-wrap sm:flex-nowrap justify-between bg-white dark:border-none border-2 border-lightThemeBorderGray dark:bg-whiteGray rounded-3xl w-full md:w-1/2 p-3 sm:p-4 md:p-7 '>
 			{playtime && (
-				<article className='flex flex-col justify-between items-center'>
+				<article className='flex flex-col justify-between items-center w-1/2 sm:w-auto'>
 					<HoverClockIcon />
-					<h4 className='text-lg font-bold text-black dark:text-white'>
+					<h4 className='text-sm sm:text-lg font-bold text-black dark:text-white'>
 						{playtime}
 					</h4>
 				</article>
 			)}
 			{released && (
-				<article className='flex flex-col justify-between items-center'>
+				<article className='flex flex-col justify-between items-center w-1/2 sm:w-auto'>
 					<HoverSettingCalendarIcon />
-					<h4 className='text-lg font-bold text-black dark:text-white'>
+					<h4 className='text-sm sm:text-lg font-bold text-black dark:text-white'>
 						{released}
 					</h4>
 				</article>
 			)}
 
 			{lastUpdate && (
-				<article className='flex flex-col justify-between items-center'>
+				<article className='flex flex-col justify-between items-center w-1/2 sm:w-auto'>
 					<HoverDownloadCalendarIcon />
-					<h4 className='text-lg font-bold text-black dark:text-white'>
+					<h4 className='text-sm sm:text-lg font-bold text-black dark:text-white'>
 						{currentGameLastUpdate}
 					</h4>
 				</article>
 			)}
 			{achievementsCount && (
-				<article className='flex flex-col justify-between items-center'>
+				<article className='flex flex-col justify-between items-center w-1/2 sm:w-auto'>
 					<HoverAchievementIcon />
 					<h4 className='text-lg font-bold text-black dark:text-white'>
 						{achievementsCount}

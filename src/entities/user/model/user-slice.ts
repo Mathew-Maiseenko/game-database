@@ -103,7 +103,7 @@ export const userSlice = createAppSlice({
 			// 	const user = JSON.parse(userInfoJSON) as UserInfoLocaleStorageType
 
 			const user = action.payload.user
-			const isSigned = action.payload.user
+			const isSigned = action.payload.isSigned
 
 			state.isUserSigned = !!isSigned
 			state.computerSpecifications = {

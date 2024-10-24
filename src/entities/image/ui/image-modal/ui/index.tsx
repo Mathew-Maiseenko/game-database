@@ -5,6 +5,7 @@ import Image from 'next/image'
 import emptyImage from '../../../../../../public/empty-image.svg'
 import { memo, useEffect } from 'react'
 import { imageModalSlice } from '@/entities/image/model/image-modal-slice'
+import { ImageObj } from '@/entities/image/types'
 
 export const ImageModal = memo(function ImageModal() {
 	const dispatch = useAppDispatch()
@@ -17,6 +18,7 @@ export const ImageModal = memo(function ImageModal() {
 	)
 
 	const isImageModalOpen = !!ModalsImages?.length
+	console.log(isImageModalOpen)
 
 	useEffect(() => {
 		if (isImageModalOpen) {
@@ -38,7 +40,7 @@ export const ImageModal = memo(function ImageModal() {
 		>
 			<section
 				onClick={e => e.stopPropagation()}
-				className='flex justify-center items-center relative border-2 border-solid bg-white border-lightThemeBorderGray dark:border-textGray dark:bg-darkGray sm:w-1/3 lg:w-3/5 rounded-3xl overflow-hidden cursor-default '
+				className='flex justify-center items-center relative border-2 border-solid bg-white border-lightThemeBorderGray dark:border-textGray dark:bg-darkGray w-2/3 lg:w-3/5 rounded-3xl overflow-hidden cursor-default box-content left-28'
 			>
 				<article
 					className='flex absolute top-5 left-5 w-full '
@@ -47,9 +49,9 @@ export const ImageModal = memo(function ImageModal() {
 					<CrossIcon classes='sm:w-7 lg:w-10' />
 				</article>
 
-				{curModalsImageId && (
+				{curModalsImageId ? (
 					<article
-						className='flex absolute top-1/2 left-5 w-full z-[60]'
+						className='flex absolute top-1/2 left-5 w-5 z-[70] cursor-pointer'
 						onClick={() =>
 							dispatch(
 								imageModalSlice.actions.setCurrentModalImageId(
@@ -58,8 +60,10 @@ export const ImageModal = memo(function ImageModal() {
 							)
 						}
 					>
-						<ArrowIcon styles='w-full transform rotate-90 fill-textGray' />
+						<ArrowIcon styles='w-full h-auto transform rotate-90 fill-textGray' />
 					</article>
+				) : (
+					''
 				)}
 
 				<Image
@@ -74,7 +78,7 @@ export const ImageModal = memo(function ImageModal() {
 					width={2560}
 					height={1440}
 					alt={
-						curModalsImageId &&
+						curModalsImageId !== undefined &&
 						ModalsImages &&
 						ModalsImages[curModalsImageId].alt
 							? ModalsImages[curModalsImageId].alt
@@ -82,9 +86,10 @@ export const ImageModal = memo(function ImageModal() {
 					}
 				/>
 
-				{curModalsImageId && curModalsImageId + 1 !== ModalsImages?.length && (
+				{curModalsImageId !== undefined &&
+				curModalsImageId + 1 !== ModalsImages?.length ? (
 					<article
-						className='flex absolute top-1/2 right-5 w-full z-[60]'
+						className='flex absolute top-1/2 right-5 w-5 z-[70] cursor-pointer'
 						onClick={() =>
 							dispatch(
 								imageModalSlice.actions.setCurrentModalImageId(
@@ -93,8 +98,10 @@ export const ImageModal = memo(function ImageModal() {
 							)
 						}
 					>
-						<ArrowIcon styles='w-full transform -rotate-90 fill-textGray' />
+						<ArrowIcon styles='w-full h-auto transform -rotate-90 fill-textGray' />
 					</article>
+				) : (
+					''
 				)}
 			</section>
 		</Modal>

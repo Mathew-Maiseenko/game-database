@@ -61,7 +61,7 @@ export function SignUpModal() {
 		>
 			<section
 				onClick={e => e.stopPropagation()}
-				className='relative border-2 border-solid bg-white border-lightThemeBorderGray dark:border-textGray dark:bg-darkGray w-1/3 lg:w-2/3 min-h-[35vh] pt-5 pb-7 px-12 md:px-28 lg:px-40 xl:px-44 cursor-default rounded-3xl'
+				className='relative border-2 border-solid bg-white border-lightThemeBorderGray dark:border-textGray dark:bg-darkGray w-5/6 lg:w-2/3 min-h-[35vh] pt-5 pb-7 px-12 md:px-28 lg:px-40 xl:px-44 cursor-default rounded-3xl'
 			>
 				<article
 					className='flex absolute top-5 right-5'

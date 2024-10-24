@@ -27,7 +27,7 @@ export function NavBar() {
 				<section className='flex min-w-full justify-between items-center md:flex-wrap'>
 					<MainLogo />
 					<Burger isActive={isBurgerOpen} setActive={setBurgerOpen}>
-						<aside className='flex flex-col justify-start items-center py-6 px-2'>
+						<aside className='flex flex-col justify-start items-center py-6 px-1 sm:px-2'>
 							<article className='flex flex-wrap sm:flex-nowrap  justify-between  w-full items-center py-2 px-1.5 mb-2'>
 								<BurgerIcon
 									isIconActive={isBurgerOpen}

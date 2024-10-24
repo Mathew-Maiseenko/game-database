@@ -41,72 +41,146 @@ export function GameAchievementCard({
 		)
 	)
 	return (
-		<li className='flex w-full justify-between relative mb-5 after:h-0.5 after:w-full after:absolute after:-bottom-2 after:bg-grayLineAfterCard py-2'>
-			<section className='flex'>
-				<article
-					className='relative w-10 sm:w-14 md:w-20 lg:w-24 overflow-hidden'
-					onClick={() => {
-						if (isUserSigned && isGameFavorite && !isComplete) {
-							dispatch(
-								userSlice.actions.setAchievementCompleted({
-									GameId,
-									AchievementId,
-								})
-							)
+		<>
+			<li className='hidden md:flex w-full justify-between relative mb-5 after:h-0.5 after:w-full after:absolute after:-bottom-2 after:bg-grayLineAfterCard py-2'>
+				<section className='flex'>
+					<article
+						className='relative w-10 sm:w-14 md:w-20 lg:w-24 overflow-hidden'
+						onClick={() => {
+							if (isUserSigned && isGameFavorite && !isComplete) {
+								dispatch(
+									userSlice.actions.setAchievementCompleted({
+										GameId,
+										AchievementId,
+									})
+								)
 
-							saveSettingGameAchievementCompleteInLocalStorage(
-								GameId,
-								AchievementId
-							)
-						} else if (isUserSigned && isGameFavorite && isComplete) {
-							dispatch(
-								userSlice.actions.setAchievementInCompleted({
+								saveSettingGameAchievementCompleteInLocalStorage(
 									GameId,
-									AchievementId,
-								})
-							)
+									AchievementId
+								)
+							} else if (isUserSigned && isGameFavorite && isComplete) {
+								dispatch(
+									userSlice.actions.setAchievementInCompleted({
+										GameId,
+										AchievementId,
+									})
+								)
 
-							saveSettingGameAchievementIncompleteInLocalStorage(
-								GameId,
-								AchievementId
-							)
-						}
-					}}
-				>
-					<section
-						className={`${
-							!isComplete && 'hidden'
-						} flex justify-center items-center absolute w-full h-full`}
+								saveSettingGameAchievementIncompleteInLocalStorage(
+									GameId,
+									AchievementId
+								)
+							}
+						}}
 					>
-						<AnimatedTickIcon styles='w-1/2' />
-					</section>
+						<section
+							className={`${
+								!isComplete && 'hidden'
+							} flex justify-center items-center absolute w-full h-full`}
+						>
+							<AnimatedTickIcon styles='w-1/2' />
+						</section>
 
-					<ImageWithFallback
-						srcImage={image}
-						width={500}
-						height={500}
-						alt='Picture of the achievement'
-						className='flex flex-grow object-cover w-full h-auto'
-					/>
-				</article>
+						<ImageWithFallback
+							srcImage={image}
+							width={500}
+							height={500}
+							alt='Picture of the achievement'
+							className='flex flex-grow object-cover w-full h-auto'
+						/>
+					</article>
 
-				<article className='flex flex-col justify-self-start rounded-3xl min-w-[70%] p-3'>
+					<article className='flex flex-col justify-self-start rounded-3xl min-w-[70%] p-3'>
+						<section className='flex justify-between'>
+							<h3 className='text-xl font-bold text-black dark:text-white'>
+								{title}
+							</h3>
+						</section>
+						<section className='flex justify-between'>
+							<h4 className='text-lg font-medium text-textGray'>
+								{description}
+							</h4>
+						</section>
+					</article>
+				</section>
+				<section className='flex items-center'>
+					<h4 className='text-lg font-bold text-black dark:text-white mr-3'>
+						{percent}%
+					</h4>
+					<AchievementIcon classes='stroke-blue dark:stroke-orange' />
+				</section>
+			</li>
+			<li className='md:hidden flex justify-center w-full relative mb-5 after:h-0.5 after:w-full after:absolute after:-bottom-2 after:bg-grayLineAfterCard py-2'>
+				<section className='flex flex-col items-center'>
+					<article
+						className='relative w-full overflow-hidden mb-1'
+						onClick={() => {
+							if (isUserSigned && isGameFavorite && !isComplete) {
+								dispatch(
+									userSlice.actions.setAchievementCompleted({
+										GameId,
+										AchievementId,
+									})
+								)
+
+								saveSettingGameAchievementCompleteInLocalStorage(
+									GameId,
+									AchievementId
+								)
+							} else if (isUserSigned && isGameFavorite && isComplete) {
+								dispatch(
+									userSlice.actions.setAchievementInCompleted({
+										GameId,
+										AchievementId,
+									})
+								)
+
+								saveSettingGameAchievementIncompleteInLocalStorage(
+									GameId,
+									AchievementId
+								)
+							}
+						}}
+					>
+						<section
+							className={`${
+								!isComplete && 'hidden'
+							} flex justify-center items-center absolute w-full h-full`}
+						>
+							<AnimatedTickIcon styles='w-1/2' />
+						</section>
+
+						<ImageWithFallback
+							srcImage={image}
+							width={500}
+							height={500}
+							alt='Picture of the achievement'
+							className='flex flex-grow object-cover w-full h-auto'
+						/>
+					</article>
+
+					<article className='flex flex-row justify-between rounded-2xl min-w-full p-2 mb-1'>
+						<section className='flex justify-between'>
+							<h3 className='text-xl font-bold text-black dark:text-white'>
+								{title}
+							</h3>
+						</section>
+						<section className='flex items-center'>
+							<h4 className='text-lg font-bold text-black dark:text-white'>
+								{percent}%
+							</h4>
+							<AchievementIcon classes='stroke-blue dark:stroke-orange ml-1 sm:ml-2' />
+						</section>
+					</article>
+
 					<section className='flex justify-between'>
-						<h3 className='text-xl font-bold text-black dark:text-white'>
-							{title}
-						</h3>
+						<h4 className='text-base font-medium text-textGray text-center'>
+							{description}
+						</h4>
 					</section>
-					<section className='flex justify-between'>
-						<h4 className='text-lg font-medium text-textGray'>{description}</h4>
-					</section>
-				</article>
-			</section>
-			<section className='flex items-center'>
-				<h4 className='text-lg font-bold text-black dark:text-white mr-3'>
-					{percent}%
-				</h4>
-				<AchievementIcon classes='stroke-blue dark:stroke-orange' />
-			</section>
-		</li>
+				</section>
+			</li>
+		</>
 	)
 }
