@@ -27,9 +27,10 @@ export const MinimalistInput = ({
 	const [focus, setFocus] = useState(false)
 
 	return (
-		<section className={`relative bg-inherit ${className}`}>
-			<article
-				className={`
+		<article className={`bg-inherit ${className}`}>
+			<section className='relative bg-inherit'>
+				<article
+					className={`
 					transition-all duration-200 bg-inherit dark:text-gray-light text-textGray w-full p-2 flex items-center justify-between rounded relative after:absolute after:left-0 after:-bottom-0.5 after:h-px after:w-full after:bg-textGray  
 					${
 						focus &&
@@ -37,27 +38,27 @@ export const MinimalistInput = ({
 					}
 					${errorMessage && 'text-validationRed after:bg-validationRed '}
 				`}
-			>
-				<input
-					onFocus={() => setFocus(true)}
-					onBlur={() => setFocus(false)}
-					type='text'
-					value={inputValue}
-					onChange={e => setInputValue(e.target.value)}
-					className='bg-inherit font-normal focus:font-medium placeholder:text-textGray black:text-white text-inherit outline-none pointer-events-auto w-full py-1'
-				/>
-				{withMagnifierIcon && (
-					<MagnifierIcon
-						styles={`w-5 h-5 ${
-							focus
-								? 'dark:fill-white fill-lightThemeTextGray'
-								: 'fill-textGray'
-						}`}
+				>
+					<input
+						onFocus={() => setFocus(true)}
+						onBlur={() => setFocus(false)}
+						type='text'
+						value={inputValue}
+						onChange={e => setInputValue(e.target.value)}
+						className='bg-inherit font-normal focus:font-medium placeholder:text-textGray black:text-white text-inherit outline-none pointer-events-auto w-full py-1'
 					/>
-				)}
-			</article>
-			<span
-				className={`
+					{withMagnifierIcon && (
+						<MagnifierIcon
+							styles={`w-5 h-5 ${
+								focus
+									? 'dark:fill-white fill-lightThemeTextGray'
+									: 'fill-textGray'
+							}`}
+						/>
+					)}
+				</article>
+				<span
+					className={`
 						flex absolute z-20 bottom-0 left-4 bg-inherit transition-all duration-200 ease-in-out select-none pointer-events-none
 						${
 							!inputValue
@@ -71,9 +72,21 @@ export const MinimalistInput = ({
 						}
 						${errorMessage && 'text-validationRed'}
 					`}
-			>
-				{errorMessage && !focus ? errorMessage : message}
-			</span>
-		</section>
+				>
+					{message}
+				</span>
+			</section>
+			{errorMessage && (
+				<span
+					className={`
+					inline-block pt-4 text-base md:text-lg bg-opacity-100 bg-inherit transition-all duration-200 ease-in-out select-none pointer-events-none origin-top-left text-validationRed
+					${focus ? 'font-medium' : 'font-normal'}
+					
+				`}
+				>
+					{errorMessage}
+				</span>
+			)}
+		</article>
 	)
 }

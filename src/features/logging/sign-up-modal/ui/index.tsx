@@ -61,7 +61,7 @@ export function SignUpModal() {
 		>
 			<section
 				onClick={e => e.stopPropagation()}
-				className='relative border-2 border-solid bg-white border-lightThemeBorderGray dark:border-textGray dark:bg-darkGray w-5/6 lg:w-2/3 min-h-[35vh] pt-5 pb-7 px-12 md:px-28 lg:px-40 xl:px-44 cursor-default rounded-3xl'
+				className='relative border-2 border-solid bg-white border-lightThemeBorderGray dark:border-textGray dark:bg-darkGray min-w-[83.333%] lg:min-w-[66.6%] min-h-[35vh] max-h-[95vh] pt-5 pb-7 px-4 sm:px-10 md:px-16 lg:px-20 cursor-default rounded-3xl'
 			>
 				<article
 					className='flex absolute top-5 right-5'
@@ -79,23 +79,23 @@ export function SignUpModal() {
 					setInputValue={setUserName}
 					message='User name'
 					withMagnifierIcon={false}
-					className='w-full bg-inherit mb-3'
+					className='w-full bg-inherit mb-1'
 					errorMessage={userNameValidationMessage}
 				/>
 				<ValidatedPasswordInput
 					inputValue={userPassword}
 					setInputValue={setUserPassword}
 					message='Enter password'
-					className='w-full bg-inherit mb-3'
+					className='w-full bg-inherit mb-1'
 				/>
 				<MinimalistPasswordInput
 					inputValue={userVerifiedPassword}
 					setInputValue={setUserVerifiedPassword}
 					message='Confirm password'
-					className='w-full bg-inherit mb-9'
+					className='w-full bg-inherit mb-4'
 					errorMessage={passwordValidationMessage}
 				/>
-				<h3 className='w-full text-center text-3xl text-lightThemeTextDarkGray dark:text-white mb-7 underline'>
+				<h3 className='w-full text-center text-3xl text-lightThemeTextDarkGray dark:text-white mb-4 underline'>
 					Computer Specifications
 				</h3>
 				<MinimalistInput
@@ -103,7 +103,7 @@ export function SignUpModal() {
 					setInputValue={setUserProcessor}
 					message='Enter processor model'
 					withMagnifierIcon={false}
-					className='w-full bg-inherit mb-3'
+					className='w-full bg-inherit mb-2'
 					errorMessage={CPUValidationMessage}
 				/>
 				<MinimalistInput
@@ -111,21 +111,21 @@ export function SignUpModal() {
 					setInputValue={setUserGraphicsCard}
 					message='Enter graphics card model'
 					withMagnifierIcon={false}
-					className='w-full bg-inherit mb-3'
+					className='w-full bg-inherit mb-2'
 					errorMessage={GPUValidationMessage}
 				/>
 				<MinimalistNumberInput
 					inputValue={userRAM}
 					setInputValue={setUserRAM}
 					message='Enter the RAM size'
-					className='w-full bg-inherit mb-3'
+					className='w-full bg-inherit mb-2'
 					errorMessage={RAMValidationMessage}
 				/>
 				<MinimalistNumberInput
 					inputValue={userVideoMemory}
 					setInputValue={setUserVideoMemory}
 					message='Enter amount of video memory'
-					className='w-full bg-inherit mb-9'
+					className='w-full bg-inherit mb-7'
 					errorMessage={graphicsMemoryValidationMessage}
 				/>
 				<button
