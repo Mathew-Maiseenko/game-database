@@ -30,7 +30,7 @@ export function UsersOpeningActionsMenuButton({
 					'dark:bg-white bg-darkGray dark:before:bg-white before:bg-darkGray'
 				}`}
 			>
-				<article className='flex gap-1'>
+				<article className='flex flex-col md:flex-row gap-1'>
 					<button
 						onClick={() => {
 							dispatch(userSlice.actions.toggleFavoriteGameComplete(id))

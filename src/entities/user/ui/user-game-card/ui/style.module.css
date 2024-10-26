@@ -30,6 +30,11 @@
 	opacity: 1;
 	pointer-events: auto;
 }
+@media (max-width: 768px) {
+	.activeIcon .tooltip {
+		transform: translateY(-70px);
+	}
+}
 .icon .tooltip:before {
 	position: absolute;
 	content: '';
