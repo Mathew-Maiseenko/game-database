@@ -63,12 +63,12 @@ export const MinimalistInput = ({
 						${
 							!inputValue
 								? '-translate-y-1.5 -translate-x-1.5 text-base sm:text-xl px-0.5 py-1'
-								: 'translate-y-3 translate-x-1 sm:translate-x-9 text-sm sm:text-xl px-2 py-0'
+								: 'translate-y-4 translate-x-1 sm:translate-x-9 text-sm sm:text-xl px-2 py-0'
 						}
 						${
 							focus
 								? 'dark:text-white text-lightThemeTextDarkGray font-medium'
-								: 'dark:text-darkThemeTextGray text-textGray font-normal'
+								: 'text-textGray font-normal'
 						}
 						${errorMessage && 'text-validationRed'}
 					`}
@@ -80,7 +80,11 @@ export const MinimalistInput = ({
 				<span
 					className={`
 					inline-block pt-4 text-base md:text-lg bg-opacity-100 bg-inherit transition-all duration-200 ease-in-out select-none pointer-events-none origin-top-left text-validationRed
-					${focus ? 'font-medium' : 'font-normal'}
+					${
+						focus
+							? 'dark:text-white text-lightThemeTextDarkGray font-medium'
+							: 'dark:text-darkThemeTextGray text-textGray font-normal'
+					}
 					
 				`}
 				>

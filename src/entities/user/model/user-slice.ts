@@ -33,11 +33,6 @@ const initialState: UserInfoStateType = {
 	},
 	validationMessages: {
 		userNameValidationMessage: '',
-		passwordValidationMessage: '',
-		CPUValidationMessage: '',
-		GPUValidationMessage: '',
-		RAMValidationMessage: '',
-		graphicsMemoryValidationMessage: '',
 	},
 }
 
@@ -208,11 +203,6 @@ export const userSlice = createAppSlice({
 			}
 			state.validationMessages = {
 				userNameValidationMessage: '',
-				passwordValidationMessage: '',
-				CPUValidationMessage: '',
-				GPUValidationMessage: '',
-				RAMValidationMessage: '',
-				graphicsMemoryValidationMessage: '',
 			}
 			// saveUserInfoInLocalStorage(state) //saveUserInfoInLocalStorageAfterSigningUp
 		},
@@ -223,12 +213,6 @@ export const userSlice = createAppSlice({
 		) => {
 			state.validationMessages = {
 				userNameValidationMessage: action.payload.userNameValidationMessage,
-				passwordValidationMessage: action.payload.passwordValidationMessage,
-				CPUValidationMessage: action.payload.CPUValidationMessage,
-				GPUValidationMessage: action.payload.GPUValidationMessage,
-				RAMValidationMessage: action.payload.RAMValidationMessage,
-				graphicsMemoryValidationMessage:
-					action.payload.graphicsMemoryValidationMessage,
 			}
 		},
 	},

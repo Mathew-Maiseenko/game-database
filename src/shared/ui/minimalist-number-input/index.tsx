@@ -21,7 +21,7 @@ export const MinimalistNumberInput = ({
 
 	return (
 		<article className={className}>
-			<section className='relative text-lg'>
+			<section className='relative bg-inherit text-lg'>
 				<article
 					className={`bg-inherit text-textGray w-full p-2 flex items-center justify-between rounded relative after:absolute after:left-0 after:-bottom-0.5 after:h-px after:w-full dark:after:bg-darkThemeTextGray after:bg-textGray  ${
 						focus &&
@@ -93,7 +93,7 @@ export const MinimalistNumberInput = ({
 						${
 							focus
 								? 'dark:text-white text-lightThemeTextDarkGray font-medium'
-								: 'dark:text-darkThemeTextGray text-textGray font-normal'
+								: 'text-textGray font-normal'
 						}
 						${errorMessage && 'text-validationRed'}
 					`}
@@ -105,7 +105,11 @@ export const MinimalistNumberInput = ({
 				<span
 					className={`
 					inline-block pt-4 text-base md:text-lg bg-opacity-100 bg-inherit transition-all duration-200 ease-in-out select-none pointer-events-none origin-top-left text-validationRed
-					${focus ? 'font-medium' : 'font-normal'}
+					${
+						focus
+							? 'dark:text-white text-lightThemeTextDarkGray font-medium'
+							: 'dark:text-darkThemeTextGray text-textGray font-normal'
+					}
 					
 				`}
 				>

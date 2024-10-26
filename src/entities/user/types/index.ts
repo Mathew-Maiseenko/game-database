@@ -28,11 +28,6 @@ export interface setUserDataPayloadType {
 
 export interface validationMessagesType {
 	userNameValidationMessage: string
-	passwordValidationMessage: string
-	CPUValidationMessage: string
-	GPUValidationMessage: string
-	RAMValidationMessage: string
-	graphicsMemoryValidationMessage: string
 }
 
 export interface UserInfoStateType {

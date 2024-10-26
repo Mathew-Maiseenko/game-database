@@ -94,8 +94,8 @@ export const MinimalistPasswordInput = ({
 						}
 						${
 							focus
-								? ' dark:text-white text-lightThemeTextDarkGray font-medium '
-								: ' dark:text-darkThemeTextGray text-textGray font-normal '
+								? 'dark:text-white text-lightThemeTextDarkGray font-medium'
+								: 'text-textGray font-normal'
 						}
 						${errorMessage && ' text-validationRed '}
 					`}

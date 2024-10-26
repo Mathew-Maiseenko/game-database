@@ -169,7 +169,7 @@ export const ValidatedPasswordInput = ({
 						${
 							focus
 								? 'dark:text-white text-lightThemeTextDarkGray font-medium'
-								: 'dark:text-darkThemeTextGray text-textGray font-normal'
+								: 'text-textGray font-normal'
 						}
 						${reliabilityLevel === 'red' && 'text-validationRed after:bg-validationRed '}
 						${

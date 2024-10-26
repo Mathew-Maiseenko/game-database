@@ -10,6 +10,7 @@ import { validateRAM } from '../lib/validate-RAM'
 import { validateGraphicMemory } from '../lib/validate-graphic-memory'
 import type { submitUserDataFooParams } from '../types'
 import { baseSiteUrl } from '@/shared/model'
+import { signUpModalSlice } from './sign-up-modal-slice'
 
 export function submitUserData({
 	dispatch,
@@ -55,6 +56,8 @@ export function submitUserData({
 		)
 		dispatch(userSlice.actions.removeAllFavoriteGames())
 
+		dispatch(signUpModalSlice.actions.clearValidationMessages())
+
 		saveUserInfoInLocalStorageAfterSigningUp(
 			name,
 			password,
@@ -69,7 +72,7 @@ export function submitUserData({
 		dispatch(userSlice.actions.setUserSignUpModalClose())
 	} else {
 		dispatch(
-			userSlice.actions.setValidationMessages({
+			signUpModalSlice.actions.setValidationMessages({
 				userNameValidationMessage: userNameValidationMessage,
 				passwordValidationMessage: passwordValidationMessage,
 				CPUValidationMessage: CPUValidationMessage,

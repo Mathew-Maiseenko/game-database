@@ -79,7 +79,7 @@ export function UsersGamesList({ withButton, styles }: UsersGamesListProps) {
 						</button>
 					</>
 				) : (
-					<article className='flex flex-col justify-center items-center'>
+					<article className='flex flex-col justify-center items-center text-center'>
 						<h2 className='text-white text-2xl lg:text-3xl xl:text-4xl mb-5 uppercase'>
 							Your{' '}
 							<strong className='inline text-blue dark:text-orange'>
@@ -92,10 +92,10 @@ export function UsersGamesList({ withButton, styles }: UsersGamesListProps) {
 						</h3>
 						<button
 							className={
-								'bg-blue dark:bg-orange w-2/3 sm:w-1/2 md:w-1/3 m-auto p-2 relative -bottom-7 lg:-bottom-11 rounded-2xl text-black dark:text-white'
+								'bg-blue dark:bg-orange w-2/3 sm:w-1/2 md:w-1/3 m-auto p-2 relative -bottom-7 lg:-bottom-11 rounded-2xl text-white'
 							}
 							onClick={() => {
-								router.push(`${baseSiteUrl}/`)
+								router.push(`${baseSiteUrl}/game-list`)
 							}}
 						>
 							Go to Cyber Game List

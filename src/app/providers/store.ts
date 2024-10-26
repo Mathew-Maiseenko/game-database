@@ -6,6 +6,7 @@ import { filteredGamesSlice } from '@/features/filtration'
 import { userSlice } from '@/entities/user'
 import { themeSwitcherSlice } from '@/features/theme-switcher'
 import { imageModalSlice } from '@/entities/image'
+import { signUpModalSlice } from '@/features/logging'
 export const makeStore = () => {
 	return configureStore({
 		reducer: {
@@ -14,6 +15,7 @@ export const makeStore = () => {
 			[userSlice.name]: userSlice.reducer,
 			[imageModalSlice.name]: imageModalSlice.reducer,
 			[themeSwitcherSlice.name]: themeSwitcherSlice.reducer,
+			[signUpModalSlice.name]: signUpModalSlice.reducer,
 		},
 		middleware: getDefaultMiddleware =>
 			getDefaultMiddleware({
