@@ -33,6 +33,7 @@ const initialState: UserInfoStateType = {
 	},
 	validationMessages: {
 		userNameValidationMessage: '',
+		passwordValidationMessage: '',
 	},
 }
 
@@ -203,6 +204,7 @@ export const userSlice = createAppSlice({
 			}
 			state.validationMessages = {
 				userNameValidationMessage: '',
+				passwordValidationMessage: '',
 			}
 			// saveUserInfoInLocalStorage(state) //saveUserInfoInLocalStorageAfterSigningUp
 		},
@@ -211,9 +213,7 @@ export const userSlice = createAppSlice({
 			state,
 			action: PayloadAction<validationMessagesType>
 		) => {
-			state.validationMessages = {
-				userNameValidationMessage: action.payload.userNameValidationMessage,
-			}
+			state.validationMessages = action.payload
 		},
 	},
 	extraReducers: builder => {

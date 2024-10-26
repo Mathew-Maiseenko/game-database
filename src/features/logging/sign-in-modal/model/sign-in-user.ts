@@ -32,12 +32,12 @@ export function signInUser({
 		} else {
 			dispatch(
 				userSlice.actions.setValidationMessages({
-					userNameValidationMessage: 'Invalid login or password',
-					passwordValidationMessage: 'Invalid login or password',
-					CPUValidationMessage: '',
-					GPUValidationMessage: '',
-					RAMValidationMessage: '',
-					graphicsMemoryValidationMessage: '',
+					userNameValidationMessage: name
+						? 'Invalid login or password'
+						: 'This field is required',
+					passwordValidationMessage: password
+						? 'Invalid login or password'
+						: 'This field is required',
 				})
 			)
 		}

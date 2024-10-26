@@ -28,6 +28,7 @@ export interface setUserDataPayloadType {
 
 export interface validationMessagesType {
 	userNameValidationMessage: string
+	passwordValidationMessage: string
 }
 
 export interface UserInfoStateType {

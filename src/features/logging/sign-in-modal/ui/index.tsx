@@ -24,9 +24,8 @@ export function SignInModal() {
 		userSlice.selectors.selectIsUserSignInModalOpen
 	)
 
-	const { userNameValidationMessage } = useAppSelector(
-		userSlice.selectors.selectValidationMessages
-	)
+	const { userNameValidationMessage, passwordValidationMessage } =
+		useAppSelector(userSlice.selectors.selectValidationMessages)
 
 	useEffect(() => {
 		if (isSignInModalOpen) {
@@ -75,6 +74,7 @@ export function SignInModal() {
 					setInputValue={setUserPassword}
 					message='Enter password'
 					className='w-full bg-inherit mb-5'
+					errorMessage={passwordValidationMessage}
 				/>
 				<button
 					onClick={() =>
