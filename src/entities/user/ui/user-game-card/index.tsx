@@ -78,7 +78,7 @@ export function UsersGameCard({
 					</p>
 				</section>
 
-				<section className='flex flex-col justify-center mx-1.5'>
+				<section className='flex flex-col justify-center mx-1.5 relative z-50'>
 					<UsersOpeningActionsMenuButton website={website} id={id} />
 				</section>
 			</section>

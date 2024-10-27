@@ -1,0 +1,1 @@
+export { ErrorPageWrapper } from './ui'

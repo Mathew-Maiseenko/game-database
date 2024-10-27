@@ -54,14 +54,14 @@ export function WelcomeMessagePostersScrollingWrapper({
 	return (
 		<section className='relative inline-flex flex-col justify-between min-w-full md:min-h-[50vh] dark:border-none border-2 border-lightThemeBorderGray mb-10 rounded-3xl overflow-hidden'>
 			<Image
-				className='dark:hidden block absolute top-0 left-0 z-0 w-full h-full'
+				className='dark:hidden block absolute top-0 left-0 -z-20 w-full h-full'
 				src={logoWhite}
 				alt='Empty poster'
 				loading='lazy'
 				placeholder='blur'
 			/>
 			<Image
-				className='hidden dark:block absolute top-0 left-0 z-0 w-full h-full'
+				className='hidden dark:block absolute top-0 left-0 -z-20 w-full h-full'
 				src={logoDark}
 				alt='Empty poster'
 				loading='lazy'
@@ -69,7 +69,7 @@ export function WelcomeMessagePostersScrollingWrapper({
 			/>
 			<ul
 				style={{ transform: `translateX(${position}px)` }}
-				className={`flex flex-grow transition-transform duration-500 ease-out transform absolute top-0 left-0 origin-top-right h-full z-10 `}
+				className={`flex flex-grow transition-transform duration-500 ease-out transform absolute top-0 left-0 origin-top-right h-full -z-10 `}
 			>
 				<ViewPostersList posters={gamesPosters} />
 			</ul>
