@@ -1,17 +1,16 @@
 'use client'
-import { Carousel, MinimalistSelect } from '@/shared/ui'
-import { filteredGamesSlice } from '../model/filtration-slice'
+import type { Genre, TagResult } from '@/shared/api/RawgApi-hook'
+import { DeveloperResult, RawgApiClient } from '@/shared/api/RawgApi-hook'
 import { useAppDispatch, useAppSelector } from '@/shared/lib/redux/hooks'
-import { MinimalistFiltrationCarouselCard } from './cards'
+import { Carousel, MinimalistSelect } from '@/shared/ui'
 import { useEffect, useState } from 'react'
-import { fetchFilteredGameList } from '../model/thunk/fetch-filtered-game-list'
 import { toggleCardActiveness } from '../lib/toggle-card-activeness'
+import { filteredGamesSlice } from '../model/filtration-slice'
+import { fetchFilteredGameList } from '../model/thunk/fetch-filtered-game-list'
 import type { setGenreType, setTagType, ViewCardsProps } from '../types'
-import type { Genre } from '@/shared/api/RawgApi-hook/types/genre'
-import type { TagResult } from '@/shared/api/RawgApi-hook/types/tag'
+import { MinimalistFiltrationCarouselCard } from './cards'
 import { FiltrationSkeleton } from './filtration-skeleton'
 import { InputWithDebounce } from './input-with-debounce'
-import { DeveloperResult, RawgApi } from '@/shared/api/RawgApi-hook'
 export function GameFiltration() {
 	const [filterTitle, setFilterTitle] = useState('')
 	const [filterDeveloper, setFilterDeveloper] = useState('')
@@ -72,13 +71,13 @@ export function GameFiltration() {
 	])
 
 	useEffect(() => {
-		RawgApi.getTagsList().then(setTags)
-		RawgApi.getDevelopersList().then(setDevelopers)
+		RawgApiClient.metadata.getTagsList().then(setTags)
+		RawgApiClient.metadata.getDevelopersList().then(setDevelopers)
 
 		if (reduxStoredGenres.length) {
 			setGenres(reduxStoredGenres)
 		} else {
-			RawgApi.getGenresList().then(genres => {
+			RawgApiClient.metadata.getGenresList().then(genres => {
 				setGenres(genres)
 				dispatch(filteredGamesSlice.actions.initGenres(genres))
 			})

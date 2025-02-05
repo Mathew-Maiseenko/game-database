@@ -1,7 +1,7 @@
 import type { Achievement, StoreGameDetails } from '@/shared/api/RawgApi-hook'
 import { createAppSlice } from '@/shared/lib'
-import { fetchGameDetails } from '../thunk/fetch-game-details'
 import { PayloadAction } from '@reduxjs/toolkit'
+import { fetchGameDetails } from '../thunk/fetch-game-details'
 
 type GameId = number
 

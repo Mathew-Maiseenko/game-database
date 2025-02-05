@@ -1,5 +1,4 @@
-import type { TagResult } from '@/shared/api/RawgApi-hook'
-import type { Genre } from '@/shared/api/RawgApi-hook/types/genre'
+import type { Genre, TagResult } from '@/shared/api/RawgApi-hook'
 import type { AppDispatch } from '@/shared/lib'
 import type { ActionCreatorWithPayload } from '@reduxjs/toolkit'
 

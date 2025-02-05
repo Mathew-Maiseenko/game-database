@@ -1,7 +1,7 @@
 'use client'
 import { RecommendationListsGameCard } from '@/entities/game/game-card/'
 import { calculateUsersFavoriteGenres, userSlice } from '@/entities/user'
-import { RawgApi, StoreGame } from '@/shared/api/RawgApi-hook'
+import { RawgApiClient, StoreGame } from '@/shared/api/RawgApi-hook'
 import { useAppSelector } from '@/shared/lib/redux/hooks'
 import { ListWrapper } from '@/shared/ui'
 import { useEffect, useState } from 'react'
@@ -24,19 +24,21 @@ export function RecommendedGameList() {
 				ids: favoriteGameIds,
 				games: favoriteGames,
 			})
-			RawgApi.getGamesListWithParams({
-				gamesPerPage: 6,
-				pageNumber: 1,
-				genres: favoriteGenresIds.join(','),
-			})
+			RawgApiClient.games
+				.getGamesListWithParams({
+					gamesPerPage: 6,
+					pageNumber: 1,
+					genres: favoriteGenresIds.join(','),
+				})
 				.then(res => setRecommendedGames(res.games))
 				.then(() => setGameListFetchingState('fulfilled'))
 				.catch(() => setGameListFetchingState('rejected'))
 		} else {
-			RawgApi.getGamesListWithParams({
-				gamesPerPage: 6,
-				pageNumber: 1,
-			})
+			RawgApiClient.games
+				.getGamesListWithParams({
+					gamesPerPage: 6,
+					pageNumber: 1,
+				})
 				.then(res => setRecommendedGames(res.games))
 				.then(() => setGameListFetchingState('fulfilled'))
 				.catch(() => setGameListFetchingState('rejected'))

@@ -9,8 +9,8 @@ import type {
 	validationMessagesType,
 } from '../types'
 
-import { fetchDetailsByGamesIds } from './thunk/fetch-game-details'
 import { StoreGameDetails } from '@/shared/api/RawgApi-hook'
+import { fetchDetailsByGamesIds } from './thunk/fetch-game-details'
 
 const initialState: UserInfoStateType = {
 	isUserSigned: false,

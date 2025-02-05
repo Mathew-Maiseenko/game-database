@@ -1,28 +1,27 @@
 'use client'
-import React from 'react'
-import { useAppDispatch, useAppSelector } from '@/shared/lib/redux/hooks'
-import {
-	GameDetailsHeader,
-	ListOfGameScreenshots,
-	PairOfGameInfoCards,
-} from '../../../entities/game/game-details/ui'
-import { useEffect, useMemo, useState } from 'react'
-import { usePathname } from 'next/navigation'
-import { AppState } from '@/shared/lib'
-import {
-	fetchGameDetails,
-	gameDetailsSlice,
-} from '../../../entities/game/game-details/model'
 import { GameAchievementsList } from '@/entities/game/game-details/ui'
-import { RawgApi } from '@/shared/api/RawgApi-hook'
-import Link from 'next/link'
 import {
 	saveAddingFavoriteGameInLocalStorage,
 	saveRemovingFavoriteGameFromLocalStorage,
 	userSlice,
 } from '@/entities/user'
-import { getGamesIdByPathname } from '../lib'
+import { RawgApiClient } from '@/shared/api/RawgApi-hook'
+import { AppState } from '@/shared/lib'
+import { useAppDispatch, useAppSelector } from '@/shared/lib/redux/hooks'
 import { ErrorMessage, Loader } from '@/shared/ui'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
+import { useEffect, useMemo, useState } from 'react'
+import {
+	fetchGameDetails,
+	gameDetailsSlice,
+} from '../../../entities/game/game-details/model'
+import {
+	GameDetailsHeader,
+	ListOfGameScreenshots,
+	PairOfGameInfoCards,
+} from '../../../entities/game/game-details/ui'
+import { getGamesIdByPathname } from '../lib'
 
 export function GameDetailsMain() {
 	const [screenshots, setScreenshots] = useState<string[]>([])
@@ -54,7 +53,9 @@ export function GameDetailsMain() {
 
 	useEffect(() => {
 		if (!isGameAlreadyLoaded) {
-			RawgApi.getListGameScreenshots(currentGameId).then(setScreenshots)
+			RawgApiClient.games
+				.getListGameScreenshots(currentGameId)
+				.then(setScreenshots)
 			dispatch(fetchGameDetails(currentGameId))
 		}
 	}, [dispatch, currentGameId, isGameAlreadyLoaded])

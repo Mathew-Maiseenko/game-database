@@ -1,9 +1,9 @@
 import { userSlice } from '@/entities/user'
-import { GameAchievementCard } from './ui/games-achievement-card'
-import { Achievement, RawgApi } from '@/shared/api/RawgApi-hook'
+import { Achievement, RawgApiClient } from '@/shared/api/RawgApi-hook'
 import { useAppSelector } from '@/shared/lib/redux/hooks'
-import { memo, useEffect, useState } from 'react'
 import { ErrorMessage, Loader } from '@/shared/ui'
+import { memo, useEffect, useState } from 'react'
+import { GameAchievementCard } from './ui/games-achievement-card'
 
 interface GameAchievementsListProps {
 	gameId: number
@@ -23,7 +23,8 @@ export const GameAchievementsList = memo(function GameAchievementsList({
 	)
 	useEffect(() => {
 		setAchievementsFetchStatus('pending')
-		RawgApi.getListGameAchievements(gameId)
+		RawgApiClient.games
+			.getListGameAchievements(gameId)
 			.then(res => {
 				setAchievements(res)
 				setAchievementsFetchStatus('fulfilled')

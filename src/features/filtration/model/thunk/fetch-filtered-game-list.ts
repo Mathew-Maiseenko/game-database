@@ -22,7 +22,7 @@ export const fetchFilteredGameList = createAsyncThunk<
 		{ gamesPerPage, pageNumber, title, genres, tags, year, developers },
 		thunkApi
 	) => {
-		const response = await thunkApi.extra.api.getGamesListWithParams({
+		const response = await thunkApi.extra.api.games.getGamesListWithParams({
 			gamesPerPage,
 			pageNumber,
 			title,

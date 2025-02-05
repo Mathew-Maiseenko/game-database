@@ -1,8 +1,8 @@
-import Link from 'next/link'
+import type { Store } from '@/shared/api/RawgApi-hook'
+import { StoreLogoList } from '@/shared/model'
 import { cardHoverClass } from '@/shared/styles'
 import { ClockIcon, ImageWithFallback, StarIcon } from '@/shared/ui'
-import { StoreLogoList } from '@/shared/model'
-import type { Store } from '@/shared/api/RawgApi-hook'
+import Link from 'next/link'
 import { memo } from 'react'
 
 interface GameCardProps {

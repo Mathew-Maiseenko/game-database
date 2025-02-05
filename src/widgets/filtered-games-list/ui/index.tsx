@@ -1,10 +1,10 @@
 'use client'
 import { GameCard } from '@/entities/game/game-card'
-import { useAppSelector } from '@/shared/lib/redux/hooks'
 import { filteredGamesSlice } from '@/features/filtration/model/filtration-slice'
-import { ListWrapper } from '@/shared/ui'
-import type { StoreGame } from '@/shared/api/RawgApi-hook'
 import { Pagination } from '@/features/pagination'
+import type { StoreGame } from '@/shared/api/RawgApi-hook'
+import { useAppSelector } from '@/shared/lib/redux/hooks'
+import { ListWrapper } from '@/shared/ui'
 
 export function FilteredGamesList() {
 	const games = useAppSelector(filteredGamesSlice.selectors.selectCurrentGames)

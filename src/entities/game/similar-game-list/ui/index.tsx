@@ -1,6 +1,6 @@
 'use client'
 import { RecommendationListsGameCard } from '@/entities/game/game-card'
-import { RawgApi, StoreGame } from '@/shared/api/RawgApi-hook'
+import { RawgApiClient, StoreGame } from '@/shared/api/RawgApi-hook'
 import { useAppSelector } from '@/shared/lib/redux/hooks'
 import { ListWrapper } from '@/shared/ui'
 import { useEffect, useState } from 'react'
@@ -24,11 +24,12 @@ export function SimilarGameList() {
 		if (currentGame) {
 			setGameListFetchingState('pending')
 			const currentGameGenres = currentGame.genres.map(genre => genre.id)
-			RawgApi.getGamesListWithParams({
-				gamesPerPage: 6,
-				pageNumber: 1,
-				genres: currentGameGenres.join(','),
-			})
+			RawgApiClient.games
+				.getGamesListWithParams({
+					gamesPerPage: 6,
+					pageNumber: 1,
+					genres: currentGameGenres.join(','),
+				})
 				.then(res => setSimilarGames(res.games))
 				.then(() => setGameListFetchingState('fulfilled'))
 				.catch(() => setGameListFetchingState('rejected'))

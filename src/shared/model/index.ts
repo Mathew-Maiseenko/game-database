@@ -1,4 +1,4 @@
-export { baseSiteUrl } from './variables'
+export { StoreLogoList } from './get-stores-logo'
 export { layoutMetadata } from './meta/layout-meta'
 export { useWindowWidth } from './use-window-width'
-export { StoreLogoList } from './get-stores-logo'
+export { baseSiteUrl, serverSideEnv } from './variables'

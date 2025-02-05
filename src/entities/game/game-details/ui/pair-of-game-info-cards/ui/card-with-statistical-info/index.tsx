@@ -1,8 +1,8 @@
-import { useAppSelector } from '@/shared/lib/redux/hooks'
 import { gameDetailsSlice } from '@/entities/game/game-details/model'
+import { useAppSelector } from '@/shared/lib/redux/hooks'
 import {
-	HoverClockIcon,
 	HoverAchievementIcon,
+	HoverClockIcon,
 	HoverDownloadCalendarIcon,
 	HoverSettingCalendarIcon,
 } from '@/shared/ui'

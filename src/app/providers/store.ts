@@ -1,12 +1,12 @@
 'use client'
+import { gameDetailsSlice } from '@/entities/game/game-details/model'
+import { imageModalSlice } from '@/entities/image'
+import { userSlice } from '@/entities/user'
+import { filteredGamesSlice } from '@/features/filtration'
+import { signUpModalSlice } from '@/features/logging'
+import { themeSwitcherSlice } from '@/features/theme-switcher'
 import { extraArgument } from '@/shared/lib'
 import { configureStore } from '@reduxjs/toolkit'
-import { gameDetailsSlice } from '@/entities/game/game-details/model'
-import { filteredGamesSlice } from '@/features/filtration'
-import { userSlice } from '@/entities/user'
-import { themeSwitcherSlice } from '@/features/theme-switcher'
-import { imageModalSlice } from '@/entities/image'
-import { signUpModalSlice } from '@/features/logging'
 export const makeStore = () => {
 	return configureStore({
 		reducer: {

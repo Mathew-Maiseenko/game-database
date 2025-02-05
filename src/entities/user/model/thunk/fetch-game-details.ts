@@ -11,7 +11,7 @@ export const fetchDetailsByGamesIds = createAsyncThunk<
 >('userSlice/fetchDetailsByGamesIds', async (ids, thunkApi) => {
 	const results = await Promise.all(
 		ids.map(async id => {
-			const currentGame = (await thunkApi.extra.api.getGameDetails(
+			const currentGame = (await thunkApi.extra.api.games.getGameDetails(
 				id
 			)) as StoreGameDetails
 			return { [id]: currentGame }
