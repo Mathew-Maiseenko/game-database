@@ -1,4 +1,4 @@
-import type { Achievement, StoreGameDetails } from '@/shared/api/RawgApi-hook'
+import type { Achievement, StoreGameDetails } from '@/shared/api'
 import { createAppSlice } from '@/shared/lib'
 import { PayloadAction } from '@reduxjs/toolkit'
 import { fetchGameDetails } from '../thunk/fetch-game-details'

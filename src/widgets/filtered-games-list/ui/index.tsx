@@ -2,7 +2,7 @@
 import { GameCard } from '@/entities/game/game-card'
 import { filteredGamesSlice } from '@/features/filtration/model/filtration-slice'
 import { Pagination } from '@/features/pagination'
-import type { StoreGame } from '@/shared/api/RawgApi-hook'
+import type { StoreGame } from '@/shared/api'
 import { useAppSelector } from '@/shared/lib/redux/hooks'
 import { ListWrapper } from '@/shared/ui'
 

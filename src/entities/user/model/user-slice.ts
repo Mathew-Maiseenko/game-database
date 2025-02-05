@@ -9,7 +9,7 @@ import type {
 	validationMessagesType,
 } from '../types'
 
-import { StoreGameDetails } from '@/shared/api/RawgApi-hook'
+import { StoreGameDetails } from '@/shared/api'
 import { fetchDetailsByGamesIds } from './thunk/fetch-game-details'
 
 const initialState: UserInfoStateType = {

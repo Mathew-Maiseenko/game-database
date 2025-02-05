@@ -1,4 +1,4 @@
-import type { Store } from '@/shared/api/RawgApi-hook'
+import type { Store } from '@/shared/api'
 import { StoreLogoList } from '@/shared/model'
 import { cardHoverClass } from '@/shared/styles'
 import { ClockIcon, ImageWithFallback, StarIcon } from '@/shared/ui'

@@ -1,6 +1,6 @@
 'use client'
 import { filteredGamesSlice } from '@/features/filtration'
-import { RawgApiClient } from '@/shared/api/RawgApi-hook'
+import { RawgApiClient } from '@/shared/api'
 import { useAppDispatch, useAppSelector } from '@/shared/lib/redux/hooks'
 import { useWindowWidth } from '@/shared/model'
 import Image from 'next/image'

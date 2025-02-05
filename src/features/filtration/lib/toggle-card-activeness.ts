@@ -1,5 +1,5 @@
-import type { TagResult } from '@/shared/api/RawgApi-hook'
-import type { Genre } from '@/shared/api/RawgApi-hook/types/genre'
+import type { TagResult } from '@/shared/api'
+import type { Genre } from '@/shared/api/types/genre'
 import type { AppDispatch } from '@/shared/lib'
 import type { setParamFoo } from '../types'
 

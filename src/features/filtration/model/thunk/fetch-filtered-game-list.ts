@@ -1,4 +1,4 @@
-import type { StoreGamesFiltrationObj } from '@/shared/api/RawgApi-hook'
+import type { StoreGamesFiltrationObj } from '@/shared/api'
 import type { extraArgumentType } from '@/shared/lib'
 import { createAsyncThunk } from '@reduxjs/toolkit'
 

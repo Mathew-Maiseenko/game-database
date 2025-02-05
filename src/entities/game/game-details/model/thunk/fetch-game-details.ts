@@ -1,4 +1,4 @@
-import { StoreGameDetails } from '@/shared/api/RawgApi-hook'
+import { StoreGameDetails } from '@/shared/api'
 import { extraArgumentType } from '@/shared/lib'
 import { createAsyncThunk } from '@reduxjs/toolkit'
 

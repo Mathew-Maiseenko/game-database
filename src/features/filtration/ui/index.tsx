@@ -1,6 +1,6 @@
 'use client'
-import type { Genre, TagResult } from '@/shared/api/RawgApi-hook'
-import { DeveloperResult, RawgApiClient } from '@/shared/api/RawgApi-hook'
+import type { Genre, TagResult } from '@/shared/api'
+import { DeveloperResult, RawgApiClient } from '@/shared/api'
 import { useAppDispatch, useAppSelector } from '@/shared/lib/redux/hooks'
 import { Carousel, MinimalistSelect } from '@/shared/ui'
 import { useEffect, useState } from 'react'

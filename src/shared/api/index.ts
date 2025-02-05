@@ -1,4 +1,4 @@
-export { RawgApiClient } from './model'
+export { RawgApiClient } from './service'
 export type { Achievement } from './types/achievement'
 export type { DeveloperResult } from './types/developer'
 export type { StoreGameDetails } from './types/game-details'

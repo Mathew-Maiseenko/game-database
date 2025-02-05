@@ -1,4 +1,4 @@
-import { StoreGameDetails } from '@/shared/api/RawgApi-hook'
+import { StoreGameDetails } from '@/shared/api'
 
 export type GameId = number
 

@@ -1,7 +1,7 @@
 'use client'
 import { RecommendationListsGameCard } from '@/entities/game/game-card/'
 import { calculateUsersFavoriteGenres, userSlice } from '@/entities/user'
-import { RawgApiClient, StoreGame } from '@/shared/api/RawgApi-hook'
+import { RawgApiClient, StoreGame } from '@/shared/api'
 import { useAppSelector } from '@/shared/lib/redux/hooks'
 import { ListWrapper } from '@/shared/ui'
 import { useEffect, useState } from 'react'

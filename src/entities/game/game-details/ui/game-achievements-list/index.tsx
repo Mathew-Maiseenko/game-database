@@ -1,5 +1,5 @@
 import { userSlice } from '@/entities/user'
-import { Achievement, RawgApiClient } from '@/shared/api/RawgApi-hook'
+import { Achievement, RawgApiClient } from '@/shared/api'
 import { useAppSelector } from '@/shared/lib/redux/hooks'
 import { ErrorMessage, Loader } from '@/shared/ui'
 import { memo, useEffect, useState } from 'react'

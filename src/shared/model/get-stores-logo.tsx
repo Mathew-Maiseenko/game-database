@@ -1,6 +1,6 @@
 import Link from 'next/link'
 
-import type { Store } from '../api/RawgApi-hook'
+import type { Store } from '../api'
 import {
 	AppStoreIcon,
 	GOGIcon,

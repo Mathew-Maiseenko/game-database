@@ -27,8 +27,12 @@
 		"**/*.ts",
 		"**/*.tsx",
 		".next/types/**/*.ts",
-		"src/shared/api/RawgApi-hook",
-		"src/shared/api/model"
+		"src/shared/api/model",
+		"src/shared/api/model",
+		"src/shared/api/model",
+		"src/shared/api/lib",
+		"src/shared/api/types",
+		"src/shared/api/RawgApi-hook/schemes"
 	],
 	"exclude": ["node_modules"]
 }

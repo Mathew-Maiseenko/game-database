@@ -1,4 +1,3 @@
-import { serverSideEnv } from '@/shared/model'
 import type { StoreGamesFiltrationObj, TagResult } from '../index'
 import getListGameAchievementsParams from '../lib/getting-params/getting-achievements-params'
 import getDevelopersListParams from '../lib/getting-params/getting-developers-params'
@@ -26,9 +25,6 @@ import { StoreGameDetails } from '../types/game-details'
 import { StoreGame } from '../types/game-list'
 import { Genre } from '../types/genre'
 
-const baseUrl = process.env.NEXT_PUBLIC_RAWG_Api_BASE_URL
-const ApiKey = process.env.NEXT_PUBLIC_RAWG_Api_KEY
-
 type queryParamsType = string | number | null
 
 interface ApiRequestConfig {
@@ -39,13 +35,13 @@ interface ApiRequestConfig {
 }
 
 interface GameListQueryParamsType {
-	gamesPerPage: number
-	pageNumber: number
-	title?: string
-	genres?: string
-	tags?: string
+	gamesPerPage: number | null
+	pageNumber: number | null
+	title?: string | null
+	genres?: string | null
+	tags?: string | null
 	year?: number | string | null
-	developers?: string
+	developers?: string | null
 }
 
 // export const RawgApi = {
@@ -137,7 +133,7 @@ interface GameListQueryParamsType {
 // 	},
 // }
 
-class ApiClient {
+export class ApiClient {
 	baseUrl: string
 	ApiKey: string
 
@@ -170,7 +166,7 @@ class ApiClient {
 	}
 }
 
-class GamesService {
+export class GamesService {
 	private apiClient: ApiClient
 
 	constructor(apiClient: ApiClient) {
@@ -240,7 +236,7 @@ class GamesService {
 	}
 }
 
-class MetadataService {
+export class MetadataService {
 	private apiClient: ApiClient
 
 	constructor(apiClient: ApiClient) {
@@ -272,14 +268,15 @@ class MetadataService {
 	}
 }
 
-const BASE_URL = serverSideEnv.RAWG_Api_BASE_URL
-const API_KEY = serverSideEnv.RAWG_Api_KEY
-//const API_KEY = 'fd711517d11b45b0b5c432f288b02d33'
+// const BASE_URL = serverSideEnv.RAWG_Api_BASE_URL
+// const API_KEY = serverSideEnv.RAWG_Api_KEY
+const API_KEY = 'fd711517d11b45b0b5c432f288b02d33'
+const BASE_URL = 'https://api.rawg.io/api/'
 
-export class RawgApiClient {
-	private static apiClient = new ApiClient(BASE_URL!, API_KEY!)
+// export class RawgApiClient {
+// 	private static apiClient = new ApiClient(BASE_URL!, API_KEY!)
 
-	static games = new GamesService(this.apiClient)
-	static metadata = new MetadataService(this.apiClient)
-}
+// 	static games = new GamesService(this.apiClient)
+// 	static metadata = new MetadataService(this.apiClient)
+// }
 //export const RawgApi = new RawgApiClient()

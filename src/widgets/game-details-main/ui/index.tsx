@@ -5,7 +5,7 @@ import {
 	saveRemovingFavoriteGameFromLocalStorage,
 	userSlice,
 } from '@/entities/user'
-import { RawgApiClient } from '@/shared/api/RawgApi-hook'
+import { RawgApiClient } from '@/shared/api'
 import { AppState } from '@/shared/lib'
 import { useAppDispatch, useAppSelector } from '@/shared/lib/redux/hooks'
 import { ErrorMessage, Loader } from '@/shared/ui'

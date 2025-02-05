@@ -1,6 +1,6 @@
 'use client'
 import { GameCard } from '@/entities/game/game-card'
-import { RawgApiClient, StoreGame } from '@/shared/api/RawgApi-hook'
+import { RawgApiClient, StoreGame } from '@/shared/api'
 import { ListWrapper } from '@/shared/ui'
 import { useEffect, useState } from 'react'
 export function PopularGamesList() {

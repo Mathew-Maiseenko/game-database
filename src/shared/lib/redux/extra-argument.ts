@@ -1,4 +1,4 @@
-import { RawgApiClient } from '@/shared/api/RawgApi-hook'
+import { RawgApiClient } from '@/shared/api'
 
 export const extraArgument = {
 	api: RawgApiClient,
