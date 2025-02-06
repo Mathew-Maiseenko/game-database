@@ -6,5 +6,5 @@ export async function GET(_: Request, { params }: { params: { id: string } }) {
 	const res = (await service).games?.getListGameAchievements(gameId)!
 	const data = await res
 
-	return Response.json({ data })
+	return Response.json(data)
 }

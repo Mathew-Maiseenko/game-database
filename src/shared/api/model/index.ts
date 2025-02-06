@@ -25,7 +25,7 @@ import { StoreGameDetails } from '../types/game-details'
 import { StoreGame } from '../types/game-list'
 import { Genre } from '../types/genre'
 
-type queryParamsType = string | number | null
+export type queryParamsType = string | number | null
 
 interface ApiRequestConfig {
 	endpoint: string

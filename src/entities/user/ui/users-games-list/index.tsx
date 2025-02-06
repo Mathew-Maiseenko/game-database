@@ -1,13 +1,13 @@
 'use client'
-import { useRouter } from 'next/navigation'
-import { UsersGameCard } from '../user-game-card'
 import { useAppDispatch, useAppSelector } from '@/shared/lib/redux/hooks'
-import { userSlice } from '../../model/user-slice'
+import { baseSiteUrl } from '@/shared/model'
+import { ListWrapper } from '@/shared/ui'
+import { useRouter } from 'next/navigation'
 import { useEffect, useMemo } from 'react'
 import { fetchDetailsByGamesIds } from '../../model/thunk/fetch-game-details'
+import { userSlice } from '../../model/user-slice'
 import { usersFavoriteGameType } from '../../types'
-import { ListWrapper } from '@/shared/ui'
-import { baseSiteUrl } from '@/shared/model'
+import { UsersGameCard } from '../user-game-card'
 
 interface UsersGamesListProps {
 	withButton: boolean
@@ -70,7 +70,7 @@ export function UsersGamesList({ withButton, styles }: UsersGamesListProps) {
 						<button
 							className={`${
 								withButton ? '' : 'hidden'
-							} bg-blue dark:bg-orange w-2/3 sm:w-1/2 md:w-1/3 m-auto p-2 relative -bottom-7 lg:-bottom-11 rounded-2xl text-black dark:text-white`}
+							} bg-blue dark:bg-orange w-2/3 sm:w-1/2 md:w-1/3 m-auto p-2 relative -bottom-7 lg:-bottom-11 rounded-2xl text-white`}
 							onClick={() => {
 								router.push(`${baseSiteUrl}/user`)
 							}}

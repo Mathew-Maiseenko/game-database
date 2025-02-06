@@ -1,6 +1,6 @@
 'use client'
 import { filteredGamesSlice } from '@/features/filtration'
-import { RawgApiClient } from '@/shared/api'
+import { fetchApiWrapper, Genre } from '@/shared/api'
 import { useAppDispatch, useAppSelector } from '@/shared/lib/redux/hooks'
 import { useWindowWidth } from '@/shared/model'
 import Image from 'next/image'
@@ -28,7 +28,10 @@ export function WelcomeMessagePostersScrollingWrapper({
 			const postersFromGenres = gameGenres.map(genre => genre.image)
 			setGamesPosters(postersFromGenres)
 		} else {
-			RawgApiClient.metadata.getGenresList().then(res => {
+			//RawgApiClient.metadata.getGenresList()
+			fetchApiWrapper<Genre[]>(`metadata/genres`).then(res => {
+				console.log('problem', res)
+
 				const postersFromGenres = res.map(genre => genre.image)
 				setGamesPosters(postersFromGenres)
 				dispatch(filteredGamesSlice.actions.initGenres(res))

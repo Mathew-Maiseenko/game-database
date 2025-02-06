@@ -1,4 +1,8 @@
-import type { StoreGamesFiltrationObj } from '@/shared/api'
+import {
+	buildUrlQueryParams,
+	fetchApiWrapper,
+	type StoreGamesFiltrationObj,
+} from '@/shared/api'
 import type { extraArgumentType } from '@/shared/lib'
 import { createAsyncThunk } from '@reduxjs/toolkit'
 
@@ -22,15 +26,29 @@ export const fetchFilteredGameList = createAsyncThunk<
 		{ gamesPerPage, pageNumber, title, genres, tags, year, developers },
 		thunkApi
 	) => {
-		const response = await thunkApi.extra.api.games.getGamesListWithParams({
-			gamesPerPage,
-			pageNumber,
-			title,
+		// const response = await thunkApi.extra.api.games.getGamesListWithParams({
+		// 	gamesPerPage,
+		// 	pageNumber,
+		// 	title,
+		// 	genres,
+		// 	tags,
+		// 	year,
+		// 	developers,
+		// })
+		//return response
+
+		const queryParamsString = buildUrlQueryParams({
+			page_size: gamesPerPage,
+			page: pageNumber,
+			search: title,
 			genres,
 			tags,
-			year,
+			dates: year,
 			developers,
 		})
-		return response
+
+		return await fetchApiWrapper<StoreGamesFiltrationObj>(
+			`games${queryParamsString}`
+		)
 	}
 )

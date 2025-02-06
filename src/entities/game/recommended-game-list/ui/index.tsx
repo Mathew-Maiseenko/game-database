@@ -1,7 +1,12 @@
 'use client'
 import { RecommendationListsGameCard } from '@/entities/game/game-card/'
 import { calculateUsersFavoriteGenres, userSlice } from '@/entities/user'
-import { RawgApiClient, StoreGame } from '@/shared/api'
+import {
+	buildUrlQueryParams,
+	fetchApiWrapper,
+	StoreGame,
+	StoreGamesFiltrationObj,
+} from '@/shared/api'
 import { useAppSelector } from '@/shared/lib/redux/hooks'
 import { ListWrapper } from '@/shared/ui'
 import { useEffect, useState } from 'react'
@@ -24,21 +29,24 @@ export function RecommendedGameList() {
 				ids: favoriteGameIds,
 				games: favoriteGames,
 			})
-			RawgApiClient.games
-				.getGamesListWithParams({
-					gamesPerPage: 6,
-					pageNumber: 1,
-					genres: favoriteGenresIds.join(','),
-				})
+
+			let queryParamsString = buildUrlQueryParams({
+				page_size: 6,
+				page: 1,
+				genres: favoriteGenresIds.join(','),
+			})
+
+			fetchApiWrapper<StoreGamesFiltrationObj>(`games${queryParamsString}`)
 				.then(res => setRecommendedGames(res.games))
 				.then(() => setGameListFetchingState('fulfilled'))
 				.catch(() => setGameListFetchingState('rejected'))
 		} else {
-			RawgApiClient.games
-				.getGamesListWithParams({
-					gamesPerPage: 6,
-					pageNumber: 1,
-				})
+			let queryParamsString = buildUrlQueryParams({
+				page_size: 6,
+				page: 1,
+			})
+
+			fetchApiWrapper<StoreGamesFiltrationObj>(`games${queryParamsString}`)
 				.then(res => setRecommendedGames(res.games))
 				.then(() => setGameListFetchingState('fulfilled'))
 				.catch(() => setGameListFetchingState('rejected'))

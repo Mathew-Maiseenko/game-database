@@ -1,5 +1,5 @@
 import { userSlice } from '@/entities/user'
-import { Achievement, RawgApiClient } from '@/shared/api'
+import { Achievement, fetchApiWrapper } from '@/shared/api'
 import { useAppSelector } from '@/shared/lib/redux/hooks'
 import { ErrorMessage, Loader } from '@/shared/ui'
 import { memo, useEffect, useState } from 'react'
@@ -23,8 +23,7 @@ export const GameAchievementsList = memo(function GameAchievementsList({
 	)
 	useEffect(() => {
 		setAchievementsFetchStatus('pending')
-		RawgApiClient.games
-			.getListGameAchievements(gameId)
+		fetchApiWrapper<Achievement[]>(`games/achievements/${gameId}`)
 			.then(res => {
 				setAchievements(res)
 				setAchievementsFetchStatus('fulfilled')

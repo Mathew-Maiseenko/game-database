@@ -1,3 +1,5 @@
+export { buildUrlQueryParams } from './lib/buildUrlQueryParams'
+export { fetchApiWrapper } from './lib/fetchApiWrapper'
 export { RawgApiClient } from './service'
 export type { Achievement } from './types/achievement'
 export type { DeveloperResult } from './types/developer'

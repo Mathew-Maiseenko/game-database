@@ -1,14 +1,11 @@
-import { StoreGameDetails } from '@/shared/api'
-import { extraArgumentType } from '@/shared/lib'
+import { fetchApiWrapper, StoreGameDetails } from '@/shared/api'
 import { createAsyncThunk } from '@reduxjs/toolkit'
 
 type GameId = number
 
-export const fetchGameDetails = createAsyncThunk<
-	StoreGameDetails,
-	GameId,
-	{ extra: extraArgumentType }
->('gameDetails/fetchGameDetails', async (id, thunkApi) => {
-	const res = await thunkApi.extra.api.games.getGameDetails(id)
-	return res
-})
+export const fetchGameDetails = createAsyncThunk<StoreGameDetails, GameId>(
+	'gameDetails/fetchGameDetails',
+	async id => {
+		return await fetchApiWrapper<StoreGameDetails>(`games/details/${id}`)
+	}
+)

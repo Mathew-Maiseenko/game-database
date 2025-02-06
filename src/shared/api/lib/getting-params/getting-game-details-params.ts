@@ -1,6 +1,6 @@
 import type { GameDetails, StoreWrapper } from '../../types/game-details'
 import type { Tag } from '../../types/tag'
-import { transformDate } from '../transformDate'
+//import { transformDate } from '../transformDate'
 
 const getGameDetailsParams = (game: GameDetails) => ({
 	id: game.id,
@@ -10,12 +10,14 @@ const getGameDetailsParams = (game: GameDetails) => ({
 	alternativeNames: game.alternative_names,
 	description: game.description,
 	descriptionRaw: game['description_raw'],
-	released: game.released ? transformDate(game.released) : null,
+	released: game.released ? game.released : null,
+	lastUpdate: game.updated ? game.updated : null,
+	// released: game.released ? transformDate(game.released) : null,
+	// lastUpdate: game.updated ? transformDate(game.updated) : null,
 	achievementsCount: game['achievements_count'],
 	backgroundImage: game.background_image,
 	backgroundImageAdditional: game['background_image_additional'],
 	playtime: game.playtime,
-	lastUpdate: game.updated ? transformDate(game.updated) : null,
 	rating: game.rating,
 	ratingTop: game.rating_top,
 	website: game.website,

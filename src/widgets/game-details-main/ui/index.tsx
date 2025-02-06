@@ -5,7 +5,7 @@ import {
 	saveRemovingFavoriteGameFromLocalStorage,
 	userSlice,
 } from '@/entities/user'
-import { RawgApiClient } from '@/shared/api'
+import { fetchApiWrapper } from '@/shared/api'
 import { AppState } from '@/shared/lib'
 import { useAppDispatch, useAppSelector } from '@/shared/lib/redux/hooks'
 import { ErrorMessage, Loader } from '@/shared/ui'
@@ -53,8 +53,9 @@ export function GameDetailsMain() {
 
 	useEffect(() => {
 		if (!isGameAlreadyLoaded) {
-			RawgApiClient.games
-				.getListGameScreenshots(currentGameId)
+			fetchApiWrapper<string[]>(`games/screenshots/${currentGameId}`)
+				// RawgApiClient.games
+				// 	.getListGameScreenshots(currentGameId)
 				.then(setScreenshots)
 			dispatch(fetchGameDetails(currentGameId))
 		}

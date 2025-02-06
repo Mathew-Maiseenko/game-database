@@ -12,14 +12,12 @@ export async function GET(req: Request) {
 	const year = searchParams.get('dates')
 	const developers = searchParams.get('developers')
 
-	const isSearchParamsEmpty =
+	const isSearchParamsNonEmpty =
 		gamesPerPage || pageNumber || title || genres || tags || year || developers
 
 	let res: Promise<StoreGame[]> | Promise<StoreGamesFiltrationObj>
 
-	if (isSearchParamsEmpty) {
-		res = (await service).games?.getGamesList()!
-	} else {
+	if (isSearchParamsNonEmpty) {
 		res = (await service).games?.getGamesListWithParams({
 			gamesPerPage,
 			pageNumber,
@@ -29,9 +27,11 @@ export async function GET(req: Request) {
 			year,
 			developers,
 		})!
+	} else {
+		res = (await service).games?.getGamesList()!
 	}
 
 	const data = await res
 
-	return Response.json({ data })
+	return Response.json(data)
 }

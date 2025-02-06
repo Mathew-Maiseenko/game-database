@@ -1,5 +1,4 @@
 import type { ApiGameResponse } from '../../types/game-list'
-import { transformDate } from '../transformDate'
 
 const getFilteredGameListParams = (response: ApiGameResponse) => ({
 	count: response.count,
@@ -9,8 +8,10 @@ const getFilteredGameListParams = (response: ApiGameResponse) => ({
 		name: game.name,
 		backgroundImage: game.background_image,
 		playtime: game.playtime,
-		released: game.released ? transformDate(game.updated) : null,
-		lastUpdate: game.updated ? transformDate(game.updated) : null,
+		released: game.released ? game.released : null,
+		lastUpdate: game.updated ? game.updated : null,
+		// released: game.released ? transformDate(game.released) : null,
+		// lastUpdate: game.updated ? transformDate(game.updated) : null,
 		rating: game.rating,
 		ratingTop: game.rating_top,
 		detailedRating: game.ratings.map((rating: any) => ({

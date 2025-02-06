@@ -5,5 +5,5 @@ export async function GET() {
 	const res = (await service).metadata?.getDevelopersList()!
 	const data = await res
 
-	return Response.json({ data })
+	return Response.json(data)
 }

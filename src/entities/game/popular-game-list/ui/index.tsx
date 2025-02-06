@@ -1,6 +1,6 @@
 'use client'
 import { GameCard } from '@/entities/game/game-card'
-import { RawgApiClient, StoreGame } from '@/shared/api'
+import { fetchApiWrapper, StoreGame } from '@/shared/api'
 import { ListWrapper } from '@/shared/ui'
 import { useEffect, useState } from 'react'
 export function PopularGamesList() {
@@ -11,8 +11,7 @@ export function PopularGamesList() {
 
 	useEffect(() => {
 		setGameListFetchingState('pending')
-		RawgApiClient.games
-			.getGamesList()
+		fetchApiWrapper<StoreGame[]>(`games`)
 			.then(res => setGames(res))
 			.then(() => setGameListFetchingState('fulfilled'))
 			.catch(() => setGameListFetchingState('rejected'))

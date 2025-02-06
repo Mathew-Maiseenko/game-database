@@ -1,6 +1,6 @@
 'use client'
 import type { Genre, TagResult } from '@/shared/api'
-import { DeveloperResult, RawgApiClient } from '@/shared/api'
+import { DeveloperResult, fetchApiWrapper } from '@/shared/api'
 import { useAppDispatch, useAppSelector } from '@/shared/lib/redux/hooks'
 import { Carousel, MinimalistSelect } from '@/shared/ui'
 import { useEffect, useState } from 'react'
@@ -71,13 +71,18 @@ export function GameFiltration() {
 	])
 
 	useEffect(() => {
-		RawgApiClient.metadata.getTagsList().then(setTags)
-		RawgApiClient.metadata.getDevelopersList().then(setDevelopers)
+		fetchApiWrapper<TagResult[]>(`metadata/tags`).then(setTags)
+		fetchApiWrapper<DeveloperResult[]>(`metadata/developers`).then(
+			setDevelopers
+		)
+		// RawgApiClient.metadata.getTagsList().then(setTags)
+		// RawgApiClient.metadata.getDevelopersList().then(setDevelopers)
 
 		if (reduxStoredGenres.length) {
 			setGenres(reduxStoredGenres)
 		} else {
-			RawgApiClient.metadata.getGenresList().then(genres => {
+			//RawgApiClient.metadata.getGenresList()
+			fetchApiWrapper<Genre[]>(`metadata/genres`).then(genres => {
 				setGenres(genres)
 				dispatch(filteredGamesSlice.actions.initGenres(genres))
 			})
