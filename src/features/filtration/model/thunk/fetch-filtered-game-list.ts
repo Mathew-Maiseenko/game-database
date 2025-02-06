@@ -3,7 +3,6 @@ import {
 	fetchApiWrapper,
 	type StoreGamesFiltrationObj,
 } from '@/shared/api'
-import type { extraArgumentType } from '@/shared/lib'
 import { createAsyncThunk } from '@reduxjs/toolkit'
 
 interface fetchFilteredGameListThunkParams {
@@ -18,8 +17,7 @@ interface fetchFilteredGameListThunkParams {
 
 export const fetchFilteredGameList = createAsyncThunk<
 	StoreGamesFiltrationObj,
-	fetchFilteredGameListThunkParams,
-	{ extra: extraArgumentType }
+	fetchFilteredGameListThunkParams
 >(
 	'gamesFilteredList/fetchFilteredGameList',
 	async (

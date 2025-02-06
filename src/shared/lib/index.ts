@@ -1,9 +1,2 @@
-export { createAppSlice, createAppAsyncThunk } from './redux/hooks'
-
-export { extraArgument } from './redux/extra-argument'
-export type {
-	AppStore,
-	AppState,
-	AppDispatch,
-	extraArgumentType,
-} from './redux/types'
+export { createAppAsyncThunk, createAppSlice } from './redux/hooks'
+export type { AppDispatch, AppState, AppStore } from './redux/types'

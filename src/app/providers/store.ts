@@ -5,7 +5,6 @@ import { userSlice } from '@/entities/user'
 import { filteredGamesSlice } from '@/features/filtration'
 import { signUpModalSlice } from '@/features/logging'
 import { themeSwitcherSlice } from '@/features/theme-switcher'
-import { extraArgument } from '@/shared/lib'
 import { configureStore } from '@reduxjs/toolkit'
 export const makeStore = () => {
 	return configureStore({
@@ -17,11 +16,5 @@ export const makeStore = () => {
 			[themeSwitcherSlice.name]: themeSwitcherSlice.reducer,
 			[signUpModalSlice.name]: signUpModalSlice.reducer,
 		},
-		middleware: getDefaultMiddleware =>
-			getDefaultMiddleware({
-				thunk: {
-					extraArgument,
-				},
-			}),
 	})
 }

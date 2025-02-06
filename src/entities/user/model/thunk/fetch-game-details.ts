@@ -1,13 +1,11 @@
 import { fetchApiWrapper, type StoreGameDetails } from '@/shared/api'
-import { extraArgumentType } from '@/shared/lib'
 import { createAsyncThunk } from '@reduxjs/toolkit'
 
 type GameId = number
 
 export const fetchDetailsByGamesIds = createAsyncThunk<
 	Record<GameId, StoreGameDetails>,
-	GameId[],
-	{ extra: extraArgumentType }
+	GameId[]
 >('userSlice/fetchDetailsByGamesIds', async (ids, thunkApi) => {
 	const results = await Promise.all(
 		ids.map(async id => {
