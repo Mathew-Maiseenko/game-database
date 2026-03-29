@@ -17,12 +17,12 @@ export function GenresManipulator() {
 		filteredGamesSlice.selectors.selectGenreList,
 	)
 
+	const [selectedGenre, setSelectedGenre] = useState<Genre | null>(null)
 	const [isAddModalOpen, setIsAddModalOpen] = useState(false)
 	const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false)
 	const [newGenreName, setNewGenreName] = useState('')
 	const [newGenreSlug, setNewGenreSlug] = useState('')
 	const [newGenreImage, setNewGenreImage] = useState('')
-	const [deleteGenreName, setDeleteGenreName] = useState('')
 	const [error, setError] = useState('')
 
 	const fetchGenres = async () => {
@@ -70,31 +70,39 @@ export function GenresManipulator() {
 	}
 
 	const handleDeleteGenre = async () => {
-		const genreToDelete = genres.find(g => g.name === deleteGenreName)
-		if (!genreToDelete) {
-			setError('Genre not found')
+		if (!selectedGenre) {
+			setError('No genre selected')
 			return
 		}
 
+		setIsDeleteModalOpen(false)
 		const res = await fetch('/api/metadata/genres', {
 			method: 'DELETE',
 			headers: { 'Content-Type': 'application/json' },
-			body: JSON.stringify({ id: genreToDelete.id }),
+			body: JSON.stringify({ id: selectedGenre.id }),
 		})
 
 		if (res.ok) {
 			await fetchGenres()
-			setDeleteGenreName('')
 			setError('')
-			setIsDeleteModalOpen(false)
+
+			setSelectedGenre(null)
 		}
+	}
+
+	const handleCardClick = (genre: Genre) => {
+		setSelectedGenre(prev => (prev?.id === genre.id ? null : genre))
 	}
 
 	if (genres.length) {
 		return (
 			<section className='mb-3'>
 				<Carousel>
-					<ViewCards filterParams={genres} />
+					<ViewCards
+						filterParams={genres}
+						selectedGenre={selectedGenre}
+						onCardClick={handleCardClick}
+					/>
 				</Carousel>
 				<section className={styles.controls}>
 					<button
@@ -105,11 +113,21 @@ export function GenresManipulator() {
 					</button>
 					<button
 						className='rounded-3xl border-2 transition-all duration-300 dark:border-orange border-blue p-1 text-blue dark:text-orange dark:hover:text-white hover:text-black dark:hover:bg-orange hover:bg-blue dark:active:bg-activeButtonRed dark:active:text-white active:text-black'
-						onClick={() => setIsDeleteModalOpen(true)}
+						onClick={() => {
+							if (!selectedGenre) {
+								setError('Please select a genre to delete')
+								return
+							}
+							setError('')
+							setIsDeleteModalOpen(true)
+						}}
 					>
 						Delete Genre
 					</button>
 				</section>
+				{error && !isAddModalOpen && !isDeleteModalOpen && (
+					<p className='text-validationRed text-sm mt-2'>{error}</p>
+				)}
 
 				<Modal
 					isOpen={isAddModalOpen}
@@ -117,7 +135,7 @@ export function GenresManipulator() {
 				>
 					<section
 						onClick={e => e.stopPropagation()}
-						className='relative border-2 border-solid bg-white border-lightThemeBorderGray dark:border-textGray dark:bg-darkGray 
+						className='relative border-2 border-solid bg-white border-lightThemeBorderGray dark:border-textGray dark:bg-darkGray
 				w-4/5 lg:w-3/5 p-5 md:p-6 lg:p-7 rounded-2xl lg:rounded-3xl cursor-default flex flex-col gap-5'
 					>
 						<header className='flex justify-between items-center mb-2'>
@@ -147,7 +165,9 @@ export function GenresManipulator() {
 							className='w-full bg-inherit mb-5'
 							withMagnifierIcon={false}
 						/>
-						{error && <p className='text-validationRed text-sm'>{error}</p>}
+						{error && isAddModalOpen && (
+							<p className='text-validationRed text-sm'>{error}</p>
+						)}
 						<Button onClick={handleAddGenre}>Add</Button>
 					</section>
 				</Modal>
@@ -158,8 +178,8 @@ export function GenresManipulator() {
 				>
 					<section
 						onClick={e => e.stopPropagation()}
-						className='relative border-2 border-solid bg-white border-lightThemeBorderGray dark:border-textGray dark:bg-darkGray 
-				w-4/5 lg:w-3/5 p-5 md:p-6 lg:p-7 rounded-2xl lg:rounded-3xl cursor-default'
+						className='relative border-2 border-solid bg-white border-lightThemeBorderGray dark:border-textGray dark:bg-darkGray
+				 p-5 md:p-6 lg:p-7 rounded-2xl lg:rounded-3xl cursor-default flex flex-col gap-5'
 					>
 						<header className='flex justify-between items-center mb-2'>
 							<h2 className='text-xl font-bold'>Delete Genre</h2>
@@ -167,14 +187,13 @@ export function GenresManipulator() {
 								<CrossIcon classes='w-6 h-6 cursor-pointer' />
 							</div>
 						</header>
-						<MinimalistInput
-							inputValue={deleteGenreName}
-							setInputValue={setDeleteGenreName}
-							message='Genre name to delete'
-							className='w-full bg-inherit mb-5'
-							withMagnifierIcon={false}
-						/>
-						{error && <p className='text-validationRed text-sm'>{error}</p>}
+						<p className='text-base w-full text-center'>
+							Are you sure you want to delete genre:{' '}
+							<span className='font-bold'>{selectedGenre?.name}</span>?
+						</p>
+						{error && isDeleteModalOpen && (
+							<p className='text-validationRed text-sm'>{error}</p>
+						)}
 						<Button onClick={handleDeleteGenre}>Delete</Button>
 					</section>
 				</Modal>
@@ -185,14 +204,22 @@ export function GenresManipulator() {
 	}
 }
 
-const ViewCards = ({ filterParams }: { filterParams: Genre[] }) => {
+const ViewCards = ({
+	filterParams,
+	selectedGenre,
+	onCardClick,
+}: {
+	filterParams: Genre[]
+	selectedGenre: Genre | null
+	onCardClick: (genre: Genre) => void
+}) => {
 	return filterParams.map((genre: Genre) => (
 		<MinimalistFiltrationCarouselCard
 			key={`${genre.name}-${genre.id}`}
 			title={`id:${genre.id})${genre.name}`}
 			image={genre.image}
-			isActive={false}
-			setFiltration={() => {}}
+			isActive={selectedGenre?.id === genre.id}
+			setFiltration={() => onCardClick(genre)}
 		/>
 	))
 }

@@ -11,12 +11,12 @@ import styles from './shared.module.css'
 export function TagsManipulator() {
 	const [tags, setTags] = useState<TagResult[]>([])
 
+	const [selectedTag, setSelectedTag] = useState<TagResult | null>(null)
 	const [isAddModalOpen, setIsAddModalOpen] = useState(false)
 	const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false)
 	const [newTagName, setNewTagName] = useState('')
 	const [newTagSlug, setNewTagSlug] = useState('')
 	const [newTagImage, setNewTagImage] = useState('')
-	const [deleteTagName, setDeleteTagName] = useState('')
 	const [error, setError] = useState('')
 
 	const fetchTags = async () => {
@@ -60,31 +60,38 @@ export function TagsManipulator() {
 	}
 
 	const handleDeleteTag = async () => {
-		const tagToDelete = tags.find(t => t.name === deleteTagName)
-		if (!tagToDelete) {
-			setError('Tag not found')
+		if (!selectedTag) {
+			setError('No tag selected')
 			return
 		}
 
+		setIsDeleteModalOpen(false)
 		const res = await fetch('/api/metadata/tags', {
 			method: 'DELETE',
 			headers: { 'Content-Type': 'application/json' },
-			body: JSON.stringify({ id: tagToDelete.id }),
+			body: JSON.stringify({ id: selectedTag.id }),
 		})
 
 		if (res.ok) {
 			await fetchTags()
-			setDeleteTagName('')
 			setError('')
-			setIsDeleteModalOpen(false)
+			setSelectedTag(null)
 		}
+	}
+
+	const handleCardClick = (tag: TagResult) => {
+		setSelectedTag(prev => (prev?.id === tag.id ? null : tag))
 	}
 
 	if (tags.length) {
 		return (
 			<section className='mb-3'>
 				<Carousel>
-					<ViewCards filterParams={tags} />
+					<ViewCards
+						filterParams={tags}
+						selectedTag={selectedTag}
+						onCardClick={handleCardClick}
+					/>
 				</Carousel>
 				<section className={styles.controls}>
 					<button
@@ -95,11 +102,21 @@ export function TagsManipulator() {
 					</button>
 					<button
 						className='rounded-3xl border-2 transition-all duration-300 dark:border-orange border-blue p-1 text-blue dark:text-orange dark:hover:text-white hover:text-black dark:hover:bg-orange hover:bg-blue dark:active:bg-activeButtonRed dark:active:text-white active:text-black'
-						onClick={() => setIsDeleteModalOpen(true)}
+						onClick={() => {
+							if (!selectedTag) {
+								setError('Please select a tag to delete')
+								return
+							}
+							setError('')
+							setIsDeleteModalOpen(true)
+						}}
 					>
 						Delete Tag
 					</button>
 				</section>
+				{error && !isAddModalOpen && !isDeleteModalOpen && (
+					<p className='text-validationRed text-sm mt-2'>{error}</p>
+				)}
 
 				<Modal
 					isOpen={isAddModalOpen}
@@ -137,7 +154,9 @@ export function TagsManipulator() {
 							className='w-full bg-inherit mb-5'
 							withMagnifierIcon={false}
 						/>
-						{error && <p className='text-validationRed text-sm'>{error}</p>}
+						{error && isAddModalOpen && (
+							<p className='text-validationRed text-sm'>{error}</p>
+						)}
 						<Button onClick={handleAddTag}>Add</Button>
 					</section>
 				</Modal>
@@ -149,7 +168,7 @@ export function TagsManipulator() {
 					<section
 						onClick={e => e.stopPropagation()}
 						className='relative border-2 border-solid bg-white border-lightThemeBorderGray dark:border-textGray dark:bg-darkGray
-				w-4/5 lg:w-3/5 p-5 md:p-6 lg:p-7 rounded-2xl lg:rounded-3xl cursor-default'
+				 p-5 md:p-6 lg:p-7 rounded-2xl lg:rounded-3xl cursor-default flex flex-col gap-5'
 					>
 						<header className='flex justify-between items-center mb-2'>
 							<h2 className='text-xl font-bold'>Delete Tag</h2>
@@ -157,14 +176,13 @@ export function TagsManipulator() {
 								<CrossIcon classes='w-6 h-6 cursor-pointer' />
 							</div>
 						</header>
-						<MinimalistInput
-							inputValue={deleteTagName}
-							setInputValue={setDeleteTagName}
-							message='Tag name to delete'
-							className='w-full bg-inherit mb-5'
-							withMagnifierIcon={false}
-						/>
-						{error && <p className='text-validationRed text-sm'>{error}</p>}
+						<p className='text-base  w-full text-center'>
+							Are you sure you want to delete tag:{' '}
+							<span className='font-bold'>{selectedTag?.name}</span>?
+						</p>
+						{error && isDeleteModalOpen && (
+							<p className='text-validationRed text-sm'>{error}</p>
+						)}
 						<Button onClick={handleDeleteTag}>Delete</Button>
 					</section>
 				</Modal>
@@ -175,14 +193,22 @@ export function TagsManipulator() {
 	}
 }
 
-const ViewCards = ({ filterParams }: { filterParams: TagResult[] }) => {
+const ViewCards = ({
+	filterParams,
+	selectedTag,
+	onCardClick,
+}: {
+	filterParams: TagResult[]
+	selectedTag: TagResult | null
+	onCardClick: (tag: TagResult) => void
+}) => {
 	return filterParams.map((tag: TagResult) => (
 		<MinimalistFiltrationCarouselCard
 			key={`${tag.name}-${tag.id}`}
 			title={`id:${tag.id})-${tag.name}`}
 			image={tag.image}
-			isActive={false}
-			setFiltration={() => {}}
+			isActive={selectedTag?.id === tag.id}
+			setFiltration={() => onCardClick(tag)}
 		/>
 	))
 }
