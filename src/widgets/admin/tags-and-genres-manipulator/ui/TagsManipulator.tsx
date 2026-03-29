@@ -30,7 +30,7 @@ const ViewCards = ({ filterParams }: { filterParams: TagResult[] }) => {
 	return filterParams.map((tag: TagResult) => (
 		<MinimalistFiltrationCarouselCard
 			key={`${tag.name}-${tag.id}`}
-			title={tag.name}
+			title={`id:${tag.id})-${tag.name}`}
 			image={tag.image}
 			isActive={false}
 			setFiltration={() => {}}

@@ -1,0 +1,9 @@
+.controls {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 5rem;
+	margin-top: 1rem;
+	padding-left: 2rem;
+	padding-right: 2rem;
+	width: 100%;
+}
