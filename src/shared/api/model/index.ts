@@ -144,7 +144,7 @@ export class ApiClient {
 
 	private buildUrl(
 		path: string,
-		params: Record<string, queryParamsType | undefined> = {}
+		params: Record<string, queryParamsType | undefined> = {},
 	): string {
 		const url = new URL(`${this.baseUrl}${path}`)
 		url.searchParams.set('key', this.ApiKey)
@@ -249,6 +249,22 @@ export class MetadataService {
 			parser: getGenreListParams,
 			schema: GenreDtoSchema.array(),
 		})
+	}
+
+	async getGenresMongoList() {
+		const genresMongoUrl = ''
+		return await fetch(genresMongoUrl)
+			.then(res => res.json())
+			.then(res => getGenreListParams(res))
+			.then(res => GenreDtoSchema.array().parse(res) as Genre[])
+	}
+
+	async getTagsMongoList() {
+		const tagsMongoUrl = ''
+		return await fetch(tagsMongoUrl)
+			.then(res => res.json())
+			.then(res => getTagsListParams(res))
+			.then(res => TagDtoSchema.array().parse(res) as TagResult[])
 	}
 
 	async getTagsList() {

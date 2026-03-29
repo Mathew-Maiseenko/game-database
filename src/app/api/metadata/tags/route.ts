@@ -1,9 +1,18 @@
-import { RawgApiClient } from '@/shared/api'
+import { MongoClient } from 'mongodb'
+
+const mongoUrl = process.env.MONGO_DB_URL || 'mongodb://localhost:27017/'
 
 export async function GET() {
-	const service = RawgApiClient.getInstance()
-	const res = (await service).metadata?.getTagsList()!
-	const data = await res
+	const client = new MongoClient(mongoUrl)
 
-	return Response.json(data)
+	try {
+		await client.connect()
+		const db = client.db('Tags')
+		const collection = db.collection('tags-list')
+		const data = await collection.find().toArray()
+
+		return Response.json(data)
+	} finally {
+		await client.close()
+	}
 }
