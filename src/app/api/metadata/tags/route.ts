@@ -15,8 +15,8 @@ export async function GET() {
 
 	try {
 		await client.connect()
-		const db = client.db('Tags')
-		const collection = db.collection('tags-list')
+		const db = client.db('Main')
+		const collection = db.collection('Tags')
 		const data = await collection.find().toArray()
 
 		return Response.json(data)
@@ -33,7 +33,7 @@ export async function POST(request: Request) {
 		const db = client.db('Tags')
 		const collection = db.collection('tags-list')
 
-		const tag = await request.json() as Tag
+		const tag = (await request.json()) as Tag
 		await collection.insertOne(tag)
 
 		return Response.json({ message: 'Tag added successfully', tag })
@@ -50,7 +50,7 @@ export async function DELETE(request: Request) {
 		const db = client.db('Tags')
 		const collection = db.collection('tags-list')
 
-		const { id } = await request.json() as { id: number }
+		const { id } = (await request.json()) as { id: number }
 		await collection.deleteOne({ id })
 
 		return Response.json({ message: 'Tag deleted successfully', id })

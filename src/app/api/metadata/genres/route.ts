@@ -1,8 +1,8 @@
 import { MongoClient } from 'mongodb'
 
 const mongoUrl = process.env.MONGO_DB_URL || 'mongodb://localhost:27017/'
-const genresDbName = 'Genres'
-const genresCollection = 'genres-list'
+const genresDbName = 'Main'
+const genresCollection = 'Genres'
 
 interface Genre {
 	id: number
