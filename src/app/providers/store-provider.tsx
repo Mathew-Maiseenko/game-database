@@ -27,7 +27,7 @@ export default function StoreProvider({
 				}
 
 				storeRef.current.dispatch(
-					userSlice.actions.initCurrentUser(initialsUsersParams)
+					userSlice.actions.initCurrentUser(initialsUsersParams),
 				)
 			} else {
 				console.log('error local storage')
@@ -35,7 +35,7 @@ export default function StoreProvider({
 
 			const startedSiteColorTheme = localStorage.getItem('current-theme')
 			storeRef.current.dispatch(
-				themeSwitcherSlice.actions.initActiveTheme(startedSiteColorTheme)
+				themeSwitcherSlice.actions.initActiveTheme(startedSiteColorTheme),
 			)
 		}
 	}

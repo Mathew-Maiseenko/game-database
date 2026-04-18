@@ -5,6 +5,7 @@ import {
 	USERS_BASIC_TABLE_NAME,
 	USERS_GAMES_TABLE_NAME,
 } from '../config'
+import { UserInfoLocaleStorageType } from '@/entities/user'
 
 const mongoUrl = process.env.MONGO_DB_URL || 'mongodb://localhost:27017/'
 
@@ -47,8 +48,8 @@ export async function GET(request: NextRequest) {
 				userId: parsedUserId,
 			})
 
-			const res = {
-				userId: user.userId,
+			const res: UserInfoLocaleStorageType = {
+				// userId: user.userId,
 				userBasics: {
 					userName: user.userName,
 					userPassword: user.userName,
