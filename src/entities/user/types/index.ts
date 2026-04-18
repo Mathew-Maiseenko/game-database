@@ -62,6 +62,17 @@ export interface UserInfoLocaleStorageType {
 	}
 }
 
+export interface UserInfoInServerMongo {
+	userId: string
+	userName: string
+	CPU: string
+	GPU: string
+	RAM: number
+	graphicsMemory: number
+	games: Record<GameId, Omit<usersFavoriteGameType, 'game'> | undefined>
+	favoriteGamesIds: number[]
+}
+
 export interface initCurrentUserActionPayloadType {
 	user: UserInfoLocaleStorageType
 	isSigned: string | null

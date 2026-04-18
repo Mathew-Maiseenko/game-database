@@ -44,11 +44,10 @@ export async function signInUser({
 			favoriteGamesIds,
 		} = data.user
 
-		// Формируем объект UserInfoLocaleStorageType
 		const userInfo: UserInfoLocaleStorageType = {
 			userBasics: {
 				userName,
-				userPassword: password, // сохраняем пароль для возможной локальной проверки (не рекомендуется в production)
+				userPassword: password,
 			},
 			statistics: {
 				games,
@@ -66,7 +65,7 @@ export async function signInUser({
 		localStorage.setItem('userId', userId.toString())
 		localStorage.setItem('UserInfo', JSON.stringify(userInfo))
 
-		// Инициализируем стор (как ранее из localStorage)
+		// Инициализируем (как ранее из localStorage)
 		dispatch(
 			userSlice.actions.initCurrentUser({
 				user: userInfo,
