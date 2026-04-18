@@ -1,4 +1,5 @@
 import { UserInfoLocaleStorageType } from '../../types'
+import { saveRemovingFavoriteGame } from '../server-functions/save-removing-favorite-game'
 
 export function saveRemovingFavoriteGameFromLocalStorage(gameId: number) {
 	let userInfoJSON = localStorage.getItem('UserInfo')
@@ -17,7 +18,7 @@ export function saveRemovingFavoriteGameFromLocalStorage(gameId: number) {
 						[gameId]: undefined,
 					},
 					favoriteGamesIds: user.statistics.favoriteGamesIds.filter(
-						curId => curId !== gameId
+						curId => curId !== gameId,
 					),
 				},
 				computerSpecifications: {
@@ -26,7 +27,9 @@ export function saveRemovingFavoriteGameFromLocalStorage(gameId: number) {
 					RAM: user.computerSpecifications.RAM,
 					graphicsMemory: user.computerSpecifications.graphicsMemory,
 				},
-			})
+			}),
 		)
 	}
+
+	saveRemovingFavoriteGame(gameId)
 }

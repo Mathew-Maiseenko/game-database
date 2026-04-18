@@ -1,7 +1,9 @@
 import { UserInfoLocaleStorageType } from '../../types'
+import { saveAddingFavoriteGame } from '../server-functions/save-adding-favorite-game'
 
 export function saveAddingFavoriteGameInLocalStorage(gameId: number) {
 	let userInfoJSON = localStorage.getItem('UserInfo')
+
 	if (userInfoJSON) {
 		const user = JSON.parse(userInfoJSON) as UserInfoLocaleStorageType
 		localStorage.setItem(
@@ -24,7 +26,9 @@ export function saveAddingFavoriteGameInLocalStorage(gameId: number) {
 					RAM: user.computerSpecifications.RAM,
 					graphicsMemory: user.computerSpecifications.graphicsMemory,
 				},
-			})
+			}),
 		)
 	}
+
+	saveAddingFavoriteGame(gameId)
 }

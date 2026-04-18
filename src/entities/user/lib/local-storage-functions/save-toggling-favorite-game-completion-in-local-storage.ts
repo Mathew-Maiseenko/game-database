@@ -1,7 +1,8 @@
 import { UserInfoLocaleStorageType } from '../../types'
+import { saveTogglingFavoriteGameCompletion } from '../server-functions/save-toggling-favorite-game-completion'
 
 export function saveTogglingFavoriteGameСompletionInLocalStorage(
-	gameId: number
+	gameId: number,
 ) {
 	let userInfoJSON = localStorage.getItem('UserInfo')
 	if (userInfoJSON) {
@@ -30,7 +31,8 @@ export function saveTogglingFavoriteGameСompletionInLocalStorage(
 					RAM: user.computerSpecifications.RAM,
 					graphicsMemory: user.computerSpecifications.graphicsMemory,
 				},
-			})
+			}),
 		)
 	}
+	saveTogglingFavoriteGameCompletion(gameId)
 }

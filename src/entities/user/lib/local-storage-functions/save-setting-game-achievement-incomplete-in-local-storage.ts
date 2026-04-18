@@ -1,8 +1,9 @@
 import { UserInfoLocaleStorageType } from '../../types'
+import { saveSettingGameAchievementIncomplete } from '../server-functions/save-setting-game-achievement-incomplete'
 
 export function saveSettingGameAchievementIncompleteInLocalStorage(
 	gameId: number,
-	achievementId: number
+	achievementId: number,
 ) {
 	let userInfoJSON = localStorage.getItem('UserInfo')
 	if (userInfoJSON) {
@@ -33,7 +34,8 @@ export function saveSettingGameAchievementIncompleteInLocalStorage(
 					RAM: user.computerSpecifications.RAM,
 					graphicsMemory: user.computerSpecifications.graphicsMemory,
 				},
-			})
+			}),
 		)
 	}
+	saveSettingGameAchievementIncomplete(gameId, achievementId)
 }

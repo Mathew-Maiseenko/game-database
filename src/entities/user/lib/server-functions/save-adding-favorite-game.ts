@@ -1,18 +1,12 @@
+import { postApiWrapper } from '@/shared/api/lib/PostApiWrapper'
 import { USER_ID_STORAGE_KEY } from '../../config'
 
 export async function saveAddingFavoriteGame(gameId: number) {
 	const userId = localStorage.getItem(USER_ID_STORAGE_KEY)
 	if (!userId) return
 
-	const response = await fetch('/api/user/games/add-favorite', {
-		method: 'POST',
-		headers: {
-			'Content-Type': 'application/json',
-		},
-		body: JSON.stringify({ userId: parseInt(userId), gameId }),
-	})
-
-	if (!response.ok) {
-		console.error('Failed to add favorite game')
-	}
+	await postApiWrapper(
+		'user/games/add-favorite',
+		JSON.stringify({ userId: parseInt(userId), gameId }),
+	)
 }

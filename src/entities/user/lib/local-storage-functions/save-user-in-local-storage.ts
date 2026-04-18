@@ -1,10 +1,12 @@
+import { saveUserInfoAfterSigningUp } from '../server-functions/save-user'
+
 export function saveUserInfoInLocalStorageAfterSigningUp(
 	name: string,
 	password: string,
 	CPU: string,
 	GPU: string,
 	graphicsMemory: number,
-	RAM: number
+	RAM: number,
 ) {
 	localStorage.setItem(
 		'UserInfo',
@@ -23,6 +25,7 @@ export function saveUserInfoInLocalStorageAfterSigningUp(
 				RAM: RAM,
 				graphicsMemory: graphicsMemory,
 			},
-		})
+		}),
 	)
+	saveUserInfoAfterSigningUp(name, password, CPU, GPU, graphicsMemory, RAM)
 }
