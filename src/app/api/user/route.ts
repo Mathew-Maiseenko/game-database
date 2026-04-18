@@ -14,10 +14,7 @@ export async function GET(request: NextRequest) {
 		const userId = searchParams.get('userId')
 
 		if (!userId) {
-			return NextResponse.json(
-				{ error: 'userId is required' },
-				{ status: 400 },
-			)
+			return NextResponse.json({ error: 'userId is required' }, { status: 400 })
 		}
 
 		const parsedUserId = parseInt(userId)
@@ -42,10 +39,7 @@ export async function GET(request: NextRequest) {
 			})
 
 			if (!user) {
-				return NextResponse.json(
-					{ error: 'User not found' },
-					{ status: 404 },
-				)
+				return NextResponse.json({ error: 'User not found' }, { status: 404 })
 			}
 
 			// Get user games data
@@ -53,21 +47,25 @@ export async function GET(request: NextRequest) {
 				userId: parsedUserId,
 			})
 
-			return NextResponse.json(
-				{
-					user: {
-						userId: user.userId,
-						userName: user.userName,
-						CPU: user.CPU,
-						GPU: user.GPU,
-						RAM: user.RAM,
-						graphicsMemory: user.graphicsMemory,
-						games: userGamesData?.games || {},
-						favoriteGamesIds: userGamesData?.favoriteGamesIds || [],
-					},
+			const res = {
+				userId: user.userId,
+				userBasics: {
+					userName: user.userName,
+					userPassword: user.userName,
 				},
-				{ status: 200 },
-			)
+				statistics: {
+					games: userGamesData?.games || {},
+					favoriteGamesIds: userGamesData?.favoriteGamesIds || [],
+				},
+				computerSpecifications: {
+					CPU: user.CPU,
+					GPU: user.GPU,
+					RAM: user.RAM,
+					graphicsMemory: user.graphicsMemory,
+				},
+			}
+
+			return NextResponse.json(res, { status: 200 })
 		} finally {
 			await client.close()
 		}

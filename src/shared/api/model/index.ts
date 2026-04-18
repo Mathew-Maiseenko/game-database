@@ -164,6 +164,27 @@ export class ApiClient {
 			.then(res => parser(res))
 			.then(res => schema.parse(res) as T)
 	}
+
+	// Simple GET request without parser or schema
+	async get(endpoint: string, params: Record<string, queryParamsType> = {}) {
+		return await fetch(this.buildUrl(endpoint, params)).then(res => res.json())
+	}
+
+	// Simple POST request without parser or schema
+	async post(
+		endpoint: string,
+		data?: any,
+		params: Record<string, queryParamsType> = {},
+	) {
+		const url = this.buildUrl(endpoint, params)
+		return await fetch(url, {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: data ? JSON.stringify(data) : undefined,
+		}).then(res => res.json())
+	}
 }
 
 export class GamesService {
