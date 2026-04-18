@@ -18,8 +18,7 @@ export async function GET(request: NextRequest) {
 			return NextResponse.json({ error: 'userId is required' }, { status: 400 })
 		}
 
-		const parsedUserId = parseInt(userId)
-		if (isNaN(parsedUserId)) {
+		if (userId) {
 			return NextResponse.json(
 				{ error: 'userId must be a valid number' },
 				{ status: 400 },
@@ -36,7 +35,7 @@ export async function GET(request: NextRequest) {
 
 			// Find user by userId
 			const user = await usersCollection.findOne({
-				userId: parsedUserId,
+				userId,
 			})
 
 			if (!user) {
@@ -45,7 +44,7 @@ export async function GET(request: NextRequest) {
 
 			// Get user games data
 			const userGamesData = await usersGamesCollection.findOne({
-				userId: parsedUserId,
+				userId,
 			})
 
 			const res: UserInfoLocaleStorageType = {
@@ -72,6 +71,61 @@ export async function GET(request: NextRequest) {
 		}
 	} catch (error) {
 		console.error('Error fetching user:', error)
+		return NextResponse.json(
+			{ error: 'Internal server error' },
+			{ status: 500 },
+		)
+	}
+}
+
+export async function DELETE(
+	_: NextRequest,
+	{ params }: { params: { userId: string } },
+) {
+	try {
+		const { userId } = params
+
+		if (!userId) {
+			return NextResponse.json({ error: 'userId is required' }, { status: 400 })
+		}
+
+		const client = new MongoClient(mongoUrl)
+		await client.connect()
+
+		try {
+			const db = client.db(DB_NAME)
+			const usersCollection = db.collection(USERS_BASIC_TABLE_NAME)
+			const usersGamesCollection = db.collection(USERS_GAMES_TABLE_NAME)
+
+			// Удаляем пользователя из базовой таблицы
+			const userDeleteResult = await usersCollection.deleteOne({ userId })
+
+			// Удаляем связанные игровые данные
+			const gamesDeleteResult = await usersGamesCollection.deleteOne({ userId })
+
+			// Если ни одной записи не удалено, значит пользователь не найден
+			if (
+				userDeleteResult.deletedCount === 0 &&
+				gamesDeleteResult.deletedCount === 0
+			) {
+				return NextResponse.json({ error: 'User not found' }, { status: 404 })
+			}
+
+			return NextResponse.json(
+				{
+					message: 'User and associated game data deleted successfully',
+					deleted: {
+						user: userDeleteResult.deletedCount > 0,
+						games: gamesDeleteResult.deletedCount > 0,
+					},
+				},
+				{ status: 200 },
+			)
+		} finally {
+			await client.close()
+		}
+	} catch (error) {
+		console.error('Error deleting user:', error)
 		return NextResponse.json(
 			{ error: 'Internal server error' },
 			{ status: 500 },
