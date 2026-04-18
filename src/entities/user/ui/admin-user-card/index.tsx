@@ -43,7 +43,7 @@ const UserCard: React.FC<UserCardProps> = ({ user, onDelete }) => {
 
 	return (
 		<>
-			<div className='bg-white dark:bg-whiteGray dark:bg-gray-800 rounded-lg shadow-md p-4 hover:shadow-lg transition-shadow'>
+			<div className='bg-white dark:bg-whiteGray dark:bg-gray-800 rounded-lg shadow-md p-4 hover:shadow-lg transition-shadow border-2 border-lightThemeBorderGray'>
 				<div className='flex justify-between items-start mb-3'>
 					<h3 className='text-lg font-semibold text-gray-900 text-black dark:text-white'>
 						{user.userName}
@@ -77,8 +77,8 @@ const UserCard: React.FC<UserCardProps> = ({ user, onDelete }) => {
 					</div>
 
 					<div className='border-t pt-2 mt-2'>
-						<div className='flex justify-between'>
-							<span>🎮 Всего игр:</span>
+						<div className='flex justify-between text-xl'>
+							<span>Всего игр:</span>
 							<span className='font-medium'>{gamesCount}</span>
 						</div>
 					</div>
