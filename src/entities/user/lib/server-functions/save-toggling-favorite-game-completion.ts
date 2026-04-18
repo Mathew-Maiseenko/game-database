@@ -7,6 +7,6 @@ export async function saveTogglingFavoriteGameCompletion(gameId: number) {
 
 	await postApiWrapper(
 		'user/games/toggle-completion',
-		JSON.stringify({ userId: parseInt(userId), gameId }),
+		JSON.stringify({ userId: userId, gameId }),
 	)
 }

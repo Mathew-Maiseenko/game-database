@@ -11,7 +11,7 @@ export async function saveSettingGameAchievementIncomplete(
 	await postApiWrapper(
 		'user/games/achievements/incomplete',
 		JSON.stringify({
-			userId: parseInt(userId),
+			userId: userId,
 			gameId,
 			achievementId,
 		}),

@@ -41,7 +41,7 @@ export async function POST(request: NextRequest) {
 				)
 			}
 
-			const newId = Date.now()
+			const newId = String(Date.now())
 
 			const newUserData = {
 				userId: newId,
@@ -55,15 +55,15 @@ export async function POST(request: NextRequest) {
 			}
 
 			const newUserGameInitialData = {
-				userId: Date.now(),
+				userId: newId,
 				createdAt: new Date().toString(),
 				games: {},
 				favoriteGamesIds: [],
 			}
 
 			await usersGamesCollection.insertOne(newUserGameInitialData)
-			//новый юзер
-			// const result = await usersCollection.insertOne(newUserData)
+
+			await usersCollection.insertOne(newUserData)
 
 			return NextResponse.json(
 				{
