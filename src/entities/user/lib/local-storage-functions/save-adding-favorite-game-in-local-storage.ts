@@ -6,6 +6,7 @@ export function saveAddingFavoriteGameInLocalStorage(gameId: number) {
 
 	if (userInfoJSON) {
 		const user = JSON.parse(userInfoJSON) as UserInfoLocaleStorageType
+
 		localStorage.setItem(
 			'UserInfo',
 			JSON.stringify({

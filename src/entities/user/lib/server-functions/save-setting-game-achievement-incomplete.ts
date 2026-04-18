@@ -1,4 +1,4 @@
-import { postApiWrapper } from '@/shared/api/lib/PostApiWrapper'
+import { postApiWrapper } from '@/shared/api/lib/post'
 import { USER_ID_STORAGE_KEY } from '../../config'
 
 export async function saveSettingGameAchievementIncomplete(

@@ -41,8 +41,10 @@ export async function POST(request: NextRequest) {
 				)
 			}
 
+			const newId = Date.now()
+
 			const newUserData = {
-				userId: Date.now(),
+				userId: newId,
 				userName: name,
 				userPassword: password,
 				CPU: CPU || '',
@@ -60,12 +62,13 @@ export async function POST(request: NextRequest) {
 			}
 
 			await usersGamesCollection.insertOne(newUserGameInitialData)
-			const result = await usersCollection.insertOne(newUserData)
+			//новый юзер
+			// const result = await usersCollection.insertOne(newUserData)
 
 			return NextResponse.json(
 				{
 					message: 'User created successfully',
-					userId: result.insertedId,
+					userId: newId,
 				},
 				{ status: 201 },
 			)

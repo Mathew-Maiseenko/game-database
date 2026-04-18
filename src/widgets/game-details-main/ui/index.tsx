@@ -30,25 +30,25 @@ export function GameDetailsMain() {
 
 	const currentGameId = useMemo(
 		() => getGamesIdByPathname(pathname),
-		[pathname]
+		[pathname],
 	)
 
 	const currentGame = useAppSelector((state: AppState) =>
-		gameDetailsSlice.selectors.selectGameDetailsById(state, currentGameId)
+		gameDetailsSlice.selectors.selectGameDetailsById(state, currentGameId),
 	)
 
 	const isUserSigned = useAppSelector(userSlice.selectors.selectIsUserSigned)
 
 	const isGameAddedInUserList = useAppSelector((state: AppState) =>
-		userSlice.selectors.selectIsUserContainGameById(state, currentGameId)
+		userSlice.selectors.selectIsUserContainGameById(state, currentGameId),
 	)
 
 	const isGameAlreadyLoaded = useAppSelector((state: AppState) =>
-		gameDetailsSlice.selectors.selectGameDetailsById(state, currentGameId)
+		gameDetailsSlice.selectors.selectGameDetailsById(state, currentGameId),
 	)
 
 	const gameDetailsFetchingState = useAppSelector(
-		gameDetailsSlice.selectors.selectGameDetailsFetchingState
+		gameDetailsSlice.selectors.selectGameDetailsFetchingState,
 	)
 
 	useEffect(() => {
@@ -90,6 +90,7 @@ export function GameDetailsMain() {
 						<button
 							className='w-1/2 rounded-3xl border-2 transition-all duration-300 dark:border-orange border-blue p-1 text-blue dark:text-orange dark:hover:text-white hover:text-black dark:hover:bg-orange hover:bg-blue dark:active:bg-activeButtonRed dark:active:text-white active:text-black'
 							onClick={() => {
+								console.log(isUserSigned)
 								if (isUserSigned) {
 									if (!isGameAddedInUserList) {
 										dispatch(userSlice.actions.addFavoriteGame(currentGame))
@@ -97,7 +98,7 @@ export function GameDetailsMain() {
 										saveAddingFavoriteGameInLocalStorage(currentGameId)
 									} else {
 										dispatch(
-											userSlice.actions.removeFavoriteGame(currentGameId)
+											userSlice.actions.removeFavoriteGame(currentGameId),
 										)
 
 										saveRemovingFavoriteGameFromLocalStorage(currentGameId)

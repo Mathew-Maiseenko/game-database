@@ -1,4 +1,4 @@
-import { postApiWrapper } from '@/shared/api/lib/PostApiWrapper'
+import { postApiWrapper } from '@/shared/api/lib/post'
 
 export async function saveUserInfoAfterSigningUp(
 	name: string,
@@ -8,8 +8,15 @@ export async function saveUserInfoAfterSigningUp(
 	graphicsMemory: number,
 	RAM: number,
 ) {
-	await postApiWrapper(
-		'/api/user/signup',
+	const response = await postApiWrapper(
+		'user/register',
 		JSON.stringify({ name, password, CPU, GPU, graphicsMemory, RAM }),
 	)
+
+	if (response && response.userId) {
+		localStorage.setItem('userId', response.userId.toString())
+		console.log('User ID saved:', response.userId)
+	} else {
+		console.error('Registration succeeded but no userId in response:', response)
+	}
 }
