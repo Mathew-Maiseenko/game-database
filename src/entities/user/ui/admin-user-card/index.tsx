@@ -14,6 +14,7 @@ const UserCard: React.FC<UserCardProps> = ({ user, onDelete }) => {
 	const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false)
 	const [isDeleting, setIsDeleting] = useState(false)
 	const [error, setError] = useState<string | null>(null)
+	const [showGames, setShowGames] = useState(false)
 
 	const gamesCount = Object.keys(user.games).length
 	const favCount = user.favoriteGamesIds.length
@@ -42,52 +43,99 @@ const UserCard: React.FC<UserCardProps> = ({ user, onDelete }) => {
 
 	return (
 		<>
-			<div className='bg-white dark:bg-gray-800 rounded-lg shadow-md p-4 hover:shadow-lg transition-shadow'>
+			<div className='bg-white dark:bg-whiteGray dark:bg-gray-800 rounded-lg shadow-md p-4 hover:shadow-lg transition-shadow'>
 				<div className='flex justify-between items-start mb-3'>
-					<h3 className='text-lg font-semibold text-gray-900 dark:text-white'>
+					<h3 className='text-lg font-semibold text-gray-900 text-black dark:text-white'>
 						{user.userName}
 					</h3>
-					<span className='text-xs text-gray-500 dark:text-gray-400'>
+					<span className='text-xs text-gray-500 dark:text-gray-400 text-black dark:text-white'>
 						ID: {user.userId}
 					</span>
 				</div>
 
-				<div className='space-y-1 text-sm text-gray-600 dark:text-gray-300'>
+				<div className='text-black dark:text-white space-y-1 text-sm text-gray-600 dark:text-gray-300'>
 					<div className='grid grid-cols-2 gap-2'>
-						<span className='font-medium'>CPU:</span>
-						<span>{user.CPU || '—'}</span>
+						<h6>
+							<span className='font-bold'>CPU:</span>
+							<span>{user.CPU || '—'}</span>
+						</h6>
 
-						<span className='font-medium'>GPU:</span>
-						<span>{user.GPU || '—'}</span>
+						<h6>
+							<span className='font-bold'>GPU:</span>
+							<span>{user.GPU || '—'}</span>
+						</h6>
 
-						<span className='font-medium'>RAM:</span>
-						<span>{user.RAM} GB</span>
+						<h6>
+							<span className='font-bold'>RAM:</span>
+							<span>{user.RAM} GB</span>
+						</h6>
 
-						<span className='font-medium'>VRAM:</span>
-						<span>{user.graphicsMemory} GB</span>
+						<h6>
+							<span className='font-bold'>VRAM:</span>
+							<span>{user.graphicsMemory} GB</span>
+						</h6>
 					</div>
 
 					<div className='border-t pt-2 mt-2'>
 						<div className='flex justify-between'>
-							<span>🎮 Игр в библиотеке:</span>
+							<span>🎮 Всего игр:</span>
 							<span className='font-medium'>{gamesCount}</span>
-						</div>
-						<div className='flex justify-between'>
-							<span>⭐ Избранных:</span>
-							<span className='font-medium'>{favCount}</span>
 						</div>
 					</div>
 				</div>
 
+				{/* Кнопка показа игр */}
+				{favCount > 0 && (
+					<button
+						onClick={() => setShowGames(!showGames)}
+						className='mt-3 bg-gray-200 dark:bg-gray-700 text-gray-800 text-white text-sm p-2 rounded hover:bg-gray-300 dark:bg-orange bg-blue transition-colors mb-2'
+					>
+						{showGames ? 'Скрыть игры' : 'Показать игры'}
+					</button>
+				)}
+
+				{/* Список избранных игр с прогрессом */}
+				{showGames && (
+					<div className='mt-3 max-h-60 overflow-y-auto border rounded p-2 bg-gray-50 dark:bg-gray-900 text-black dark:text-white'>
+						<ul className='space-y-2'>
+							{user.favoriteGamesIds.map(gameId => {
+								const gameData = user.games[gameId]
+								const isComplete = gameData?.isComplete ?? false
+								const achievements = Object.keys(
+									gameData?.completedAchievementIds || {},
+								).join(', ')
+								return (
+									<li
+										key={gameId}
+										className='flex items-center justify-between text-sm'
+									>
+										<span className='font-medium'>GAME ID: {gameId}.</span>
+										<span>Completed achievements: {achievements}</span>
+										<span
+											className={`px-2 py-1 rounded text-xs ${
+												isComplete
+													? 'bg-green-200 text-green-800 dark:bg-green-800 dark:text-green-200'
+													: 'bg-yellow-200 text-yellow-800 dark:bg-yellow-800 dark:text-yellow-200'
+											}`}
+										>
+											{isComplete ? 'Пройдена' : 'Не пройдена'}
+										</span>
+									</li>
+								)
+							})}
+						</ul>
+					</div>
+				)}
+
 				<button
 					onClick={() => setIsDeleteModalOpen(true)}
-					className='flex text-white justify-center items-center bg-accountExitRed rounded-2xl p-2 font-semibold'
+					className='flex text-white justify-center items-center bg-accountExitRed rounded-2xl p-2 font-semibold mb-2'
 				>
 					Удалить пользователя
 				</button>
 			</div>
 
-			{/* Модальное окно подтверждения удаления */}
+			{/* Модальное окно удаления (с вашими стилями) */}
 			<Modal
 				isOpen={isDeleteModalOpen}
 				setModalCloseFunction={() => setIsDeleteModalOpen(false)}

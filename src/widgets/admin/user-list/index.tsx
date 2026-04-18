@@ -21,12 +21,6 @@ export default function AdminUserList() {
 		setUsers(prev => prev.filter(u => u.userId !== userId))
 	}
 
-	const handleViewDetails = (user: UserInfoInServerMongo) => {
-		// Здесь можно открыть модальное окно или перейти на страницу пользователя
-		console.log('Открыть детали пользователя:', user.userName)
-		// Например: router.push(`/admin/users/${user.userId}`);
-	}
-
 	if (loading) {
 		return (
 			<div className='flex justify-center items-center h-64'>
@@ -45,7 +39,9 @@ export default function AdminUserList() {
 
 	return (
 		<div className='container mx-auto px-4 py-8'>
-			<h1 className='text-2xl font-bold mb-8'>Панель администратора</h1>
+			<h2 className='text-2xl font-bold mb-8 text-black dark:text-white'>
+				Список пользователей
+			</h2>
 			<div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4'>
 				{users.map(user => (
 					<UserAdminCard
