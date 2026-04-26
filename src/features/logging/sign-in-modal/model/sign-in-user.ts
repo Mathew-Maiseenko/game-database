@@ -61,6 +61,9 @@ export async function signInUser({
 			},
 		}
 
+		const { isAdmin } = data
+		localStorage.setItem('isAdmin', JSON.stringify(isAdmin))
+
 		// Сохраняем в localStorage для офлайн-доступа
 		localStorage.setItem('userId', userId.toString())
 		localStorage.setItem('UserInfo', JSON.stringify(userInfo))
