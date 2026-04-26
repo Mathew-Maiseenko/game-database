@@ -38,6 +38,7 @@ export function GameDetailsMain() {
 	)
 
 	const isUserSigned = useAppSelector(userSlice.selectors.selectIsUserSigned)
+	
 
 	const isGameAddedInUserList = useAppSelector((state: AppState) =>
 		userSlice.selectors.selectIsUserContainGameById(state, currentGameId),

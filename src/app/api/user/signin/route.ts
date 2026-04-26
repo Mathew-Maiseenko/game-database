@@ -1,6 +1,7 @@
 import { MongoClient } from 'mongodb'
 import { NextRequest, NextResponse } from 'next/server'
 import {
+	ADMINS_IDS_TABLE_NAME,
 	DB_NAME,
 	USERS_BASIC_TABLE_NAME,
 	USERS_GAMES_TABLE_NAME,
@@ -29,6 +30,7 @@ export async function POST(request: NextRequest) {
 			const db = client.db(DB_NAME)
 			const usersCollection = db.collection(USERS_BASIC_TABLE_NAME)
 			const usersGamesCollection = db.collection(USERS_GAMES_TABLE_NAME)
+			const adminsIdsCollection = db.collection(ADMINS_IDS_TABLE_NAME)
 
 			// Find user by name
 			const user = await usersCollection.findOne({
@@ -36,18 +38,12 @@ export async function POST(request: NextRequest) {
 			})
 
 			if (!user) {
-				return NextResponse.json(
-					{ error: 'User not found' },
-					{ status: 404 },
-				)
+				return NextResponse.json({ error: 'User not found' }, { status: 404 })
 			}
 
 			// Check password
 			if (user.userPassword !== password) {
-				return NextResponse.json(
-					{ error: 'Invalid password' },
-					{ status: 401 },
-				)
+				return NextResponse.json({ error: 'Invalid password' }, { status: 401 })
 			}
 
 			// Get user games data
@@ -55,9 +51,15 @@ export async function POST(request: NextRequest) {
 				userId: user.userId,
 			})
 
+			const adminRecord = await adminsIdsCollection.findOne({
+				userId: user.userId,
+			})
+			const isAdmin = Boolean(adminRecord)
+
 			return NextResponse.json(
 				{
 					message: 'User signed in successfully',
+					isAdmin,
 					user: {
 						userId: user.userId,
 						userName: user.userName,
