@@ -26,7 +26,7 @@ export function submitUserData({
 	const userNameValidationMessage = validateName(name)
 	const passwordValidationMessage = passwordsMatchCheck(
 		password,
-		verifiedPassword
+		verifiedPassword,
 	)
 	const CPUValidationMessage = validateHardwareName(CPU)
 	const GPUValidationMessage = validateHardwareName(GPU)
@@ -52,8 +52,9 @@ export function submitUserData({
 					RAM: RAM,
 					graphicsMemory: graphicsMemory,
 				},
-			})
+			}),
 		)
+		localStorage.setItem('isAdmin', 'false')
 		dispatch(userSlice.actions.removeAllFavoriteGames())
 
 		dispatch(signUpModalSlice.actions.clearValidationMessages())
@@ -64,7 +65,7 @@ export function submitUserData({
 			CPU,
 			GPU,
 			graphicsMemory,
-			RAM
+			RAM,
 		)
 		saveIsUserSignedInLocalStorage(true)
 
@@ -79,7 +80,7 @@ export function submitUserData({
 				GPUValidationMessage: GPUValidationMessage,
 				RAMValidationMessage: RAMValidationMessage,
 				graphicsMemoryValidationMessage: graphicsMemoryValidationMessage,
-			})
+			}),
 		)
 	}
 }
